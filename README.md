@@ -1,5 +1,6 @@
-# lekipohodivplaninata
-Website with users witch can sign-up for a hike with theyr guide. The site aims to facilitate both its users and their guides.
+# lekipohodivplaninata.bg
+
+Website with users witch can sign up for a hike with their guide. The site aims to facilitate both its users and their guides.
 
 The goals of facilitating guides are:
   - to be able to take a list of everyone registered for the given hike
