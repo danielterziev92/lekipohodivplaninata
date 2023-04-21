@@ -1,0 +1,59 @@
+@import url('https://use.fontawesome.com/releases/v6.4.0/css/all.css');
+
+@media screen and (max-width: 480px) {
+    .top-small-header {
+        display: none;
+    }
+
+    nav {
+        padding: 10px !important;
+    }
+
+    .main-header {
+        position: sticky;
+        top: 0;
+        max-height: 100px;
+        height: 100px;
+    }
+
+    .menu-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .main-header li {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        list-style: none;
+        height: 80px;
+    }
+
+    .main-header li img {
+        width: 60%;
+        height: 60%;
+    }
+
+    .main-header li.menu-btn-small {
+        font-size: 1.5rem;
+        color: #cf5533;
+    }
+
+    .side-menu-mobile {
+        background-color: black;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        height: 100vh;
+        width: 100vw;
+        opacity: 60%;
+        transition-duration: 2s;
+    }
+
+    .side-menu-mobile .collapse {
+        display: none;
+    }
+
+}
