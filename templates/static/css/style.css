@@ -1,4 +1,12 @@
 @import url('https://use.fontawesome.com/releases/v6.4.0/css/all.css');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
 
 @media screen and (max-width: 480px) {
     .top-small-header {
@@ -35,25 +43,450 @@
         height: 60%;
     }
 
-    .main-header li.menu-btn-small {
+    .main-header li.menu-btn-small i {
         font-size: 1.5rem;
         color: #cf5533;
     }
 
+
     .side-menu-mobile {
-        background-color: black;
+        transition: ease-in-out 400ms;
+        position: absolute;
+        z-index: 2;
+        width: 270px;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background-color: #1b1b1b;
+    }
+
+    .side-menu-mobile.collapse {
+        left: -270px;
+    }
+
+    .side-menu-mobile h3 {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 65px;
+        text-align: center;
+        background-color: #2f272a;
+        letter-spacing: 1px;
+    }
+
+    .side-menu-mobile ul {
+        height: calc(100% - 65px);
+        list-style: none;
+    }
+
+    .side-menu-mobile ul li {
+        line-height: 60px;
+        border-bottom: 1px solid rgb(255, 255, 255, 0.3);
+    }
+
+    .side-menu-mobile ul li a {
+        position: relative;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        padding-left: 40px;
+        font-weight: 500;
+        display: block;
+        width: 100%;
+        border-left: 5px solid transparent;
+    }
+
+    .side-menu-mobile ul li.active a {
+        color: #cf5533;
+        background-color: #2f272a;
+        border-left-color: #cf5533;
+    }
+
+    .side-menu-mobile ul li a span {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 22px;
+        transition: tranform 5s;
+    }
+
+    .side-menu-mobile ul li a.rotate span {
+        transform: translateY(-50%) rotate(-180deg);
+    }
+
+    .side-menu-mobile ul ul {
+        position: static;
+        display: none;
+    }
+
+    .side-menu-mobile ul ul.show {
+        display: block;
+    }
+
+    .side-menu-mobile ul ul li {
+        line-height: 42px;
+        border-bottom: none;
+    }
+
+    .side-menu-mobile ul ul li a {
+        font-size: 17px;
+        padding-left: 40px;
+    }
+
+    .side-menu-mobile ul li.active ul li a {
+        color: #ffffff;
+        background-color: #1b1b1b;
+        border-left-color: transparent;
+    }
+
+    .side-menu-mobile ul li.active ul li a:before {
+        font-family: "Font Awesome 6 Free";
+        padding-right: 10px;
+    }
+
+    .side-menu-mobile ul li.active ul li a.upcoming:before {
+        content: '\f073';
+    }
+
+    .side-menu-mobile ul li.active ul li a.passed:before {
+        content: '\f273';
+    }
+
+
+    .side-menu-mobile .background {
+        height: 100vh;
+        background-color: rgb(0, 0, 0, 0.2);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .home-slider {
+        height: calc((100vw / 1.78) + 25px);
+    }
+
+    .home-slider .card {
+        position: relative;
+        height: inherit;
+    }
+
+    .home-slider .card::after {
+        content: '';
+        background-color: rgb(0, 0, 0, 0.3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vw / 1.78);
+    }
+
+    .home-slider .card-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        z-index: 2;
+    }
+
+    .home-slider .card-content h2 {
+        font-family: 'Marck Script', cursive;
+        color: #cf5533;
+    }
+
+    .home-slider .card-content p {
+        color: #ffffff;
+    }
+
+    .home-slider .image-content img {
+        width: 100%;
+        height: calc(100vw / 1.78);
+        object-fit: cover;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        color: #cf5533;
+    }
+
+    .swiper-button-next::after, .swiper-button-prev::after {
+        font-size: 20px;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: #cf5533;
+    }
+
+    .sign-up-for-hike {
+        display: grid;
+        justify-content: space-evenly;
+        row-gap: 10px;
+        padding: 20px 10px;
+        margin: 20px;
+        background-color: #f8f8f8;
+        border-radius: 20px;
+    }
+
+    .sign-up-for-hike h2 {
+        text-align: center;
+        margin: 10px;
+    }
+
+    .sign-up-for-hike .form-floating {
+        width: 75vw;
+        background-color: #ffffff;
+        position: relative;
+        border: 1px solid rgb(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+
+    .sign-up-for-hike .form-floating input {
+        width: 100%;
+        padding: 15px 20px;
+        border: none;
+        background-color: transparent;
+        outline: 0;
+    }
+
+    .sign-up-for-hike .form-floating input:focus,
+    .sign-up-for-hike .form-floating input:valid,
+    .sign-up-for-hike .form-floating input:active {
+        color: #1b1b1b;
+        border-color: #cf5533;
+        box-shadow: 0 0 0 2px rgba(255, 103, 0, 0.5);
+        border-radius: 5px;
+    }
+
+    .sign-up-for-hike .form-floating input:focus,
+    .sign-up-for-hike .form-floating input:valid,
+    .sign-up-for-hike .form-floating input:active {
+        padding-top: 25px;
+        padding-bottom: 5px;
+    }
+
+
+    .sign-up-for-hike .form-floating label {
+        color: #000000;
         position: absolute;
         top: 0;
         left: 0;
         z-index: 2;
-        height: 100vh;
-        width: 100vw;
-        opacity: 60%;
-        transition-duration: 2s;
+        padding: 15px 20px;
+        pointer-events: none;
+        transform-origin: 0 0;
+        transition: opacity .1s ease-in-out, transform .1s ease-in-out;;
     }
 
-    .side-menu-mobile .collapse {
+    .sign-up-for-hike .form-floating.numbers .numeric input:focus {
+        color: #1b1b1b;
+        border-color: transparent;
+        padding: 0;
+        height: 100%;
+        border-top-width: 1px;
+        border-bottom-width: 1px;
+    }
+
+    .sign-up-for-hike .form-floating input:focus ~ label, .sign-up-for-hike .form-floating input:valid ~ label {
+        color: rgb(0, 0, 0, 0.7);
+        transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+    }
+
+    .sign-up-for-hike .form-floating.numbers {
+        display: flex;
+    }
+
+    .sign-up-for-hike .form-floating.numbers label {
+        position: relative;
+    }
+
+    .sign-up-for-hike .form-floating.numbers .numeric {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 47%;
+        padding: 5px 0;
+    }
+
+    .sign-up-for-hike .form-floating.numbers .numeric span {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgb(0, 0, 0, 0.2);
+    }
+
+    .sign-up-for-hike .form-floating.numbers .numeric span:first-child {
+        margin-left: 5px;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .sign-up-for-hike .form-floating.numbers .numeric span:last-child {
+        margin-right: 5px;
+        border-radius: 0 5px 5px 0;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    .sign-up-for-hike .form-floating.numbers .numeric input::-webkit-outer-spin-button,
+    .sign-up-for-hike .form-floating.numbers .numeric input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    .sign-up-for-hike .form-floating.numbers .numeric input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .sign-up-for-hike .form-floating.numbers .numeric input, .sign-up-for-hike .form-floating.numbers .numeric input:focus {
+        text-align: center;
+        width: 60%;
+        padding: 0;
+        height: 100%;
+        border: unset;
+        border-color: rgb(0, 0, 0, 0.2);
+        border-style: solid;
+        border-width: 1px 0 !important;
+        border-radius: 0;
+        color: #000000 !important;
+    }
+
+    .sign-up-for-hike .form-floating.chooses {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sign-up-for-hike .form-floating.chooses label {
+        position: relative;
+        width: 80%;
+        padding-right: 0;
+    }
+
+    .sign-up-for-hike .form-floating.chooses select {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color: rgb(0, 0, 0, 0.2);
+        padding-left: 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .sign-up-for-hike .form-floating input[type=radio] {
+        width: auto;
+    }
+
+    .sign-up-for-hike .form-floating p {
+        padding: 20px 0 0 20px;
+    }
+
+    .sign-up-for-hike .form-floating .wrapper .option {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 10px;
+        border: 2px solid lightgray;
+        transition: all 0.3s ease;
+        pointer-events: auto;
+    }
+
+    .sign-up-for-hike .form-floating .wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .sign-up-for-hike .form-floating .wrapper .option .dot {
+        height: 20px;
+        width: 20px;
+        background-color: #cf5533;
+        border-radius: 50%;
+        position: relative;
+        margin-right: 10px;
+    }
+
+    .sign-up-for-hike .form-floating .wrapper .option .dot::before {
+        position: absolute;
+        content: '';
+        top: 4px;
+        left: 4px;
+        width: 12px;
+        height: 12px;
+        background-color: #1b1b1b;
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(1.5);
+        transition: all 0.3s ease;
+    }
+
+    .sign-up-for-hike .form-floating .wrapper input[type=radio] {
         display: none;
     }
+
+    .sign-up-for-hike .form-floating .wrapper input[type=radio] ~ label {
+        transform: unset;
+    }
+
+    #organized-transport:checked:checked ~ .option-1,
+    #personal-transport:checked:checked ~ .option-2 {
+        border-color: #1b1b1b;
+        background-color: #cf5533;
+    }
+
+    #organized-transport:checked:checked ~ .option-1 .dot,
+    #personal-transport:checked:checked ~ .option-2 .dot {
+        background-color: white;
+    }
+
+    #organized-transport:checked:checked ~ .option-1 .dot::before,
+    #personal-transport:checked:checked ~ .option-2 .dot::before {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .sign-up-for-hike .form-floating .wrapper span {
+        font-size: 20px;
+        color: #808080;
+    }
+
+    #organized-transport:checked:checked ~ .option-1 span,
+    #personal-transport:checked:checked ~ .option-2 span {
+        color: white;
+    }
+
+    .sign-up-for-hike button {
+        padding: 15px 50px;
+        background-color: #cf5533;
+        outline: none;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+
+    /*.sign-up-for-hike div input:focus {*/
+    /*    background-color: transparent;*/
+    /*    border-color: transparent;*/
+    /*    border-bottom: 1px solid red;*/
+    /*    color: #1b1b1b;*/
+    /*}*/
 
 }
