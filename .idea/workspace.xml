@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/global/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/global/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/db_0.stat" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/db_0.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/db_16384.stat" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/db_16384.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/global.stat" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/global.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/postmaster.pid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/js/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +122,7 @@
       <workItem from="1682097834788" duration="248000" />
       <workItem from="1682148348935" duration="14802000" />
       <workItem from="1682175187219" duration="15816000" />
-      <workItem from="1682241180079" duration="24584000" />
+      <workItem from="1682241180079" duration="25176000" />
     </task>
     <servers />
   </component>
