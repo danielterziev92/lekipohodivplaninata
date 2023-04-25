@@ -23,6 +23,7 @@ DJANGO_APPS = (
 PROJECT_APPS = (
     'lekipohodivplaninata.users_app.apps.UsersAppConfig',
     'lekipohodivplaninata.base.apps.BaseConfig',
+    'lekipohodivplaninata.hike.apps.HikeConfig',
 )
 
 THIRD_PARTY_APP = ()

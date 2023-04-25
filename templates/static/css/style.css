@@ -257,7 +257,6 @@
     }
 
     .sign-up-for-hike .form-floating input:focus,
-    .sign-up-for-hike .form-floating input:valid,
     .sign-up-for-hike .form-floating input:active {
         color: #1b1b1b;
         border-color: #cf5533;
@@ -462,7 +461,7 @@
     }
 
     .sign-up-for-hike .form-floating .wrapper span {
-        font-size: 20px;
+        font-size: 14px;
         color: #808080;
     }
 
