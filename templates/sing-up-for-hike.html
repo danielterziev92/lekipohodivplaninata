@@ -1,0 +1,47 @@
+<article>
+    <form method="post" class="sign-up-for-hike">
+        {% csrf_token %}
+        <div class="form-floating">
+            <input type="text" id="first-name" required>
+            <label for="first-name">Име:</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" id="last-name" required>
+            <label for="last-name">Фамилия:</label>
+        </div>
+        <div class="form-floating numbers">
+            <label for="users-count">Брой участници:</label>
+            <div class="numeric">
+                <span class="plus">+</span>
+                <input type="number" id="users-count" value="0" inputmode="numeric">
+                <span class="minus">-</span>
+            </div>
+        </div>
+        <div class="form-floating chooses">
+            <label for="choose-hike">Избери поход:</label>
+            <select name="choose-hike" id="choose-hike" required>
+                <option value="1">Поход 1</option>
+                <option value="2">Поход 2</option>
+                <option value="3">Поход 3</option>
+                <option value="4">Поход 4</option>
+                <option value="5">Поход 5</option>
+            </select>
+        </div>
+        <div class="form-floating">
+            <p>Пътувам с:</p>
+            <div class="wrapper">
+                <input type="radio" name="travel-with" id="organized-transport" required/>
+                <input type="radio" name="travel-with" id="personal-transport" required/>
+                <label for="organized-transport" class="option option-1" id="option-1">
+                    <div class="dot"></div>
+                    <span>Организиран Транспорт</span>
+                </label>
+                <label for="personal-transport" class="option option-2">
+                    <div class="dot"></div>
+                    <span>Собствен Транспорт</span>
+                </label>
+            </div>
+        </div>
+        <button>Запиши се</button>
+    </form>
+</article>

@@ -1,0 +1,21 @@
+<aside id="side-menu-mobile" class="side-menu-mobile collapse">
+    <ul>
+        <li><a href="#">Запиши се за поход</a></li>
+        <li><a href="#">Начало</a></li>
+        <li>
+            <a href="#">Походи <span><i class="fas fa-caret-down"></i></span></a>
+            <ul>
+                <li><a href="" class="upcoming">Предстоящи</a></li>
+                <li><a href="" class="passed">Изминали</a></li>
+            </ul>
+        </li>
+        {% if request.user %}
+            <li><a href="#">Моят Профил</a></li>
+            <li><a href="#">Изход</a></li>
+        {% else %}
+            <li><a href="#">Вход</a></li>
+            <li><a href="#">Регистрация</a></li>
+        {% endif %}
+    </ul>
+    <div class="background"></div>
+</aside>

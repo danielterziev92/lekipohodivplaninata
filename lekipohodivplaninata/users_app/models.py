@@ -28,8 +28,8 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     objects = UserAppManager()
 
-    # class Meta:
-    #     verbose_name_plural = 'Потребители'
+    class Meta:
+        verbose_name_plural = 'Потребители'
 
 
 class ProfileBaseInformation(models.Model):
@@ -43,12 +43,21 @@ class ProfileBaseInformation(models.Model):
         max_length=25,
         null=False,
         blank=False,
-        verbose_name='Име'
+        verbose_name='Име',
+        help_text='Моля попълнете вашето име',
     )
 
     last_name = models.CharField(
         max_length=25,
         null=False,
         blank=False,
-        verbose_name='Фамилия'
+        verbose_name='Фамилия',
+        help_text='Моля попълнете вашата фамилия',
     )
+
+    @property
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
+    class Meta:
+        verbose_name_plural = 'Профили'

@@ -1,153 +1,29 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!dвoctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+{% block page_styles %}
     <link rel="stylesheet" href="{% static 'css/scrollbar.min.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <title>Document</title>
-</head>
-<body>
-<header class="main-header">
-    <div class="top-small-header"></div>
-    <nav>
-        <ul class="menu-wrapper">
-            <li class="logo">
-                <img src="media/Logo%20-%20походи.png"
-                     alt="">
-            </li>
-            <li class="menu-btn-small" id="menu-btn-small"><i class="fa-solid fa-bars"></i></li>
-        </ul>
-    </nav>
-</header>
+{% endblock %}
+{% block page_content %}
+    <main>
+        <section>
+            {% include 'home-page/slider.html' %}
+            {% include 'sing-up-for-hike.html' %}
+        </section>
+        <section id='scroll' style="height: 2000px;"></section>
+    </main>
 
-<main>
-    <section id="slider">
-        <article>
-            <div class="home-slider swiper">
-                <div class="swiper-wrapper">
-                    <div class="card swiper-slide">
-                        <div class="image-content">
-                            <img src="media/slider/slider-1.jpeg" alt="">
-                        </div>
-                        <div class="card-content">
-                            <h2 class="card-title">Пътуване & Приключения</h2>
-                            <p class="card-descr">Къде би искал да отидеш ?</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="image-content">
-                            <img src="media/slider/slider-2.jpeg" alt="">
-                        </div>
-                        <div class="card-content">
-                            <h2 class="card-title">Пътуване & Приключения</h2>
-                            <p class="card-descr">Къде би искал да отидеш ?</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="image-content">
-                            <img src="media/slider/slider-3.jpeg" alt="">
-                        </div>
-                        <div class="card-content">
-                            <h2 class="card-title">Пътуване & Приключения</h2>
-                            <p class="card-descr">Къде би искал да отидеш ?</p>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="image-content">
-                            <img src="media/slider/slider-4.jpeg" alt="">
-                        </div>
-                        <div class="card-content">
-                            <h2 class="card-title">Пътуване & Приключения</h2>
-                            <p class="card-descr">Къде би искал да отидеш ?</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </article>
-        <article>
-            <form method="post" class="sign-up-for-hike">
-                {% csrf_token %}
-                <div class="form-floating">
-                    <input type="text" id="first-name" required>
-                    <label for="first-name">Име:</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" id="last-name" required>
-                    <label for="last-name">Фамилия:</label>
-                </div>
-                <div class="form-floating numbers">
-                    <label for="users-count">Брой участници:</label>
-                    <div class="numeric">
-                        <span class="plus">+</span>
-                        <input type="number" id="users-count" value="0" inputmode="numeric">
-                        <span class="minus">-</span>
-                    </div>
-                </div>
-                <div class="form-floating chooses">
-                    <label for="choose-hike">Избери поход:</label>
-                    <select name="choose-hike" id="choose-hike" required>
-                        <option value="1">Поход 1</option>
-                        <option value="2">Поход 2</option>
-                        <option value="3">Поход 3</option>
-                        <option value="4">Поход 4</option>
-                        <option value="5">Поход 5</option>
-                    </select>
-                </div>
-                <div class="form-floating">
-                    <p>Пътувам с:</p>
-                    <div class="wrapper">
-                        <input type="radio" name="travel-with" id="organized-transport" required/>
-                        <input type="radio" name="travel-with" id="personal-transport" required/>
-                        <label for="organized-transport" class="option option-1" id="option-1">
-                            <div class="dot"></div>
-                            <span>Организиран Транспорт</span>
-                        </label>
-                        <label for="personal-transport" class="option option-2">
-                            <div class="dot"></div>
-                            <span>Собствен Транспорт</span>
-                        </label>
-                    </div>
-                </div>
-                <button>Запиши се</button>
-            </form>
-        </article>
-    </section>
 
-</main>
-<aside id="side-menu-mobile" class="side-menu-mobile collapse">
-    <ul>
-        <li><a href="#">Запиши се за поход</a></li>
-        <li><a href="#">Начало</a></li>
-        <li>
-            <a href="#">Походи <span><i class="fas fa-caret-down"></i></span></a>
-            <ul>
-                <li><a href="" class="upcoming">Предстоящи</a></li>
-                <li><a href="" class="passed">Изминали</a></li>
-            </ul>
-        </li>
-        {% if request.user %}
-            <li><a href="#">Моят Профил</a></li>
-            <li><a href="#">Изход</a></li>
-        {% else %}
-            <li><a href="#">Вход</a></li>
-            <li><a href="#">Регистрация</a></li>
-        {% endif %}
-    </ul>
-    <div class="background"></div>
-</aside>
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-{#<script src="{% static 'js/swiper-bundle.min.js' %}"></script>#}
-<script src="{% static 'js/index.js' %}"></script>
-<script src="{% static 'js/slider.js' %}"></script>
-</body>
-</html>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
