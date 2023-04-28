@@ -7,7 +7,7 @@ UserModel = get_user_model()
 
 
 class SignInView(auth_view.LoginView):
-    template_name = 'accounts/login-page.html'
+    template_name = 'users/sign-up.html'
 
 
 class SignUpForm(auth_form.UserCreationForm):

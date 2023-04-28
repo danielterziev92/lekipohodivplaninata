@@ -5,37 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/users/sign-up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16394" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16394" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16447" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16447" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16448" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16448" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16451" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16451" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16453" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16453" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16472" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16472" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16506" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16506" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16507" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16507" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16513" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16513" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16525" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16525" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16526" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/16526" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/2608" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/2608" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/base/16384/2663" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/base/16384/2663" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/global.stat" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_stat_tmp/global.stat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_subtrans/0000" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_subtrans/0000" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/pg_xact/0000" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/pg_xact/0000" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgresql/pgdata/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/postgresql/pgdata/postmaster.pid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/aside-bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aside-bar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home-page/slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home-page/slider.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/Logo - походи.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/slider/slider-1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/images/slider/slider-1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/slider/slider-2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/images/slider/slider-2.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/slider/slider-3.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/images/slider/slider-3.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/slider/slider-4.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/images/slider/slider-4.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/slider/slider-5.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/images/slider/slider-5.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sing-up-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home-page/sing-up-for-hike.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,37 +52,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowRun.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Документи/GitHub/lekipohodivplaninata",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Документи/GitHub/lekipohodivplaninata&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/static/images" />
+      <recent name="$PROJECT_DIR$/templates/home-page" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates" />
       <recent name="$PROJECT_DIR$/lekipohodivplaninata" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\media" />
-      <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\static\css" />
-      <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\static" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.lekipohodivplaninata">
@@ -190,6 +179,7 @@
       <workItem from="1682404065185" duration="3741000" />
       <workItem from="1682411353438" duration="5287000" />
       <workItem from="1682609272843" duration="7582000" />
+      <workItem from="1682663851238" duration="5650000" />
     </task>
     <servers />
   </component>
@@ -197,7 +187,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
   </component>
 </project>

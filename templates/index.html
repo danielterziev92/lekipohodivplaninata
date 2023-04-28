@@ -9,16 +9,15 @@
     <link rel="stylesheet" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
 {% endblock %}
+
 {% block page_content %}
     <main>
         <section>
             {% include 'home-page/slider.html' %}
-            {% include 'sing-up-for-hike.html' %}
+            {% include 'home-page/sing-up-for-hike.html' %}
         </section>
         <section id='scroll' style="height: 2000px;"></section>
     </main>
-
-
 {% endblock %}
 
 {% block page_scripts %}
