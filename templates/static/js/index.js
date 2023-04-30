@@ -2,6 +2,20 @@ const asideMenuStyle = document.querySelector('.side-menu-mobile');
 const headerElement = document.getElementById('main-header');
 const sideMenuElement = document.getElementById('side-menu-mobile');
 
+document.querySelectorAll('.side-menu-mobile ul li').forEach((element) => {
+    if (element.children.length > 1) {
+        element.children[0].appendChild(createIcon());
+    }
+
+    function createIcon() {
+        const spanElement = document.createElement('span');
+        const iElement = document.createElement('i');
+        iElement.className = 'fas fa-caret-down';
+        spanElement.appendChild(iElement);
+        return spanElement
+    }
+})
+
 
 document.getElementById('menu-btn-small').addEventListener('click', (e) => {
     e.preventDefault();
@@ -48,6 +62,7 @@ document.getElementById('menu-btn-small').addEventListener('click', (e) => {
         }
 
         e.currentTarget.parentNode.classList.add('active');
+        console.log(e.currentTarget.parentNod);
 
         Array.from(sideMenuItems.children).map((el) => {
             if (el !== e.currentTarget.parentNode) {
@@ -58,31 +73,6 @@ document.getElementById('menu-btn-small').addEventListener('click', (e) => {
             }
         });
     }
-});
-
-const userCountElement = document.getElementById('users-count');
-userCountElement.addEventListener('change', (e) => {
-    if (Number.isNaN(Number(e.currentTarget.value)) || Number(e.currentTarget.value) < 0) {
-        e.currentTarget.value = 0;
-    }
-});
-document.querySelector('.sign-up-for-hike .numeric .plus').addEventListener('click', (e) => {
-    const currentValue = userCountElement.value;
-    userCountElement.value = Number(currentValue) + 1;
-});
-document.querySelector('.sign-up-for-hike .numeric .minus').addEventListener('click', (e) => {
-    const currentValue = userCountElement.value;
-    if (currentValue > 0) {
-        userCountElement.value = Number(currentValue) - 1;
-    }
-});
-
-document.getElementById('option-1').addEventListener('click', (e) => {
-    document.getElementById('organized-transport').checked = true;
-});
-
-document.querySelector('.option-2').addEventListener('click', () => {
-    document.getElementById('personal-transport').checked = true;
 });
 
 if (window.scrollY > 0) {
@@ -97,46 +87,3 @@ window.onscroll = function () {
     asideMenuStyle.style.top = `${window.scrollY.toFixed(0)}px`;
     asideMenuStyle.style.transition = 'unset';
 }
-
-
-// left: 37, up: 38, right: 39, down: 40,
-// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-// var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-//
-// function preventDefault(e) {
-//   e.preventDefault();
-// }
-//
-// function preventDefaultForScrollKeys(e) {
-//   if (keys[e.keyCode]) {
-//     preventDefault(e);
-//     return false;
-//   }
-// }
-//
-// // modern Chrome requires { passive: false } when adding event
-// var supportsPassive = false;
-// try {
-//   window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-//     get: function () { supportsPassive = true; }
-//   }));
-// } catch(e) {}
-//
-// var wheelOpt = supportsPassive ? { passive: false } : false;
-// var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-//
-// // call this to Disable
-// function disableScroll() {
-//   window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-//   window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-//   window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-//   window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-// }
-//
-// // call this to Enable
-// function enableScroll() {
-//   window.removeEventListener('DOMMouseScroll', preventDefault, false);
-//   window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
-//   window.removeEventListener('touchmove', preventDefault, wheelOpt);
-//   window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-// }

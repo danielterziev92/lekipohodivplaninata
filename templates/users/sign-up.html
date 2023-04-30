@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load fill_icons_form_tag %}
 
 {% block page_styles %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -8,7 +9,23 @@
 
 {% block page_content %}
     <section>
-        
+        <article class="sign-up-user">
+            <form method='post' action="{% url 'sign up user' %}" class="sing-up-form">
+                <h2>Създай профил</h2>
+                {% for field in form %}
+                    <label for="{{ field.id_for_label }}">
+                        <i class="{% form_icons field.id_for_label %}"></i>
+                        <span>{{ field.label }}</span>
+                        {{ field }}
+                    </label>
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+                {% csrf_token %}
+                <button>Регистрация</button>
+            </form>
+        </article>
     </section>
 {% endblock %}
 

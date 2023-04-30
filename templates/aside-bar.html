@@ -3,18 +3,23 @@
         <li><a href="#">Запиши се за поход</a></li>
         <li><a href="{% url 'index' %}">Начало</a></li>
         <li>
-            <a href="#">Походи <span><i class="fas fa-caret-down"></i></span></a>
+            <a href="#">Походи</a>
             <ul>
                 <li><a href="" class="upcoming">Предстоящи</a></li>
                 <li><a href="" class="passed">Изминали</a></li>
             </ul>
         </li>
         {% if request.user.is_authenticated %}
-            <li><a href="#">Моят Профил</a></li>
-            <li><a href="#">Изход</a></li>
+            <li>
+                <a href="#">Моят Профил</a>
+                <ul>
+                    <li><a href="#">Редакция на профила</a></li>
+                    <li><a href="{% url 'sign out user' %}">Изход</a></li>
+                </ul>
+            </li>
         {% else %}
-            <li><a href="{% url 'login user' %}">Вход</a></li>
-            <li><a href="#">Регистрация</a></li>
+            <li><a href="{% url 'sign in user' %}">Вход</a></li>
+            <li><a href="{% url 'sign up user' %}">Регистрация</a></li>
         {% endif %}
     </ul>
     <div class="background"></div>

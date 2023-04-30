@@ -178,6 +178,7 @@
     margin: 20px;
     background-color: #f8f8f8;
     border-radius: 20px;
+    border: 1px solid rgb(0, 0, 0, 0.2);
 }
 
 .sign-up-for-hike h2 {
@@ -426,6 +427,85 @@
     color: #ffffff;
 }
 
+.sign-up-user {
+    padding: 20px
+}
+
+.sign-up-user .sing-up-form {
+    background-color: #f8f8f8;
+    border: 1px solid rgb(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sign-up-user .sing-up-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.sign-up-user .sing-up-form label {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sign-up-user .sing-up-form label span {
+    min-width: 70px;
+}
+
+.sign-up-user .sing-up-form label i {
+    margin-right: 5px;
+}
+
+
+.sign-up-user .sing-up-form label input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.sign-up-user .sing-up-form label input::placeholder {
+    max-width: 100%;
+    text-overflow: ellipsis;
+}
+
+/*.sign-up-user .sing-up-form div input:focus {*/
+/*    border-bottom-color: #cf5533;*/
+/*}*/
+
+.sign-up-user .sing-up-form button {
+    margin: 20px;
+    width: 250px;
+    height: 60px;
+    background-color: #cf5533;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.5rem;
+}
+
+.sign-up-user .sing-up-form .errorlist {
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.sign-up-user .sing-up-form .errorlist li {
+    list-style: none;
+    color: #cf5533;
+}
 
 /*.sign-up-for-hike div input:focus {*/
 /*    background-color: transparent;*/

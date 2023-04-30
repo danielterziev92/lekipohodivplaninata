@@ -11,7 +11,6 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         null=False,
         blank=False,
         verbose_name='Email',
-        help_text='Моля, попълнете email.'
     )
 
     is_staff = models.BooleanField(
@@ -44,7 +43,6 @@ class ProfileBaseInformation(models.Model):
         null=False,
         blank=False,
         verbose_name='Име',
-        help_text='Моля попълнете вашето име',
     )
 
     last_name = models.CharField(
@@ -52,7 +50,6 @@ class ProfileBaseInformation(models.Model):
         null=False,
         blank=False,
         verbose_name='Фамилия',
-        help_text='Моля попълнете вашата фамилия',
     )
 
     @property
