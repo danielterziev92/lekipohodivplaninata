@@ -12,6 +12,9 @@ class SignInView(auth_view.LoginView):
     template_name = 'users/sing-in.html'
     success_url = reverse_lazy('index')
 
+    def form_valid(self, form):
+        return super().form_valid(form)
+
 
 class SignUpView(views.CreateView):
     template_name = 'users/sign-up.html'

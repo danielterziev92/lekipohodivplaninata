@@ -17,6 +17,7 @@ class SignUpForm(auth_form.UserCreationForm):
         widget=forms.EmailInput(
             attrs={
                 'placeholder': 'Въведете вашият имейл',
+                'autocomplete': 'email',
             }),
     )
 
@@ -46,8 +47,11 @@ class SignUpForm(auth_form.UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Въведете парола',
-                'autocomplete': 'new-password',
+                'autocomplete': 'current-password',
             }),
+        error_messages={
+            'password_too_similar': _('Паролата ви е много подобна с имейла.'),
+        },
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
@@ -55,9 +59,12 @@ class SignUpForm(auth_form.UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Повторете вашата парола',
-                'autocomplete': 'new-password'
+                'autocomplete': 'current-password'
             }),
         strip=False,
+        error_messages={
+            'password_too_similar': _('Паролата ви е много подобна с имейла.'),
+        }
         # help_text=_("Enter the same password as before, for verification."),
     )
 

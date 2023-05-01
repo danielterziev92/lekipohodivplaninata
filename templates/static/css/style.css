@@ -228,7 +228,7 @@
     padding: 15px 20px;
     pointer-events: none;
     transform-origin: 0 0;
-    transition: opacity .1s ease-in-out, transform .1s ease-in-out;;
+    transition: opacity .1s ease-in-out, transform .1s ease-in-out;
 }
 
 .sign-up-for-hike .form-floating.numbers .numeric input:focus {
@@ -477,6 +477,11 @@
     width: 100%;
 }
 
+.sign-up-user .sing-up-form label i:last-child {
+    color: #cf5533;
+    font-size: 1.5rem;
+}
+
 .sign-up-user .sing-up-form label input::placeholder {
     max-width: 100%;
     text-overflow: ellipsis;
@@ -495,6 +500,28 @@
     border: none;
     border-radius: 30px;
     font-size: 1.5rem;
+}
+
+.sign-up-user .sing-up-form small {
+    width: 0;
+    padding: 5px;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    border-radius: 10px;
+    display: none;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.sign-up-user .sing-up-form small.alert {
+    width: 100%;
+    display: flex;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
 }
 
 .sign-up-user .sing-up-form .errorlist {
