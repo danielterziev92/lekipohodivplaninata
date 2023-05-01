@@ -427,11 +427,11 @@
     color: #ffffff;
 }
 
-.sign-up-user {
+.sign-container {
     padding: 20px
 }
 
-.sign-up-user .sing-up-form {
+.sign-container .sing-form {
     background-color: #f8f8f8;
     border: 1px solid rgb(0, 0, 0, 0.08);
     border-radius: 10px;
@@ -441,13 +441,13 @@
     flex-wrap: wrap;
 }
 
-.sign-up-user .sing-up-form h2 {
+.sign-container .sing-form h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2rem;
 }
 
-.sign-up-user .sing-up-form label {
+.sign-container .sing-form label {
     background-color: #ffffff;
     width: 100%;
     padding: 10px;
@@ -459,16 +459,16 @@
     margin-bottom: 10px;
 }
 
-.sign-up-user .sing-up-form label span {
+.sign-container .sing-form label span {
     min-width: 70px;
 }
 
-.sign-up-user .sing-up-form label i {
+.sign-container .sing-form label i {
     margin-right: 5px;
 }
 
 
-.sign-up-user .sing-up-form label input {
+.sign-container .sing-form label input {
     border: none;
     outline: none;
     border-bottom: 1px solid rgb(0, 0, 0, 0.2);
@@ -477,12 +477,12 @@
     width: 100%;
 }
 
-.sign-up-user .sing-up-form label i:last-child {
+.sign-container .sing-form label i:last-child {
     color: #cf5533;
     font-size: 1.5rem;
 }
 
-.sign-up-user .sing-up-form label input::placeholder {
+.sign-container .sing-form label input::placeholder {
     max-width: 100%;
     text-overflow: ellipsis;
 }
@@ -491,7 +491,7 @@
 /*    border-bottom-color: #cf5533;*/
 /*}*/
 
-.sign-up-user .sing-up-form button {
+.sign-container .sing-form button {
     margin: 20px;
     width: 250px;
     height: 60px;
@@ -502,7 +502,7 @@
     font-size: 1.5rem;
 }
 
-.sign-up-user .sing-up-form small {
+.sign-container .sing-form small {
     width: 0;
     padding: 5px;
     background-color: #f8d7da;
@@ -515,7 +515,7 @@
     overflow: hidden;
 }
 
-.sign-up-user .sing-up-form small.alert {
+.sign-container .sing-form small.alert {
     width: 100%;
     display: flex;
     -webkit-transition: width 1s ease-in-out;
@@ -524,12 +524,12 @@
     transition: width 1s ease-in-out;
 }
 
-.sign-up-user .sing-up-form .errorlist {
+.sign-container .sing-form .errorlist {
     padding: 0 10px;
     margin-bottom: 10px;
 }
 
-.sign-up-user .sing-up-form .errorlist li {
+.sign-container .sing-form .errorlist li {
     list-style: none;
     color: #cf5533;
 }

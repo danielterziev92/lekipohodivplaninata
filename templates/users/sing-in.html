@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load fill_icons_form_tag %}
 {% load static %}
 
 {% block page_styles %}
@@ -8,20 +9,31 @@
 
 {% block page_content %}
     <section>
-        <article class="sign-up-user">
-            <form method='post' action="{% url 'sign in user' %}" class="sing-up-form">
+        <article class="sign-container">
+            <form method='post' action="{% url 'sign in user' %}" class="sing-form">
                 <h2>Вход</h2>
-                <label for="email">
-                    <i class="fas fa-envelope"></i>
-                    <span>Имейл:</span>
-                    <input type="email" name="email" id="email" placeholder="Въведете вашият имейл ...">
-
-                </label>
-                <label for="password">
-                    <i class="fas fa-lock"></i>
-                    <span>Парола:</span>
-                    <input type="password" name="password" id="email" placeholder="Въведете вашата парола ...">
-                </label>
+                {% for field in form %}
+                    <label for="{{ field.id_for_label }}">
+                        <i class="{% form_icons field.id_for_label %}"></i>
+                        <span>{{ field.label }}</span>
+                        {{ field }}
+                    </label>
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+                {% csrf_token %}
+                {#                <label for="email">#}
+                {#                    <i class="fas fa-envelope"></i>#}
+                {#                    <span>Имейл:</span>#}
+                {#                    <input type="email" name="email" id="email" placeholder="Въведете вашият имейл ...">#}
+                {##}
+                {#                </label>#}
+                {#                <label for="password">#}
+                {#                    <i class="fas fa-lock"></i>#}
+                {#                    <span>Парола:</span>#}
+                {#                    <input type="password" name="password" id="email" placeholder="Въведете вашата парола ...">#}
+                {#                </label>#}
                 <button>Вход</button>
                 {% csrf_token %}
             </form>

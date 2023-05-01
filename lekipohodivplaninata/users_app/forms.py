@@ -8,12 +8,33 @@ from lekipohodivplaninata.users_app.models import ProfileBaseInformation
 UserModel = get_user_model()
 
 
-# class SignInForm()
+class SignInForm(auth_form.AuthenticationForm):
+    username = forms.EmailField(
+        label='Имейл',
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder': 'Въведете вашият имейл',
+                'id': 'id_email',
+                'autocomplete': 'email',
+                'data-url': "/domain/email_autocomplete/",
+            }
+        )
+    )
+
+    password = forms.CharField(
+        strip=False,
+        label='Парола:',
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': 'Въведете парола',
+                'autocomplete': 'current-password',
+            }),
+    )
 
 
 class SignUpForm(auth_form.UserCreationForm):
     email = forms.EmailField(
-        label='Имейл',
+        label='Имейл:',
         widget=forms.EmailInput(
             attrs={
                 'placeholder': 'Въведете вашият имейл',
@@ -25,7 +46,7 @@ class SignUpForm(auth_form.UserCreationForm):
         max_length=25,
         # error_messages='Моля въведете името си на кирилица',
         help_text='Моля въведете вашето име',
-        label='Име',
+        label='Име:',
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Въведете вашето име'
@@ -34,7 +55,7 @@ class SignUpForm(auth_form.UserCreationForm):
 
     last_name = forms.CharField(
         max_length=25,
-        label='Фамилия',
+        label='Фамилия:',
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Въведете вашета фамилия'
@@ -42,7 +63,7 @@ class SignUpForm(auth_form.UserCreationForm):
     )
 
     password1 = forms.CharField(
-        label=_("Парола"),
+        label=_("Парола:"),
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -55,7 +76,7 @@ class SignUpForm(auth_form.UserCreationForm):
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label=_("Повторете"),
+        label=_("Повторете:"),
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Повторете вашата парола',

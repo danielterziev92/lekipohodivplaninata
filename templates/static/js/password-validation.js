@@ -36,7 +36,7 @@ function createShowHideIElement(validate) {
 
         if (firstPassword.value === secondPassword.value && is_showed) {
             errorElement.classList.remove('alert')
-            setTimeout(() => document.querySelector('.sign-up-user .sing-up-form small').remove(), 1000);
+            setTimeout(() => document.querySelector('.sign-container .sing-form small').remove(), 1000);
             is_showed = false;
         }
     }

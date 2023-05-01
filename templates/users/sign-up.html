@@ -9,8 +9,8 @@
 
 {% block page_content %}
     <section>
-        <article class="sign-up-user">
-            <form method='post' action="{% url 'sign up user' %}" class="sing-up-form">
+        <article class="sign-container">
+            <form method='post' action="{% url 'sign up user' %}" class="sing-form">
                 <h2>Създай профил</h2>
                 {% for field in form %}
                     <label for="{{ field.id_for_label }}">
