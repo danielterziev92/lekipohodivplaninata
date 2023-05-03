@@ -10,19 +10,10 @@ UserModel = get_user_model()
 
 
 class SignInView(auth_view.LoginView):
-    form_class = SignInForm
+    authentication_form = SignInForm
     template_name = 'users/sing-in.html'
     redirect_authenticated_user = True
     next_page = reverse_lazy('index')
-
-    # def form_invalid(self, form):
-    #     messages.error(self.request, 'Грешно потребителско име или парола')
-    #     return self.render_to_response(self.get_context_data(form=form))
-    #
-    def dispatch(self, request, *args, **kwargs):
-        if request.method.lower() == 'post':
-            login(self.request, user=authenticate(username=request.POST['username'], password=request.POST['password']))
-        return super().dispatch(request, *args, **kwargs)
 
 
 class SignUpView(views.CreateView):

@@ -1,6 +1,7 @@
 from django.contrib.auth import models as auth_models
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.users_app.manager import UserAppManager
 
@@ -11,10 +12,15 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         null=False,
         blank=False,
         verbose_name='Email',
+        error_messages={
+            'unique': _('Моля използвайте по-сложна парола.'),
+            'password_too_short': _('Паролата е трвърде къса. Трябва да бъде най-малко 8 символа'),
+            'password_too_common': _('Тази парола е твърде лесна.'),
+            'password_entirely_numeric': _('Паролата ви не трябва да съдържа само цифри.')
+        }
     )
 
     is_staff = models.BooleanField(
-        # _('Staff Status'),
         default=False,
         null=False,
         blank=False

@@ -14,7 +14,4 @@ def get_icon_for_form(label_id):
         'id_last_name': 'fa-regular fa-user',
     }
 
-    try:
-        return icons_class[label_id]
-    except KeyError:
-        return 'fa-solid fa-question'
+    return icons_class.get(label_id, 'fa-solid fa-question')

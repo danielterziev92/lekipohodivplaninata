@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load fill_icons_form_tag %}
+{% load change_error_message %}
 
 {% block page_styles %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -19,8 +20,14 @@
                         {{ field }}
                     </label>
                     {% if field.errors %}
-                        {{ field.errors }}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li>{% change_error_message error %}</li>
+                            {% endfor %}
+                        </ul>
+                        {#                        {{ field.errors }}#}
                     {% endif %}
+                    {{ field.messages }}
                 {% endfor %}
                 {% csrf_token %}
                 <button>Регистрация</button>
