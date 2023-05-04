@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.users_app.models import ProfileBaseInformation
@@ -33,18 +34,23 @@ class SignInForm(auth_form.AuthenticationForm):
                 'placeholder': 'Въведете парола',
                 'autocomplete': 'current-password',
             }),
+        error_messages={
+            'required': _('Полето е задължително'),
+        },
     )
 
-    error_messages = {
-        'required': _('Полето е задължително'),
-        'invalid_login': _(
-            "Please enter a correct %(username)s and password."
-        ),
-    }
+    def clean(self):
+        email = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
 
-    def __init__(self, *args, **kwargs):
-        self.error_messages['invalid_login'] = 'asdasdsa'
-        super().__init__(*args, **kwargs)
+        if email and password:
+            user = authenticate(self.request, username=email, password=password)
+
+            if user is None:
+                self.add_error('username', 'Невалиден имейл или парола.')
+                raise self.get_invalid_login_error()
+
+            super().clean()
 
 
 class SignUpForm(auth_form.UserCreationForm):
@@ -132,24 +138,6 @@ class SignUpForm(auth_form.UserCreationForm):
 
         }
 
-    # @property
-    # def errors(self):
-    #     """Return an ErrorDict for the data provided for the form."""
-    #
-    #     print(self._errors)
-    #     if self._errors is None:
-    #         # if 'password2' in self._errors.keys():
-    #         #     if self._errors['password2'] == 'The password is too similar to the Email.':
-    #         #         self._errors['password2'] = 'Паролата ви е много подобна с имейла.'
-    #         self.full_clean()
-    #
-    #     if 'password2' in self._errors.keys():
-    #         message = self._errors['password2'][0]
-    #         if message == 'The password is too similar to the Email.':
-    #             self._errors['password2'][0] = 'Паролата ви е много подобна с имейла.'
-    #
-    #     return self._errors
-
     def save(self, commit=True):
         user = super().save(commit=commit)
 
@@ -163,3 +151,9 @@ class SignUpForm(auth_form.UserCreationForm):
             profile.save()
 
         return user
+
+
+class UserResetPasswordForm(auth_form.PasswordResetForm):
+    email = forms.EmailField(
+        label='Имейл'
+    )

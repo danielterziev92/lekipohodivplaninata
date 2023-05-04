@@ -534,9 +534,28 @@
     color: #cf5533;
 }
 
-/*.sign-up-for-hike div input:focus {*/
-/*    background-color: transparent;*/
-/*    border-color: transparent;*/
-/*    border-bottom: 1px solid red;*/
-/*    color: #1b1b1b;*/
-/*}*/
+.sign-container .sing-form div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.sign-container .sing-form div p {
+    margin-bottom: 10px;
+}
+
+.sign-container .sing-form div p a {
+    color: #cf5533;
+}
+
+.sign-container .sing-form input[type=button] {
+    width: 90px;
+    padding: 5px;
+    background-color: #c41e3d;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    color: #ffffff;
+}

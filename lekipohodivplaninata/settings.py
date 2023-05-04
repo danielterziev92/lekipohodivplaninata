@@ -107,15 +107,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# LOGIN_URL = reverse_lazy('')
-#
-# LOGOUT_REDIRECT_URL = reverse_lazy('')
-
-
 AUTH_USER_MODEL = 'users_app.UserApp'
 
 LOGIN_URL = reverse_lazy('sign in user')
+
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'localhost'
+
+EMAIL_HOST_USER = ''
+
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_PORT = 25
+
+# EMAIL_USE_TLS = True
+
+EMAIL_SUBJECT_PREFIX = 'LekiPohodiVPlaninata.BG'
 
 # LOGGING = {
 #     'version': 1,

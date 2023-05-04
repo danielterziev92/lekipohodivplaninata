@@ -14,9 +14,6 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name='Email',
         error_messages={
             'unique': _('Моля използвайте по-сложна парола.'),
-            'password_too_short': _('Паролата е трвърде къса. Трябва да бъде най-малко 8 символа'),
-            'password_too_common': _('Тази парола е твърде лесна.'),
-            'password_entirely_numeric': _('Паролата ви не трябва да съдържа само цифри.')
         }
     )
 
