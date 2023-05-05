@@ -552,10 +552,33 @@
 .sign-container .sing-form input[type=button] {
     width: 90px;
     padding: 5px;
+}
+
+.sign-container .sing-form input[type=button] {
     background-color: #c41e3d;
     outline: none;
     border: none;
     border-radius: 15px;
     font-size: 1.2rem;
     color: #ffffff;
+}
+
+.reset-password {
+    padding: 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-password h1 {
+    color: #cf5533;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.reset-password p {
+    font-size: 1.2rem;
 }

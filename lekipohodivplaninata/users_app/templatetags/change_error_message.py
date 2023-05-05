@@ -4,7 +4,7 @@ register = template.Library()
 
 
 @register.simple_tag(name='change_error_message')
-def get_message_and_return_custom(text):
+def get_message_and_return_custom_text(text):
     errors = {
         'The password is too similar to the Email.': 'Паролата ви е много подобна с имейла.',
         'This password is too common.': 'Паролата ви е твърде лесна.',

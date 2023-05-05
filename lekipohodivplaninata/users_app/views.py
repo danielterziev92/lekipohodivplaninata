@@ -1,10 +1,8 @@
 from django.contrib.auth import views as auth_view, login, get_user_model
-from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm
+from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm
 
 UserModel = get_user_model()
 
@@ -41,12 +39,13 @@ class UserPasswordResetView(auth_view.PasswordResetView):
     template_name = 'users/reset-password.html'
     form_class = UserResetPasswordForm
     from_email = 'Леки походи в планината <support@lekipohodivplaninata.bg>'
-    email_template_name = 'users/email-template/reset-password.html'
+    email_template_name = 'users/email-templates/reset-password.html'
+    subject_template_name = 'users/email-templates/password_reset_subject.txt'
     success_url = reverse_lazy('reset password done')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        self.title = 'Забравена на парола'
+        self.title = 'Забравена парола'
         return context
 
 
@@ -56,7 +55,10 @@ class UserPasswordResetDoneView(auth_view.PasswordResetDoneView):
 
 class UserPasswordResetConfirmView(auth_view.PasswordResetConfirmView):
     template_name = 'users/reset-password-confirm.html'
+    form_class = UserSetPasswordForm
+    success_url = reverse_lazy('index')
 
-
-class UserPasswordResetCompleteView(auth_view.PasswordResetCompleteView):
-    template_name = 'users/reset-password-complete.html'
+    def dispatch(self, *args, **kwargs):
+        user = super().dispatch(*args, **kwargs)
+        print(user)
+        return user

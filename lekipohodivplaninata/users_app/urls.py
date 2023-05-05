@@ -1,7 +1,7 @@
 from django.urls import path
 
 from lekipohodivplaninata.users_app.views import SignInView, UsersListView, SignUpView, SignOutView, \
-    UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView, UserPasswordResetCompleteView
+    UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView
 
 urlpatterns = (
     path('', UsersListView.as_view(), name='all users'),
@@ -11,5 +11,4 @@ urlpatterns = (
     path('reset-password/', UserPasswordResetView.as_view(), name='reset password'),
     path('password-reset/done/', UserPasswordResetDoneView.as_view(), name='reset password done'),
     path('password-reset/<uidb64>/<token>', UserPasswordResetConfirmView.as_view(), name='reset password confirm'),
-    path('password-reset/complete', UserPasswordResetCompleteView.as_view(), name='reset password complete'),
 )

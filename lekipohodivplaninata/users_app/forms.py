@@ -1,9 +1,9 @@
+import datetime
+
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
-from django.core.mail import EmailMultiAlternatives
-from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.users_app.models import ProfileBaseInformation
@@ -159,23 +159,51 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
         label='Имейл'
     )
 
-    def send_mail(
-            self,
+    def send_mail(self, subject_template_name,
+                  email_template_name,
+                  context,
+                  from_email,
+                  to_email,
+                  html_email_template_name=None,
+                  ):
+        context['domain'] = 'lekipohodivplaninata.bg'
+        context['site_name'] = 'ЛекиПоходиВпланината.BG'
+
+        return super().send_mail(
             subject_template_name,
             email_template_name,
             context,
             from_email,
             to_email,
-            html_email_template_name=None,
-    ):
-        context['domain'] = 'lekipohodivplaninata.bg'
-        context['site_name'] = 'ЛекиПоходиВпланината.BG'
-        subject = "Забравена парола"
-        body = loader.render_to_string(email_template_name, context)
+            html_email_template_name,
+        )
 
-        email_message = EmailMultiAlternatives(subject, body, from_email, [to_email])
-        if html_email_template_name is not None:
-            html_email = loader.render_to_string(html_email_template_name, context)
-            email_message.attach_alternative(html_email, "text/html")
+    def save(self, **kwargs):
+        kwargs['extra_email_context'] = {
+            'ip_address': kwargs['request'].META['REMOTE_ADDR'],
+            'time_remaining': self.get_time_remaining
+        }
+        super().save(**kwargs)
 
-        email_message.send()
+    @property
+    def get_time_remaining(self):
+        return (datetime.datetime.now() + datetime.timedelta(hours=3)).strftime('%m-%d-%Y %H:%M:%S')
+
+
+class UserSetPasswordForm(auth_form.SetPasswordForm):
+    error_messages = {
+        'password_mismatch': _('Паролите не съвпадат'),
+    }
+
+    new_password1 = forms.CharField(
+        label=_('Нова парола'),
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+
+    new_password2 = forms.CharField(
+        label=_('Повтори'),
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+    )

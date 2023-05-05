@@ -7,6 +7,8 @@ register = template.Library()
 def get_icon_for_form(label_id):
     icons_class = {
         'id_email': 'fas fa-envelope',
+        'id_new_password1': 'fas fa-lock',
+        'id_new_password2': 'fas fa-lock',
         'id_password': 'fas fa-lock',
         'id_password1': 'fas fa-lock',
         'id_password2': 'fas fa-lock',

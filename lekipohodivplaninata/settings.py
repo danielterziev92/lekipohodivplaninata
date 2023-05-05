@@ -113,6 +113,8 @@ LOGIN_URL = reverse_lazy('sign in user')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
+PASSWORD_RESET_TIMEOUT = 3 * 60 * 60
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smart.superhosting.bg'
@@ -125,9 +127,6 @@ EMAIL_PORT = 25
 
 EMAIL_USE_TLS = False
 
-EMAIL_SUBJECT_PREFIX = 'LekiPohodiVplaninata.BG'
-
-from django.core.mail import send_mail
 # LOGGING = {
 #     'version': 1,
 #     'handlers': {

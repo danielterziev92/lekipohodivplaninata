@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/users/email-templates/reset-password.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags/change_error_message.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags/change_error_message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags/fill_icons_form_tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags/fill_icons_form_tag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/email-template/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/email-template/reset-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/email-template/reset-password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-complete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password-confirm.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +30,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/password_validation.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/views.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -257,21 +269,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags/fill_icons_form_tag.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/forms.py</url>
-          <line>317</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py</url>
-          <line>176</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/venv/lib/python3.10/site-packages/django/contrib/auth/views.py</url>
           <line>254</line>
           <option name="timeStamp" value="115" />
@@ -286,13 +283,26 @@
           <line>244</line>
           <option name="timeStamp" value="120" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/Lib/site-packages/django/template/loader.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Python.DjangoServer">
+        <watch expression="kwargs['request']" />
+      </configuration>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/forms.py" line="288">
+        <watch expression="subject_template_name" />
+      </inline-watch>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1682840149193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$fill_icons_form_tag.coverage" NAME="fill_icons_form_tag Coverage Results" MODIFIED="1682839381990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1682840149193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app" />
   </component>
 </project>
