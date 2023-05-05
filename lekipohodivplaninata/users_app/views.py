@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from lekipohodivplaninata import settings
 from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm
 
 UserModel = get_user_model()
@@ -41,14 +40,13 @@ class UsersListView(views.ListView):
 class UserPasswordResetView(auth_view.PasswordResetView):
     template_name = 'users/reset-password.html'
     form_class = UserResetPasswordForm
-    from_email = 'support@lekipohodivplaninata.bg'
-    title = 'Рестартиране на парола'
+    from_email = 'Леки походи в планината <support@lekipohodivplaninata.bg>'
     email_template_name = 'users/email-template/reset-password.html'
     success_url = reverse_lazy('reset password done')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
+        self.title = 'Забравена на парола'
         return context
 
 

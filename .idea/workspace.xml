@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-done.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password-done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/email-template/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/email-template/reset-password.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,14 +267,24 @@
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="102" />
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py</url>
+          <line>176</line>
+          <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py</url>
-          <line>171</line>
-          <option name="timeStamp" value="103" />
+          <url>file://$PROJECT_DIR$/venv/lib/python3.10/site-packages/django/contrib/auth/views.py</url>
+          <line>254</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.10/site-packages/django/contrib/auth/views.py</url>
+          <line>241</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.10/site-packages/django/contrib/auth/views.py</url>
+          <line>244</line>
+          <option name="timeStamp" value="120" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

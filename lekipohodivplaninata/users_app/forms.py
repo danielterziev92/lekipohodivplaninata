@@ -2,10 +2,11 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
-from django.core.exceptions import ValidationError
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.users_app.models import ProfileBaseInformation, UserApp
+from lekipohodivplaninata.users_app.models import ProfileBaseInformation
 
 UserModel = get_user_model()
 
@@ -169,6 +170,12 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
     ):
         context['domain'] = 'lekipohodivplaninata.bg'
         context['site_name'] = 'ЛекиПоходиВпланината.BG'
-        context['user_full_name'] = context['user'].profilebaseinformation.get_full_name
-        return super().send_mail(subject_template_name, email_template_name, context, from_email, to_email,
-                                 html_email_template_name)
+        subject = "Забравена парола"
+        body = loader.render_to_string(email_template_name, context)
+
+        email_message = EmailMultiAlternatives(subject, body, from_email, [to_email])
+        if html_email_template_name is not None:
+            html_email = loader.render_to_string(html_email_template_name, context)
+            email_message.attach_alternative(html_email, "text/html")
+
+        email_message.send()
