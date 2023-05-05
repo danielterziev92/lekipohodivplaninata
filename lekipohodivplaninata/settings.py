@@ -115,18 +115,19 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'localhost'
+EMAIL_HOST = 'smart.superhosting.bg'
 
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'support@lekipohodivplaninata.bg'
 
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = '?agCbk6dEsM+'
 
 EMAIL_PORT = 25
 
-# EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 
-EMAIL_SUBJECT_PREFIX = 'LekiPohodiVPlaninata.BG'
+EMAIL_SUBJECT_PREFIX = 'LekiPohodiVplaninata.BG'
 
+from django.core.mail import send_mail
 # LOGGING = {
 #     'version': 1,
 #     'handlers': {

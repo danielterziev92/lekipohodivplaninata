@@ -20,12 +20,19 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     is_staff = models.BooleanField(
         default=False,
         null=False,
-        blank=False
+        blank=False,
+    )
+
+    is_active = models.BooleanField(
+        default=True,
+        null=False,
+        blank=False,
     )
 
     data_joined = models.DateField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
     # REQUIRED_FIELDS = ['email']
 
     objects = UserAppManager()

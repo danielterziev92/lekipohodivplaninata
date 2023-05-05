@@ -1,8 +1,10 @@
-from django.contrib.auth import get_user_model
-from django.contrib.auth import views as auth_view, login
+from django.contrib.auth import views as auth_view, login, get_user_model
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
 
+from lekipohodivplaninata import settings
 from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm
 
 UserModel = get_user_model()
@@ -41,8 +43,13 @@ class UserPasswordResetView(auth_view.PasswordResetView):
     form_class = UserResetPasswordForm
     from_email = 'support@lekipohodivplaninata.bg'
     title = 'Рестартиране на парола'
-    extra_email_context = 'От тук се подава допълнител имейл текст'
+    email_template_name = 'users/email-template/reset-password.html'
     success_url = reverse_lazy('reset password done')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
 
 
 class UserPasswordResetDoneView(auth_view.PasswordResetDoneView):

@@ -5,7 +5,7 @@ from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.users_app.models import ProfileBaseInformation
+from lekipohodivplaninata.users_app.models import ProfileBaseInformation, UserApp
 
 UserModel = get_user_model()
 
@@ -157,3 +157,18 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
     email = forms.EmailField(
         label='Имейл'
     )
+
+    def send_mail(
+            self,
+            subject_template_name,
+            email_template_name,
+            context,
+            from_email,
+            to_email,
+            html_email_template_name=None,
+    ):
+        context['domain'] = 'lekipohodivplaninata.bg'
+        context['site_name'] = 'ЛекиПоходиВпланината.BG'
+        context['user_full_name'] = context['user'].profilebaseinformation.get_full_name
+        return super().send_mail(subject_template_name, email_template_name, context, from_email, to_email,
+                                 html_email_template_name)
