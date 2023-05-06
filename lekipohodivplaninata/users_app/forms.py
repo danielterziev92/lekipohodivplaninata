@@ -180,10 +180,14 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
 
     def save(self, **kwargs):
         kwargs['extra_email_context'] = {
-            'ip_address': kwargs['request'].META['REMOTE_ADDR'],
+            'ip_address': self.get_ip_address(kwargs['request']),
             'time_remaining': self.get_time_remaining
         }
         super().save(**kwargs)
+
+    @staticmethod
+    def get_ip_address(request):
+        return request.META['REMOTE_ADDR']
 
     @property
     def get_time_remaining(self):
