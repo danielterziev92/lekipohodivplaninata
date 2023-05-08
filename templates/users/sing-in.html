@@ -10,8 +10,8 @@
 
 {% block page_content %}
     <section>
-        <article class="sign-container">
-            <form method='post' action="{% url 'sign in user' %}" class="sing-form">
+        <article class="form-container">
+            <form method='post' action="{% url 'sign in user' %}" class="fields-form">
                 <h2>Вход</h2>
                 {% for field in form %}
                     <label for="{{ field.id_for_label }}">

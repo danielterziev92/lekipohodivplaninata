@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin, get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.users_app.models import ProfileBaseInformation
+from lekipohodivplaninata.users_app.models import BaseProfile
 
 UserModel = get_user_model()
 
@@ -49,6 +49,6 @@ class UserAppAdmin(auth_admin.UserAdmin):
     # )
 
 
-@admin.register(ProfileBaseInformation)
+@admin.register(BaseProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     pass

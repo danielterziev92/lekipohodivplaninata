@@ -1,12 +1,13 @@
 import datetime
 
+from cloudinary import forms as cloudinary_form
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.users_app.models import ProfileBaseInformation
+from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 UserModel = get_user_model()
 
@@ -68,9 +69,7 @@ class SignUpForm(auth_form.UserCreationForm):
     )
 
     first_name = forms.CharField(
-        max_length=25,
-        # error_messages='Моля въведете името си на кирилица',
-        help_text='Моля въведете вашето име',
+        max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
         label='Име:',
         widget=forms.TextInput(
             attrs={
@@ -82,7 +81,7 @@ class SignUpForm(auth_form.UserCreationForm):
     )
 
     last_name = forms.CharField(
-        max_length=25,
+        max_length=BaseProfile.LAST_NAME_MAX_LENGTH,
         label='Фамилия:',
         widget=forms.TextInput(
             attrs={
@@ -100,14 +99,13 @@ class SignUpForm(auth_form.UserCreationForm):
             attrs={
                 'placeholder': 'Въведете парола',
                 'autocomplete': 'current-password',
+                'id': 'password_1',
             }),
         error_messages={
             'required': _('Полето е задължително'),
             'password_too_similar': 'Паролата ви е много близка с имейла.'
-
         },
         help_text=password_validation.password_validators_help_text_html(),
-
     )
 
     password2 = forms.CharField(
@@ -115,14 +113,12 @@ class SignUpForm(auth_form.UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'placeholder': 'Повторете вашата парола',
-                'autocomplete': 'current-password'
+                'autocomplete': 'current-password',
+                'id': 'password_2',
             }),
         strip=False,
         error_messages={
             'required': _('Полето е задължително'),
-            'password_too_similar': 'Паролата ви е много близка с имейла.'
-        },
-        help_text={
             'password_too_similar': 'Паролата ви е много близка с имейла.'
         },
     )
@@ -142,7 +138,7 @@ class SignUpForm(auth_form.UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=commit)
 
-        profile = ProfileBaseInformation(
+        profile = BaseProfile(
             user_id=user,
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
@@ -154,7 +150,70 @@ class SignUpForm(auth_form.UserCreationForm):
         return user
 
 
+class GuideProfileEditForm(forms.ModelForm):
+    first_name = forms.CharField(
+        max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
+        label='Име',
+    )
+
+    last_name = forms.CharField(
+        max_length=BaseProfile.LAST_NAME_MAX_LENGTH,
+        label='Фамилия',
+    )
+
+    avatar = cloudinary_form.CloudinaryFileField(
+        label='Профилана снимка',
+        widget={
+
+        },
+        options={
+            'tags': "directly_uploaded",
+            'crop': 'limit', 'width': 1000, 'height': 1000,
+            'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
+            'folder': 'guides/avatars/'
+        },
+        required=False,
+    )
+
+    date_of_birth = forms.DateField(
+        label='Дата на раждане',
+
+    )
+
+    description = forms.CharField(
+        label='Описание',
+        widget=forms.Textarea()
+    )
+
+    certificate = cloudinary_form.CloudinaryFileField(
+        label='Сертификат',
+        options={
+            'tags': "directly_uploaded",
+            'crop': 'limit', 'width': 1000, 'height': 1000,
+            'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
+            'folder': 'guides/certificates/'
+        },
+        required=False,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs['value'] = kwargs.get('instance').profile_id.first_name
+        self.fields['last_name'].widget.attrs['value'] = kwargs.get('instance').profile_id.last_name
+
+    class Meta:
+        model = GuideProfile
+        fields = ('first_name', 'last_name', 'avatar', 'date_of_birth', 'description', 'certificate')
+        labels = {
+            'avatar': 'Профилна снимка',
+            'certificate': 'Сертификат',
+        }
+
+
 class UserResetPasswordForm(auth_form.PasswordResetForm):
+    domain = 'lekipohodivplaninata.bg'
+    site_name = 'ЛекиПоходиВпланината.BG'
+
     email = forms.EmailField(
         label='Имейл'
     )
@@ -166,16 +225,12 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
                   to_email,
                   html_email_template_name=None,
                   ):
-        context['domain'] = 'lekipohodivplaninata.bg'
-        context['site_name'] = 'ЛекиПоходиВпланината.BG'
+        context['domain'] = self.domain
+        context['site_name'] = self.site_name
 
         return super().send_mail(
-            subject_template_name,
-            email_template_name,
-            context,
-            from_email,
-            to_email,
-            html_email_template_name,
+            subject_template_name, email_template_name,
+            context, from_email, to_email, html_email_template_name,
         )
 
     def save(self, **kwargs):
@@ -201,7 +256,11 @@ class UserSetPasswordForm(auth_form.SetPasswordForm):
 
     new_password1 = forms.CharField(
         label=_('Нова парола'),
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                'id': 'password_1',
+            }),
         strip=False,
         help_text=password_validation.password_validators_help_text_html(),
     )
@@ -209,5 +268,9 @@ class UserSetPasswordForm(auth_form.SetPasswordForm):
     new_password2 = forms.CharField(
         label=_('Повтори'),
         strip=False,
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                'id': 'password_2'
+            }),
     )

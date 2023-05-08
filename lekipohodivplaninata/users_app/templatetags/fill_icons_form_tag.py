@@ -7,13 +7,15 @@ register = template.Library()
 def get_icon_for_form(label_id):
     icons_class = {
         'id_email': 'fas fa-envelope',
-        'id_new_password1': 'fas fa-lock',
-        'id_new_password2': 'fas fa-lock',
+        'password_1': 'fas fa-lock',
+        'password_2': 'fas fa-lock',
         'id_password': 'fas fa-lock',
-        'id_password1': 'fas fa-lock',
-        'id_password2': 'fas fa-lock',
         'id_first_name': 'fa-regular fa-user',
         'id_last_name': 'fa-regular fa-user',
+        'id_avatar': 'fa-solid fa-link',
+        'id_certificate': 'fa-solid fa-link',
+        'id_date_of_birth': 'fa-regular fa-calendar-days',
+        'id_description': 'fa-solid fa-text-height',
     }
 
     return icons_class.get(label_id, 'fa-solid fa-question')

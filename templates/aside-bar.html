@@ -13,7 +13,7 @@
             <li>
                 <a href="#">Моят Профил</a>
                 <ul>
-                    <li><a href="#">Редакция на профила</a></li>
+                    <li><a href="{% url 'user detail' pk=request.user.pk %}">Редакция на профила</a></li>
                     <li><a href="{% url 'sign out user' %}">Изход</a></li>
                 </ul>
             </li>

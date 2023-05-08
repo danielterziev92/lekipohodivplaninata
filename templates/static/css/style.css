@@ -427,11 +427,11 @@
     color: #ffffff;
 }
 
-.sign-container {
+.form-container {
     padding: 20px
 }
 
-.sign-container .sing-form {
+.form-container .fields-form {
     background-color: #f8f8f8;
     border: 1px solid rgb(0, 0, 0, 0.08);
     border-radius: 10px;
@@ -441,13 +441,13 @@
     flex-wrap: wrap;
 }
 
-.sign-container .sing-form h2 {
+.form-container .fields-form h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 1.7rem;
 }
 
-.sign-container .sing-form label {
+.form-container .fields-form label {
     background-color: #ffffff;
     width: 100%;
     padding: 10px;
@@ -459,16 +459,18 @@
     margin-bottom: 10px;
 }
 
-.sign-container .sing-form label span {
+.form-container .fields-form label span {
     min-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.sign-container .sing-form label i {
+.form-container .fields-form label i {
     margin-right: 5px;
 }
 
 
-.sign-container .sing-form label input {
+.form-container .fields-form label input {
     border: none;
     outline: none;
     border-bottom: 1px solid rgb(0, 0, 0, 0.2);
@@ -477,32 +479,52 @@
     width: 100%;
 }
 
-.sign-container .sing-form label i:last-child {
+.form-container .fields-form label i:last-child {
     color: #cf5533;
     font-size: 1.5rem;
 }
 
-.sign-container .sing-form label input::placeholder {
+.form-container .fields-form label input::placeholder {
     max-width: 100%;
     text-overflow: ellipsis;
+}
+
+.form-container .fields-form label[for='id_description'] {
+    flex-wrap: wrap;
+}
+
+.form-container .fields-form label img {
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.form-container .fields-form p a {
+    text-decoration: none;
+    color: #1b1b1b;
 }
 
 /*.sign-up-user .sing-up-form div input:focus {*/
 /*    border-bottom-color: #cf5533;*/
 /*}*/
 
-.sign-container .sing-form button {
-    margin: 20px;
-    width: 250px;
-    height: 60px;
+.form-container .fields-form button {
+    margin: 10px 20px;
+    width: 130px;
+    height: 40px;
     background-color: #cf5533;
     color: #ffffff;
     border: none;
     border-radius: 30px;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
-.sign-container .sing-form small {
+.form-container .fields-form button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.form-container .fields-form small {
     width: 0;
     padding: 5px;
     background-color: #f8d7da;
@@ -515,7 +537,7 @@
     overflow: hidden;
 }
 
-.sign-container .sing-form small.alert {
+.form-container .fields-form small.alert {
     width: 100%;
     display: flex;
     -webkit-transition: width 1s ease-in-out;
@@ -524,37 +546,38 @@
     transition: width 1s ease-in-out;
 }
 
-.sign-container .sing-form .errorlist {
+.form-container .fields-form .errorlist {
     padding: 0 10px;
     margin-bottom: 10px;
 }
 
-.sign-container .sing-form .errorlist li {
+.form-container .fields-form .errorlist li {
     list-style: none;
     color: #cf5533;
 }
 
-.sign-container .sing-form div {
+.form-container .fields-form div {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
     padding: 10px;
+    width: 100%;
 }
 
-.sign-container .sing-form div p {
+.form-container .fields-form div p {
     margin-bottom: 10px;
 }
 
-.sign-container .sing-form div p a {
+.form-container .fields-form div p a {
     color: #cf5533;
 }
 
-.sign-container .sing-form input[type=button] {
+.form-container .fields-form input[type=button] {
     width: 90px;
     padding: 5px;
 }
 
-.sign-container .sing-form input[type=button] {
+.form-container .fields-form input[type=button] {
     background-color: #c41e3d;
     outline: none;
     border: none;
@@ -583,12 +606,18 @@
     font-size: 1.2rem;
 }
 
-.sign-container .sing-form #password_help_text {
+.form-container .fields-form #password_help_text {
     padding: 0 1rem 1rem;
     list-style: none;
+    width: 100%;
 }
 
-.sign-container .sing-form #password_help_text li {
+.form-container .fields-form #password_help_text p {
+    padding: 0.4rem;
+}
+
+.form-container .fields-form #password_help_text li {
     color: #c41e3d;
+    padding: 0.4rem 0 0 1rem;
 }
 
