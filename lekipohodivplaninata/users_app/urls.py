@@ -14,7 +14,7 @@ urlpatterns = (
         path('password-reset/done/', UserPasswordResetDoneView.as_view(), name='reset password done'),
         path('password-reset/<uidb64>/<token>', UserPasswordResetConfirmView.as_view(), name='reset password confirm'),
     ])),
-    path('user/<int:pk>', include([
+    path('<int:pk>/', include([
         path('', UserDetailView.as_view(), name='user detail'),
         path('edit/', UserUpdateInformation.as_view(), name='user edit'),
         path('delete/', UserDeleteView.as_view(), name='user delete'),

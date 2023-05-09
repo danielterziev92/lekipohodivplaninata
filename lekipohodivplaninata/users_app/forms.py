@@ -150,7 +150,7 @@ class SignUpForm(auth_form.UserCreationForm):
         return user
 
 
-class GuideProfileEditForm(forms.ModelForm):
+class GuideProfileForm(forms.ModelForm):
     first_name = forms.CharField(
         max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
         label='Име',

@@ -4,7 +4,8 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm, \
-    GuideProfileEditForm
+    GuideProfileForm
+from lekipohodivplaninata.users_app.mixins import UserFormMixin
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 UserModel = get_user_model()
@@ -33,9 +34,8 @@ class SignOutView(auth_view.LogoutView):
     template_name = 'users/logout.html'
 
 
-class UserDetailView(mixins.LoginRequiredMixin, views.DetailView):
+class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView):
     template_name = 'users/detail-user.html'
-    model = BaseProfile
     success_url = reverse_lazy('user detail')
 
     def get(self, request, *args, **kwargs):
@@ -44,39 +44,37 @@ class UserDetailView(mixins.LoginRequiredMixin, views.DetailView):
         if self.object.pk != request.user.pk:
             raise Http404
 
-        if self.request.user.is_staff:
-            self.model = GuideProfile
-
         return super().get(request, *args, **kwargs)
 
+    @property
+    def model(self):
+        return self.get_model_form()
 
-class UserUpdateInformation(mixins.LoginRequiredMixin, views.UpdateView):
+
+class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.UpdateView):
     template_name = 'users/edit-user.html'
-    model = BaseProfile
-    form_class = None
-    fields = ('first_name', 'last_name')
 
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
 
-        if self.object.pk != request.user.pk:
-            raise Http404
-
-        if self.request.user.is_staff:
-            self.model = GuideProfile
-            self.form_class = GuideProfileEditForm
-            self.fields = None
-
         return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        super().post(request, *args, **kwargs)
-        return
 
     def get_success_url(self):
         return reverse_lazy('user detail', kwargs={
             'pk': self.request.user.pk,
         })
+
+    @property
+    def model(self):
+        return self.get_model_form()
+
+    @property
+    def fields(self):
+        return self.get_fields_form('first_name', 'last_name')
+
+    @property
+    def form_class(self):
+        return self.get_form_clas_form()
 
 
 class UserDeleteView(mixins.LoginRequiredMixin, views.DeleteView):
