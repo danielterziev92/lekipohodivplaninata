@@ -454,7 +454,7 @@
     border-radius: 10px;
     border: 1px solid rgb(0, 0, 0, 0.2);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 10px;
 }
@@ -479,6 +479,62 @@
     width: 100%;
 }
 
+
+.form-container .fields-form div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-container .fields-form div p {
+    margin-bottom: 10px;
+}
+
+.form-container .fields-form div p a {
+    color: #cf5533;
+}
+
+.form-container .fields-form label > div.image {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-width: 170px;
+    max-height: 170px;
+    padding: 0;
+}
+
+.form-container .fields-form label > div.image.profile {
+    border-radius: 50%;
+}
+
+.form-container .fields-form label > div.image img {
+    width: 100%;
+    transform: translateY(-50%);
+    margin-top: 50%;
+}
+
+.form-container .fields-form > div.new-picture {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 0;
+}
+
+.form-container .fields-form label > div {
+    display: block;
+    text-align: center;
+}
+
+.form-container .fields-form label > div.new-picture > p {
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+
+.form-container .fields-form label > div.new-picture > input {
+    padding-left: 0;
+}
+
 .form-container .fields-form label i:last-child {
     color: #cf5533;
     font-size: 1.5rem;
@@ -491,12 +547,6 @@
 
 .form-container .fields-form label[for='id_description'] {
     flex-wrap: wrap;
-}
-
-.form-container .fields-form label img {
-    width: 100%;
-    max-width: 100px;
-    max-height: 100px;
 }
 
 .form-container .fields-form p a {
@@ -553,22 +603,6 @@
 
 .form-container .fields-form .errorlist li {
     list-style: none;
-    color: #cf5533;
-}
-
-.form-container .fields-form div {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: nowrap;
-    padding: 10px;
-    width: 100%;
-}
-
-.form-container .fields-form div p {
-    margin-bottom: 10px;
-}
-
-.form-container .fields-form div p a {
     color: #cf5533;
 }
 

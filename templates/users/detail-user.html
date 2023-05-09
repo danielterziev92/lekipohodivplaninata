@@ -13,13 +13,52 @@
         <article class="form-container">
             <form method='post' action="{% url 'sign in user' %}" class="fields-form">
                 <h2>Детайли</h2>
+                {% if request.user.is_staff %}
+                    <label for="id_avatar">
+                        <i class="{% form_icons 'id_avatar' %}"></i>
+                        <span>Профилна снимка</span>
+                        <div class="image profile">
+                            <img src="{{ object.avatar.url }}" alt="Снимката не може да се визуализира"/>
+                        </div>
+                    </label>
+                {% endif %}
                 <label for="id_email">
                     <i class="{% form_icons 'id_email' %}"></i>
                     <span>Имейл</span>
                     <input type="text" id="id_email" name="email" value="{{ object.user_id.email }}" disabled>
                 </label>
                 {% if request.user.is_staff %}
-                    im staff
+                    <label for="id_first_name">
+                        <i class="{% form_icons 'id_first_name' %}"></i>
+                        <span>Имейл</span>
+                        <input type="text" id="id_first_name" name="email" value="{{ object.profile_id.first_name }}"
+                               disabled>
+                    </label>
+                    <label for="id_last_name">
+                        <i class="{% form_icons 'id_last_name' %}"></i>
+                        <span>Имейл</span>
+                        <input type="text" id="id_last_name" name="email" value="{{ object.profile_id.last_name }}"
+                               disabled>
+                    </label>
+
+                    <label for="id_date_of_birth">
+                        <i class="{% form_icons 'id_date_of_birth' %}"></i>
+                        <span>Дата на раждане</span>
+                        <input type="date" value="{{ object.date_of_birth|date:"c" }}" id="id_date_of_birth"
+                               name="date_of_birth" disabled/>
+                    </label>
+                    <label for="id_description">
+                        <i class="{% form_icons 'id_description' %}"></i>
+                        <span>Фамилия</span>
+                        <textarea id="id_description" name="description" disabled>{{ object.description }}</textarea>
+                    </label>
+                    <label for="id_certificate">
+                        <i class="{% form_icons 'id_avatar' %}"></i>
+                        <span>Сертификат</span>
+                        <div class="image">
+                            <img src="{{ object.certificate.url }}" alt="Снимката не може да се визуализира"/>
+                        </div>
+                    </label>
                 {% else %}
                     <label for="id_first_name">
                         <i class="{% form_icons 'id_first_name' %}"></i>

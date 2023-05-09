@@ -177,7 +177,11 @@ class GuideProfileForm(forms.ModelForm):
 
     date_of_birth = forms.DateField(
         label='Дата на раждане',
-
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date'
+            }
+        )
     )
 
     description = forms.CharField(
@@ -190,7 +194,7 @@ class GuideProfileForm(forms.ModelForm):
         options={
             'tags': "directly_uploaded",
             'crop': 'limit', 'width': 1000, 'height': 1000,
-            'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
+            # 'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
             'folder': 'guides/certificates/'
         },
         required=False,
@@ -208,6 +212,20 @@ class GuideProfileForm(forms.ModelForm):
             'avatar': 'Профилна снимка',
             'certificate': 'Сертификат',
         }
+
+    def save(self, commit=True):
+        guide_profile = super().save(commit=commit)
+
+        profile = BaseProfile(
+            user_id=self.instance.user_id,
+            first_name=self.cleaned_data['first_name'],
+            last_name=self.cleaned_data['last_name'],
+        )
+
+        if commit:
+            profile.save()
+
+        return guide_profile
 
 
 class UserResetPasswordForm(auth_form.PasswordResetForm):

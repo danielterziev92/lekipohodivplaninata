@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import cloudinary
 from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -103,7 +104,13 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
+
+cloudinary.config(
+    cloud_name="doh9wk7mw",
+    api_key="761791742742474",
+    api_secret="WXv3oo74P6UCpyUBeCCNe275A8I"
+)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

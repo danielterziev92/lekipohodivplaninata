@@ -2,11 +2,9 @@ from django.contrib.auth import views as auth_view, login, get_user_model, mixin
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as views
-
-from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm, \
-    GuideProfileForm
+from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm
 from lekipohodivplaninata.users_app.mixins import UserFormMixin
-from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
+from lekipohodivplaninata.users_app.models import BaseProfile
 
 UserModel = get_user_model()
 
@@ -41,9 +39,6 @@ class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView)
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
 
-        if self.object.pk != request.user.pk:
-            raise Http404
-
         return super().get(request, *args, **kwargs)
 
     @property
@@ -54,15 +49,13 @@ class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView)
 class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.UpdateView):
     template_name = 'users/edit-user.html'
 
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-
-        return super().get(request, *args, **kwargs)
-
     def get_success_url(self):
         return reverse_lazy('user detail', kwargs={
             'pk': self.request.user.pk,
         })
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
     @property
     def model(self):

@@ -95,6 +95,7 @@ class GuideProfile(models.Model):
     )
 
     avatar = cloudinary_models.CloudinaryField(
+        'ímage',
         null=False,
         blank=False,
     )
@@ -110,6 +111,7 @@ class GuideProfile(models.Model):
     )
 
     certificate = cloudinary_models.CloudinaryField(
+        'ímage',
         null=False,
         blank=False,
     )
