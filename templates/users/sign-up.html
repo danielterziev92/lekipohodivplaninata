@@ -14,11 +14,20 @@
             <form method='post' action="{% url 'sign up user' %}" class="fields-form">
                 <h2>Създай профил</h2>
                 {% for field in form %}
-                    <label for="{{ field.id_for_label }}">
-                        <i class="{% form_icons field.id_for_label %}"></i>
-                        <span>{{ field.label }}</span>
-                        {{ field }}
-                    </label>
+                    {% if field.id_for_label == 'password_1' %}
+                        <label for="{{ field.id_for_label }}">
+                            <i class="{% form_icons field.id_for_label %}"></i>
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+
+                    {% else %}
+                        <label for="{{ field.id_for_label }}">
+                            <i class="{% form_icons field.id_for_label %}"></i>
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+                    {% endif %}
                     {% if field.errors %}
                         <ul class="errorlist">
                             {% for error in field.errors %}

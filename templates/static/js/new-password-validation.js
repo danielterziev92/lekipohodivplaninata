@@ -5,6 +5,11 @@ const passwordSimilarLiElement = document.getElementById('password_too_short');
 
 
 function passwordValidations(e) {
+    class Alabala {
+        constructor(element, successfulClassName, unsuccessfulClassName) {
+        }
+    }
+
     checkAllValidations(e.currentTarget.value);
 
     function checkAllValidations(value) {

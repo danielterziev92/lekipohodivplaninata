@@ -43,7 +43,7 @@ class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView)
 
     @property
     def model(self):
-        return self.get_model_form()
+        return self.get_model()
 
 
 class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.UpdateView):
@@ -59,7 +59,7 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
 
     @property
     def model(self):
-        return self.get_model_form()
+        return self.get_model()
 
     @property
     def fields(self):
@@ -70,23 +70,23 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
         return self.get_form_clas_form()
 
 
-class UserDeleteView(mixins.LoginRequiredMixin, views.DeleteView):
+class UserDeleteView(UserFormMixin, mixins.LoginRequiredMixin, views.DeleteView):
     template_name = 'users/delete-user.html'
-    model = BaseProfile
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
+        pk = self.object.pk
         super().form_valid(form)
-        self.request.user.delete()
+
+        if self.request.user.is_staff:
+            BaseProfile.objects.get(pk=pk).delete()
+
+        UserModel.objects.get(pk=pk).delete()
         return HttpResponseRedirect(self.success_url)
 
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-
-        if self.object.pk != request.user.pk:
-            raise Http404
-
-        return super().get(request, *args, **kwargs)
+    @property
+    def model(self):
+        return self.get_model()
 
 
 class UserPasswordResetView(auth_view.PasswordResetView):

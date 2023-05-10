@@ -8,7 +8,7 @@ from lekipohodivplaninata.users_app.models import GuideProfile, BaseProfile
 
 class UserFormMixin(object):
 
-    def get_model_form(self):
+    def get_model(self):
         model = BaseProfile
 
         if self.request.user.is_staff:
@@ -45,5 +45,7 @@ class UserFormMixin(object):
                     certificate='image/upload/v1683563916/user-avatar_cyynjj.png',
                     avatar='image/upload/v1683563916/user-avatar_cyynjj.png',
                 )
+        else:
+            obj = model.objects.get(pk=self.request.user.pk)
 
-            return obj
+        return obj

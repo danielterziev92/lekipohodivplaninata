@@ -29,7 +29,8 @@
                 {% endfor %}
                 <div>
                     <p><a href="{% url 'reset password' %}">Забравена парола</a></p>
-                    <p>Нямате акаунт ? Направете си от <a href="{% url 'sign up user' %}">тук</a></p>
+                    <p>Нямате акаунт ?</p>
+                    <p>Направете си от <a href="{% url 'sign up user' %}">тук</a></p>
                 </div>
                 {% csrf_token %}
                 <button>Вход</button>

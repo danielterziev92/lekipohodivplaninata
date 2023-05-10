@@ -1,6 +1,8 @@
 <aside id="side-menu-mobile" class="side-menu-mobile collapse">
     <ul>
-        <li><a href="#">Запиши се за поход</a></li>
+        {% if not request.user.is_staff %}
+            <li><a href="#">Запиши се за поход</a></li>
+        {% endif %}
         <li><a href="{% url 'index' %}">Начало</a></li>
         <li>
             <a href="#">Походи</a>
