@@ -30,13 +30,13 @@
                 {% if request.user.is_staff %}
                     <label for="id_first_name">
                         <i class="{% form_icons 'id_first_name' %}"></i>
-                        <span>Имейл</span>
+                        <span>Име</span>
                         <input type="text" id="id_first_name" name="email" value="{{ object.profile_id.first_name }}"
                                disabled>
                     </label>
                     <label for="id_last_name">
                         <i class="{% form_icons 'id_last_name' %}"></i>
-                        <span>Имейл</span>
+                        <span>Фамилия</span>
                         <input type="text" id="id_last_name" name="email" value="{{ object.profile_id.last_name }}"
                                disabled>
                     </label>
@@ -49,7 +49,7 @@
                     </label>
                     <label for="id_description">
                         <i class="{% form_icons 'id_description' %}"></i>
-                        <span>Фамилия</span>
+                        <span>Описание</span>
                         <textarea id="id_description" name="description" disabled>{{ object.description }}</textarea>
                     </label>
                     <label for="id_certificate">
@@ -71,7 +71,7 @@
                         <input type="text" id="id_last_name" name="email" value="{{ object.last_name }}" disabled>
                     </label>
                 {% endif %}
-                <div>
+                <div class="buttons">
                     <button><a href="{% url 'user edit' pk=object.user_id.id %}">Редакция</a></button>
                     <button><a href="{% url 'user delete' pk=object.user_id.id %}">Изтрий</a></button>
                 </div>

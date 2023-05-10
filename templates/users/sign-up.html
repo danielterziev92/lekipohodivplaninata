@@ -14,19 +14,13 @@
             <form method='post' action="{% url 'sign up user' %}" class="fields-form">
                 <h2>Създай профил</h2>
                 {% for field in form %}
+                    <label for="{{ field.id_for_label }}">
+                        <i class="{% form_icons field.id_for_label %}"></i>
+                        <span>{{ field.label }}</span>
+                        {{ field }}
+                    </label>
                     {% if field.id_for_label == 'password_1' %}
-                        <label for="{{ field.id_for_label }}">
-                            <i class="{% form_icons field.id_for_label %}"></i>
-                            <span>{{ field.label }}</span>
-                            {{ field }}
-                        </label>
-
-                    {% else %}
-                        <label for="{{ field.id_for_label }}">
-                            <i class="{% form_icons field.id_for_label %}"></i>
-                            <span>{{ field.label }}</span>
-                            {{ field }}
-                        </label>
+                        {% include 'users/password-help-text.html' %}
                     {% endif %}
                     {% if field.errors %}
                         <ul class="errorlist">
@@ -46,5 +40,6 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/index.js' %}"></script>
-    <script src="{% static 'js/password-validation.js' %}"></script>
+    <script src="{% static 'js/uniformityOfPasswords.js' %}"></script>
+    <script src="{% static 'js/passwordValidators.js' %}"></script>
 {% endblock %}

@@ -1,15 +1,19 @@
-document.querySelector('label[for=id_password1]').appendChild(createShowHideIElement(false));
-const secondPasswordLabel = document.querySelector('label[for=id_password2]');
+const buttonElement = document.querySelector('.fields-form button');
+document.querySelector('label[for=password_1]').appendChild(createShowHideIElement(false));
+const secondPasswordLabel = document.querySelector('label[for=password_2]');
 secondPasswordLabel.appendChild(createShowHideIElement(true));
 let is_showed = false;
 
 
 function createShowHideIElement(validate) {
+    buttonElement.disabled = true;
+
+
     const element = document.createElement('i');
     element.className = 'fa-solid fa-eye-slash';
     element.addEventListener('click', toggleClassElement);
     if (validate) {
-        document.getElementById('id_password2').addEventListener('change', checkPasswords);
+        document.getElementById('password_2').addEventListener('change', checkPasswords);
     }
 
     return element
@@ -25,7 +29,7 @@ function createShowHideIElement(validate) {
     }
 
     function checkPasswords(e) {
-        const firstPassword = document.getElementById('id_password1');
+        const firstPassword = document.getElementById('password_1');
         const secondPassword = e.currentTarget;
         const errorElement = showErrorMessage();
         if (firstPassword.value !== secondPassword.value && !is_showed) {
@@ -36,8 +40,9 @@ function createShowHideIElement(validate) {
 
         if (firstPassword.value === secondPassword.value && is_showed) {
             errorElement.classList.remove('alert')
-            setTimeout(() => document.querySelector('.sign-container .sing-form small').remove(), 1000);
+            setTimeout(() => document.querySelector('small.alert').remove(), 1000);
             is_showed = false;
+            buttonElement.disabled = false;
         }
     }
 

@@ -16,7 +16,7 @@
                 <h3>Сигурни ли сте, че желаете да изтриете акаунта си ?</h3>
                 <div>
                     <button><a href="{% url 'user delete' pk=object.user_id.id %}">Изтрий</a></button>
-                    <button><a href="javascript:history.back()">Отказ</a></button>
+                    <button onclick="history.back()">Отказ</button>
                 </div>
                 {% csrf_token %}
             </form>

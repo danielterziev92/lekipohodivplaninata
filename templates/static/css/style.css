@@ -483,6 +483,11 @@
     width: 100%;
 }
 
+.form-container .fields-form label input,
+.form-container .fields-form label textarea {
+    font-size: 1rem;
+}
+
 .form-container .fields-form label i:last-child {
     color: #cf5533;
     font-size: 1.5rem;
@@ -513,9 +518,9 @@
     font-size: 1rem;
 }
 
-.form-container .fields-form button a {
-    text-decoration: none;
-    color: inherit;
+
+.form-container .fields-form button:disabled {
+    text-decoration: line-through;
 }
 
 .form-container .fields-form small {
@@ -550,20 +555,6 @@
     color: #cf5533;
 }
 
-.form-container .fields-form input[type=button] {
-    width: 90px;
-    padding: 5px;
-}
-
-.form-container .fields-form input[type=button] {
-    background-color: #c41e3d;
-    outline: none;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.2rem;
-    color: #ffffff;
-}
-
 .form-container .fields-form label > div.image {
     overflow: hidden;
     width: 100%;
@@ -589,6 +580,11 @@
     padding-top: 0;
 }
 
+.form-container .fields-form div.buttons {
+    flex-wrap: nowrap;
+}
+
+
 .form-container .fields-form label > div {
     display: block;
     text-align: center;
@@ -613,6 +609,9 @@
 
 .form-container .fields-form > div > p {
     margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 .form-container .fields-form div p a {
@@ -639,18 +638,23 @@
     font-size: 1.2rem;
 }
 
-.form-container .fields-form #password_help_text {
+.form-container .fields-form #password-help-text {
     padding: 0 1rem 1rem;
     list-style: none;
     width: 100%;
 }
 
-.form-container .fields-form #password_help_text p {
+.form-container .fields-form #password-help-text p {
     padding: 0.4rem;
 }
 
-.form-container .fields-form #password_help_text li {
+.form-container .fields-form #password-help-text li {
     color: #c41e3d;
     padding: 0.4rem 0 0 1rem;
+    display: flex;
+    align-items: center;
 }
 
+.form-container .fields-form #password-help-text li span {
+    margin-left: 5px;
+}
