@@ -4,6 +4,8 @@ from pathlib import Path
 import cloudinary
 from django.urls import reverse_lazy
 
+import lekipohodivplaninata.users_app.validators
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-xi@15#i77*o9+_uds9024c^pir$si%=)d!19h=$m1h*n46b#02'
@@ -85,6 +87,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+    {
+        'NAME': 'lekipohodivplaninata.users_app.validators.ContainUppercasePasswordValidator',
+    },
+    {
+        'NAME': 'lekipohodivplaninata.users_app.validators.ContainLowercasePasswordValidator',
     },
 ]
 
