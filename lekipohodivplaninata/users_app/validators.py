@@ -8,8 +8,8 @@ class ContainUppercasePasswordValidator:
     def __init__(self):
         self.pattern = "[A-ZА-Я]"
 
-    def validate(self, text):
-        matches = re.findall(self.pattern, text)
+    def validate(self, password, user):
+        matches = re.findall(self.pattern, password)
         if not len(matches):
             raise validators.ValidationError(
                 _('Паролата ви трябва да съдържа поне една главна буква'), code='invalid')
@@ -22,8 +22,8 @@ class ContainLowercasePasswordValidator:
     def __init__(self):
         self.pattern = "[a-zа-я]"
 
-    def validate(self, text):
-        matches = re.findall(self.pattern, text)
+    def validate(self, password, user):
+        matches = re.findall(self.pattern, password)
         if not len(matches):
             raise validators.ValidationError(
                 _('Паролата ви трябва да съдържа поне една малка буква'), code='invalid')
