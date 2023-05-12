@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary import models as cloudinary_models
 
 
 class AuditInfoMixin(models.Model):
@@ -28,6 +29,10 @@ class HikeType(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Тип поход'
+        verbose_name_plural = 'Типове походи'
+
 
 class HikeLevel(models.Model):
     TITLE_MAX_LENGTH = 30
@@ -43,11 +48,23 @@ class HikeLevel(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Ниво на поход'
+        verbose_name_plural = 'Нива на походи'
+
 
 class HikeMorePicture(models.Model):
-    picture = models.ImageField(
-        upload_to='hikes-more-pictures'
+    PICTURE_DIRECTORY = 'image/hikes-more-picture'
+
+    picture = cloudinary_models.CloudinaryField(
+        null=True,
+        blank=True,
+        verbose_name='Снимка'
     )
+
+    class Meta:
+        verbose_name = 'Допълнителни снимки към поход'
+        verbose_name_plural = 'Допълнителни снимки към походи'
 
 
 class Hike(AuditInfoMixin, models.Model):
@@ -72,7 +89,9 @@ class Hike(AuditInfoMixin, models.Model):
 
     level = models.ForeignKey(
         HikeLevel,
-        on_delete=models.RESTRICT
+        on_delete=models.RESTRICT,
+        verbose_name='Ниво на похода',
+        help_text='Моля изберете ниво за похода',
     )
 
     duration = models.CharField(
@@ -83,7 +102,10 @@ class Hike(AuditInfoMixin, models.Model):
         help_text='Моля попълнете продължителността на похода',
     )
 
-    event_date = models.DateField()
+    event_date = models.DateField(
+        verbose_name='Дата на похода',
+        help_text='Моля изберете дата за похода',
+    )
 
     price = models.DecimalField(
         max_digits=8,
@@ -92,14 +114,23 @@ class Hike(AuditInfoMixin, models.Model):
         help_text='Моля попълнете само цифрата на сумата за похода'
     )
 
-    main_picture = models.ImageField(
-        upload_to='hike-main-pictures'
+    main_picture = cloudinary_models.CloudinaryField(
+        null=False,
+        blank=False,
+        verbose_name='Основна снимка',
+        help_text='Тук трябва добавите основна снимка за похода',
     )
 
     more_pictures = models.ManyToManyField(
-        HikeMorePicture
+        HikeMorePicture,
+        verbose_name='Допълнителни снимки',
+        help_text='Тук можете да добавите допълнителни снимки за похода',
     )
 
     @property
     def get_hike_price(self):
         return f'{self.price} лв.'
+
+    class Meta:
+        verbose_name = 'Поход'
+        verbose_name_plural = 'Походи'

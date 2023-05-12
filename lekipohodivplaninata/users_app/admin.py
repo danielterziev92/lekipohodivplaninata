@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import admin as auth_admin, get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.users_app.models import BaseProfile
+from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 UserModel = get_user_model()
 
@@ -11,13 +11,13 @@ UserModel = get_user_model()
 class UserAppAdmin(auth_admin.UserAdmin):
     change_user_password_template = None
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {"fields": ("email",)}),
         (
             _("Permissions"),
             {
                 "fields": (
-                    # "is_active",
-                    # "is_staff",
+                    "is_active",
+                    "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",
@@ -47,8 +47,17 @@ class UserAppAdmin(auth_admin.UserAdmin):
     #     "groups",
     #     "user_permissions",
     # )
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj=obj, **kwargs)
+        form.base_fields['email'].label = 'Имейл'
+        return form
 
 
 @admin.register(BaseProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(GuideProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     pass

@@ -21,12 +21,14 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         default=False,
         null=False,
         blank=False,
+        verbose_name='Служител'
     )
 
     is_active = models.BooleanField(
         default=True,
         null=False,
         blank=False,
+        verbose_name='Активен'
     )
 
     data_joined = models.DateField(auto_now_add=True)
@@ -37,6 +39,7 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     objects = UserAppManager()
 
     class Meta:
+        verbose_name = 'Потребител'
         verbose_name_plural = 'Потребители'
 
     def __str__(self):
@@ -50,7 +53,8 @@ class BaseProfile(models.Model):
     user_id = models.OneToOneField(
         UserApp,
         primary_key=True,
-        on_delete=models.RESTRICT
+        on_delete=models.RESTRICT,
+        verbose_name='Потребител'
     )
 
     first_name = models.CharField(
@@ -66,6 +70,9 @@ class BaseProfile(models.Model):
         blank=False,
         verbose_name='Фамилия',
     )
+
+    def __str__(self):
+        return self.get_full_name
 
     @property
     def get_full_name(self):
@@ -85,6 +92,7 @@ class GuideProfile(models.Model):
         on_delete=models.RESTRICT,
         null=False,
         blank=False,
+        verbose_name='Потребител'
     )
 
     profile_id = models.OneToOneField(
@@ -92,26 +100,32 @@ class GuideProfile(models.Model):
         on_delete=models.RESTRICT,
         null=False,
         blank=False,
+        verbose_name='Профил'
     )
 
     avatar = cloudinary_models.CloudinaryField(
-        'ímage',
         null=False,
         blank=False,
+        verbose_name='Профилна снимка'
     )
 
     date_of_birth = models.DateField(
         null=False,
         blank=False,
+        verbose_name='Дата на раждане'
     )
 
     description = models.TextField(
         null=False,
         blank=False,
+        verbose_name='Описание'
     )
 
     certificate = cloudinary_models.CloudinaryField(
-        'ímage',
         null=False,
         blank=False,
+        verbose_name='Сертификат'
     )
+
+    class Meta:
+        verbose_name_plural = 'Водачи'
