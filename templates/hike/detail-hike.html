@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <section class="hike-detail">
+        <article class="hike">
+            <h1>{{ hike.title }}</h1>
+            <img src="{{ hike.main_picture.url }}" alt="">
+            <p><i class="fa-solid fa-calendar-days"></i> Дата на събитието: {{ object.get_event_date }}</p>
+            <p><i class="fa-regular fa-money-bill-1"></i> Цена: {{ object.get_hike_price }}</p>
+            <p><i class="fa-solid fa-clock"></i> Продължителност: {{ object.get_duration_time }}</p>
+            <p><i class="fa-solid fa-person-hiking"></i> Ниво: {{ object.get_duration_time }}</p>
+            <p> {{ object.description }}</p>
+        </article>
+        {% include 'home-page/sing-up-for-hike.html' %}
+    </section>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

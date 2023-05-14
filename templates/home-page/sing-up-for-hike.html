@@ -1,12 +1,13 @@
 <article>
     <form method="post" class="sign-up-for-hike">
+        <h2>Запиши се за поход</h2>
         {% csrf_token %}
         <div class="form-floating">
-            <input type="text" id="first-name" required>
+            <input type="text" id="first-name" value="{{ user.get_first_name }}" required>
             <label for="first-name">Име:</label>
         </div>
         <div class="form-floating">
-            <input type="text" id="last-name" required>
+            <input type="text" id="last-name" value="{{ user.get_last_name }}" required>
             <label for="last-name">Фамилия:</label>
         </div>
         <div class="form-floating numbers">

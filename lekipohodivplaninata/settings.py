@@ -1,4 +1,5 @@
 import os
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 
 import cloudinary
@@ -96,7 +97,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'bg'
+
+LANGUAGES = (
+    ('en-us', _('English')),
+    ('bg', _('Bulgarian')),
+)
 
 TIME_ZONE = 'Europe/Sofia'
 
@@ -112,7 +118,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'media/'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 cloudinary.config(
     cloud_name="doh9wk7mw",

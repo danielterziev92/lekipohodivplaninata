@@ -1,5 +1,5 @@
 from django.contrib.auth import views as auth_view, login, get_user_model, mixins
-from django.http import Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm

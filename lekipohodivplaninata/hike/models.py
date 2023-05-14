@@ -1,5 +1,8 @@
 from django.db import models
 from cloudinary import models as cloudinary_models
+from django.utils.safestring import mark_safe
+
+from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 
 class AuditInfoMixin(models.Model):
@@ -54,16 +57,14 @@ class HikeLevel(models.Model):
 
 
 class HikeMorePicture(models.Model):
-    PICTURE_DIRECTORY = 'image/hikes-more-picture'
-
-    picture = cloudinary_models.CloudinaryField(
+    title = cloudinary_models.CloudinaryField(
         null=True,
         blank=True,
         verbose_name='Снимка'
     )
 
     class Meta:
-        verbose_name = 'Допълнителни снимки към поход'
+        verbose_name = 'снимка'
         verbose_name_plural = 'Допълнителни снимки към походи'
 
 
@@ -71,6 +72,7 @@ class Hike(AuditInfoMixin, models.Model):
     TITLE_MAX_LENGTH = 30
     DESCRIPTION_MAX_LENGTH = 30
     DURATION_MAX_LENGTH = 20
+    PICTURE_DIRECTORY = 'treks-pictures'
 
     title = models.CharField(
         max_length=TITLE_MAX_LENGTH,
@@ -78,6 +80,12 @@ class Hike(AuditInfoMixin, models.Model):
         blank=False,
         verbose_name='Заглавие',
         help_text='Моля попълнете заглавие на похода',
+    )
+
+    slug = models.SlugField(
+        unique=True,
+        null=False,
+        blank=True,
     )
 
     description = models.TextField(
@@ -90,6 +98,8 @@ class Hike(AuditInfoMixin, models.Model):
     level = models.ForeignKey(
         HikeLevel,
         on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
         verbose_name='Ниво на похода',
         help_text='Моля изберете ниво за похода',
     )
@@ -99,15 +109,18 @@ class Hike(AuditInfoMixin, models.Model):
         null=False,
         blank=False,
         verbose_name='Продължителност',
-        help_text='Моля попълнете продължителността на похода',
+        help_text='Моля попълнете продължителността на похода в цифри',
     )
 
     event_date = models.DateField(
+        null=False,
+        blank=False,
         verbose_name='Дата на похода',
         help_text='Моля изберете дата за похода',
     )
 
     price = models.DecimalField(
+        default=0.00,
         max_digits=8,
         decimal_places=2,
         verbose_name='Цена',
@@ -123,6 +136,8 @@ class Hike(AuditInfoMixin, models.Model):
 
     more_pictures = models.ManyToManyField(
         HikeMorePicture,
+        null=True,
+        blank=True,
         verbose_name='Допълнителни снимки',
         help_text='Тук можете да добавите допълнителни снимки за похода',
     )
@@ -131,6 +146,26 @@ class Hike(AuditInfoMixin, models.Model):
     def get_hike_price(self):
         return f'{self.price} лв.'
 
+    @property
+    def get_main_picture(self):
+        return mark_safe(f'<img src="{self.main_picture.url}" style="max-width: 300px;"/>')
+
+    @property
+    def get_thumbnail_image(self):
+        return mark_safe(f'<img src="{self.main_picture.url}" style="max-width: 50px"/>')
+
+    @property
+    def get_duration_time(self):
+        return f'{self.duration} часа'
+
+    @property
+    def get_event_date(self):
+        return self.event_date.strftime('%d/%m/%Y')
+
+    def __str__(self):
+        return self.title
+
     class Meta:
-        verbose_name = 'Поход'
+        # unique_together = ('id', 'slug')
+        verbose_name = 'поход'
         verbose_name_plural = 'Походи'

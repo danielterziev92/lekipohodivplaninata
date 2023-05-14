@@ -4,7 +4,7 @@ const secondPasswordLabel = document.querySelector('label[for=password_2]');
 secondPasswordLabel.appendChild(createShowHideIElement(true));
 let is_showed = false;
 
-
+//TODO: Must Refactor This Functions
 function createShowHideIElement(validate) {
     buttonElement.disabled = true;
 
@@ -13,7 +13,8 @@ function createShowHideIElement(validate) {
     element.className = 'fa-solid fa-eye-slash';
     element.addEventListener('click', toggleClassElement);
     if (validate) {
-        document.getElementById('password_2').addEventListener('change', checkPasswords);
+        document.getElementById('password_2').addEventListener('keyup', checkPasswords);
+        document.getElementById('password_2').addEventListener('touchstart', checkPasswords);
     }
 
     return element
@@ -36,6 +37,7 @@ function createShowHideIElement(validate) {
             secondPasswordLabel.after(errorElement);
             errorElement.classList.add('alert');
             is_showed = true;
+            buttonElement.disabled = true;
         }
 
         if (firstPassword.value === secondPassword.value && is_showed) {

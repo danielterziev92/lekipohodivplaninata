@@ -1,9 +1,17 @@
 <aside id="side-menu-mobile" class="side-menu-mobile collapse">
     <ul>
+        <li><a href="{% url 'index' %}">Начало</a></li>
         {% if not request.user.is_staff %}
             <li><a href="#">Запиши се за поход</a></li>
+        {% else %}
+            <li>
+                <a href="#">Администрация</a>
+                <ul>
+                    <li><a href="{% url 'hike create' %}">Създаване на поход</a></li>
+                    <li><a href="{% url 'hike list' %}">Походи</a></li>
+                </ul>
+            </li>
         {% endif %}
-        <li><a href="{% url 'index' %}">Начало</a></li>
         <li>
             <a href="#">Походи</a>
             <ul>

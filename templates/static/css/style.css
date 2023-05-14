@@ -9,31 +9,31 @@
 }
 
 .main-header {
-    max-height: 100px;
-    height: 100px;
+    max-height: 6.25rem;
+    height: 6.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 1.25rem;
     background-color: #ffffff;
 }
 
 .main-header.sticky {
-    height: 50px;
+    height: 3.125rem;
     position: sticky;
     top: 0;
     left: 0;
     width: 100vw;
     z-index: 10;
-    padding: 10px;
+    padding: 0.625rem;
 }
 
 .main-header .logo {
-    height: 50px;
+    height: 3.125rem;
 }
 
 .main-header.sticky .logo {
-    height: 30px;
+    height: 1.875rem;
 }
 
 .main-header .logo img {
@@ -49,7 +49,7 @@
     align-items: center;
     text-decoration: none;
     list-style: none;
-    height: 80px;
+    height: 5rem;
 }
 
 .main-header li.menu-btn-small i {
@@ -62,7 +62,7 @@
     transition: ease-in-out 400ms;
     position: absolute;
     z-index: 10000;
-    width: 270px;
+    width: 16.875rem;
     height: 100vh;
     left: 0;
     top: 0;
@@ -70,39 +70,39 @@
 }
 
 .side-menu-mobile.collapse {
-    left: -270px;
+    left: -16.875rem;
 }
 
 .side-menu-mobile h3 {
     color: white;
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: bold;
-    line-height: 65px;
+    line-height: 4.063rem;
     text-align: center;
     background-color: #2f272a;
-    letter-spacing: 1px;
+    letter-spacing: 0.063rem;
 }
 
 .side-menu-mobile ul {
-    height: calc(100% - 65px);
+    height: calc(100% - 4.063rem);
     list-style: none;
 }
 
 .side-menu-mobile ul li {
-    line-height: 60px;
-    border-bottom: 1px solid rgb(255, 255, 255, 0.3);
+    line-height: 3.75rem;
+    border-bottom: 0.063rem solid rgb(255, 255, 255, 0.3);
 }
 
 .side-menu-mobile ul li a {
     position: relative;
     color: #fff;
     text-decoration: none;
-    font-size: 18px;
-    padding-left: 40px;
+    font-size: 1.125rem;
+    padding-left: 2.5rem;
     font-weight: 500;
     display: block;
     width: 100%;
-    border-left: 5px solid transparent;
+    border-left: 0.313rem solid transparent;
 }
 
 .side-menu-mobile ul li.active a {
@@ -113,10 +113,10 @@
 
 .side-menu-mobile ul li a span {
     position: absolute;
-    right: 20px;
+    right: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 22px;
+    font-size: 1.375rem;
 }
 
 .side-menu-mobile ul li a.rotate span {
@@ -132,13 +132,13 @@
 }
 
 .side-menu-mobile ul ul li {
-    line-height: 42px;
+    line-height: 2.625rem;
     border-bottom: none;
 }
 
 .side-menu-mobile ul ul li a {
-    font-size: 17px;
-    padding-left: 40px;
+    font-size: 1.063rem;
+    padding-left: 2.5rem;
 }
 
 .side-menu-mobile ul li.active ul li a {
@@ -149,7 +149,7 @@
 
 .side-menu-mobile ul li.active ul li a:before {
     font-family: "Font Awesome 6 Free", serif;
-    padding-right: 10px;
+    padding-right: 0.625rem;
 }
 
 .side-menu-mobile ul li.active ul li a.upcoming:before {
@@ -173,31 +173,31 @@
 .sign-up-for-hike {
     display: grid;
     justify-content: space-evenly;
-    row-gap: 10px;
-    padding: 20px 10px;
-    margin: 20px;
+    row-gap: 0.625rem;
+    padding: 1.25rem 0.625rem;
+    margin: 1.25rem;
     background-color: #f8f8f8;
-    border-radius: 20px;
-    border: 1px solid rgb(0, 0, 0, 0.2);
+    border-radius: 1.25rem;
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
 }
 
 .sign-up-for-hike h2 {
     text-align: center;
-    margin: 10px;
+    margin: 0.625rem;
 }
 
 .sign-up-for-hike .form-floating {
     width: 75vw;
     background-color: #ffffff;
     position: relative;
-    border: 1px solid rgb(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
+    border-radius: 0.313rem;
 }
 
 
 .sign-up-for-hike .form-floating input {
     width: 100%;
-    padding: 15px 20px;
+    padding: 0.938rem 1.25rem;
     border: none;
     background-color: transparent;
     outline: 0;
@@ -207,15 +207,15 @@
 .sign-up-for-hike .form-floating input:active {
     color: #1b1b1b;
     border-color: #cf5533;
-    box-shadow: 0 0 0 2px rgba(255, 103, 0, 0.5);
-    border-radius: 5px;
+    box-shadow: 0 0 0 0.125rem rgba(255, 103, 0, 0.5);
+    border-radius: 0.313rem;
 }
 
 .sign-up-for-hike .form-floating input:focus,
 .sign-up-for-hike .form-floating input:valid,
 .sign-up-for-hike .form-floating input:active {
-    padding-top: 25px;
-    padding-bottom: 5px;
+    padding-top: 1.563rem;
+    padding-bottom: 0.313rem;
 }
 
 
@@ -225,7 +225,7 @@
     top: 0;
     left: 0;
     z-index: 2;
-    padding: 15px 20px;
+    padding: 0.938rem 1.25rem;
     pointer-events: none;
     transform-origin: 0 0;
     transition: opacity .1s ease-in-out, transform .1s ease-in-out;
@@ -236,8 +236,8 @@
     border-color: transparent;
     padding: 0;
     height: 100%;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
+    border-top-width: 0.063rem;
+    border-bottom-width: 0.063rem;
 }
 
 .sign-up-for-hike .form-floating input:focus ~ label, .sign-up-for-hike .form-floating input:valid ~ label {
@@ -258,7 +258,7 @@
     flex-wrap: nowrap;
     align-items: center;
     width: 47%;
-    padding: 5px 0;
+    padding: 0.313rem 0;
 }
 
 .sign-up-for-hike .form-floating.numbers .numeric span {
@@ -267,17 +267,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(0, 0, 0, 0.2);
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
 }
 
 .sign-up-for-hike .form-floating.numbers .numeric span:first-child {
-    margin-left: 5px;
-    border-radius: 5px 0 0 5px;
+    margin-left: 0.313rem;
+    border-radius: 0.313rem 0 0 0.313rem;
 }
 
 .sign-up-for-hike .form-floating.numbers .numeric span:last-child {
-    margin-right: 5px;
-    border-radius: 0 5px 5px 0;
+    margin-right: 0.313rem;
+    border-radius: 0 0.313rem 0.313rem 0;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -300,7 +300,7 @@
     border: unset;
     border-color: rgb(0, 0, 0, 0.2);
     border-style: solid;
-    border-width: 1px 0 !important;
+    border-width: 0.063rem 0 !important;
     border-radius: 0;
     color: #000000 !important;
 }
@@ -320,10 +320,10 @@
     width: 100%;
     background-color: transparent;
     border: none;
-    border-left-width: 1px;
+    border-left-width: 0.063rem;
     border-left-style: solid;
     border-left-color: rgb(0, 0, 0, 0.2);
-    padding-left: 10px;
+    padding-left: 0.625rem;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -333,7 +333,7 @@
 }
 
 .sign-up-for-hike .form-floating p {
-    padding: 20px 0 0 20px;
+    padding: 1.25rem 0 0 1.25rem;
 }
 
 .sign-up-for-hike .form-floating .wrapper .option {
@@ -342,10 +342,10 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 0.313rem;
     cursor: pointer;
-    padding: 10px 10px;
-    border: 2px solid lightgray;
+    padding: 0.625rem 0.625rem;
+    border: 0.125rem solid lightgray;
     transition: all 0.3s ease;
     pointer-events: auto;
 }
@@ -355,26 +355,26 @@
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    padding: 20px;
-    gap: 10px;
+    padding: 1.25rem;
+    gap: 0.625rem;
 }
 
 .sign-up-for-hike .form-floating .wrapper .option .dot {
-    height: 20px;
-    width: 20px;
+    height: 1.25rem;
+    width: 1.25rem;
     background-color: #cf5533;
     border-radius: 50%;
     position: relative;
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .sign-up-for-hike .form-floating .wrapper .option .dot::before {
     position: absolute;
     content: '';
-    top: 4px;
-    left: 4px;
-    width: 12px;
-    height: 12px;
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 0.75rem;
+    height: 0.75rem;
     background-color: #1b1b1b;
     border-radius: 50%;
     opacity: 0;
@@ -408,7 +408,7 @@
 }
 
 .sign-up-for-hike .form-floating .wrapper span {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #808080;
 }
 
@@ -418,24 +418,24 @@
 }
 
 .sign-up-for-hike button {
-    padding: 15px 50px;
+    padding: 0.938rem 3.125rem;
     background-color: #cf5533;
     outline: none;
     border: none;
-    border-radius: 30px;
-    font-size: 18px;
+    border-radius: 1.875rem;
+    font-size: 1.125rem;
     color: #ffffff;
 }
 
 .form-container {
-    padding: 20px
+    padding: 1.25rem
 }
 
 .form-container .fields-form {
     background-color: #f8f8f8;
-    border: 1px solid rgb(0, 0, 0, 0.08);
-    border-radius: 10px;
-    padding: 10px;
+    border: 0.063rem solid rgb(0, 0, 0, 0.08);
+    border-radius: 0.625rem;
+    padding: 0.625rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -443,7 +443,7 @@
 
 .form-container .fields-form h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     font-size: 1.7rem;
 }
 
@@ -451,54 +451,59 @@
     text-align: center;
 }
 
-.form-container .fields-form label {
+.form-container .fields-form > label,
+.form-container .fields-form > .field {
     background-color: #ffffff;
     width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid rgb(0, 0, 0, 0.2);
+    padding: 0.625rem;
+    border-radius: 0.625rem;
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
-.form-container .fields-form label span {
-    min-width: 70px;
+.form-container .fields-form > label span {
+    min-width: 4.375rem;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.form-container .fields-form label i {
-    margin-right: 5px;
+.form-container .fields-form > label i {
+    margin-right: 0.313rem;
 }
 
 
-.form-container .fields-form label input {
+.form-container .fields-form > label input,
+.form-container .fields-form > .field input,
+.form-container .fields-form > .field textarea {
     border: none;
     outline: none;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
-    padding: 10px;
-    margin-left: 10px;
+    border-bottom: 0.063rem solid rgb(0, 0, 0, 0.2);
+    padding: 0.625rem;
+    margin-left: 0.625rem;
     width: 100%;
 }
 
-.form-container .fields-form label input,
-.form-container .fields-form label textarea {
+.form-container .fields-form > label input,
+.form-container .fields-form > label textarea,
+.form-container .fields-form > .field input,
+.form-container .fields-form > .field textarea {
     font-size: 1rem;
 }
 
-.form-container .fields-form label i:last-child {
+.form-container .fields-form > label i:last-child {
     color: #cf5533;
     font-size: 1.5rem;
 }
 
-.form-container .fields-form label input::placeholder {
+.form-container .fields-form > label input::placeholder {
     max-width: 100%;
     text-overflow: ellipsis;
 }
 
-.form-container .fields-form label[for='id_description'] {
+.form-container .fields-form > label[for='id_description'] {
     flex-wrap: wrap;
 }
 
@@ -508,13 +513,13 @@
 }
 
 .form-container .fields-form button {
-    margin: 10px 20px;
-    width: 130px;
-    height: 40px;
+    margin: 0.625rem 1.25rem;
+    width: 8.125rem;
+    height: 2.5rem;
     background-color: #cf5533;
     color: #ffffff;
     border: none;
-    border-radius: 30px;
+    border-radius: 1.875rem;
     font-size: 1rem;
 }
 
@@ -525,14 +530,14 @@
 
 .form-container .fields-form small {
     width: 0;
-    padding: 5px;
+    padding: 0.313rem;
     background-color: #f8d7da;
-    border: 1px solid #f1aeb5;
-    border-radius: 10px;
+    border: 0.063rem solid #f1aeb5;
+    border-radius: 0.625rem;
     display: none;
     justify-content: center;
     align-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     overflow: hidden;
 }
 
@@ -546,8 +551,8 @@
 }
 
 .form-container .fields-form .errorlist {
-    padding: 0 10px;
-    margin-bottom: 10px;
+    padding: 0 0.625rem;
+    margin-bottom: 0.625rem;
 }
 
 .form-container .fields-form .errorlist li {
@@ -559,8 +564,8 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    max-width: 170px;
-    max-height: 170px;
+    max-width: 10.625rem;
+    max-height: 10.625rem;
     padding: 0;
 }
 
@@ -584,6 +589,10 @@
     flex-wrap: nowrap;
 }
 
+.form-container .fields-form div.buttons a {
+    text-decoration: none;
+    color: #ffffff;
+}
 
 .form-container .fields-form label > div {
     display: block;
@@ -592,7 +601,7 @@
 
 .form-container .fields-form label > div.new-picture > p {
     margin-bottom: 0;
-    padding-top: 10px;
+    padding-top: 0.625rem;
 }
 
 .form-container .fields-form label > div.new-picture > input {
@@ -603,12 +612,12 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 0.625rem;
     width: 100%;
 }
 
 .form-container .fields-form > div > p {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     width: 100%;
     text-align: center;
     font-size: 1.2rem;
@@ -617,6 +626,43 @@
 .form-container .fields-form div p a {
     color: #cf5533;
 }
+
+.form-container .fields-form > .field label,
+.form-container .fields-form > .field input {
+    width: 100%;
+}
+
+.form-container .fields-form > .field label {
+    margin-left: 0.625rem;
+}
+
+.form-container .fields-form > .field input {
+    margin-left: 0;
+}
+
+.form-container .fields-form > .field input:focus,
+.form-container .fields-form > .field input:active,
+.form-container .fields-form > .field textarea:focus,
+.form-container .fields-form > .field textarea:active {
+    border-bottom-color: #cf5533;
+}
+
+.form-container .fields-form > .field textarea {
+    resize: vertical;
+}
+
+.form-container .fields-form > .field select {
+    position: relative;
+    width: 100%;
+    margin: 0.25rem 0;
+    padding: 0.4rem;
+    background-color: #ffffff;
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    color: #1b1b1b;
+    font-size: 1rem;
+}
+
 
 .reset-password {
     padding: 0 3rem;
@@ -629,7 +675,7 @@
 .reset-password h1 {
     color: #cf5533;
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     text-align: center;
     font-weight: bolder;
 }
@@ -656,5 +702,157 @@
 }
 
 .form-container .fields-form #password-help-text li span {
-    margin-left: 5px;
+    margin-left: 0.313rem;
+}
+
+.hikes-list,
+.hike-detail {
+    width: 100%;
+    padding: 1rem;
+}
+
+.hikes-list .hike,
+.hike-detail .hike {
+    width: 100%;
+    margin-bottom: 0.625rem;
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
+    border-radius: 0.7rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.hikes-list .hike .hike-header,
+.hike-detail .hike h1 {
+    background-color: #cf5533;
+}
+
+.hikes-list .hike .hike-header h1 {
+    padding: 0.2rem 0.5rem;
+    text-align: left;
+    font-size: 1.5rem;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ffffff;
+}
+
+.hikes-list .hike .hike-header h1 a,
+.hike-detail .hike h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.hikes-list .hike .hike-header p.event-date {
+    padding-left: 0.3rem;
+    padding-bottom: 0.15rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2f272a;
+}
+
+.hikes-list .hike .hike-header p.event-date > span {
+    color: #ffe28e;
+}
+
+.hikes-list .hike .hike-body {
+    display: grid;
+    grid-template-areas:
+    "img price"
+    "img duration"
+    "img level"
+    "description description";
+    grid-template-columns: 60% 40%;
+}
+
+.hikes-list .hike .hike-body p {
+    margin: 0.2rem 0 0.2rem 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #cf5533;
+
+}
+
+.hikes-list .hike .hike-body p span {
+    margin-left: 0.5rem;
+    color: #1b1b1b;
+}
+
+.hikes-list .hike .hike-body figure {
+    grid-area: img;
+}
+
+.hikes-list .hike .hike-body figure img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.hikes-list .hike .hike-body p.duration {
+    grid-area: duration;
+}
+
+.hikes-list .hike .hike-body p.level {
+    grid-area: level;
+}
+
+.hikes-list .hike .hike-body p.description {
+    grid-area: description;
+    overflow: hidden;
+    max-height: 4.5rem;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    font-weight: normal;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.hikes-list .hike .hike-body p.price {
+    grid-area: price;
+}
+
+.hikes-list .hike .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 0.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.hikes-list .hike .buttons button {
+    background-color: #cf5533;
+    padding: 0.3rem 0.8rem;
+    border: none;
+    border-radius: 0.4rem;
+}
+
+.hikes-list .hike .buttons button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.hike-detail .hike h1 {
+    padding: 1rem;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.hike-detail .hike img {
+    width: 100%;
+}
+
+.hike-detail .hike p {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border-bottom: 0.063rem solid rgb(0, 0, 0, 0.3);
+}
+
+.hike-detail .hike p:last-child {
+    border-bottom: none;
+}
+
+.hike-detail .hike p i {
+    margin-right: 0.3rem;
+    color: #cf5533;
+    font-size: 1.4rem;
 }

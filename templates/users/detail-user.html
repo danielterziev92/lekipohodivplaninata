@@ -72,7 +72,7 @@
                     </label>
                 {% endif %}
                 <div class="buttons">
-                    <button><a href="{% url 'user edit' pk=object.user_id.id %}">Редакция</a></button>
+                    <button>Редакция</button>
                     <button><a href="{% url 'user delete' pk=object.user_id.id %}">Изтрий</a></button>
                 </div>
                 {% csrf_token %}
