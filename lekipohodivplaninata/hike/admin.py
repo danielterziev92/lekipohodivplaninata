@@ -6,7 +6,7 @@ from lekipohodivplaninata.hike.models import HikeType, HikeMorePicture, HikeLeve
 
 @admin.register(Hike)
 class HikeAdmin(admin.ModelAdmin):
-    # readonly_fields = ('slug',)
+    readonly_fields = ('slug', 'main_picture')
     list_display = ('id', 'thumbnail_image', 'title', 'level', 'duration_time', 'event_date_tag', 'price_tag')
     list_display_links = ('title',)
     form = HikeCreateForm

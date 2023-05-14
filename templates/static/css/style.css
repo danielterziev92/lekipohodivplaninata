@@ -780,6 +780,11 @@
 
 .hikes-list .hike .hike-body figure {
     grid-area: img;
+    height: 8rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hikes-list .hike .hike-body figure img {

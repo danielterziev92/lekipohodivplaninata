@@ -16,11 +16,6 @@ class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
     permission_required = 'is_staff'
     form_class = HikeCreateForm
 
-    def post(self, request, *args, **kwargs):
-        super().post(request, *args, **kwargs)
-
-        return super().post(request, *args, **kwargs)
-
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
 
