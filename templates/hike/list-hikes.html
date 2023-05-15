@@ -19,7 +19,11 @@
                                 {{ hike.title }}
                             </a>
                         </h1>
-                        <p class="event-date">Дата на събитието: <span>{{ hike.get_event_date }}</span></p>
+                        <p class="event-date">
+{#                            <i class="fa-regular fa-calendar"></i>#}
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span>{{ hike.get_event_date }}</span>
+                        </p>
                     </div>
                     <div class="hike-body">
                         <figure>

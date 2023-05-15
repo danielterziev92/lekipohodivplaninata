@@ -714,7 +714,7 @@
 .hikes-list .hike,
 .hike-detail .hike {
     width: 100%;
-    margin-bottom: 0.625rem;
+    margin-bottom: 1.2rem;
     border: 0.063rem solid rgb(0, 0, 0, 0.2);
     border-radius: 0.7rem;
     overflow: hidden;
@@ -749,9 +749,11 @@
     font-weight: bold;
     text-align: center;
     color: #2f272a;
+    font-size: 1.2rem;
 }
 
-.hikes-list .hike .hike-header p.event-date > span {
+.hikes-list .hike .hike-header p.event-date > span,
+.hikes-list .hike .hike-header p.event-date > i {
     color: #ffe28e;
 }
 
@@ -825,15 +827,17 @@
 }
 
 .hikes-list .hike .buttons button {
-    background-color: #cf5533;
-    padding: 0.3rem 0.8rem;
     border: none;
-    border-radius: 0.4rem;
+    margin: 0.8rem 0.2rem;
 }
 
 .hikes-list .hike .buttons button a {
+    border-radius: 0.4rem;
+    background-color: #cf5533;
     text-decoration: none;
     color: #ffffff;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
 }
 
 .hike-detail .hike h1 {
