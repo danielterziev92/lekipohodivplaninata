@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block page_styles %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block page_content %}
@@ -20,14 +20,15 @@
                             </a>
                         </h1>
                         <p class="event-date">
-{#                            <i class="fa-regular fa-calendar"></i>#}
                             <i class="fa-regular fa-calendar-days"></i>
                             <span>{{ hike.get_event_date }}</span>
                         </p>
                     </div>
                     <div class="hike-body">
                         <figure>
-                            <img src="{{ hike.main_picture.url }}" alt=""/>
+                            <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">
+                                <img src="{{ hike.main_picture.url }}" alt=""/>
+                            </a>
                         </figure>
                         <p class="price">
                             <i class="fa-regular fa-money-bill-1"></i>

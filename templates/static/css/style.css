@@ -201,6 +201,7 @@
     border: none;
     background-color: transparent;
     outline: 0;
+    font-size: 1rem;
 }
 
 .sign-up-for-hike .form-floating input:focus,
@@ -831,7 +832,8 @@
     margin: 0.8rem 0.2rem;
 }
 
-.hikes-list .hike .buttons button a {
+.hikes-list .hike .buttons button a,
+.hike-detail .hike button {
     border-radius: 0.4rem;
     background-color: #cf5533;
     text-decoration: none;
@@ -844,6 +846,14 @@
     padding: 1rem;
     font-size: 1.3rem;
     color: #ffffff;
+}
+
+.hike-detail .hike button {
+    border: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0.5rem 0;
 }
 
 .hike-detail .hike img {
@@ -864,4 +874,33 @@
     margin-right: 0.3rem;
     color: #cf5533;
     font-size: 1.4rem;
+}
+
+.hike-detail .hike .sign-up-form {
+    height: 100%;
+    display: none;
+    transition: ease-in-out 400ms;
+    position: relative;
+}
+
+.hike-detail .hike .sign-up-form #hide-sign-hike-form {
+    position: absolute;
+    top: 0.63rem;
+    right: 0.63rem;
+    font-size: 1.5rem;
+    color: #cf5533;
+}
+
+
+.m0 {
+    margin: 0;
+}
+
+.br0 {
+    border-radius: 0;
+}
+
+.b-bottom {
+    border: none;
+    border-bottom: 0.063rem solid rgb(0, 0, 0, 0.2);
 }

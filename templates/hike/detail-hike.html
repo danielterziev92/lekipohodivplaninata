@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block page_styles %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block page_content %}
@@ -13,16 +13,23 @@
         <article class="hike">
             <h1>{{ hike.title }}</h1>
             <img src="{{ hike.main_picture.url }}" alt="">
+            <button id="show-sign-hike-form">Запиши ме за поход</button>
+            <div class="sign-up-form" id="sign-hike-form">
+                <i class="fa-solid fa-circle-xmark" id="hide-sign-hike-form"></i>
+                {% include 'hike/sign-for-hike-form.html' %}
+            </div>
             <p><i class="fa-solid fa-calendar-days"></i> Дата на събитието: {{ object.get_event_date }}</p>
             <p><i class="fa-regular fa-money-bill-1"></i> Цена: {{ object.get_hike_price }}</p>
             <p><i class="fa-solid fa-clock"></i> Продължителност: {{ object.get_duration_time }}</p>
-            <p><i class="fa-solid fa-person-hiking"></i> Ниво: {{ object.get_duration_time }}</p>
+            <p><i class="fa-solid fa-person-hiking"></i> Ниво: {{ object.level }}</p>
             <p> {{ object.description }}</p>
         </article>
-        {% include 'home-page/sing-up-for-hike.html' %}
     </section>
 {% endblock %}
 
 {% block page_scripts %}
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/sign-up-form.js' %}"></script>
+    <script src="{% static 'js/show-hide-sign-hike-form.js' %}"></script>
 {% endblock %}
+

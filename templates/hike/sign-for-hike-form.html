@@ -1,0 +1,48 @@
+<form method="post" class="sign-up-for-hike m0 br0 b-bottom">
+    <h2>Запиши се за поход</h2>
+    {% csrf_token %}
+    <div class="form-floating">
+        <input type="text" id="first-name" value="{{ user.get_first_name }}" required>
+        <label for="first-name">Име:</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" id="last-name" value="{{ user.get_last_name }}" required>
+        <label for="last-name">Фамилия:</label>
+    </div>
+    <div class="form-floating numbers">
+        <label for="users-count">Брой участници:</label>
+        <div class="numeric">
+            <span class="plus">+</span>
+            <input type="number" id="users-count" value="0" inputmode="numeric">
+            <span class="minus">-</span>
+        </div>
+    </div>
+    <div class="form-floating chooses">
+        <label for="choose-hike">Избери поход:</label>
+        <select name="choose-hike" id="choose-hike" required>
+            {% for hike in hikes %}
+                {% if object.pk == hike.pk %}
+                    <option value="{{ hike.pk }}" selected>{{ hike.title }}</option>
+                {% else %}
+                    <option value="{{ hike.pk }}">{{ hike.title }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-floating">
+        <p>Пътувам с:</p>
+        <div class="wrapper">
+            <input type="radio" name="travel-with" id="organized-transport" required/>
+            <input type="radio" name="travel-with" id="personal-transport" required/>
+            <label for="organized-transport" class="option option-1" id="option-1">
+                <div class="dot"></div>
+                <span>Организиран Транспорт</span>
+            </label>
+            <label for="personal-transport" class="option option-2">
+                <div class="dot"></div>
+                <span>Собствен Транспорт</span>
+            </label>
+        </div>
+    </div>
+    <button>Запиши се</button>
+</form>

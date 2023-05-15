@@ -6,6 +6,7 @@ from django.contrib.auth import mixins as auth_mixins
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin
 from lekipohodivplaninata.core.utils import from_str_to_date
 from lekipohodivplaninata.hike.forms import HikeCreateForm, HikeDetailForm
+from lekipohodivplaninata.hike.forms import SignUpForHikeForm
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
 from lekipohodivplaninata.users_app.models import GuideProfile
@@ -42,7 +43,7 @@ class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
     @staticmethod
     def change_path_of_main_picture(form):
         old_path = form.base_fields['main_picture'].options['folder']
-        new_path = f'{old_path}/{form.instance.slug}/{form.data["event_date"]}'
+        new_path = f'{old_path}/{form.instance.slug}'
         form.base_fields['main_picture'].options['folder'] = new_path
 
         return form
@@ -57,6 +58,7 @@ class HikeDetailView(auth_mixins.LoginRequiredMixin, views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user'] = self.get_user(self.request)
+        context['hikes'] = Hike.objects.all()
         return context
 
     @staticmethod
@@ -72,5 +74,9 @@ class HikeDetailView(auth_mixins.LoginRequiredMixin, views.DetailView):
 
 class HikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
     template_name = 'hike/list-hikes.html'
-    model = Hike
+    # model = Hike
     permission_required = 'is_staff'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Hike.objects.all().order_by('event_date')

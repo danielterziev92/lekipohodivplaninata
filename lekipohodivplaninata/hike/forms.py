@@ -2,6 +2,7 @@ from django import forms
 from cloudinary import forms as cloudinary_form
 
 from lekipohodivplaninata.hike.models import Hike, HikeLevel
+from lekipohodivplaninata.users_app.models import BaseProfile
 
 
 class HikeCreateForm(forms.ModelForm):
@@ -67,3 +68,38 @@ class HikeDetailForm(forms.ModelForm):
     class Meta:
         model = Hike
         fields = '__all__'
+
+
+class SignUpForHikeForm(forms.Form):
+    TRAVEL_WITH = (
+        ('organized-transport', 'Организиран транспорт'),
+        ('personal-transport', 'Собствен Транспорт'),
+    )
+
+    first_name = forms.CharField(
+        max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
+        label='Име',
+        widget=forms.TextInput()
+    )
+
+    last_name = forms.CharField(
+        max_length=BaseProfile.LAST_NAME_MAX_LENGTH,
+        label='Фамилия',
+        widget=forms.TextInput()
+    )
+
+    participants_count = forms.IntegerField(
+        label='Брой участници',
+    )
+
+    hikes = forms.ChoiceField(
+        label='Избери поход',
+        choices=(
+            [(hike.pk, hike.title) for hike in Hike.objects.all()]
+        )
+    )
+
+    travel_with = forms.ChoiceField(
+        label='Ще пътувам с',
+        choices=TRAVEL_WITH,
+    )
