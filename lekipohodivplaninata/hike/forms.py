@@ -5,7 +5,7 @@ from lekipohodivplaninata.hike.models import Hike, HikeLevel
 from lekipohodivplaninata.users_app.models import BaseProfile
 
 
-class HikeCreateForm(forms.ModelForm):
+class HikeForm(forms.ModelForm):
     title = forms.CharField(
         max_length=Hike.TITLE_MAX_LENGTH,
         label='Заглавие',
@@ -62,12 +62,6 @@ class HikeCreateForm(forms.ModelForm):
     class Meta:
         model = Hike
         fields = ('title', 'level', 'event_date', 'duration', 'price', 'main_picture', 'description')
-
-
-class HikeDetailForm(forms.ModelForm):
-    class Meta:
-        model = Hike
-        fields = '__all__'
 
 
 class SignUpForHikeForm(forms.Form):

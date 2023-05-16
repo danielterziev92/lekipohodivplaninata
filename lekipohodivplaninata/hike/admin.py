@@ -1,15 +1,14 @@
 from django.contrib import admin
 
-from lekipohodivplaninata.hike.forms import HikeCreateForm
 from lekipohodivplaninata.hike.models import HikeType, HikeMorePicture, HikeLevel, Hike
 
 
 @admin.register(Hike)
 class HikeAdmin(admin.ModelAdmin):
-    readonly_fields = ('slug', 'main_picture')
+    readonly_fields = ('main_picture',)
     list_display = ('id', 'thumbnail_image', 'title', 'level', 'duration_time', 'event_date_tag', 'price_tag')
     list_display_links = ('title',)
-    form = HikeCreateForm
+    prepopulated_fields = {"slug": ("title", "event_date")}
 
     def main_picture(self, obj):
         return obj.get_main_picture

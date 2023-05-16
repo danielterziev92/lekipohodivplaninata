@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <section class="hike-detail">
+        <article class="form-container">
+            <form action="{% url 'hike update'  pk=object.pk slug=object.slug %}" method="post" class="fields-form"
+                  enctype="multipart/form-data">
+                {% for field in form %}
+                    {% if field.id_for_label == 'id_main_picture' %}
+                        <figure>
+                            <img src="{{ object.main_picture.url }}" alt="">
+                        </figure>
+                        <label for="{{ field.id_for_label }}">
+                            <span>{{ field.label }}</span>
+                            <span class="file">
+                                <i class="fa-solid fa-file-lines"></i>
+                                <span>Качете нова снимка</span>
+                                <input id="id_main_picture" type="file" data-buttonText="Качи нова снимка"
+                                       name="main_picture" style="display: none;"/>
+                            </span>
+                            <div class="new-image">
+                                <img src="" id="new-picture" alt=""/>
+                            </div>
+                        </label>
+                    {% elif field.id_for_label != 'id_slug' %}
+                        <label for="{{ field.id_for_label }}">
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </form>
+        </article>
+
+        {% if request.user.is_staff %}
+            <div class="actions">
+                <a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Запазване</a>
+                <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/show-hike-upload-picture.js' %}"></script>
+{% endblock %}
+
