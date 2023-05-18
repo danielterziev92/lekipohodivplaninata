@@ -14,5 +14,6 @@ function showForm(e) {
 
 function hideForm() {
     signHikeFormElement.style.display = 'none';
+    signHikeFormElement.style.height = '0%';
     showButtonElement.style.display = 'block';
 }

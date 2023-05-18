@@ -166,6 +166,5 @@ class Hike(AuditInfoMixin, models.Model):
         return self.title
 
     class Meta:
-        unique_together = ('id', 'slug')
         verbose_name = 'поход'
         verbose_name_plural = 'Походи'

@@ -9,10 +9,24 @@ def from_cyrillic_to_latin(value):
         'я': 'ya',
     }
 
-    new_string = ''.join([symbols.get(ch.lower(), ' ') for ch in value])
+    new_string = ''
+
+    for ch in value:
+        if ch.isnumeric():
+            new_string += ch
+            continue
+
+        new_string += symbols.get(ch.lower(), ' ')
 
     return new_string
 
 
 def from_str_to_date(value):
-    return datetime.datetime.strptime(value, '%Y-%m-%d').strftime('%d-%m-%Y')
+    date = None
+    if isinstance(value, str):
+        date = datetime.datetime.strptime(value, '%Y-%m-%d')
+
+    return date.strftime('%d-%m-%Y')
+
+
+print(from_cyrillic_to_latin('От тук до там 2'))

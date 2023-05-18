@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <section class="hike-detail">
+        <article class="form-container">
+            <form action="{% url 'hike delete'  pk=object.pk slug=object.slug %}" method="post" class="fields-form">
+                <h2>Желаете ли да изтриете този поход</h2>
+                <h3>{{ object.title }}</h3>
+                {% csrf_token %}
+                <div class="buttons">
+                    <button>Изтрий</button>
+                    <button onclick="history.back()">Отказ</button>
+                </div>
+            </form>
+        </article>
+    </section>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/show-hike-upload-picture.js' %}"></script>
+{% endblock %}

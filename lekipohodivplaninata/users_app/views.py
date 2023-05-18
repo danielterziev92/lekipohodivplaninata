@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm
-from lekipohodivplaninata.users_app.mixins import UserFormMixin
+from lekipohodivplaninata.core.mixins import UserFormMixin
 from lekipohodivplaninata.users_app.models import BaseProfile
 
 UserModel = get_user_model()
@@ -36,11 +36,6 @@ class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView)
     template_name = 'users/detail-user.html'
     success_url = reverse_lazy('user detail')
 
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-
-        return super().get(request, *args, **kwargs)
-
     @property
     def model(self):
         return self.get_model()
@@ -53,9 +48,6 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
         return reverse_lazy('user detail', kwargs={
             'pk': self.request.user.pk,
         })
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
 
     @property
     def model(self):

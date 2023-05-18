@@ -37,15 +37,13 @@
                         </label>
                     {% endif %}
                 {% endfor %}
+                {% csrf_token %}
+                <div class="buttons">
+                    <button><a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Запазване</a></button>
+                    <button><a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a></button>
+                </div>
             </form>
         </article>
-
-        {% if request.user.is_staff %}
-            <div class="actions">
-                <a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Запазване</a>
-                <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
-            </div>
-        {% endif %}
     </section>
 {% endblock %}
 
