@@ -1,11 +1,14 @@
 from django import forms
-from cloudinary import forms as cloudinary_form
+from django.forms import FileInput
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
-from lekipohodivplaninata.hike.models import Hike, HikeLevel
+from lekipohodivplaninata.core.mixins import HikeFormMixin, PicturesMixin
+from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture
 from lekipohodivplaninata.users_app.models import BaseProfile
 
 
-class HikeForm(forms.ModelForm):
+class HikeForm(HikeFormMixin, PicturesMixin, forms.ModelForm):
     title = forms.CharField(
         max_length=Hike.TITLE_MAX_LENGTH,
         label='Заглавие',
@@ -52,16 +55,42 @@ class HikeForm(forms.ModelForm):
         decimal_places=2,
     )
 
-    main_picture = cloudinary_form.CloudinaryFileField(
+
+class HikeCreateForm(HikeForm):
+    main_picture = forms.ImageField(
         label='Освновна снимка',
-        options={
-            'folder': Hike.PICTURE_DIRECTORY
-        }
+        widget=FileInput,
     )
 
     class Meta:
         model = Hike
         fields = ('title', 'level', 'event_date', 'duration', 'price', 'main_picture', 'description')
+
+
+class HikeUpdateForm(HikeForm):
+    new_main_picture = forms.ImageField(
+        label='Освновна снимка',
+        widget=FileInput,
+        required=False,
+    )
+
+    class Meta:
+        model = Hike
+        fields = ('title', 'level', 'event_date', 'duration', 'price', 'new_main_picture', 'description')
+
+
+class HikeMorePictureUploadForm(forms.ModelForm):
+    pk = forms.HiddenInput()
+
+    picture = forms.ImageField(
+        label='Снимка',
+        widget=FileInput,
+        required=False,
+    )
+
+    class Meta:
+        model = HikeMorePicture
+        fields = ('picture',)
 
 
 class SignUpForHikeForm(forms.Form):

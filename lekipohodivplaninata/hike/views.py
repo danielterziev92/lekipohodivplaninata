@@ -1,19 +1,19 @@
-import cloudinary.uploader
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from lekipohodivplaninata.core.mixins import GetHikeForm
-from lekipohodivplaninata.hike.forms import HikeForm
-from lekipohodivplaninata.hike.models import Hike
+from lekipohodivplaninata.core.mixins import PicturesMixin
+from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm
+from lekipohodivplaninata.hike.models import Hike, HikeMorePicture
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
+HikeModel = Hike
 
-class HikeCreateView(GetHikeForm, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.CreateView):
+
+class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
     template_name = 'hike/create-hike.html'
     permission_required = 'is_staff'
-    form_class = HikeForm
+    form_class = HikeCreateForm
 
     def get_success_url(self):
         return reverse_lazy('hike detail', kwargs={
@@ -25,7 +25,7 @@ class HikeCreateView(GetHikeForm, auth_mixins.LoginRequiredMixin, auth_mixins.Pe
 class HikeDetailView(views.DetailView):
     template_name = 'hike/detail-hike.html'
     form_class = HikeForm
-    model = Hike
+    model = HikeModel
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,7 +33,7 @@ class HikeDetailView(views.DetailView):
         if not self.request.user.is_anonymous:
             context['user'] = self.get_user(self.request)
 
-        context['hikes'] = Hike.objects.all()
+        context['hikes'] = HikeModel.objects.all()
         return context
 
     @staticmethod
@@ -47,12 +47,11 @@ class HikeDetailView(views.DetailView):
         return user
 
 
-class HikeUpdateView(GetHikeForm, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.UpdateView):
+class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
     template_name = 'hike/update-hike.html'
     permission_required = 'is_staff'
-    form_class = HikeForm
-    model = Hike
+    form_class = HikeUpdateForm
+    model = HikeModel
 
     def get_success_url(self):
         return reverse_lazy('hike detail', kwargs={
@@ -61,14 +60,52 @@ class HikeUpdateView(GetHikeForm, auth_mixins.LoginRequiredMixin, auth_mixins.Pe
         })
 
 
-class HikeDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
+class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
+    views.FormView):
+    template_name = 'hike/more-pictures-hike.html'
+    permission_required = 'is_staff'
+    form_class = HikeMorePictureUploadForm
+    model = HikeMorePicture
+
+    def get_success_url(self):
+        return reverse_lazy('hike detail', kwargs={
+            'pk': self.kwargs['pk'],
+            'slug': self.kwargs['slug'],
+        })
+
+    def form_valid(self, form):
+        images = form.files.getlist('picture')
+        if images:
+            hike = Hike.objects.get(pk=self.kwargs['pk'])
+            public_id = hike.main_picture.public_id
+            folder = self.get_picture_folder(public_id)
+            for image in images:
+                url = self.upload_picture(image.file, folder)
+                img_id = HikeMorePicture.objects.create(image=url)
+                hike.more_pictures.add(img_id)
+
+        return super().form_valid(form=form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object'] = HikeModel.objects.get(pk=self.kwargs['pk'])
+        return context
+
+
+class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
+    views.DeleteView):
     template_name = 'hike/delete-hike.html'
     success_url = reverse_lazy('hike list')
     permission_required = 'is_staff'
-    model = Hike
+    model = HikeModel
 
     def form_valid(self, form):
-        cloudinary.uploader.destroy(self.object.main_picture.public_id)
+        if self.object.main_picture:
+            main_picture_public_id = self.object.main_picture.public_id
+            main_picture_folder = self.get_picture_folder(main_picture_public_id)
+            self.delete_pictures([main_picture_public_id])
+            self.delete_folder(main_picture_folder)
+
         return super().form_valid(form=form)
 
 
@@ -78,4 +115,4 @@ class HikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequire
     paginate_by = 2
 
     def get_queryset(self):
-        return Hike.objects.all().order_by('event_date')
+        return HikeModel.objects.all().order_by('event_date')

@@ -11,26 +11,21 @@
 {% block page_content %}
     <section class="hike-detail">
         <article class="form-container">
+            <figure>
+                <img src="{{ object.main_picture.url }}" alt="">
+            </figure>
             <form action="{% url 'hike update'  pk=object.pk slug=object.slug %}" method="post" class="fields-form"
                   enctype="multipart/form-data">
                 {% for field in form %}
-                    {% if field.id_for_label == 'id_main_picture' %}
-                        <figure>
-                            <img src="{{ object.main_picture.url }}" alt="">
-                        </figure>
+                    {% if field.id_for_label == 'id_new_main_picture' %}
                         <label for="{{ field.id_for_label }}">
                             <span>{{ field.label }}</span>
-                            <span class="file">
-                                <i class="fa-solid fa-file-lines"></i>
-                                <span>Качете нова снимка</span>
-                                <input id="id_main_picture" type="file" data-buttonText="Качи нова снимка"
-                                       name="main_picture" style="display: none;"/>
-                            </span>
-                            <div class="new-image">
-                                <img src="" id="new-picture" alt=""/>
-                            </div>
+                            {{ field }}
                         </label>
-                    {% elif field.id_for_label != 'id_slug' %}
+                        <div class="new-image">
+                            <img src="" id="new-picture" alt=""/>
+                        </div>
+                    {% else %}
                         <label for="{{ field.id_for_label }}">
                             <span>{{ field.label }}</span>
                             {{ field }}
@@ -38,9 +33,15 @@
                     {% endif %}
                 {% endfor %}
                 {% csrf_token %}
+                <button>Запазване</button>
+                <button type="button">
+                    <a href="{% url 'hike more pictures' pk=object.pk slug=object.slug %}">Добавяне на снимки</a>
+                </button>
+                <button type="button">
+                    <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
+                </button>
                 <div class="buttons">
-                    <button><a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Запазване</a></button>
-                    <button><a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a></button>
+
                 </div>
             </form>
         </article>

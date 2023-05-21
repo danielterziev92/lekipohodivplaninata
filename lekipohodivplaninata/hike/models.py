@@ -57,7 +57,7 @@ class HikeLevel(models.Model):
 
 
 class HikeMorePicture(models.Model):
-    title = cloudinary_models.CloudinaryField(
+    image = cloudinary_models.CloudinaryField(
         null=True,
         blank=True,
         verbose_name='Снимка'

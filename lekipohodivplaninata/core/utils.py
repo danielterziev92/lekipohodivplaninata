@@ -22,11 +22,7 @@ def from_cyrillic_to_latin(value):
 
 
 def from_str_to_date(value):
-    date = None
     if isinstance(value, str):
-        date = datetime.datetime.strptime(value, '%Y-%m-%d')
+        return datetime.datetime.strptime(value, '%Y-%m-%d')
 
-    return date.strftime('%d-%m-%Y')
-
-
-print(from_cyrillic_to_latin('От тук до там 2'))
+    return value.strftime('%d-%m-%Y')

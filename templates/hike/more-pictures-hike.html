@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <section class="hike-detail">
+        <article class="form-container">
+            <h1>Добавяне на допълнителни снимки за:</h1>
+            <h2>{{ object.title }}</h2>
+            <form action="{% url 'hike more pictures'  pk=object.pk slug=object.slug %}" method="post"
+                  class="fields-form" enctype="multipart/form-data" id="more-images">
+                {% for field in form %}
+                    <div id="image">
+                        <label for="{{ field.id_for_label }}">
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+                        <div class="new-image">
+                            <img src="" id="new-picture" alt=""/>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% csrf_token %}
+                <input type="hidden" name="pk" value="{{ object.pk }}"/>
+                <div class="buttons">
+                    <button>Запазване</button>
+                </div>
+            </form>
+            <button class="new-row" id="add-new-row">Добави нов ред</button>
+        </article>
+    </section>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/add-row-more-picture.js' %}"></script>
+{% endblock %}

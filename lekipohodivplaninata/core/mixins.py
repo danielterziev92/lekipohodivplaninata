@@ -1,12 +1,13 @@
 import datetime
 
+from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.text import slugify
 
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.forms import GuideProfileForm
-from lekipohodivplaninata.users_app.models import GuideProfile, BaseProfile
+from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 HikeModel = Hike
 
@@ -56,29 +57,89 @@ class UserFormMixin(object):
         return obj
 
 
-class GetHikeForm(object):
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class=form_class)
-
-        if self.request.method.lower() == 'post':
-            self.generate_slug_field(form)
-            self.change_path_of_main_picture(form)
-
-        return form
+class PicturesMixin:
+    @staticmethod
+    def upload_picture(file, folder):
+        data = cloudinary_uploader.upload(file=file, folder=folder)
+        return f'{data["public_id"]}.{data["format"]}'
 
     @staticmethod
-    def generate_slug_field(form):
-        slug_prefix = slugify(from_cyrillic_to_latin(form.data["title"]))
-        slug_suffix = from_str_to_date(form.data["event_date"])
-        form.instance.slug = f'{slug_prefix}-{slug_suffix}'
-
-        return form
+    def delete_pictures(files: list):
+        cloudinary_api.delete_resources(files)
 
     @staticmethod
-    def change_path_of_main_picture(form):
-        old_path = form.base_fields['main_picture'].options['folder']
-        new_path = f'{old_path}/{form.instance.slug}'
-        form.base_fields['main_picture'].options['folder'] = new_path
+    def delete_folder(folder: str):
+        cloudinary_api.delete_folder(folder)
 
-        return form
+    @staticmethod
+    def get_picture_folder(public_id: str):
+        return '/'.join(public_id.split('/')[:2])
+
+    @staticmethod
+    def create_folder(folder_name):
+        return cloudinary_api.create_folder(folder_name)
+
+    @staticmethod
+    def move_picture_to_new_folder(old_public_id, new_public_id):
+        return cloudinary_uploader.rename(old_public_id, new_public_id)
+
+
+class HikeFormMixin(PicturesMixin, object):
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+
+        if obj.pk is None:
+            obj = self.create_obj(obj)
+        else:
+            obj = self.edit_obj(obj)
+
+        if commit:
+            obj.save()
+
+        return obj
+
+    def create_obj(self, obj):
+        obj.slug = self.generate_slug_field(obj.title, obj.event_date)
+        folder = self.generate_folder_name(obj.slug)
+        obj.main_picture = self.upload_picture(self.cleaned_data['main_picture'].file, folder)
+        return obj
+
+    def edit_obj(self, obj):
+        db_obj = HikeModel.objects.get(pk=obj.pk)
+
+        if self.cleaned_data['title'] != db_obj.title or self.cleaned_data['event_date'] != db_obj.event_date:
+            obj.slug = self.generate_slug_field(obj.title, obj.event_date)
+            self.transfer_picture_to_new_folder(obj)
+
+        if self.cleaned_data['new_main_picture']:
+            folder = self.get_picture_folder(obj.main_picture.public_id)
+            self.delete_pictures([obj.main_picture.public_id])
+            obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
+
+        return obj
+
+    def transfer_picture_to_new_folder(self, obj):
+        img_name = self.get_img_name_from_public_id(obj.main_picture)
+        old_folder = self.get_picture_folder(obj.main_picture.public_id)
+        new_folder = self.create_folder(self.get_picture_folder(obj.slug))
+        old_public_id = obj.main_picture.public_id
+        new_public_id = f'{self.generate_folder_name(new_folder["path"])}/{img_name}'
+        obj.main_picture.public_id = self.move_picture_to_new_folder(old_public_id, new_public_id)['public_id']
+        self.delete_folder(old_folder)
+
+    @staticmethod
+    def generate_slug_field(title: str, event_date):
+        slug_prefix = slugify(from_cyrillic_to_latin(title))
+        slug_suffix = from_str_to_date(event_date)
+        slug = f'{slug_prefix}-{slug_suffix}'
+
+        return slug
+
+    @staticmethod
+    def get_img_name_from_public_id(img):
+        return img.public_id.split('/').pop()
+
+    @staticmethod
+    def generate_folder_name(slug: str):
+        return f'{HikeModel.PICTURE_DIRECTORY}/{slug}'

@@ -1,9 +1,8 @@
-const uploadFileElement = document.querySelector('input[type=file]#id_main_picture');
+const uploadFileElement = document.getElementById('id_new_main_picture');
+const newImageContainer = document.querySelector('.new-image')
 const newImgElement = document.getElementById('new-picture');
 
 uploadFileElement.addEventListener('change', (e) => {
-    const pathName = URL.createObjectURL(e.currentTarget.files[0])
-    console.log(pathName)
-    newImgElement.src = pathName;
-    newImgElement.style.display = 'block';
+    newImgElement.src = URL.createObjectURL(e.currentTarget.files[0]);
+    newImageContainer.style.display = 'flex';
 });
