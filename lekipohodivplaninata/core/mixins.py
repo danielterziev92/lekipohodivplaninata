@@ -84,41 +84,7 @@ class PicturesMixin:
         return cloudinary_uploader.rename(old_public_id, new_public_id)
 
 
-class HikeFormMixin(PicturesMixin, object):
-
-    def save(self, commit=True):
-        obj = super().save(commit=False)
-
-        if obj.pk is None:
-            obj = self.create_obj(obj)
-        else:
-            obj = self.edit_obj(obj)
-
-        if commit:
-            obj.save()
-
-        return obj
-
-    def create_obj(self, obj):
-        obj.slug = self.generate_slug_field(obj.title, obj.event_date)
-        folder = self.generate_folder_name(obj.slug)
-        obj.main_picture = self.upload_picture(self.cleaned_data['main_picture'].file, folder)
-        return obj
-
-    def edit_obj(self, obj):
-        db_obj = HikeModel.objects.get(pk=obj.pk)
-
-        if self.cleaned_data['title'] != db_obj.title or self.cleaned_data['event_date'] != db_obj.event_date:
-            obj.slug = self.generate_slug_field(obj.title, obj.event_date)
-            self.transfer_picture_to_new_folder(obj)
-
-        if self.cleaned_data['new_main_picture']:
-            folder = self.get_picture_folder(obj.main_picture.public_id)
-            self.delete_pictures([obj.main_picture.public_id])
-            obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
-
-        return obj
-
+class HikeBaseFormMixin(PicturesMixin, object):
     def transfer_picture_to_new_folder(self, obj):
         img_name = self.get_img_name_from_public_id(obj.main_picture)
         old_folder = self.get_picture_folder(obj.main_picture.public_id)
@@ -143,3 +109,43 @@ class HikeFormMixin(PicturesMixin, object):
     @staticmethod
     def generate_folder_name(slug: str):
         return f'{HikeModel.PICTURE_DIRECTORY}/{slug}'
+
+
+class HikeCreateFormMixin(HikeBaseFormMixin):
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        obj = self.create_obj(obj)
+        if commit:
+            obj.save()
+
+        return obj
+
+    def create_obj(self, obj):
+        obj.slug = self.generate_slug_field(obj.title, obj.event_date)
+        folder = self.generate_folder_name(obj.slug)
+        obj.main_picture = self.upload_picture(self.cleaned_data['main_picture'].file, folder)
+        return obj
+
+
+class HikeUpdateFormMixin(HikeBaseFormMixin):
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        obj = self.edit_obj(obj)
+        if commit:
+            obj.save()
+
+        return obj
+
+    def edit_obj(self, obj):
+        db_obj = HikeModel.objects.get(pk=obj.pk)
+
+        if self.cleaned_data['title'] != db_obj.title or self.cleaned_data['event_date'] != db_obj.event_date:
+            obj.slug = self.generate_slug_field(obj.title, obj.event_date)
+            self.transfer_picture_to_new_folder(obj)
+
+        if self.cleaned_data['new_main_picture']:
+            folder = self.get_picture_folder(obj.main_picture.public_id)
+            self.delete_pictures([obj.main_picture.public_id])
+            obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
+
+        return obj

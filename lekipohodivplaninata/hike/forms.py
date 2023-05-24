@@ -1,14 +1,12 @@
 from django import forms
 from django.forms import FileInput
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
 
-from lekipohodivplaninata.core.mixins import HikeFormMixin, PicturesMixin
+from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture
 from lekipohodivplaninata.users_app.models import BaseProfile
 
 
-class HikeForm(HikeFormMixin, PicturesMixin, forms.ModelForm):
+class HikeForm(PicturesMixin, forms.ModelForm):
     title = forms.CharField(
         max_length=Hike.TITLE_MAX_LENGTH,
         label='Заглавие',
@@ -56,7 +54,7 @@ class HikeForm(HikeFormMixin, PicturesMixin, forms.ModelForm):
     )
 
 
-class HikeCreateForm(HikeForm):
+class HikeCreateForm(HikeCreateFormMixin, HikeForm):
     main_picture = forms.ImageField(
         label='Освновна снимка',
         widget=FileInput,
@@ -67,7 +65,7 @@ class HikeCreateForm(HikeForm):
         fields = ('title', 'level', 'event_date', 'duration', 'price', 'main_picture', 'description')
 
 
-class HikeUpdateForm(HikeForm):
+class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
     new_main_picture = forms.ImageField(
         label='Освновна снимка',
         widget=FileInput,
