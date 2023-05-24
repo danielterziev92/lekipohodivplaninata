@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from lekipohodivplaninata.hike.models import Hike
@@ -23,12 +25,14 @@ class SignUpForHike(models.Model):
         blank=False,
     )
 
-    user_id = models.ForeignKey(
-        BaseUserModel,
-        on_delete=models.RESTRICT,
-        null=False,
-        blank=False
+    user_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.RESTRICT
     )
+
+    user_id = models.PositiveIntegerField()
+
+    user_object = GenericForeignKey('user_type', 'user_id')
 
     travel_with = models.ForeignKey(
         TravelWith,

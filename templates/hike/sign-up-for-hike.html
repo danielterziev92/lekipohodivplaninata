@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <form action="{% url 'sign-up for hike' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button>Изпрати</button>
+    </form>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/show-hike-upload-picture.js' %}"></script>
+{% endblock %}

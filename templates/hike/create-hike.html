@@ -18,6 +18,7 @@
                         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                         {{ field }}
                     </div>
+                    {{ field.errors }}
                 {% endfor %}
                 {% csrf_token %}
                 <div class="buttons">

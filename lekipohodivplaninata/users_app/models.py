@@ -159,3 +159,17 @@ class GuideProfile(models.Model):
     class Meta:
         verbose_name = 'прифила на водач'
         verbose_name_plural = 'Водачи'
+
+
+class AnonymousAppUser(models.Model):
+    first_name = models.CharField(
+        max_length=30,
+        null=False,
+        blank=False
+    )
+
+    last_name = models.CharField(
+        max_length=30,
+        null=False,
+        blank=False
+    )
