@@ -100,6 +100,12 @@ class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.
     model = HikeModel
 
     def form_valid(self, form):
+        more_pictures = self.object.more_pictures.all()
+
+        if more_pictures:
+            for picture in more_pictures:
+                self.delete_pictures(picture.image.public_id)
+
         if self.object.main_picture:
             main_picture_public_id = self.object.main_picture.public_id
             main_picture_folder = self.get_picture_folder(main_picture_public_id)
@@ -112,7 +118,7 @@ class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.
 class HikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
     template_name = 'hike/list-hikes.html'
     permission_required = 'is_staff'
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         return HikeModel.objects.all().order_by('event_date')

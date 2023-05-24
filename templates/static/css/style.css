@@ -842,8 +842,7 @@
     grid-template-areas:
     "img price"
     "img duration"
-    "img level"
-    "description description";
+    "img level";
     grid-template-columns: 60% 40%;
 }
 
@@ -882,8 +881,25 @@
     grid-area: level;
 }
 
-.hikes-list .hike .hike-body p.description {
-    grid-area: description;
+.hikes-list .hike .more-pictures .swiper-wrapper {
+    padding-bottom: 1.2rem;
+    margin-top: 0.625rem;
+}
+
+.hikes-list .hike .more-pictures .swiper-wrapper .swiper-pagination-bullet-active {
+    background-color: #cf5533;
+}
+
+.hikes-list .hike .more-pictures .swiper-wrapper .swiper-pagination {
+    bottom: 0;
+}
+
+.hikes-list .hike .more-pictures .swiper-wrapper .swiper-slide img {
+    width: 100%;
+}
+
+.hikes-list .hike p.description {
+    padding: 0 0.625rem;
     overflow: hidden;
     max-height: 4.5rem;
     text-overflow: ellipsis;

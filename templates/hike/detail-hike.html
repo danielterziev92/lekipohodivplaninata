@@ -4,6 +4,8 @@
 {% load static %}
 
 {% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/scrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
@@ -12,12 +14,37 @@
     <section class="hike-detail">
         <article class="hike">
             <h1>{{ hike.title }}</h1>
-            <img src="{{ hike.main_picture.url }}" alt="">
+            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
+                    </div>
+                    {% for picture in hike.more_pictures.all %}
+                        <div class="swiper-slide">
+                            <img src="{{ picture.image.url }}" alt="Picture missing"/>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div thumbsSlider="" class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
+                    </div>
+                    {% for picture in hike.more_pictures.all %}
+                        <div class="swiper-slide">
+                            <img src="{{ picture.image.url }}" alt=""/>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
             <button id="show-sign-hike-form">Запиши ме за поход</button>
             <div class="sign-up-form" id="sign-hike-form">
                 <i class="fa-solid fa-circle-xmark" id="hide-sign-hike-form"></i>
                 {% include 'hike/sign-for-hike-form.html' %}
             </div>
+
+
             <p><i class="fa-solid fa-calendar-days"></i> Дата на събитието: {{ object.get_event_date }}</p>
             <p><i class="fa-regular fa-money-bill-1"></i> Цена: {{ object.get_hike_price }}</p>
             <p><i class="fa-solid fa-clock"></i> Продължителност: {{ object.get_duration_time }}</p>
@@ -36,7 +63,9 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'js/sign-up-form.js' %}"></script>
     <script src="{% static 'js/show-hide-sign-hike-form.js' %}"></script>
+    <script src="{% static 'js/hike-more-picture-slider-detail-template.js' %}"></script>
 {% endblock %}
 

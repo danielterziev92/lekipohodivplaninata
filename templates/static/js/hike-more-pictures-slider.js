@@ -1,6 +1,6 @@
-var swiper = new Swiper(".pictures", {
-    slidesPerView: 1,
-    spaceBetween: 30,
+const swiper = new Swiper(".more-pictures", {
+    slidesPerView: 3,
+    spaceBetween: 10,
     centeredSlides: true,
     autoplay: {
         delay: 5000,
