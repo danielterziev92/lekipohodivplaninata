@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse_lazy
 from django.views import generic as views
 
 from lekipohodivplaninata.base.forms import SignUpHikeForm
@@ -18,28 +20,21 @@ class IndexPageTemplateView(views.ListView):
         return HikeModel.objects.all().order_by('event_date')
 
 
-# def sign_up_for_hike(request):
-#     if request.method.lower() == 'get':
-#         pass
-
-
 class SignUpHike(views.UpdateView):
     template_name = 'hike/sign-up-for-hike.html'
-    model = SignUpForHike
+    # model = SignUpForHike
     form_class = SignUpHikeForm
+    success_url = reverse_lazy('index')
 
-    def get(self, request, *args, **kwargs):
-        if isinstance(self.request.user, UserModel):
-            user = self.get_user_profile(self.request.user.pk)
-
-        return super().get(request, *args, **kwargs)
+    def get_queryset(self):
+        return Hike.objects.all()
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
-        # kwargs['from_url'] = self.request.META.get('HTTP_REFERER')
         return kwargs
 
-    @staticmethod
-    def get_user_profile(user_id):
-        return BaseProfile.objects.get(pk=user_id)
+
+class ASDS(views.CreateView):
+    template_name = 'hike/sign-up-for-hike2.html'
+

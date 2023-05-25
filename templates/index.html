@@ -12,11 +12,13 @@
 
 {% block page_content %}
     <main>
-        <section>
+        <section id="slider">
             {% include 'home-page/slider.html' %}
-{#            {% include 'home-page/sing-up-for-hike.html' %}#}
+            {#            {% include 'home-page/sing-up-for-hike.html' %}#}
         </section>
-        {% include 'hike/templates/list.html' %}
+        <section id="hike-list">
+            {% include 'hike/templates/list.html' %}
+        </section>
     </main>
 {% endblock %}
 

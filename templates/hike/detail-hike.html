@@ -41,7 +41,9 @@
             <button id="show-sign-hike-form">Запиши ме за поход</button>
             <div class="sign-up-form" id="sign-hike-form">
                 <i class="fa-solid fa-circle-xmark" id="hide-sign-hike-form"></i>
-                {% include 'hike/sign-for-hike-form.html' %}
+                <form method="post" class="sign-up-for-hike m0 br0 b-bottom" action="{% url 'sign up for hike' pk=hike.pk slug=hike.slug %}">
+                    {% include 'hike/templates/sign-for-hike-form.html' %}
+                </form>
             </div>
 
 

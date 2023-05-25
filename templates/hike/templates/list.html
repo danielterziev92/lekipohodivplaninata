@@ -1,6 +1,6 @@
 <article class="hikes-list">
     {% for hike in object_list %}
-        <article class="hike">
+        <div class="hike">
             <div class="hike-header">
                 <h1>
                     <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">
@@ -52,7 +52,7 @@
                     <a href="{% url 'sign up for hike' pk=hike.pk slug=hike.slug %}">Запиши ме за похода</a>
                 </button>
             </div>
-        </article>
+        </div>
     {% endfor %}
 
 
