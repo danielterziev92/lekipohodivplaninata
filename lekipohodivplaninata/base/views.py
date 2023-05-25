@@ -8,7 +8,7 @@ class IndexPageTemplateView(views.TemplateView):
     template_name = 'index.html'
 
 
-class SignUpHike(views.CreateView):
+class SignUpHike(views.UpdateView):
     template_name = 'hike/sign-up-for-hike.html'
     model = SignUpForHike
     form_class = SignUpHikeForm

@@ -1,8 +1,9 @@
 from django import forms
+from django.contrib.auth.models import AnonymousUser
 
 from lekipohodivplaninata.base.models import SignUpForHike, TravelWith
 from lekipohodivplaninata.hike.models import Hike
-from lekipohodivplaninata.users_app.models import BaseProfile
+from lekipohodivplaninata.users_app.models import BaseProfile, AnonymousAppUser
 from lekipohodivplaninata.users_app.models import UserApp
 
 
@@ -61,8 +62,11 @@ class SignUpHikeForm(forms.ModelForm):
         obj = super().save(commit=False)
 
         if isinstance(self.user, UserApp):
-            profile = BaseProfile.objects.get(pk=self.user.pk)
-            SignUpForHike.user_type = profile
-            SignUpForHike.user_id = profile.pk
+            user = BaseProfile.objects.get(pk=self.user.pk)
+            SignUpForHike.user_type = user
+            SignUpForHike.user_id = user.pk
+
+        if isinstance(self.user, AnonymousUser):
+            user = AnonymousAppUser.objects.create(first_name='', last_name='')
 
         return obj
