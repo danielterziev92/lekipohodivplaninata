@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/list-hikes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/list-hikes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/sign-up-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/sign-up-for-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/static/js/hike-more-pictures-slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/js/hike-more-pictures-slider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +27,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -381,13 +383,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/forms.py</url>
-          <line>69</line>
+          <line>82</line>
           <option name="timeStamp" value="288" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/forms.py</url>
-          <line>64</line>
+          <line>77</line>
           <option name="timeStamp" value="289" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/forms.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="291" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/views.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="292" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/views.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="294" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

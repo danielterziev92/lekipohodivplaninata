@@ -1,10 +1,13 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 
 from lekipohodivplaninata.base.models import SignUpForHike, TravelWith
 from lekipohodivplaninata.hike.models import Hike
-from lekipohodivplaninata.users_app.models import BaseProfile, AnonymousAppUser
+from lekipohodivplaninata.users_app.models import BaseProfile, AnonymousAppUser, GuideProfile
 from lekipohodivplaninata.users_app.models import UserApp
+
+UserModel = get_user_model()
 
 
 class SignUpHikeForm(forms.ModelForm):
@@ -16,6 +19,7 @@ class SignUpHikeForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'id': 'first-name',
+                'value': '',
             }
         )
     )
@@ -54,9 +58,18 @@ class SignUpHikeForm(forms.ModelForm):
         model = SignUpForHike
         fields = ('first_name', 'last_name', 'participants_number', 'choose_hike', 'choose_transport')
 
+    @staticmethod
+    def get_user_profile(user_model):
+        return BaseProfile.objects.get(pk=user_model.pk)
+
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = user
+
+        if isinstance(self.user, UserModel):
+            user = self.get_user_profile(self.user)
+            self.fields['first_name'].widget.attrs['value'] = user.first_name
+            self.fields['last_name'].widget.attrs['value'] = user.last_name
 
     def save(self, commit=True):
         obj = super().save(commit=False)

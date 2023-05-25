@@ -9,8 +9,15 @@
 {% endblock %}
 
 {% block page_content %}
-    <form action="{% url 'sign-up for hike' %}" method="post">
-        {{ form }}
+    <form method="post" class="sign-up-for-hike m0 br0 b-bottom">
+        <h2>Запиши се за поход</h2>
+        {% for field in form %}
+            <div class="form-floating">
+                {{ field }}
+                {#                <input type="text" id="first-name" value="{{ user.get_first_name }}" required>#}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            </div>
+        {% endfor %}
         {% csrf_token %}
         <button>Изпрати</button>
     </form>

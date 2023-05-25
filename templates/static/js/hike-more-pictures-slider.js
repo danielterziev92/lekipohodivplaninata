@@ -1,4 +1,4 @@
-const swiper = new Swiper(".more-pictures", {
+new Swiper(".more-pictures", {
     slidesPerView: 3,
     spaceBetween: 10,
     centeredSlides: true,

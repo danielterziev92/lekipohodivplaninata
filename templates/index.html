@@ -14,9 +14,9 @@
     <main>
         <section>
             {% include 'home-page/slider.html' %}
-            {% include 'home-page/sing-up-for-hike.html' %}
+{#            {% include 'home-page/sing-up-for-hike.html' %}#}
         </section>
-        <section id='scroll' style="height: 2000px;"></section>
+        {% include 'hike/templates/list.html' %}
     </main>
 {% endblock %}
 
@@ -25,5 +25,6 @@
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/sign-up-form.js' %}"></script>
     <script src="{% static 'js/home-slider.js' %}"></script>
+    <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
 {% endblock %}
 
