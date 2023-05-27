@@ -9,25 +9,27 @@
 {% endblock %}
 
 {% block page_content %}
-    <section>
-        <article class="form-container">
-            <form method='post' action="{% url 'hike create' %}" class="fields-form" enctype="multipart/form-data">
-                <h2>Създаване на поход</h2>
-                {% for field in form %}
-                    <div class="field">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        {{ field }}
+    <main>
+        <section>
+            <article class="form-container">
+                <form method='post' action="{% url 'hike create' %}" class="fields-form" enctype="multipart/form-data">
+                    <h2>Създаване на поход</h2>
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {{ field.errors }}
+                    {% endfor %}
+                    {% csrf_token %}
+                    <div class="buttons">
+                        <button>Създай</button>
+                        <button onclick="history.back()">Отказ</button>
                     </div>
-                    {{ field.errors }}
-                {% endfor %}
-                {% csrf_token %}
-                <div class="buttons">
-                    <button>Създай</button>
-                    <button onclick="history.back()">Отказ</button>
-                </div>
-            </form>
-        </article>
-    </section>
+                </form>
+            </article>
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}

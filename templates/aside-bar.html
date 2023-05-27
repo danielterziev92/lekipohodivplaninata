@@ -1,9 +1,7 @@
 <aside id="side-menu-mobile" class="side-menu-mobile collapse">
     <ul>
         <li><a href="{% url 'index' %}">Начало</a></li>
-        {% if not request.user.is_staff %}
-            <li><a href="#">Запиши се за поход</a></li>
-        {% else %}
+        {% if request.user.is_staff %}
             <li>
                 <a href="#">Администрация</a>
                 <ul>
@@ -15,8 +13,8 @@
         <li>
             <a href="#">Походи</a>
             <ul>
-                <li><a href="" class="upcoming">Предстоящи</a></li>
-                <li><a href="" class="passed">Изминали</a></li>
+                <li><a href="{% url 'hikes upcoming' %}" class="upcoming">Предстоящи</a></li>
+                <li><a href="{% url 'hikes passed' %}" class="passed">Изминали</a></li>
             </ul>
         </li>
         {% if request.user.is_authenticated %}

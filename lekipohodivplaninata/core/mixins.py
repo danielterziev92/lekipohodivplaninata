@@ -1,6 +1,7 @@
 import datetime
 
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.text import slugify
 
@@ -10,6 +11,21 @@ from lekipohodivplaninata.users_app.forms import GuideProfileForm
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 HikeModel = Hike
+UserModel = get_user_model()
+
+
+class UserDataMixin(object):
+    @staticmethod
+    def get_user_profile(pk):
+        return BaseProfile.objects.get(pk=pk)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data(object_list=object_list, **kwargs)
+
+        if isinstance(self.request.user, UserModel):
+            context_data['user'] = self.get_user_profile(self.request.user.pk)
+
+        return context_data
 
 
 class UserFormMixin(object):
@@ -149,3 +165,13 @@ class HikeUpdateFormMixin(HikeBaseFormMixin):
             obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
 
         return obj
+
+
+class HikeUpcomingEvents(object):
+    def get_queryset(self):
+        return HikeModel.objects.all().filter(event_date__gt=datetime.date.today()).order_by('event_date')
+
+
+class HikePassedEvents(object):
+    def get_queryset(self):
+        return HikeModel.objects.all().filter(event_date__lt=datetime.date.today()).order_by('-event_date')

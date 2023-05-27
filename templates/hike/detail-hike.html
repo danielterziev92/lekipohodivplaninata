@@ -11,56 +11,51 @@
 {% endblock %}
 
 {% block page_content %}
-    <section class="hike-detail">
-        <article class="hike">
-            <h1>{{ hike.title }}</h1>
-            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
-                    </div>
-                    {% for picture in hike.more_pictures.all %}
+    <main>
+        <section class="hike-detail">
+            <article class="hike">
+                <h1>{{ hike.title }}</h1>
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="{{ picture.image.url }}" alt="Picture missing"/>
+                            <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
                         </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div thumbsSlider="" class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
+                        {% for picture in hike.more_pictures.all %}
+                            <div class="swiper-slide">
+                                <img src="{{ picture.image.url }}" alt="Picture missing"/>
+                            </div>
+                        {% endfor %}
                     </div>
-                    {% for picture in hike.more_pictures.all %}
-                        <div class="swiper-slide">
-                            <img src="{{ picture.image.url }}" alt=""/>
-                        </div>
-                    {% endfor %}
                 </div>
-            </div>
-            <button id="show-sign-hike-form">Запиши ме за поход</button>
-            <div class="sign-up-form" id="sign-hike-form">
-                <i class="fa-solid fa-circle-xmark" id="hide-sign-hike-form"></i>
-                <form method="post" class="sign-up-for-hike m0 br0 b-bottom" action="{% url 'sign up for hike' pk=hike.pk slug=hike.slug %}">
-                    {% include 'hike/templates/sign-for-hike-form.html' %}
-                </form>
-            </div>
+                {% if hike.more_pictures.all|length > 0 %}
+                    <div thumbsSlider="" class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
+                            </div>
+                            {% for picture in hike.more_pictures.all %}
+                                <div class="swiper-slide">
+                                    <img src="{{ picture.image.url }}" alt=""/>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <p><i class="fa-solid fa-calendar-days"></i> Дата на събитието: {{ object.get_event_date }}</p>
+                <p><i class="fa-regular fa-money-bill-1"></i> Цена: {{ object.get_hike_price }}</p>
+                <p><i class="fa-solid fa-clock"></i> Продължителност: {{ object.get_duration_time }}</p>
+                <p><i class="fa-solid fa-person-hiking"></i> Ниво: {{ object.level }}</p>
+                <p> {{ object.description }}</p>
+            </article>
 
-
-            <p><i class="fa-solid fa-calendar-days"></i> Дата на събитието: {{ object.get_event_date }}</p>
-            <p><i class="fa-regular fa-money-bill-1"></i> Цена: {{ object.get_hike_price }}</p>
-            <p><i class="fa-solid fa-clock"></i> Продължителност: {{ object.get_duration_time }}</p>
-            <p><i class="fa-solid fa-person-hiking"></i> Ниво: {{ object.level }}</p>
-            <p> {{ object.description }}</p>
-        </article>
-
-        {% if request.user.is_staff %}
-            <div class="actions">
-                <a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Редакция</a>
-                <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
-            </div>
-        {% endif %}
-    </section>
+            {% if request.user.is_staff %}
+                <div class="actions">
+                    <a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Редакция</a>
+                    <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
+                </div>
+            {% endif %}
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}

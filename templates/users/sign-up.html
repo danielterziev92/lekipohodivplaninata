@@ -9,33 +9,35 @@
 {% endblock %}
 
 {% block page_content %}
-    <section>
-        <article class="form-container">
-            <form method='post' action="{% url 'sign up user' %}" class="fields-form">
-                <h2>Създай профил</h2>
-                {% for field in form %}
-                    <label for="{{ field.id_for_label }}">
-                        <i class="{% form_icons field.id_for_label %}"></i>
-                        <span>{{ field.label }}</span>
-                        {{ field }}
-                    </label>
-                    {% if field.id_for_label == 'password_1' %}
-                        {% include 'users/password-help-text.html' %}
-                    {% endif %}
-                    {% if field.errors %}
-                        <ul class="errorlist">
-                            {% for error in field.errors %}
-                                <li>{% change_error_message error %}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                    {{ field.messages }}
-                {% endfor %}
-                {% csrf_token %}
-                <button>Регистрация</button>
-            </form>
-        </article>
-    </section>
+    <main>
+        <section>
+            <article class="form-container">
+                <form method='post' action="{% url 'sign up user' %}" class="fields-form">
+                    <h2>Създай профил</h2>
+                    {% for field in form %}
+                        <label for="{{ field.id_for_label }}">
+                            <i class="{% form_icons field.id_for_label %}"></i>
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+                        {% if field.id_for_label == 'password_1' %}
+                            {% include 'users/password-help-text.html' %}
+                        {% endif %}
+                        {% if field.errors %}
+                            <ul class="errorlist">
+                                {% for error in field.errors %}
+                                    <li>{% change_error_message error %}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {{ field.messages }}
+                    {% endfor %}
+                    {% csrf_token %}
+                    <button>Регистрация</button>
+                </form>
+            </article>
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}

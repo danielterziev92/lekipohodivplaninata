@@ -3,6 +3,7 @@ from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
 from lekipohodivplaninata.core.mixins import PicturesMixin
+from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm
 from lekipohodivplaninata.hike.models import Hike, HikeMorePicture
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
@@ -115,9 +116,8 @@ class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.
         return super().form_valid(form=form)
 
 
-class HikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
+class HikeListView(UserDataMixin, views.ListView):
     template_name = 'hike/list-hikes.html'
-    permission_required = 'is_staff'
     paginate_by = 10
 
     def get_queryset(self):

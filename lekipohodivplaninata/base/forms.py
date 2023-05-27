@@ -77,8 +77,6 @@ class SignUpHikeForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
-        cleaned_data['hike_id'] = Hike.objects.get(pk=cleaned_data.get('choose_hike'))
-
         if isinstance(self.user, UserModel):
             user = self.get_user_profile(self.user.pk)
         else:
@@ -87,14 +85,14 @@ class SignUpHikeForm(forms.ModelForm):
                 last_name=cleaned_data['last_name']
             )
 
+        cleaned_data['hike_id'] = Hike.objects.get(pk=cleaned_data.get('choose_hike'))
         cleaned_data['user_type'] = ContentType.objects.get_for_model(user)
         cleaned_data['user_id'] = user.pk
         cleaned_data['travel_with'] = TravelWith.objects.get(pk=cleaned_data.get('choose_transport', 1))
         cleaned_data['signed_on'] = datetime.datetime.now()
-        del cleaned_data['choose_transport']
-        del cleaned_data['first_name']
-        del cleaned_data['last_name']
-        del cleaned_data['choose_hike']
+
+        keys_to_delete = ('choose_transport', 'first_name', 'last_name', 'choose_hike')
+        for key in keys_to_delete: del cleaned_data[key]
 
         return cleaned_data
 

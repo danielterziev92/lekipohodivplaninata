@@ -9,19 +9,21 @@
 {% endblock %}
 
 {% block page_content %}
-    <section>
-        <article class="form-container">
-            <form method='post' action="{% url 'user delete' pk=object.user_id.pk %}" class="fields-form">
-                <h2>Изтриване на профил</h2>
-                <h3>Сигурни ли сте, че желаете да изтриете акаунта си ?</h3>
-                <div class="buttons">
-                    <button><a href="{% url 'user delete' pk=object.user_id.id %}">Изтрий</a></button>
-                    <button onclick="history.back()">Отказ</button>
-                </div>
-                {% csrf_token %}
-            </form>
-        </article>
-    </section>
+    <main>
+        <section>
+            <article class="form-container">
+                <form method='post' action="{% url 'user delete' pk=object.user_id.pk %}" class="fields-form">
+                    <h2>Изтриване на профил</h2>
+                    <h3>Сигурни ли сте, че желаете да изтриете акаунта си ?</h3>
+                    <div class="buttons">
+                        <button><a href="{% url 'user delete' pk=object.user_id.id %}">Изтрий</a></button>
+                        <button onclick="history.back()">Отказ</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            </article>
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}

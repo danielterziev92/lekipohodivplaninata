@@ -1,3 +1,5 @@
+{% load sign-me-for-hike-button %}
+
 <article class="hikes-list">
     {% for hike in object_list %}
         <div class="hike">
@@ -48,9 +50,14 @@
                 <button>
                     <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">Виж повече</a>
                 </button>
-                <button>
-                    <a href="{% url 'sign up for hike' pk=hike.pk slug=hike.slug %}">Запиши ме за похода</a>
-                </button>
+                {% sign_me_hike_button hike.event_date as sign_me_hike_button %}
+                {% if sign_me_hike_button %}
+                    <button>
+                        <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">
+                            Запиши ме запохода</a>
+                    </button>
+                {% endif %}
+
             </div>
         </div>
     {% endfor %}

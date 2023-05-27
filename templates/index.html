@@ -14,18 +14,20 @@
     <main>
         <section id="slider">
             {% include 'home-page/slider.html' %}
-            {#            {% include 'home-page/sing-up-for-hike.html' %}#}
         </section>
         <section id="hike-list">
             {% include 'hike/templates/list.html' %}
         </section>
     </main>
+
+    {% include 'hike/templates/sign-for-hike-modal.html' %}
 {% endblock %}
 
 {% block page_scripts %}
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/sign-up-form.js' %}"></script>
+    <script src="{% static 'js/hike-modal.js' %}"></script>
     <script src="{% static 'js/home-slider.js' %}"></script>
     <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
 {% endblock %}

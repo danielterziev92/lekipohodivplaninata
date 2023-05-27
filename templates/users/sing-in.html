@@ -9,34 +9,36 @@
 {% endblock %}
 
 {% block page_content %}
-    <section>
-        <article class="form-container">
-            <form method='post' action="{% url 'sign in user' %}" class="fields-form">
-                <h2>Вход</h2>
-                {% for field in form %}
-                    <label for="{{ field.id_for_label }}">
-                        <i class="{% form_icons field.id_for_label %}"></i>
-                        <span>{{ field.label }}</span>
-                        {{ field }}
-                    </label>
-                    {% if field.errors %}
-                        <ul class="errorlist">
-                            {% for error in field.errors %}
-                                <li>{% change_error_message error %}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endfor %}
-                <div>
-                    <p><a href="{% url 'reset password' %}">Забравена парола</a></p>
-                    <p>Нямате акаунт ? Направете си от <a href="{% url 'sign up user' %}">тук</a></p>
-                    <p></p>
-                </div>
-                {% csrf_token %}
-                <button>Вход</button>
-            </form>
-        </article>
-    </section>
+    <main>
+        <section>
+            <article class="form-container">
+                <form method='post' action="{% url 'sign in user' %}" class="fields-form">
+                    <h2>Вход</h2>
+                    {% for field in form %}
+                        <label for="{{ field.id_for_label }}">
+                            <i class="{% form_icons field.id_for_label %}"></i>
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+                        {% if field.errors %}
+                            <ul class="errorlist">
+                                {% for error in field.errors %}
+                                    <li>{% change_error_message error %}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                    <div>
+                        <p><a href="{% url 'reset password' %}">Забравена парола</a></p>
+                        <p>Нямате акаунт ? Направете си от <a href="{% url 'sign up user' %}">тук</a></p>
+                        <p></p>
+                    </div>
+                    {% csrf_token %}
+                    <button>Вход</button>
+                </form>
+            </article>
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}

@@ -170,6 +170,19 @@
     z-index: -1;
 }
 
+#hike-modal {
+    background-color: rgb(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+}
+
 .sign-up-for-hike {
     display: grid;
     justify-content: space-evenly;
@@ -179,6 +192,15 @@
     background-color: #f8f8f8;
     border-radius: 1.25rem;
     border: 0.063rem solid rgb(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.sign-up-for-hike #hide-sign-hike-form {
+    position: absolute;
+    top: 0.63rem;
+    right: 0.63rem;
+    font-size: 1.5rem;
+    color: #cf5533;
 }
 
 .sign-up-for-hike h2 {
@@ -978,14 +1000,6 @@
     display: none;
     transition: ease-in-out 400ms;
     position: relative;
-}
-
-.hike-detail .hike .sign-up-form #hide-sign-hike-form {
-    position: absolute;
-    top: 0.63rem;
-    right: 0.63rem;
-    font-size: 1.5rem;
-    color: #cf5533;
 }
 
 .hike-detail .actions {

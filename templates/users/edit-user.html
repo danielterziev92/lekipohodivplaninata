@@ -10,83 +10,85 @@
 {% endblock %}
 
 {% block page_content %}
-    <section>
-        <article class="form-container">
-            <form method='post' action="{% url 'hike update' pk=object.user_id.pk %}" class="fields-form"
-                  enctype="multipart/form-data">
-                <h2>Редактиране</h2>
-                {% if request.user.is_staff %}
-                    <label for="id_avatar">
-                        <i class="{% form_icons 'id_avatar' %}"></i>
-                        <span>Профилна снимка</span>
-                        <div class="new-picture">
-                            <p>Качи нова снимка</p>
-                            <input type="file" id=" id_avatar" name="avatar"/>
-                        </div>
-                    </label>
+    <main>
+        <section>
+            <article class="form-container">
+                <form method='post' action="{% url 'user edit' pk=object.user_id.pk %}" class="fields-form"
+                      enctype="multipart/form-data">
+                    <h2>Редактиране</h2>
+                    {% if request.user.is_staff %}
+                        <label for="id_avatar">
+                            <i class="{% form_icons 'id_avatar' %}"></i>
+                            <span>Профилна снимка</span>
+                            <div class="new-picture">
+                                <p>Качи нова снимка</p>
+                                <input type="file" id=" id_avatar" name="avatar"/>
+                            </div>
+                        </label>
 
-                {% endif %}
-                <label for="id_email">
-                    <i class="{% form_icons 'id_email' %}"></i>
-                    <span>Имейл</span>
-                    <input type="email" value="{{ object.user_id.email }}" id=" id_email" name="email" disabled/>
-                </label>
-                {% if request.user.is_staff == False %}
-                    <label for="id_first_name">
-                        <i class="{% form_icons 'id_first_name' %}"></i>
-                        <span>Име</span>
-                        <input type="text" value="{{ object.first_name }}" id=" id_first_name"
-                               name="first_name"/>
+                    {% endif %}
+                    <label for="id_email">
+                        <i class="{% form_icons 'id_email' %}"></i>
+                        <span>Имейл</span>
+                        <input type="email" value="{{ object.user_id.email }}" id=" id_email" name="email" disabled/>
                     </label>
-                    <label for="id_last_name">
-                        <i class="{% form_icons 'id_last_name' %}"></i>
-                        <span>Фамилия</span>
-                        <input type="text" value="{{ object.last_name }}" id="id_last_name"
-                               name="last_name"/>
-                    </label>
-                {% endif %}
-                {% if request.user.is_staff %}
-                    <label for="id_first_name">
-                        <i class="{% form_icons 'id_first_name' %}"></i>
-                        <span>Име</span>
-                        <input type="text" value="{{ object.profile_id.first_name }}" id=" id_first_name"
-                               name="first_name"/>
-                    </label>
-                    <label for="id_last_name">
-                        <i class="{% form_icons 'id_last_name' %}"></i>
-                        <span>Фамилия</span>
-                        <input type="text" value="{{ object.profile_id.last_name }}" id="id_last_name"
-                               name="last_name"/>
-                    </label>
-                    <label for="id_date_of_birth">
-                        <i class="{% form_icons 'id_date_of_birth' %}"></i>
-                        <span>Дата на раждане</span>
-                        <input type="date" value="{{ object.date_of_birth|date:"c" }}" id="id_date_of_birth"
-                               name="date_of_birth"/>
-                    </label>
-                    <label for="id_description">
-                        <i class="{% form_icons 'id_description' %}"></i>
-                        <span>Описание</span>
-                        <textarea id="id_description" name="description">{{ object.description }}</textarea>
-                    </label>
-                    <label for="id_certificate">
-                        <i class="{% form_icons 'id_avatar' %}"></i>
-                        <span>Сертификат</span>
-                        <div class="new-picture">
-                            <p>Качи нова снимка</p>
-                            <input type="file" id="id_certificate" name="certificate"/>
-                        </div>
-                    </label>
+                    {% if request.user.is_staff == False %}
+                        <label for="id_first_name">
+                            <i class="{% form_icons 'id_first_name' %}"></i>
+                            <span>Име</span>
+                            <input type="text" value="{{ object.first_name }}" id=" id_first_name"
+                                   name="first_name"/>
+                        </label>
+                        <label for="id_last_name">
+                            <i class="{% form_icons 'id_last_name' %}"></i>
+                            <span>Фамилия</span>
+                            <input type="text" value="{{ object.last_name }}" id="id_last_name"
+                                   name="last_name"/>
+                        </label>
+                    {% endif %}
+                    {% if request.user.is_staff %}
+                        <label for="id_first_name">
+                            <i class="{% form_icons 'id_first_name' %}"></i>
+                            <span>Име</span>
+                            <input type="text" value="{{ object.profile_id.first_name }}" id=" id_first_name"
+                                   name="first_name"/>
+                        </label>
+                        <label for="id_last_name">
+                            <i class="{% form_icons 'id_last_name' %}"></i>
+                            <span>Фамилия</span>
+                            <input type="text" value="{{ object.profile_id.last_name }}" id="id_last_name"
+                                   name="last_name"/>
+                        </label>
+                        <label for="id_date_of_birth">
+                            <i class="{% form_icons 'id_date_of_birth' %}"></i>
+                            <span>Дата на раждане</span>
+                            <input type="date" value="{{ object.date_of_birth|date:"c" }}" id="id_date_of_birth"
+                                   name="date_of_birth"/>
+                        </label>
+                        <label for="id_description">
+                            <i class="{% form_icons 'id_description' %}"></i>
+                            <span>Описание</span>
+                            <textarea id="id_description" name="description">{{ object.description }}</textarea>
+                        </label>
+                        <label for="id_certificate">
+                            <i class="{% form_icons 'id_avatar' %}"></i>
+                            <span>Сертификат</span>
+                            <div class="new-picture">
+                                <p>Качи нова снимка</p>
+                                <input type="file" id="id_certificate" name="certificate"/>
+                            </div>
+                        </label>
 
-                {% endif %}
-                {% csrf_token %}
-                <div class="buttons">
-                    <button>Запази</button>
-                    <button onclick="history.back()">Отказ</button>
-                </div>
-            </form>
-        </article>
-    </section>
+                    {% endif %}
+                    {% csrf_token %}
+                    <div class="buttons">
+                        <button type="submit">Запази</button>
+                        <button type="button" onclick="history.back()">Отказ</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}

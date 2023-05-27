@@ -9,14 +9,16 @@
 {% endblock %}
 
 {% block page_content %}
-    <section id="sign-up-hike">
-        <article class="sign-up-form">
-            <form method="post" class="sign-up-for-hike"
-                  action="{% url 'sign up for hike' pk=object.pk slug=object.slug %}">
-                {% include 'hike/templates/sign-for-hike-model-form.html' %}
-            </form>
-        </article>
-    </section>
+    <main>
+        <section id="sign-up-hike">
+            <article class="sign-up-form">
+                <form method="post" class="sign-up-for-hike"
+                      action="{% url 'sign up for hike' pk=object.pk slug=object.slug %}">
+                    {% include 'hike/templates/sign-for-hike-model-form.html' %}
+                </form>
+            </article>
+        </section>
+    </main>
 {% endblock %}
 
 {% block page_scripts %}
