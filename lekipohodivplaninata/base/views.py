@@ -1,10 +1,9 @@
-import datetime
-
 from django.contrib.auth import get_user_model
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from lekipohodivplaninata.base.forms import SignUpHikeForm
+from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm
 from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
 
@@ -28,10 +27,13 @@ class PassedEventListView(HikePassedEvents, views.ListView):
 
 
 class SignUpHike(views.UpdateView):
-    template_name = 'hike/sign-up-for-hike.html'
-    # model = SignUpForHike
+    template_name = ''
     form_class = SignUpHikeForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('site evaluation')
+
+    def get_success_url(self):
+        self.request.session['is_signed'] = True
+        return reverse_lazy('site evaluation')
 
     def get_queryset(self):
         return Hike.objects.all()
@@ -40,3 +42,18 @@ class SignUpHike(views.UpdateView):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+
+
+class SiteEvaluationView(views.CreateView):
+    template_name = 'site-evaluation.html'
+    form_class = SiteEvaluationForm
+
+    # def get(self, request, *args, **kwargs):
+    #     if self.request.session.get('is_signed'):
+    #         self.request.session.pop('is_signed')
+    #         return super().get(request, *args, **kwargs)
+    #
+    #     return redirect('index')
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)

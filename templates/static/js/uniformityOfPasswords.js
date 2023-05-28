@@ -42,6 +42,8 @@ function createShowHideIElement(validate) {
 
         if (firstPassword.value === secondPassword.value && is_showed) {
             errorElement.classList.remove('alert')
+            // errorElement.style.backgroundColor = '#159357';
+            // errorElement.textContent = 'Паролите съвпаднаха';
             setTimeout(() => document.querySelector('small.alert').remove(), 1000);
             is_showed = false;
             buttonElement.disabled = false;

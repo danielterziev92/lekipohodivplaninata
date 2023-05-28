@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section>
+            <article>
+                <form action="{% url 'site evaluation' %}" method="post">
+                    <h1>Моля да оцените сайта ни:</h1>
+                    {{ form }}
+                    {% csrf_token %}
+                    <button>Изпрати</button>
+                </form>
+            </article>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

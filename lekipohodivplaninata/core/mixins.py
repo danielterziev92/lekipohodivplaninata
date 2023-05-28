@@ -3,6 +3,8 @@ import datetime
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.text import slugify
 
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
@@ -160,9 +162,19 @@ class HikeUpdateFormMixin(HikeBaseFormMixin):
             self.transfer_picture_to_new_folder(obj)
 
         if self.cleaned_data['new_main_picture']:
-            folder = self.get_picture_folder(obj.main_picture.public_id)
-            self.delete_pictures([obj.main_picture.public_id])
-            obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
+            try:
+                folder = self.get_picture_folder(obj.main_picture.public_id)
+            except Exception:
+                folder_name = self.generate_folder_name(obj.slug)
+                folder = self.get_picture_folder(folder_name)
+
+            if obj.main_picture.public_id is not None:
+                self.delete_pictures([obj.main_picture.public_id])
+            # AttributeError("'InMemoryUploadedFile' object has no attribute 'file'")
+            try:
+                obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
+            except InMemoryUploadedFile:
+                raise ValidationError('Моля изберете файл')
 
         return obj
 

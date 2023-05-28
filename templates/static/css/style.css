@@ -351,6 +351,51 @@
     overflow: hidden;
 }
 
+.sign-up-for-hike .form-floating.registration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sign-up-for-hike .form-floating.registration > input[type=checkbox] ~ label {
+    position: relative;
+    font-size: 1rem;
+    pointer-events: auto;
+    transform: unset;
+    display: flex;
+    align-items: center;
+}
+
+.sign-up-for-hike .form-floating.registration > input {
+    display: none;
+}
+
+.sign-up-for-hike > #user-info {
+    display: none;
+}
+
+
+.sign-up-for-hike .form-floating.registration > input[type=checkbox] + label:before {
+    content: '\f057';
+    font-family: "Font Awesome 6 Free", serif;
+    color: #cf5533;
+    margin-right: 0.625rem;
+    font-size: 1.5rem;
+    position: relative;
+    top: 0.25rem;
+}
+
+.sign-up-for-hike .form-floating.registration > input[type=checkbox]:checked + label:before {
+    content: '\f058';
+}
+
+.sign-up-for-hike #user-info .form-floating {
+    /*border: none;*/
+    /*border: 0.063rem solid rgba(0, 0, 0, 0.2);*/
+    margin-bottom: 0.625rem;
+}
+
 .sign-up-for-hike .form-floating input[type=radio] {
     width: auto;
 }

@@ -64,6 +64,9 @@ class HikeMorePicture(models.Model):
         verbose_name='Снимка'
     )
 
+    def __str__(self):
+        return self.image.url
+
     class Meta:
         verbose_name = 'снимка'
         verbose_name_plural = 'Допълнителни снимки към походи'
@@ -88,6 +91,8 @@ class Hike(AuditInfoMixin, models.Model):
         null=False,
         blank=True,
     )
+
+    # TODO: On production have to assign hike type ( ForeignKey: HikeType )
 
     description = models.TextField(
         null=False,

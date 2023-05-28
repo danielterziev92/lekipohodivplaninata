@@ -119,7 +119,6 @@ class SignUpForm(auth_form.UserCreationForm):
         strip=False,
         error_messages={
             'required': _('Полето е задължително'),
-            'password_too_similar': 'Паролата ви е много близка с имейла.'
         },
     )
 
@@ -131,8 +130,6 @@ class SignUpForm(auth_form.UserCreationForm):
         }
         error_messages = {
             "password_mismatch": _("Паролите не съвпадат!"),
-            'password_too_similar': _('Паролата ви е много подобна с имейла.'),
-
         }
 
     def save(self, commit=True):

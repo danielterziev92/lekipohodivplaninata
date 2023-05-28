@@ -2,13 +2,11 @@ import datetime
 
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
 
-from lekipohodivplaninata.base.models import SignUpForHike, TravelWith
+from lekipohodivplaninata.base.models import SignUpForHike, TravelWith, SiteEvaluation
 from lekipohodivplaninata.hike.models import Hike
-from lekipohodivplaninata.users_app.models import BaseProfile, AnonymousAppUser, GuideProfile
-from lekipohodivplaninata.users_app.models import UserApp
+from lekipohodivplaninata.users_app.models import BaseProfile, AnonymousAppUser
 
 UserModel = get_user_model()
 
@@ -58,10 +56,36 @@ class SignUpHikeForm(forms.ModelForm):
         initial=19
     )
 
+    create_registration = forms.BooleanField(
+        label='Създай ми регистрация',
+        widget=forms.CheckboxInput(
+            attrs={
+                'checked': False,
+                'required': False,
+            }
+        )
+    )
+
+    email = forms.EmailField(
+        label='Имейл',
+        widget=forms.EmailInput(
+            attrs={
+                'required': False
+            }
+        )
+    )
+
     class Meta:
         model = SignUpForHike
-        # fields = '__all__'
-        fields = ('first_name', 'last_name', 'participants_number', 'choose_hike', 'choose_transport')
+        fields = (
+            'first_name',
+            'last_name',
+            'participants_number',
+            'choose_hike',
+            'choose_transport',
+            'create_registration',
+            'email',
+        )
 
     @staticmethod
     def get_user_profile(pk):
@@ -105,3 +129,15 @@ class SignUpHikeForm(forms.ModelForm):
             SignUpForHike.objects.create(**sing_up_for_hike_obj)
 
         return obj
+
+
+class SiteEvaluationForm(forms.ModelForm):
+    assessment = forms.ChoiceField(
+        label='Оценка',
+        widget=forms.RadioSelect,
+        choices=[(x, x) for x in range(1, 11)]
+    )
+
+    class Meta:
+        model = SiteEvaluation
+        fields = '__all__'

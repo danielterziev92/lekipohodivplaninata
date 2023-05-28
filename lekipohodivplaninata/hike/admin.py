@@ -1,14 +1,15 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from lekipohodivplaninata.hike.models import HikeType, HikeMorePicture, HikeLevel, Hike
 
 
 @admin.register(Hike)
 class HikeAdmin(admin.ModelAdmin):
-    readonly_fields = ('main_picture',)
     list_display = ('id', 'thumbnail_image', 'title', 'level', 'duration_time', 'event_date_tag', 'price_tag')
     list_display_links = ('title',)
     prepopulated_fields = {"slug": ("title", "event_date")}
+    exclude = ('more_pictures',)
 
     def main_picture(self, obj):
         return obj.get_main_picture

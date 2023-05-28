@@ -2,6 +2,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+from lekipohodivplaninata.base.validators import number_between_one_and_ten
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -48,4 +49,18 @@ class SignUpForHike(models.Model):
 
     signed_on = models.DateTimeField(
         auto_now_add=True,
+    )
+
+
+class SiteEvaluation(models.Model):
+    assessment = models.PositiveSmallIntegerField(
+        null=False,
+        blank=False,
+        validators=(number_between_one_and_ten,)
+    )
+
+    rated_in = models.DateTimeField(
+        auto_now_add=True,
+        null=False,
+        blank=False,
     )

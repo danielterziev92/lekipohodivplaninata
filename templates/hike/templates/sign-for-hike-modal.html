@@ -3,11 +3,11 @@
         <i class="fa-solid fa-circle-xmark" id="hide-sign-hike-form"></i>
         <h2>Запиши се за поход</h2>
         <div class="form-floating">
-            <input type="text" id="first-name" value="{{ user.get_first_name }}" name="first_name" required>
+            <input type="text" id="first-name" value="{{ user.get_first_name }}" name="first_name" required/>
             <label for="first-name">Име:</label>
         </div>
         <div class="form-floating">
-            <input type="text" id="last-name" value="{{ user.get_last_name }}" name="last_name" required>
+            <input type="text" id="last-name" value="{{ user.get_last_name }}" name="last_name" required/>
             <label for="last-name">Фамилия:</label>
         </div>
         <div class="form-floating numbers">
@@ -41,6 +41,18 @@
                 </label>
             </div>
         </div>
+        {% if user.is_anonymous %}
+            <div class="form-floating registration">
+                <input type="checkbox" id="sing-me-up"/>
+                <label for="sing-me-up">Регистрирай ме</label>
+            </div>
+            <div id="user-info">
+                <div class="form-floating">
+                    <input type="email" id="email" name="email"/>
+                    <label for="email">Имейл:</label>
+                </div>
+            </div>
+        {% endif %}
         {% csrf_token %}
         <button type="submit">Запиши се</button>
     </form>

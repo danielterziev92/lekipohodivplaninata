@@ -62,7 +62,6 @@ document.getElementById('menu-btn-small').addEventListener('click', (e) => {
         }
 
         e.currentTarget.parentNode.classList.add('active');
-        console.log(e.currentTarget.parentNod);
 
         Array.from(sideMenuItems.children).map((el) => {
             if (el !== e.currentTarget.parentNode) {
