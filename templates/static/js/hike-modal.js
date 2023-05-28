@@ -22,7 +22,7 @@ function showModal(e) {
         }
     });
 
-    modalFormElement.action = `${pk}/${slug}/sign-up`
+    modalFormElement.action = `${pk}/${slug}/sign-up/`
     modalElement.style.top = `${window.scrollY.toFixed(0)}px`;
     document.body.style.overflow = 'hidden';
     document.body.style.height = '100%';

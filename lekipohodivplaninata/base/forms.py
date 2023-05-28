@@ -2,16 +2,18 @@ import datetime
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth import login
 from django.contrib.contenttypes.models import ContentType
 
 from lekipohodivplaninata.base.models import SignUpForHike, TravelWith, SiteEvaluation
+from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile, AnonymousAppUser
 
 UserModel = get_user_model()
 
 
-class SignUpHikeForm(forms.ModelForm):
+class SignUpHikeForm(UserDataMixin, forms.ModelForm):
     hikes = tuple(Hike.objects.all().values_list('id', 'title'))
     travel_with = tuple(TravelWith.objects.all().values_list())
 
@@ -87,35 +89,36 @@ class SignUpHikeForm(forms.ModelForm):
             'email',
         )
 
-    @staticmethod
-    def get_user_profile(pk):
-        return BaseProfile.objects.get(pk=pk)
-
-    def __init__(self, user, *args, **kwargs):
+    def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.user = user
-
-        if isinstance(self.user, UserModel):
-            self.profile = self.get_user_profile(user.pk)
+        self.request = request
 
     def clean(self):
+        keys_to_delete = ['choose_transport', 'first_name', 'last_name', 'choose_hike']
         cleaned_data = super().clean()
 
-        if isinstance(self.user, UserModel):
-            user = self.get_user_profile(self.user.pk)
+        if isinstance(self.request.user, UserModel):
+            user = self.get_user_profile(self.request.user.pk)
         else:
-            user = AnonymousAppUser.objects.create(
-                first_name=cleaned_data['first_name'],
-                last_name=cleaned_data['last_name']
-            )
+            if cleaned_data['email']:
+                user = self.register_base_user(
+                    email=cleaned_data['email'],
+                    first_name=cleaned_data['first_name'],
+                    last_name=cleaned_data['last_name'],
+                )
+                login(self.request, user=user)
+                keys_to_delete.append('email')
+            else:
+                user = AnonymousAppUser.objects.create(
+                    first_name=cleaned_data['first_name'],
+                    last_name=cleaned_data['last_name']
+                )
 
         cleaned_data['hike_id'] = Hike.objects.get(pk=cleaned_data.get('choose_hike'))
         cleaned_data['user_type'] = ContentType.objects.get_for_model(user)
         cleaned_data['user_id'] = user.pk
-        cleaned_data['travel_with'] = TravelWith.objects.get(pk=cleaned_data.get('choose_transport', 1))
-        cleaned_data['signed_on'] = datetime.datetime.now()
+        cleaned_data['travel_with'] = TravelWith.objects.get(pk=cleaned_data.get('choose_transport'))
 
-        keys_to_delete = ('choose_transport', 'first_name', 'last_name', 'choose_hike')
         for key in keys_to_delete: del cleaned_data[key]
 
         return cleaned_data

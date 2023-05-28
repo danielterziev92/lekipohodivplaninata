@@ -40,7 +40,7 @@ class SignUpHike(views.UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs['request'] = self.request
         return kwargs
 
 

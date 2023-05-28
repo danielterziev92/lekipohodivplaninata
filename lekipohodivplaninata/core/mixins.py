@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.contrib.auth import get_user_model
@@ -18,8 +19,34 @@ UserModel = get_user_model()
 
 class UserDataMixin(object):
     @staticmethod
+    def generate_random_password(length):
+        symbols = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-='
+        return ''.join(symbols[random.randint(0, len(symbols) - 1)] for _ in range(length))
+
+    @staticmethod
     def get_user_profile(pk):
         return BaseProfile.objects.get(pk=pk)
+
+    def register_base_user(self, email, first_name, last_name):
+        try:
+            user = BaseProfile.objects.create(
+                user_id=self.register_app_user_with_random_password(email),
+                first_name=first_name,
+                last_name=last_name
+            )
+        # IntegrityError - it depends on the database
+        except Exception:
+            raise ValidationError('Потребител с този имейл адрес вече съществува.')
+
+        return user
+
+    def register_app_user_with_random_password(self, email):
+        password = self.generate_random_password(8)
+        return UserModel.objects.create(
+            email=email,
+            password=password,
+        )
+        # TODO: When implement  async tasks, must send email with password
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(object_list=object_list, **kwargs)
