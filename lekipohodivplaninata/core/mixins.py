@@ -3,11 +3,14 @@ import random
 
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.text import slugify
+from psycopg2 import IntegrityError
 
+from lekipohodivplaninata.core.tasks import send_successful_registration_app_user_with_random_password
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.forms import GuideProfileForm
@@ -35,18 +38,20 @@ class UserDataMixin(object):
                 last_name=last_name
             )
         # IntegrityError - it depends on the database
-        except Exception:
+        except IntegrityError:
             raise ValidationError('Потребител с този имейл адрес вече съществува.')
 
         return user
 
     def register_app_user_with_random_password(self, email):
-        password = self.generate_random_password(8)
-        return UserModel.objects.create(
+        raw_password = self.generate_random_password(8)
+        password = make_password(raw_password)
+        user = UserModel.objects.create(
             email=email,
             password=password,
         )
-        # TODO: When implement  async tasks, must send email with password
+        send_successful_registration_app_user_with_random_password.delay(user_pk=user.pk, raw_password=raw_password)
+        return user
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(object_list=object_list, **kwargs)

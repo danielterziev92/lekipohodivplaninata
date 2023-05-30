@@ -137,16 +137,17 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 PASSWORD_RESET_TIMEOUT = 3 * 60 * 60
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
 EMAIL_HOST = 'smart.superhosting.bg'
-
 EMAIL_HOST_USER = 'support@lekipohodivplaninata.bg'
-
 EMAIL_HOST_PASSWORD = '?agCbk6dEsM+'
-
 EMAIL_PORT = 25
-
 EMAIL_USE_TLS = False
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 # LOGGING = {
 #     'version': 1,
