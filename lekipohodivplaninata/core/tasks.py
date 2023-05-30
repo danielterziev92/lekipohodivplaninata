@@ -9,7 +9,7 @@ UserModel = get_user_model()
 
 
 @shared_task
-def send_successful_registration_app_user_with_random_password(user_pk, raw_password):
+def send_successful_registration_app_user_with_random_password(user_pk, raw_password, profile_pk):
     user = UserModel.objects.get(pk=user_pk)
     recipient_list = (user.email,)
     message = f'This is your raw_password: {raw_password}'

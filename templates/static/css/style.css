@@ -1097,3 +1097,70 @@
     border: none;
     border-bottom: 0.063rem solid rgb(0, 0, 0, 0.2);
 }
+
+.site-evaluation {
+    margin: 0.65rem;
+    padding: 0.65rem;
+    border: 0.063rem solid rgb(0, 0, 0, 0.2);
+    border-radius: 0.65rem;
+}
+
+.site-evaluation form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-evaluation h1 {
+    color: #cf5533;
+    font-size: 1.5rem;
+}
+
+.site-evaluation > label {
+    font-size: 1.5rem;
+}
+
+.site-evaluation h1,
+.site-evaluation label {
+    width: 100%;
+}
+
+.site-evaluation #id_assessment {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 1rem 0;
+}
+
+.site-evaluation #id_assessment div {
+    margin: 0.65rem;
+}
+
+.site-evaluation #id_assessment input[type=radio] {
+    /*display: none;*/
+}
+
+.site-evaluation #id_assessment label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0.65rem;
+}
+
+.site-evaluation #id_assessment label:before {
+    content: '';
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border: 0.15rem solid #cf5533;
+    border-radius: 0.5rem;
+    color: #1b1b1b;
+}
+
+
+
+
+

@@ -7,14 +7,14 @@ from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.db import IntegrityError
 from django.utils.text import slugify
-from psycopg2 import IntegrityError
 
 from lekipohodivplaninata.core.tasks import send_successful_registration_app_user_with_random_password
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.forms import GuideProfileForm
-from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
+from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile, UserApp
 
 HikeModel = Hike
 UserModel = get_user_model()
@@ -30,28 +30,32 @@ class UserDataMixin(object):
     def get_user_profile(pk):
         return BaseProfile.objects.get(pk=pk)
 
-    def register_base_user(self, email, first_name, last_name):
+    @staticmethod
+    def register_app_user(email, password):
         try:
-            user = BaseProfile.objects.create(
-                user_id=self.register_app_user_with_random_password(email),
-                first_name=first_name,
-                last_name=last_name
-            )
-        # IntegrityError - it depends on the database
+            user = UserApp.objects.create_user(email=email, password=password)
         except IntegrityError:
             raise ValidationError('Потребител с този имейл адрес вече съществува.')
 
         return user
 
-    def register_app_user_with_random_password(self, email):
+    @staticmethod
+    def register_base_user(user, first_name, last_name):
+        return BaseProfile.objects.create(
+            user_id=user,
+            first_name=first_name,
+            last_name=last_name
+        )
+
+    def register_profile_with_random_password(self, **kwargs):
         raw_password = self.generate_random_password(8)
         password = make_password(raw_password)
-        user = UserModel.objects.create(
-            email=email,
-            password=password,
+        user_app = self.register_app_user(email=kwargs['email'], password=password)
+        profile = self.register_base_user(user=user_app, first_name=kwargs['first_name'], last_name=kwargs['last_name'])
+        send_successful_registration_app_user_with_random_password.delay(
+            user_pk=user_app.pk, raw_password=raw_password, profile_pk=profile.pk
         )
-        send_successful_registration_app_user_with_random_password.delay(user_pk=user.pk, raw_password=raw_password)
-        return user
+        return profile
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(object_list=object_list, **kwargs)
