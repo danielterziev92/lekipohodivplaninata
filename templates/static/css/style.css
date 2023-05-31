@@ -1101,7 +1101,7 @@
 .site-evaluation {
     margin: 0.65rem;
     padding: 0.65rem;
-    border: 0.063rem solid rgb(0, 0, 0, 0.2);
+    /*border: 0.063rem solid rgb(0, 0, 0, 0.2);*/
     border-radius: 0.65rem;
 }
 
@@ -1115,14 +1115,14 @@
 .site-evaluation h1 {
     color: #cf5533;
     font-size: 1.5rem;
+    text-align: center;
 }
 
-.site-evaluation > label {
-    font-size: 1.5rem;
+.site-evaluation > form > label {
+    display: none;
 }
 
-.site-evaluation h1,
-.site-evaluation label {
+.site-evaluation h1 {
     width: 100%;
 }
 
@@ -1139,7 +1139,7 @@
 }
 
 .site-evaluation #id_assessment input[type=radio] {
-    /*display: none;*/
+    display: none;
 }
 
 .site-evaluation #id_assessment label {
@@ -1148,16 +1148,20 @@
     align-items: center;
     position: relative;
     margin-bottom: 0.65rem;
-}
-
-.site-evaluation #id_assessment label:before {
-    content: '';
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
     border: 0.15rem solid #cf5533;
     border-radius: 0.5rem;
     color: #1b1b1b;
+}
+
+.site-evaluation button {
+    background-color: #cf5533;
+    color: #ffffff;
+    border: none;
+    border-radius: 1.65rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
 }
 
 
