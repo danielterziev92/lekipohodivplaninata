@@ -87,6 +87,10 @@ class BaseProfile(models.Model):
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
 
+    @property
+    def get_email(self):
+        return UserApp.objects.get(pk=self.user_id.pk).email
+
     class Meta:
         verbose_name = 'име и фамилия'
         verbose_name_plural = 'Профили'

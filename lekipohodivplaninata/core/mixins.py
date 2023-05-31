@@ -4,13 +4,13 @@ import random
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import IntegrityError
 from django.utils.text import slugify
 
-from lekipohodivplaninata.core.tasks import send_successful_registration_app_user_with_random_password
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.forms import GuideProfileForm
@@ -49,12 +49,10 @@ class UserDataMixin(object):
 
     def register_profile_with_random_password(self, **kwargs):
         raw_password = self.generate_random_password(8)
+        cache.set('raw_password', raw_password, timeout=60)
         password = make_password(raw_password)
         user_app = self.register_app_user(email=kwargs['email'], password=password)
         profile = self.register_base_user(user=user_app, first_name=kwargs['first_name'], last_name=kwargs['last_name'])
-        send_successful_registration_app_user_with_random_password.delay(
-            user_pk=user_app.pk, raw_password=raw_password, profile_pk=profile.pk
-        )
         return profile
 
     def get_context_data(self, *, object_list=None, **kwargs):
