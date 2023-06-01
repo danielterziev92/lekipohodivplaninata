@@ -12,7 +12,7 @@ from django.db import IntegrityError
 from django.utils.text import slugify
 
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
-from lekipohodivplaninata.hike.models import Hike
+from lekipohodivplaninata.hike.models import Hike, HikeAdditionalInfo
 from lekipohodivplaninata.users_app.forms import GuideProfileForm
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile, UserApp
 
@@ -55,6 +55,16 @@ class UserDataMixin(object):
         profile = self.register_base_user(user=user_app, first_name=kwargs['first_name'], last_name=kwargs['last_name'])
         return profile
 
+    def create_guide_profile(self, *args, **kwargs):
+        return GuideProfile.objects.create(
+            user_id_id=self.request.user.pk,
+            profile_id_id=self.request.user.pk,
+            date_of_birth=datetime.datetime.today(),
+            description='Тук трябва да въведете описание.',
+            certificate='image/upload/v1683563916/user-avatar_cyynjj.png',
+            avatar='image/upload/v1683563916/user-avatar_cyynjj.png',
+        )
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(object_list=object_list, **kwargs)
 
@@ -64,7 +74,7 @@ class UserDataMixin(object):
         return context_data
 
 
-class UserFormMixin(object):
+class UserFormMixin(UserDataMixin, object):
 
     def get_model(self):
         model = BaseProfile
@@ -95,14 +105,7 @@ class UserFormMixin(object):
             try:
                 obj = model.objects.get(pk=self.request.user.pk)
             except ObjectDoesNotExist:
-                obj = model.objects.create(
-                    user_id_id=self.request.user.pk,
-                    profile_id_id=self.request.user.pk,
-                    date_of_birth=datetime.datetime.today(),
-                    description='Тук трябва да въведете описание.',
-                    certificate='image/upload/v1683563916/user-avatar_cyynjj.png',
-                    avatar='image/upload/v1683563916/user-avatar_cyynjj.png',
-                )
+                obj = self.create_guide_profile()
         else:
             obj = model.objects.get(pk=self.request.user.pk)
 
@@ -136,6 +139,23 @@ class PicturesMixin:
         return cloudinary_uploader.rename(old_public_id, new_public_id)
 
 
+class HikeAdditionalInfoMixin(object):
+    def add_information_to_field(self, hike):
+        event_venue = self.cleaned_data['event_venue']
+        departure_time = self.cleaned_data['departure_time']
+        departure_place = self.cleaned_data['departure_place']
+
+        HikeAdditionalInfo.objects.create(
+            hike_id=hike,
+            event_venue=event_venue,
+            departure_time=departure_time,
+            departure_place=departure_place
+        )
+
+    def update_information_to_field(self, field, value):
+        HikeAdditionalInfo.field = value
+
+
 class HikeBaseFormMixin(PicturesMixin, object):
     def transfer_picture_to_new_folder(self, obj):
         img_name = self.get_img_name_from_public_id(obj.main_picture)
@@ -163,12 +183,15 @@ class HikeBaseFormMixin(PicturesMixin, object):
         return f'{HikeModel.PICTURE_DIRECTORY}/{slug}'
 
 
-class HikeCreateFormMixin(HikeBaseFormMixin):
+class HikeCreateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
     def save(self, commit=True):
         obj = super().save(commit=False)
         obj = self.create_obj(obj)
+
         if commit:
             obj.save()
+
+        self.add_information_to_field(obj)
 
         return obj
 
@@ -176,10 +199,11 @@ class HikeCreateFormMixin(HikeBaseFormMixin):
         obj.slug = self.generate_slug_field(obj.title, obj.event_date)
         folder = self.generate_folder_name(obj.slug)
         obj.main_picture = self.upload_picture(self.cleaned_data['main_picture'].file, folder)
+
         return obj
 
 
-class HikeUpdateFormMixin(HikeBaseFormMixin):
+class HikeUpdateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
     def save(self, commit=True):
         obj = super().save(commit=False)
         obj = self.edit_obj(obj)
@@ -190,6 +214,7 @@ class HikeUpdateFormMixin(HikeBaseFormMixin):
 
     def edit_obj(self, obj):
         db_obj = HikeModel.objects.get(pk=obj.pk)
+        db_add_info = HikeAdditionalInfo.objects.get(hike_id=obj.pk)
 
         if self.cleaned_data['title'] != db_obj.title or self.cleaned_data['event_date'] != db_obj.event_date:
             obj.slug = self.generate_slug_field(obj.title, obj.event_date)
@@ -204,11 +229,19 @@ class HikeUpdateFormMixin(HikeBaseFormMixin):
 
             if obj.main_picture.public_id is not None:
                 self.delete_pictures([obj.main_picture.public_id])
-            # AttributeError("'InMemoryUploadedFile' object has no attribute 'file'")
             try:
                 obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
             except InMemoryUploadedFile:
                 raise ValidationError('Моля изберете файл')
+
+        if db_add_info.EVENT_VENUE != self.cleaned_data['event_venue']:
+            self.update_information_to_field(db_add_info.EVENT_VENUE, self.cleaned_data['event_venue'])
+
+        if db_add_info.DEPARTURE_TIME != self.cleaned_data['departure_time']:
+            self.update_information_to_field(db_add_info.DEPARTURE_TIME, self.cleaned_data['departure_time'])
+
+        if db_add_info.departure_place_value != self.cleaned_data['departure_place']:
+            self.update_information_to_field(db_add_info.departure_place_value, self.cleaned_data['departure_place'])
 
         return obj
 

@@ -1,3 +1,5 @@
+from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
@@ -6,6 +8,7 @@ from lekipohodivplaninata.core.mixins import PicturesMixin
 from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm
 from lekipohodivplaninata.hike.models import Hike, HikeMorePicture
+from lekipohodivplaninata.hike.models import HikeAdditionalInfo
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 HikeModel = Hike
@@ -23,7 +26,7 @@ class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
         })
 
 
-class HikeDetailView(views.DetailView):
+class HikeDetailView(UserDataMixin, views.DetailView):
     template_name = 'hike/detail-hike.html'
     form_class = HikeForm
     model = HikeModel
@@ -37,11 +40,13 @@ class HikeDetailView(views.DetailView):
         context['hikes'] = HikeModel.objects.all()
         return context
 
-    @staticmethod
-    def get_user(request):
+    def get_user(self, request):
         pk = request.user.pk
         if request.user.is_staff:
-            user = GuideProfile.objects.get(pk=pk)
+            try:
+                user = GuideProfile.objects.get(pk=pk)
+            except ObjectDoesNotExist:
+                user = self.create_guide_profile()
         else:
             user = BaseProfile.objects.get(pk=pk)
 
@@ -53,6 +58,15 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
     permission_required = 'is_staff'
     form_class = HikeUpdateForm
     model = HikeModel
+
+    def get(self, request, *args, **kwargs):
+        if issubclass(self.model, HikeModel):
+            additional_info = HikeAdditionalInfo.objects.get(hike_id=self.kwargs['pk'])
+            cache.set('event_venue', additional_info.event_venue, timeout=10)
+            cache.set('departure_time', additional_info.departure_time, timeout=10)
+            cache.set('departure_place', additional_info.departure_place, timeout=10)
+
+        return super().get(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse_lazy('hike detail', kwargs={

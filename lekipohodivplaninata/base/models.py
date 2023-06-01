@@ -64,3 +64,25 @@ class SiteEvaluation(models.Model):
         null=False,
         blank=False,
     )
+
+
+class HikeEvaluation(models.Model):
+    assessment = models.PositiveSmallIntegerField(
+        null=False,
+        blank=False,
+        validators=(number_between_one_and_ten,)
+    )
+
+    user_id = models.ForeignKey(
+        BaseProfile,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
+    )
+
+    hike_id = models.ForeignKey(
+        Hike,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
+    )

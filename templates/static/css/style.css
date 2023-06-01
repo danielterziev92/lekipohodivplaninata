@@ -907,9 +907,10 @@
 .hikes-list .hike .hike-body {
     display: grid;
     grid-template-areas:
-    "img price"
-    "img duration"
-    "img level";
+    "img img"
+    "img img"
+    "type price"
+    "level duration";
     grid-template-columns: 60% 40%;
 }
 
@@ -928,7 +929,7 @@
 
 .hikes-list .hike .hike-body figure {
     grid-area: img;
-    height: 8rem;
+    height: 12rem;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -946,6 +947,15 @@
 
 .hikes-list .hike .hike-body p.level {
     grid-area: level;
+}
+
+.hikes-list .hike .hike-body p.type {
+    grid-area: type;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
 }
 
 .hikes-list .hike .more-pictures .swiper-wrapper {
