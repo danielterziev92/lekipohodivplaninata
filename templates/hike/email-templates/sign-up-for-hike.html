@@ -11,8 +11,7 @@
     <h3 style="color: #1b1b1b;">Здравейте, {{ user.get_full_name }}</h3>
 
     <p style="color: #1b1b1b;">
-        Вие успешно направихте регистрация в
-        <a href="https://{{ domain }}/"><strong>{{ domain }}</strong></a>.
+        Вие успешно се записахте за <a href="https://{{ domain }}/{{ hike_url }}"><strong>{{ hike_name }}</strong></a>.
     </p>
 
     <p style="color: #1b1b1b;">Вашият имейл е: <strong>{{ user.get_email }}</strong></p>

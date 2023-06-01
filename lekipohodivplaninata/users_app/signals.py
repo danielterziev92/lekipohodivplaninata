@@ -14,6 +14,12 @@ UserModel = get_user_model()
 
 @receiver(signal=post_save, sender=BaseProfile)
 def send_successful_email_for_create_profile_user(instance, created, *args, **kwargs):
+    if not created:
+        return
+
     raw_password = cache.get('raw_password')
+
+    if raw_password:
+        cache.delete('raw_password')
 
     send_successful_registration_user_profile.delay(user_pk=instance.pk, raw_password=raw_password)

@@ -51,7 +51,7 @@ class BaseProfile(models.Model):
     FIRST_NAME_MAX_LENGTH = 25
     LAST_NAME_MAX_LENGTH = 25
 
-    user_id = models.ForeignKey(
+    user_id = models.OneToOneField(
         UserApp,
         on_delete=models.RESTRICT,
         primary_key=True,
@@ -100,7 +100,7 @@ class GuideProfile(models.Model):
     AVATAR_DIRECTORY = 'images/guides/avatars/'
     CERTIFICATE_DIRECTORY = 'images/guides/certificates/'
 
-    user_id = models.ForeignKey(
+    user_id = models.OneToOneField(
         UserApp,
         primary_key=True,
         on_delete=models.RESTRICT,
@@ -109,7 +109,7 @@ class GuideProfile(models.Model):
         verbose_name='Потребител'
     )
 
-    profile_id = models.ForeignKey(
+    profile_id = models.OneToOneField(
         BaseProfile,
         on_delete=models.RESTRICT,
         null=False,

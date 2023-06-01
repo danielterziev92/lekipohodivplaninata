@@ -7,12 +7,24 @@
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0002_create_travel_with.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0003_signupforhike.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0004_siteevaluation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0002_create_hike_type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0003_create_hike_level.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0004_create_hike_more_picture.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0005_create_hike.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0002_create_app_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0003_create_base_profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0004_create_guide_profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0005_create_anonymous_app_user.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/email-templates/user-sign-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/email-templates/user-sign-up.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +39,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -220,7 +232,8 @@
       <workItem from="1685372926335" duration="13170000" />
       <workItem from="1685421495511" duration="98000" />
       <workItem from="1685458823499" duration="16190000" />
-      <workItem from="1685526753487" duration="3708000" />
+      <workItem from="1685526753487" duration="11098000" />
+      <workItem from="1685626425744" duration="298000" />
     </task>
     <servers />
   </component>
@@ -296,7 +309,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/views.py</url>
-          <line>51</line>
+          <line>52</line>
           <option name="timeStamp" value="357" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -306,12 +319,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/views.py</url>
-          <line>58</line>
+          <line>59</line>
           <option name="timeStamp" value="359" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/signals.py</url>
-          <line>16</line>
+          <line>17</line>
           <option name="timeStamp" value="385" />
         </line-breakpoint>
       </breakpoints>
@@ -325,13 +338,13 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$utils.coverage" NAME="utils Coverage Results" MODIFIED="1684439433193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/core" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$fill_icons_form_tag.coverage" NAME="fill_icons_form_tag Coverage Results" MODIFIED="1682839381990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1685385621604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1682840149193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$models.coverage" NAME="models Coverage Results" MODIFIED="1684933474106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1685385621604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$fill_icons_form_tag.coverage" NAME="fill_icons_form_tag Coverage Results" MODIFIED="1682839381990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags" />
   </component>
 </project>

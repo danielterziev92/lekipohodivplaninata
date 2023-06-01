@@ -92,7 +92,12 @@ class Hike(AuditInfoMixin, models.Model):
         blank=True,
     )
 
-    # TODO: On production have to assign hike type ( ForeignKey: HikeType )
+    type = models.ForeignKey(
+        HikeType,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
+    )
 
     description = models.TextField(
         null=False,
@@ -175,3 +180,32 @@ class Hike(AuditInfoMixin, models.Model):
     class Meta:
         verbose_name = 'поход'
         verbose_name_plural = 'Походи'
+
+
+class HikeAdditionalInfo(models.Model):
+    EVENT_VENUE_MAX_LENGTH = 30
+    DEPARTURE_PLACE_MAX_LENGTH = 30
+
+    hike_id = models.OneToOneField(
+        Hike,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
+    )
+
+    event_venue = models.CharField(
+        max_length=EVENT_VENUE_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    departure_time = models.TimeField(
+        null=False,
+        blank=False,
+    )
+
+    departure_place = models.CharField(
+        max_length=DEPARTURE_PLACE_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )

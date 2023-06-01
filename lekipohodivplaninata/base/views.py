@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -32,7 +33,7 @@ class SignUpHike(views.UpdateView):
     success_url = reverse_lazy('site evaluation')
 
     def get_success_url(self):
-        self.request.session['is_signed'] = True
+        cache.set('is_signed', True, timeout=60)
         return reverse_lazy('site evaluation')
 
     def get_queryset(self):
@@ -48,12 +49,12 @@ class SiteEvaluationView(views.CreateView):
     template_name = 'site-evaluation.html'
     form_class = SiteEvaluationForm
 
-    # def get(self, request, *args, **kwargs):
-    #     if self.request.session.get('is_signed'):
-    #         self.request.session.pop('is_signed')
-    #         return super().get(request, *args, **kwargs)
-    #
-    #     return redirect('index')
+    def get(self, request, *args, **kwargs):
+        if cache.get('is_signed'):
+            cache.delete('is_signed')
+            return super().get(request, *args, **kwargs)
+
+        return redirect('index')
 
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
