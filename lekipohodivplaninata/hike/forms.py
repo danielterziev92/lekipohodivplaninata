@@ -13,6 +13,12 @@ class HikeTypeForm(forms.ModelForm):
         fields = '__all__'
 
 
+class HikeLevelForm(forms.ModelForm):
+    class Meta:
+        model = HikeLevel
+        fields = '__all__'
+
+
 class HikeForm(PicturesMixin, forms.ModelForm):
     title = forms.CharField(
         max_length=Hike.TITLE_MAX_LENGTH,

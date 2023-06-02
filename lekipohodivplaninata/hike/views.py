@@ -6,7 +6,7 @@ from django.contrib.auth import mixins as auth_mixins
 
 from lekipohodivplaninata.core.mixins import PicturesMixin, UserDataMixin
 from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm, \
-    HikeTypeForm
+    HikeTypeForm, HikeLevelForm
 from lekipohodivplaninata.hike.models import Hike, HikeMorePicture, HikeAdditionalInfo, HikeType, HikeLevel
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
@@ -14,7 +14,7 @@ HikeModel = Hike
 
 
 class HikeTypeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
-    template_name = 'hike/hike-type.html'
+    template_name = 'hike/templates/create-or-update.html'
     permission_required = 'is_staff'
     form_class = HikeTypeForm
     success_url = reverse_lazy('hike type list')
@@ -28,7 +28,7 @@ class HikeTypeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionR
 
 
 class HikeTypeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
-    template_name = 'hike/hike-type.html'
+    template_name = 'hike/templates/create-or-update.html'
     permission_required = 'is_staff'
     form_class = HikeTypeForm
     model = HikeType
@@ -65,6 +65,60 @@ class HikeTypeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionReq
 
     def get_queryset(self):
         return HikeType.objects.all()
+
+
+class HikeLevelCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
+    template_name = 'hike/templates/create-or-update.html'
+    permission_required = 'is_staff'
+    form_class = HikeLevelForm
+    success_url = reverse_lazy('hike level list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_url'] = reverse_lazy('hike level create')
+        context['form_title'] = 'Създаване на ниво на поход'
+        context['button_text'] = 'Създаване'
+        return context
+
+
+class HikeLevelUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
+    template_name = 'hike/templates/create-or-update.html'
+    permission_required = 'is_staff'
+    form_class = HikeLevelForm
+    model = HikeLevel
+    success_url = reverse_lazy('hike type list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_url'] = reverse_lazy('hike level update', kwargs={
+            'pk': self.object.pk
+        })
+        context['form_title'] = 'Редактиране на ниво на поход'
+        context['button_text'] = 'Редактиране'
+        return context
+
+
+class HikeLevelListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
+    template_name = 'hike/list-hike-types.html'
+    permission_required = 'is_staff'
+
+    def get_queryset(self):
+        return HikeLevel.objects.all()
+
+
+class HikeLevelDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
+    template_name = 'hike/templates/delete.html'
+    model = HikeLevel
+    permission_required = 'is_staff'
+    success_url = reverse_lazy('hike level list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_url'] = reverse_lazy('hike level delete', kwargs={
+            'pk': self.object.pk
+        })
+        context['form_title'] = 'Изтриване на ниво на поход'
+        return context
 
 
 class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):

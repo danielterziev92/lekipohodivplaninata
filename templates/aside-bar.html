@@ -5,7 +5,6 @@
             <li>
                 <a href="#">Администрация</a>
                 <ul>
-                    <li><a href="{% url 'hike create' %}">Създаване на поход</a></li>
                     <li>
                         <a href="#">Ниво на трудност</a>
                         <ul>
@@ -13,7 +12,20 @@
                             <li><a href="{% url 'hike type list' %}">Всички</a></li>
                         </ul>
                     </li>
-                    <li><a href="{% url 'hike list' %}">Походи</a></li>
+                    <li>
+                        <a href="#">Ниво на поход</a>
+                        <ul>
+                            <li><a href="{% url 'hike level create' %}">Създаване</a></li>
+                            <li><a href="{% url 'hike level list' %}">Всички</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Походи</a>
+                        <ul>
+                            <li><a href="{% url 'hike create' %}">Създаване на поход</a></li>
+                            <li><a href="{% url 'hike list' %}">Всички</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         {% endif %}
