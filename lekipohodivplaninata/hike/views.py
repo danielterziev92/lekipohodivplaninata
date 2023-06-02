@@ -4,14 +4,20 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from lekipohodivplaninata.core.mixins import PicturesMixin
-from lekipohodivplaninata.core.mixins import UserDataMixin
-from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm
-from lekipohodivplaninata.hike.models import Hike, HikeMorePicture
-from lekipohodivplaninata.hike.models import HikeAdditionalInfo
+from lekipohodivplaninata.core.mixins import PicturesMixin, UserDataMixin
+from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm, \
+    HikeTypeForm
+from lekipohodivplaninata.hike.models import Hike, HikeMorePicture, HikeAdditionalInfo
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 HikeModel = Hike
+
+
+class HikeTypeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
+    template_name = 'hike/create-hike-type.html'
+    permission_required = 'is_staff'
+    form_class = HikeTypeForm
+    success_url = reverse_lazy('index')
 
 
 class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
@@ -76,7 +82,7 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
 
 
 class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.FormView):
+                            views.FormView):
     template_name = 'hike/more-pictures-hike.html'
     permission_required = 'is_staff'
     form_class = HikeMorePictureUploadForm
@@ -108,7 +114,7 @@ class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_
 
 
 class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.DeleteView):
+                     views.DeleteView):
     template_name = 'hike/delete-hike.html'
     success_url = reverse_lazy('hike list')
     permission_required = 'is_staff'

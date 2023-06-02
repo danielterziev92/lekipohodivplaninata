@@ -3,10 +3,14 @@ from django.core.cache import cache
 from django.forms import FileInput
 
 from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin
-from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture
-from lekipohodivplaninata.hike.models import HikeAdditionalInfo
-from lekipohodivplaninata.hike.models import HikeType
+from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
 from lekipohodivplaninata.users_app.models import BaseProfile
+
+
+class HikeTypeForm(forms.ModelForm):
+    class Meta:
+        model = HikeType
+        fields = '__all__'
 
 
 class HikeForm(PicturesMixin, forms.ModelForm):

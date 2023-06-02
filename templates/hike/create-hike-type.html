@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section>
+            <article class="form-container">
+                <form method='post' action="{% url 'hike type create' %}" class="fields-form">
+                    <h2>Създаване на тип поход</h2>
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {{ field.errors }}
+                    {% endfor %}
+                    {% csrf_token %}
+                    <div class="buttons">
+                        <button>Създай</button>
+                        <button onclick="history.back()">Отказ</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

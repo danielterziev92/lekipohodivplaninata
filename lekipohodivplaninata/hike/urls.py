@@ -1,10 +1,13 @@
 from django.urls import path, include
 
 from lekipohodivplaninata.hike.views import HikeCreateView, HikeDetailView, HikeListView, HikeUpdateView, \
-    HikeDeleteView, HikeMorePictureUpload
+    HikeDeleteView, HikeMorePictureUpload, HikeTypeCreateView
 
 urlpatterns = (
-    path('create/', HikeCreateView.as_view(), name='hike create'),
+    path('create/', include([
+        path('', HikeCreateView.as_view(), name='hike create'),
+        path('type/', HikeTypeCreateView.as_view(), name='hike type create'),
+    ])),
     path('<int:pk>/<slug:slug>/', include([
         path('', HikeDetailView.as_view(), name='hike detail'),
         path('update/', HikeUpdateView.as_view(), name='hike update'),
