@@ -12,8 +12,8 @@
     <main>
         <section>
             <article class="form-container">
-                <form method='post' action="{% url 'hike create' %}" class="fields-form" enctype="multipart/form-data">
-                    <h2>Създаване на поход</h2>
+                <form method='post' action="{{ form_url }}" class="fields-form">
+                    <h2>{{ form_title }}</h2>
                     {% for field in form %}
                         <div class="field">
                             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -23,7 +23,12 @@
                     {% endfor %}
                     {% csrf_token %}
                     <div class="buttons">
-                        <button>Създай</button>
+
+                        <button>{{ button_text }}</button>
+                        {% if button_text == 'Редактирай' %}
+                            <button type="button"><a href="{% url 'hike type delete' pk=object.pk %}">Изтрий</a>
+                            </button>
+                        {% endif %}
                         <button onclick="history.back()">Отказ</button>
                     </div>
                 </form>

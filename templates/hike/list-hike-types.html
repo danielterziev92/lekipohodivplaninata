@@ -1,27 +1,23 @@
 {% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
 {% load static %}
 
-
 {% block page_styles %}
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/scrollbar.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block page_content %}
     <main>
-        <section id="hike-list">
-            {% include 'hike/templates/list-hikes.html' %}
-        </section>
+        {% include 'hike/templates/list-hike-types.html' %}
     </main>
-    {% include 'hike/templates/sign-for-hike-modal.html' %}
 {% endblock %}
 
 {% block page_scripts %}
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
-    <script src="{% static 'js/sign-up-form.js' %}"></script>
-    <script src="{% static 'js/hike-modal.js' %}"></script>
     <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
 {% endblock %}

@@ -119,7 +119,7 @@ class PicturesMixin:
         return f'{data["public_id"]}.{data["format"]}'
 
     @staticmethod
-    def delete_pictures(files: list):
+    def delete_picture(files: list):
         cloudinary_api.delete_resources(files)
 
     @staticmethod
@@ -228,7 +228,7 @@ class HikeUpdateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
                 folder = self.get_picture_folder(folder_name)
 
             if obj.main_picture.public_id is not None:
-                self.delete_pictures([obj.main_picture.public_id])
+                self.delete_picture([obj.main_picture.public_id])
             try:
                 obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
             except InMemoryUploadedFile:

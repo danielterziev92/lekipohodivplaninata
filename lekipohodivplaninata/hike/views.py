@@ -7,17 +7,64 @@ from django.contrib.auth import mixins as auth_mixins
 from lekipohodivplaninata.core.mixins import PicturesMixin, UserDataMixin
 from lekipohodivplaninata.hike.forms import HikeForm, HikeCreateForm, HikeUpdateForm, HikeMorePictureUploadForm, \
     HikeTypeForm
-from lekipohodivplaninata.hike.models import Hike, HikeMorePicture, HikeAdditionalInfo
+from lekipohodivplaninata.hike.models import Hike, HikeMorePicture, HikeAdditionalInfo, HikeType, HikeLevel
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 HikeModel = Hike
 
 
 class HikeTypeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
-    template_name = 'hike/create-hike-type.html'
+    template_name = 'hike/hike-type.html'
     permission_required = 'is_staff'
     form_class = HikeTypeForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('hike type list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_url'] = reverse_lazy('hike type create')
+        context['form_title'] = 'Създаване на ниво на трудност'
+        context['button_text'] = 'Създаване'
+        return context
+
+
+class HikeTypeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
+    template_name = 'hike/hike-type.html'
+    permission_required = 'is_staff'
+    form_class = HikeTypeForm
+    model = HikeType
+    success_url = reverse_lazy('hike type list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_url'] = reverse_lazy('hike type update', kwargs={
+            'pk': self.object.pk
+        })
+        context['form_title'] = 'Редактиране на ниво на трудност'
+        context['button_text'] = 'Редактирай'
+        return context
+
+
+class HikeTypeDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
+    template_name = 'hike/templates/delete.html'
+    model = HikeType
+    permission_required = 'is_staff'
+    success_url = reverse_lazy('hike type list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_url'] = reverse_lazy('hike type delete', kwargs={
+            'pk': self.object.pk
+        })
+        context['form_title'] = 'Изтриване на ниво на трудност'
+        return context
+
+
+class HikeTypeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
+    template_name = 'hike/list-hike-types.html'
+    permission_required = 'is_staff'
+
+    def get_queryset(self):
+        return HikeType.objects.all()
 
 
 class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
@@ -125,12 +172,12 @@ class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.
 
         if more_pictures:
             for picture in more_pictures:
-                self.delete_pictures(picture.image.public_id)
+                self.delete_picture(picture.image.public_id)
 
         if self.object.main_picture:
             main_picture_public_id = self.object.main_picture.public_id
             main_picture_folder = self.get_picture_folder(main_picture_public_id)
-            self.delete_pictures([main_picture_public_id])
+            self.delete_picture([main_picture_public_id])
             self.delete_folder(main_picture_folder)
 
         return super().form_valid(form=form)

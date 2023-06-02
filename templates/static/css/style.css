@@ -141,6 +141,10 @@
     padding-left: 2.5rem;
 }
 
+.side-menu-mobile ul ul ul li a {
+    padding-left: 5rem;
+}
+
 .side-menu-mobile ul li.active ul li a {
     color: #ffffff;
     background-color: #1b1b1b;
@@ -636,7 +640,7 @@
 }
 
 .form-container .fields-form button {
-    margin: 0.625rem 1.25rem;
+    margin: 0.625rem 0.25rem;
     width: 8.125rem;
     height: 2.5rem;
     background-color: #cf5533;
@@ -1090,6 +1094,43 @@
 
 .hikes-list .pagination button {
     border: none;
+}
+
+.hike-types {
+    padding: 2rem;
+}
+
+.hike-types h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hike-types ul {
+    border: 0.0625rem solid rgb(0, 0, 0, 0.2);
+    border-radius: 0.625rem;
+    overflow: hidden;
+}
+
+.hike-types ul li {
+    padding: 1rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hike-types ul li:nth-child(even) {
+    background-color: #e5e5e5;
+}
+
+.hike-types ul li span {
+    font-weight: bold;
+}
+
+.hike-types ul li a {
+    text-decoration: none;
+    color: #cf5533;
+    font-weight: bold;
 }
 
 /*.hike-detail .hike .sign-up-form {*/

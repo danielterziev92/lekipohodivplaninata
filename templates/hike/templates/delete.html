@@ -10,20 +10,14 @@
 
 {% block page_content %}
     <main>
-        <section>
+        <section class="hike-detail">
             <article class="form-container">
-                <form method='post' action="{% url 'hike type create' %}" class="fields-form">
-                    <h2>Създаване на тип поход</h2>
-                    {% for field in form %}
-                        <div class="field">
-                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                            {{ field }}
-                        </div>
-                        {{ field.errors }}
-                    {% endfor %}
+                <form action="{{ form_url }}" method="post" class="fields-form">
+                    <h2>{{ form_title }}</h2>
+                    <h3>{{ object.title }}</h3>
                     {% csrf_token %}
                     <div class="buttons">
-                        <button>Създай</button>
+                        <button>Изтрий</button>
                         <button onclick="history.back()">Отказ</button>
                     </div>
                 </form>
@@ -33,5 +27,6 @@
 {% endblock %}
 
 {% block page_scripts %}
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/show-hike-upload-picture.js' %}"></script>
 {% endblock %}

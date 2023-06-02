@@ -12,7 +12,7 @@
 {% block page_content %}
     <main>
         <section id="hike-list">
-            {% include 'hike/templates/list.html' %}
+            {% include 'hike/templates/list-hikes.html' %}
         </section>
     </main>
     {% include 'hike/templates/sign-for-hike-modal.html' %}
@@ -20,7 +20,7 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
     <script src="{% static 'js/sign-up-form.js' %}"></script>
     <script src="{% static 'js/hike-modal.js' %}"></script>
     <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
