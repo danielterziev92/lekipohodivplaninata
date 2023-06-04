@@ -10,3 +10,5 @@ urlpatterns = (
     path('<int:pk>/<slug:slug>/sign-up/', SignUpHike.as_view(), name='sign up for hike'),
     path('site-evaluation/', SiteEvaluationView.as_view(), name='site evaluation')
 )
+
+from .signals import *

@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <body style="background-color: #f6f6f6 !important; border: 0; width: 100%; padding: 0; margin: 0; border-radius: 10px !important;">
-<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
-    <a href="{{ domain }}">
-        <img src="https://res.cloudinary.com/doh9wk7mw/image/upload/v1685554209/yfq0jdzm1cdyhdoupqgk.svg" alt=""
-             width="400">
-    </a>
-</div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; padding:0; margin:0;">
+    <tbody>
+    <tr>
+        <td width="100%" align="center" valign="top">
+            <img src="https://res.cloudinary.com/doh9wk7mw/image/upload/v1685648111/Logo_bfqo11.png" alt="Logo"
+                 title="Logo" width="400" height="70" align="center" style="margin-top: 30px;">
+        </td>
+    </tr>
+    </tbody>
+</table>
 <div style="padding: 20px;">
     <h3 style="color: #1b1b1b;">Здравейте, {{ user.get_full_name }}</h3>
-
+    <figure>
+        <img src="{{ hike.main_picture.url }}"
+             alt="Image Picture" width="200">
+    </figure>
     <p style="color: #1b1b1b;">
-        Вие успешно се записахте за <a href="https://{{ domain }}/{{ hike_url }}"><strong>{{ hike_name }}</strong></a>.
+        Вие успешно се записахте за <a href="https://{{ domain }}/{{ hike.slug }}"><strong>{{ hike.title }}</strong></a>.
     </p>
-
-    <p style="color: #1b1b1b;">Вашият имейл е: <strong>{{ user.get_email }}</strong></p>
-    {% if password %}
-        <p style="color: #1b1b1b; padding-bottom: 5px;">Генерирахме за Вас парола: <strong>{{ password }}</strong></p>
-        <span style="color: #c41e3d; margin: 0;">Моля да променте паролата след като успешно влезете в профила си.</span>
-    {% endif %}
+    <p style="color: #1b1b1b;">Който ще се проведе на <strong>{{ hike.event_date }}</strong></p>
+    <p style="color: #1b1b1b;">Всички ще се събират в {{ additional_info.event_venue }}
+        на {{ additional_info.departure_place }} от {{ additional_info.departure_time }} часа</p>
 
     <div style="margin-top: 30px;">
         <p style="margin: 0; color: #1b1b1b;">

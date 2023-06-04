@@ -5,9 +5,11 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
+from lekipohodivplaninata.users_app.models import UserApp
 
 UserModel = get_user_model()
 
@@ -17,7 +19,6 @@ class SignInForm(auth_form.AuthenticationForm):
         label='Имейл',
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'Въведете вашият имейл',
                 'id': 'id_email',
                 'autocomplete': 'email',
                 'data-url': "/domain/email_autocomplete/",
@@ -33,13 +34,19 @@ class SignInForm(auth_form.AuthenticationForm):
         label='Парола:',
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Въведете парола',
                 'autocomplete': 'current-password',
             }),
         error_messages={
             'required': _('Полето е задължително'),
         },
     )
+
+    def clean_username(self):
+        email = self.cleaned_data.get('username').lower()
+        if not UserApp.objects.filter(email=email):
+            raise ValidationError('Потребител с този имейл не съществува')
+
+        return email
 
     def clean(self):
         email = self.cleaned_data.get('username')
@@ -49,7 +56,7 @@ class SignInForm(auth_form.AuthenticationForm):
             user = authenticate(self.request, username=email, password=password)
 
             if user is None:
-                self.add_error('username', 'Невалиден имейл или парола.')
+                self.add_error('password', 'Невалидена парола.')
                 raise self.get_invalid_login_error()
 
             super().clean()
@@ -60,7 +67,6 @@ class SignUpForm(auth_form.UserCreationForm):
         label='Имейл:',
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'Въведете вашият имейл',
                 'autocomplete': 'email',
             }),
         error_messages={
@@ -71,10 +77,7 @@ class SignUpForm(auth_form.UserCreationForm):
     first_name = forms.CharField(
         max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
         label='Име:',
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': 'Въведете вашето име'
-            }),
+        widget=forms.TextInput(),
         error_messages={
             'required': _('Полето е задължително'),
         }
@@ -83,10 +86,7 @@ class SignUpForm(auth_form.UserCreationForm):
     last_name = forms.CharField(
         max_length=BaseProfile.LAST_NAME_MAX_LENGTH,
         label='Фамилия:',
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': 'Въведете вашета фамилия'
-            }),
+        widget=forms.TextInput(),
         error_messages={
             'required': _('Полето е задължително'),
         }
@@ -97,7 +97,6 @@ class SignUpForm(auth_form.UserCreationForm):
         strip=False,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Въведете парола',
                 'autocomplete': 'current-password',
                 'id': 'password_1',
             }),
@@ -112,7 +111,6 @@ class SignUpForm(auth_form.UserCreationForm):
         label=_("Повторете:"),
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'Повторете вашата парола',
                 'autocomplete': 'current-password',
                 'id': 'password_2',
             }),
@@ -131,6 +129,13 @@ class SignUpForm(auth_form.UserCreationForm):
         error_messages = {
             "password_mismatch": _("Паролите не съвпадат!"),
         }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if UserApp.objects.filter(email=email):
+            raise ValidationError('Потребител с този имейл вече съществува')
+
+        return email
 
     def save(self, commit=True):
         user = super().save(commit=commit)
@@ -160,13 +165,7 @@ class GuideProfileForm(forms.ModelForm):
 
     avatar = cloudinary_form.CloudinaryFileField(
         label='Профилана снимка',
-        widget={
-
-        },
         options={
-            'tags': "directly_uploaded",
-            'crop': 'limit', 'width': 1000, 'height': 1000,
-            'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
             'folder': 'guides/avatars/'
         },
         required=False,
@@ -189,9 +188,6 @@ class GuideProfileForm(forms.ModelForm):
     certificate = cloudinary_form.CloudinaryFileField(
         label='Сертификат',
         options={
-            'tags': "directly_uploaded",
-            'crop': 'limit', 'width': 1000, 'height': 1000,
-            # 'eager': [{'crop': 'fill', 'width': 150, 'height': 100}],
             'folder': 'guides/certificates/'
         },
         required=False,
@@ -205,10 +201,6 @@ class GuideProfileForm(forms.ModelForm):
     class Meta:
         model = GuideProfile
         fields = ('first_name', 'last_name', 'avatar', 'date_of_birth', 'description', 'certificate')
-        labels = {
-            'avatar': 'Профилна снимка',
-            'certificate': 'Сертификат',
-        }
 
     def save(self, commit=True):
         guide_profile = super().save(commit=commit)

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model, login
 from django.contrib.contenttypes.models import ContentType
 
-from lekipohodivplaninata.base.models import SignUpForHike, TravelWith, SiteEvaluation
+from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation
 from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import AnonymousAppUser
@@ -12,7 +12,7 @@ UserModel = get_user_model()
 
 class SignUpHikeForm(UserDataMixin, forms.ModelForm):
     hikes = tuple(Hike.objects.all().values_list('id', 'title'))
-    travel_with = tuple(TravelWith.objects.all().values_list())
+    travel_with = tuple(SignUpForHike.TRAVEL_CHOICES.get_all_choices())
 
     first_name = forms.CharField(
         label='Име',

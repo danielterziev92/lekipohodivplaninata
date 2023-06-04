@@ -2,7 +2,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-from lekipohodivplaninata.base.validators import number_between_one_and_ten
+from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -10,15 +10,17 @@ BaseUserModel = BaseProfile
 HikeModel = Hike
 
 
-class TravelWith(models.Model):
-    name = models.CharField(
-        max_length=30,
-        null=False,
-        blank=False,
-    )
+class Choices:
+    def __init__(self, *args):
+        self.choices = args
+
+    def get_all_choices(self):
+        return tuple((ind, choice) for ind, choice in enumerate(self.choices))
 
 
 class SignUpForHike(models.Model):
+    TRAVEL_CHOICES = Choices('Организиран Транспорт', 'Собствен Транспорт')
+
     hike_id = models.ForeignKey(
         HikeModel,
         on_delete=models.RESTRICT,
@@ -35,14 +37,18 @@ class SignUpForHike(models.Model):
 
     user_object = GenericForeignKey('user_type', 'user_id')
 
-    travel_with = models.ForeignKey(
-        TravelWith,
-        on_delete=models.RESTRICT,
+    travel_with = models.PositiveSmallIntegerField(
+        choices=TRAVEL_CHOICES.get_all_choices(),
         null=False,
         blank=False,
     )
 
-    participants_number = models.PositiveIntegerField(
+    adults_numbers = models.PositiveIntegerField(
+        null=False,
+        blank=False,
+    )
+
+    children_numbers = models.PositiveIntegerField(
         null=False,
         blank=False,
     )
@@ -56,7 +62,12 @@ class SiteEvaluation(models.Model):
     assessment = models.PositiveSmallIntegerField(
         null=False,
         blank=False,
-        validators=(number_between_one_and_ten,)
+        validators=(ValueInRangeValidator(1, 10),)
+    )
+
+    comment = models.TextField(
+        null=True,
+        blank=True,
     )
 
     rated_in = models.DateTimeField(
@@ -70,7 +81,12 @@ class HikeEvaluation(models.Model):
     assessment = models.PositiveSmallIntegerField(
         null=False,
         blank=False,
-        validators=(number_between_one_and_ten,)
+        validators=(ValueInRangeValidator(1, 10),)
+    )
+
+    comment = models.TextField(
+        null=True,
+        blank=True,
     )
 
     user_id = models.ForeignKey(

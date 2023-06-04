@@ -3,8 +3,10 @@ from django.core.cache import cache
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
+from django.contrib.auth import mixins as auth_mixins
 
 from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm
+from lekipohodivplaninata.base.models import SignUpForHike
 from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
 
@@ -43,6 +45,14 @@ class SignUpHike(views.UpdateView):
         kwargs = super().get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
+
+
+class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
+    template_name = 'hike/all-signed-for-hike.html'
+    permission_required = 'is_staff'
+
+    def get_queryset(self):
+        return SignUpForHike.objects.filter(hike_id=self.kwargs['pk'])
 
 
 class SiteEvaluationView(views.CreateView):

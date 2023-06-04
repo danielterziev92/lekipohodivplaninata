@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load fill_icons_form_tag %}
 {% load change_error_message %}
+{% load dispatcher_for_level_and_type_of_hike %}
 {% load static %}
 
 {% block page_styles %}
@@ -12,8 +13,8 @@
     <main>
         <section>
             <article class="form-container">
-                <form method='post' action="{{ form_url }}" class="fields-form">
-                    <h2>{{ form_title }}</h2>
+                <form method='post' action="{% type_or_level_form_url form_url %}" class="fields-form">
+                    <h2>{% type_or_level_form_title form_title %}</h2>
                     {% for field in form %}
                         <div class="field">
                             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -23,12 +24,7 @@
                     {% endfor %}
                     {% csrf_token %}
                     <div class="buttons">
-
-                        <button>{{ button_text }}</button>
-                        {% if button_text == 'Редактирай' %}
-                            <button type="button"><a href="{% url 'hike type delete' pk=object.pk %}">Изтрий</a>
-                            </button>
-                        {% endif %}
+                        <button>{% type_or_level_button_text button_text %}</button>
                         <button onclick="history.back()">Отказ</button>
                     </div>
                 </form>

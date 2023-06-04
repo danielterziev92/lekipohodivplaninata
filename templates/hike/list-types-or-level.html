@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load dispatcher_for_level_and_type_of_hike %}
 {% load fill_icons_form_tag %}
 {% load change_error_message %}
 {% load static %}
@@ -12,7 +13,9 @@
 
 {% block page_content %}
     <main>
-        {% include 'hike/templates/list-hike-types.html' %}
+        <article class="hike-types">
+            {% dispatcher-hike-or-level %}
+        </article>
     </main>
 {% endblock %}
 

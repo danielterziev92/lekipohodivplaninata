@@ -7,6 +7,41 @@ from django.utils.translation import gettext_lazy as _
 from lekipohodivplaninata.users_app.manager import UserAppManager
 
 
+class BaseDataInfo(models.Model):
+    FIRST_NAME_MAX_LENGTH = 25
+    LAST_NAME_MAX_LENGTH = 25
+
+    first_name = models.CharField(
+        max_length=FIRST_NAME_MAX_LENGTH,
+        null=False,
+        blank=False,
+        verbose_name='Име',
+    )
+
+    last_name = models.CharField(
+        max_length=LAST_NAME_MAX_LENGTH,
+        null=False,
+        blank=False,
+        verbose_name='Фамилия',
+    )
+
+    class Meta:
+        abstract = True
+
+
+class AdditionalDataInfo(models.Model):
+    PHONE_NUMBER_MAX_LENGTH = 15
+
+    phone_number = models.CharField(
+        max_length=PHONE_NUMBER_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    class Meta:
+        abstract = True
+
+
 class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     email = models.EmailField(
         unique=True,
@@ -47,29 +82,12 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         return self.email
 
 
-class BaseProfile(models.Model):
-    FIRST_NAME_MAX_LENGTH = 25
-    LAST_NAME_MAX_LENGTH = 25
-
+class BaseProfile(BaseDataInfo, AdditionalDataInfo):
     user_id = models.OneToOneField(
         UserApp,
         on_delete=models.RESTRICT,
         primary_key=True,
         verbose_name='Потребител'
-    )
-
-    first_name = models.CharField(
-        max_length=FIRST_NAME_MAX_LENGTH,
-        null=False,
-        blank=False,
-        verbose_name='Име',
-    )
-
-    last_name = models.CharField(
-        max_length=LAST_NAME_MAX_LENGTH,
-        null=False,
-        blank=False,
-        verbose_name='Фамилия',
     )
 
     def __str__(self):
@@ -92,11 +110,10 @@ class BaseProfile(models.Model):
         return UserApp.objects.get(pk=self.user_id.pk).email
 
     class Meta:
-        verbose_name = 'име и фамилия'
         verbose_name_plural = 'Профили'
 
 
-class GuideProfile(models.Model):
+class GuideProfile(BaseDataInfo):
     AVATAR_DIRECTORY = 'images/guides/avatars/'
     CERTIFICATE_DIRECTORY = 'images/guides/certificates/'
 
@@ -161,19 +178,8 @@ class GuideProfile(models.Model):
         return self.profile_id.get_full_name
 
     class Meta:
-        verbose_name = 'прифила на водач'
         verbose_name_plural = 'Водачи'
 
 
-class AnonymousAppUser(models.Model):
-    first_name = models.CharField(
-        max_length=30,
-        null=False,
-        blank=False
-    )
-
-    last_name = models.CharField(
-        max_length=30,
-        null=False,
-        blank=False
-    )
+class AnonymousAppUser(BaseDataInfo, AdditionalDataInfo):
+    pass

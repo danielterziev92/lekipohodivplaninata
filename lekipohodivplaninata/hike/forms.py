@@ -87,10 +87,14 @@ class HikeCreateForm(HikeCreateFormMixin, HikeForm):
 
     departure_time = forms.TimeField(
         label='Час на тръгване',
-        widget=forms.TimeInput(),
+        widget=forms.TimeInput(
+            attrs={
+                'type': 'time',
+            }
+        ),
     )
 
-    departure_place_value = forms.CharField(
+    departure_place = forms.CharField(
         label='Място на тръгване',
         max_length=HikeAdditionalInfo.DEPARTURE_PLACE_MAX_LENGTH,
         widget=forms.TextInput(),
@@ -100,7 +104,7 @@ class HikeCreateForm(HikeCreateFormMixin, HikeForm):
         model = Hike
         fields = (
             'title', 'type', 'level', 'event_date', 'duration', 'price', 'main_picture', 'description',
-            'event_venue', 'departure_place_value', 'departure_time')
+            'event_venue', 'departure_place', 'departure_time')
 
 
 class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
@@ -115,7 +119,7 @@ class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
         max_length=HikeAdditionalInfo.EVENT_VENUE_MAX_LENGTH,
         widget=forms.TextInput(
             attrs={
-                'value': cache.get('event_venue', '')
+                'value': '',
             }
         ),
     )
@@ -125,17 +129,17 @@ class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
         widget=forms.TimeInput(
             attrs={
                 'type': 'time',
-                'value': cache.get('departure_time', '')
+                'value': '',
             }
         ),
     )
 
-    departure_place_value = forms.CharField(
+    departure_place = forms.CharField(
         label='Място на тръгване',
         max_length=HikeAdditionalInfo.DEPARTURE_PLACE_MAX_LENGTH,
         widget=forms.TextInput(
             attrs={
-                'value': cache.get('departure_place', '')
+                'value': '',
             }
         ),
     )
@@ -143,7 +147,7 @@ class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
     class Meta:
         model = Hike
         fields = ('title', 'level', 'type', 'event_date', 'duration', 'price', 'new_main_picture', 'description',
-                  'event_venue', 'departure_place_value', 'departure_time')
+                  'event_venue', 'departure_place', 'departure_time')
 
 
 class HikeMorePictureUploadForm(forms.ModelForm):

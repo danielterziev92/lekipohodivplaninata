@@ -54,16 +54,26 @@
                     <a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Редакция</a>
                     <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
                 </div>
+            {% else %}
+                <div class="actions">
+                    <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">
+                        Запиши ме запохода</a>
+                </div>
             {% endif %}
         </section>
     </main>
+    {% include 'hike/templates/sign-for-hike-modal.html' %}
 {% endblock %}
 
 {% block page_scripts %}
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
-    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'js/sign-up-form.js' %}"></script>
-    <script src="{% static 'js/show-hide-sign-hike-form.js' %}"></script>
-    <script src="{% static 'js/hike-more-picture-slider-detail-template.js' %}"></script>
+    <script src="{% static 'js/hike-modal-sign-up.js' %}"></script>
+    {% if user.is_anonymous %}
+        <script src="{% static 'js/hike-modal-sign-up.js' %}"></script>
+    {% endif %}
+    {% if hike.more_pictures.all|length > 0 %}
+        <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+        <script src="{% static 'js/hike-more-picture-slider-detail-template.js' %}"></script>
+    {% endif %}
 {% endblock %}
 

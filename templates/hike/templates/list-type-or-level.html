@@ -1,0 +1,13 @@
+<h2>{{ form_title }}</h2>
+<ul>
+    {% for obj in object_list %}
+        <li>
+            <span>{{ obj }}</span>
+            <div class="buttons">
+                <a href="{% url obj_edit_url obj.pk %}">Редакция</a>
+                <a href="{% url obj_delete_url obj.pk %}">Изтрий</a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+<button type="button"><a href="{% url button_action_url %}">Добави нов</a></button>

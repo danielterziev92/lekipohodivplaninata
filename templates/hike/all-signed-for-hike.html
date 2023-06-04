@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/scrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <table class="signed-for-hike">
+            <thead>
+            <tr>
+                <td>Име и фамилия</td>
+                <td>Брой участници</td>
+                <td>Ще патуват с</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.user_object }}</td>
+                    <td>{{ obj.travel_with.name }}</td>
+                    <td>{{ obj.participants_number }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>Няма участници записани за похода</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+{% endblock %}
+

@@ -234,13 +234,13 @@ class HikeUpdateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
             except InMemoryUploadedFile:
                 raise ValidationError('Моля изберете файл')
 
-        if db_add_info.EVENT_VENUE != self.cleaned_data['event_venue']:
+        if db_add_info.event_venue != self.cleaned_data['event_venue']:
             self.update_information_to_field(db_add_info.EVENT_VENUE, self.cleaned_data['event_venue'])
 
-        if db_add_info.DEPARTURE_TIME != self.cleaned_data['departure_time']:
+        if db_add_info.departure_time != self.cleaned_data['departure_time']:
             self.update_information_to_field(db_add_info.DEPARTURE_TIME, self.cleaned_data['departure_time'])
 
-        if db_add_info.departure_place_value != self.cleaned_data['departure_place']:
+        if db_add_info.departure_place != self.cleaned_data['departure_place']:
             self.update_information_to_field(db_add_info.departure_place_value, self.cleaned_data['departure_place'])
 
         return obj

@@ -1102,6 +1102,9 @@
 }
 
 .hike-types {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 2rem;
 }
 
@@ -1114,14 +1117,15 @@
     border: 0.0625rem solid rgb(0, 0, 0, 0.2);
     border-radius: 0.625rem;
     overflow: hidden;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
 .hike-types ul li {
-    padding: 1rem;
+    padding: 0.5rem 0.5rem 0.3rem 0.5rem;
     list-style: none;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .hike-types ul li:nth-child(even) {
@@ -1130,16 +1134,78 @@
 
 .hike-types ul li span {
     font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.hike-types ul li .buttons {
+    width: 100%;
+    padding: 0.8rem 0.8rem 0 0.8rem;
+    display: flex;
+    justify-content: space-around;
 }
 
 .hike-types ul li a {
     text-decoration: none;
-    color: #cf5533;
+    background-color: #cf5533;
+    color: #ffffff;
     font-weight: bold;
+    padding: 0.4rem 0.625rem;
+    border-radius: 0.625rem;
 }
 
-/*.hike-detail .hike .sign-up-form {*/
+.hike-types button {
+    padding: 0.625rem 1rem;
+    border-radius: 0.625rem;
+    background-color: #cf5533;
+    border: none;
+}
 
+.hike-types button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.signed-for-hike {
+    margin: 0.065rem;
+    border: 0.065rem solid rgb(0, 0, 0, 0.2);
+    border-radius: 0.65rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.signed-for-hike thead {
+    background-color: #BBBBBB2B;
+}
+
+.signed-for-hike thead td {
+    border-bottom: 0.065rem solid rgb(0, 0, 0, 0.2);
+    padding: 0.2rem;
+}
+
+.signed-for-hike thead td:not(:first-child) {
+    border-left: 0.065rem solid rgb(0, 0, 0, 0.2);
+    /*padding: 0;*/
+    /*margin: 0;*/
+}
+
+.signed-for-hike tbody tr:nth-child(even) {
+    background-color: #BBBBBB2B;
+}
+
+.signed-for-hike tbody tr td {
+    text-align: center;
+    padding: 0.2rem;
+}
+
+.signed-for-hike tbody tr:not(:last-child) td {
+    border-bottom: 0.065rem solid rgb(0, 0, 0, 0.5);
+}
+
+.signed-for-hike tbody tr td:not(:first-child) {
+    border-left: 0.065rem solid rgb(0, 0, 0, 0.5);
+}
 
 .m0 {
     margin: 0;
