@@ -175,17 +175,20 @@ class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.
     model = HikeModel
 
     def form_valid(self, form):
+        public_ids = []
         more_pictures = self.object.more_pictures.all()
 
         if more_pictures:
             for picture in more_pictures:
-                self.delete_picture(picture.image.public_id)
+                public_ids.append(picture.image.public_id)
 
-        if self.object.main_picture:
-            main_picture_public_id = self.object.main_picture.public_id
-            main_picture_folder = self.get_picture_folder(main_picture_public_id)
-            self.delete_picture([main_picture_public_id])
-            self.delete_folder(main_picture_folder)
+        main_picture_public_id = self.object.main_picture.public_id
+        public_ids.append(main_picture_public_id)
+
+        self.delete_pictures(public_ids)
+
+        main_picture_folder = self.get_picture_folder(main_picture_public_id)
+        self.delete_folder(main_picture_folder)
 
         HikeAdditionalInfo.objects.get(hike_id=self.object).delete()
 

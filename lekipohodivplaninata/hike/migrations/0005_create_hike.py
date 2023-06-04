@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(blank=True, null=True, unique=True)),
                 ('description', models.TextField(help_text='Моля попълнете описание за похода', verbose_name='Описание')),
                 ('duration', models.CharField(help_text='Моля попълнете продължителността на похода в цифри', max_length=20, verbose_name='Продължителност')),
-                ('event_date', models.DateField(help_text='Моля изберете дата за похода', validators=[lekipohodivplaninata.hike.validators.validate_before_today], verbose_name='Дата на похода')),
+                ('event_date', models.DateField(help_text='Моля изберете дата за похода', validators=[lekipohodivplaninata.hike.validators.BeforeTodayValidator], verbose_name='Дата на похода')),
                 ('price', models.DecimalField(decimal_places=2, default=0.0, help_text='Моля попълнете само цифрата на сумата за похода', max_digits=8, verbose_name='Цена')),
                 ('main_picture', cloudinary.models.CloudinaryField(help_text='Тук трябва добавите основна снимка за похода', max_length=255, verbose_name='Основна снимка')),
                 ('level', models.ForeignKey(help_text='Моля изберете ниво за похода', on_delete=django.db.models.deletion.RESTRICT, to='hike.hikelevel', verbose_name='Ниво на похода')),

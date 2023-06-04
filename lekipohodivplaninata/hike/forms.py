@@ -1,9 +1,9 @@
 from django import forms
-from django.core.cache import cache
 from django.forms import FileInput
 
 from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
+from lekipohodivplaninata.hike.validators import BeforeTodayValidator
 from lekipohodivplaninata.users_app.models import BaseProfile
 
 
@@ -59,7 +59,8 @@ class HikeForm(PicturesMixin, forms.ModelForm):
             attrs={
                 'type': 'date',
             }
-        )
+        ),
+        validators=(BeforeTodayValidator,)
     )
 
     duration = forms.CharField(

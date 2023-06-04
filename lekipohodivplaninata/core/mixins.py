@@ -8,7 +8,7 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from django.utils.text import slugify
 
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
@@ -119,7 +119,7 @@ class PicturesMixin:
         return f'{data["public_id"]}.{data["format"]}'
 
     @staticmethod
-    def delete_picture(files: list):
+    def delete_pictures(files: list):
         cloudinary_api.delete_resources(files)
 
     @staticmethod
@@ -185,11 +185,22 @@ class HikeBaseFormMixin(PicturesMixin, object):
 
 class HikeCreateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
     def save(self, commit=True):
-        obj = super().save(commit=False)
-        obj = self.create_obj(obj)
 
-        if commit:
-            obj.save()
+        try:
+            with transaction.atomic():
+                obj = super().save(commit=False)
+                obj = self.create_obj(obj)
+
+                if commit:
+                    obj.save()
+        except IntegrityError as ex:
+            file, *folder = obj.main_picture.split('/')[::-1]
+            public_id, _ = file.split('.')
+            folder = folder[::-1]
+            self.delete_pictures([public_id])
+            self.delete_folder('/'.join(folder))
+            # self.delete_folder(self.get_picture_folder(obj.slug))
+            transaction.rollback()
 
         self.add_information_to_field(obj)
 
@@ -228,7 +239,7 @@ class HikeUpdateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
                 folder = self.get_picture_folder(folder_name)
 
             if obj.main_picture.public_id is not None:
-                self.delete_picture([obj.main_picture.public_id])
+                self.delete_pictures([obj.main_picture.public_id])
             try:
                 obj.main_picture = self.upload_picture(self.cleaned_data['new_main_picture'].file, folder)
             except InMemoryUploadedFile:

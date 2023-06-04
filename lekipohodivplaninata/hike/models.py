@@ -2,7 +2,7 @@ from django.db import models
 from cloudinary import models as cloudinary_models
 from django.utils.safestring import mark_safe
 
-from lekipohodivplaninata.hike.validators import validate_before_today
+from lekipohodivplaninata.hike.validators import BeforeTodayValidator
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile
 
 
@@ -128,7 +128,7 @@ class Hike(AuditInfoMixin, models.Model):
         blank=False,
         verbose_name='Дата на похода',
         help_text='Моля изберете дата за похода',
-        validators=(validate_before_today,)
+        validators=(BeforeTodayValidator,)
     )
 
     price = models.DecimalField(

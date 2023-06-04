@@ -5,40 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/validators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0002_create_travel_with.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0003_create_sign_up_for_hike.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0004_create_site_evaluation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0005_create_hike_evaluation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/validators.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0005_create_hike.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0005_create_hike.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/validators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0002_create_user_app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0003_create_base_profile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0004_create_guide_profile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/migrations/0005_create_anonymous_app_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aside-bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aside-bar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/detail-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/detail-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/list-hike-types.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/list-types-or-level.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/more-pictures-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-pictures-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/create-or-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/create-or-update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/list-hike-types.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/list-hikes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/list-hikes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +26,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -278,7 +251,8 @@
       <workItem from="1685626425744" duration="21710000" />
       <workItem from="1685773260177" duration="2756000" />
       <workItem from="1685796800789" duration="13303000" />
-      <workItem from="1685871506579" duration="6964000" />
+      <workItem from="1685871506579" duration="12555000" />
+      <workItem from="1685909908208" duration="2151000" />
     </task>
     <servers />
   </component>
@@ -363,9 +337,9 @@
           <option name="timeStamp" value="407" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="421" />
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py</url>
+          <line>189</line>
+          <option name="timeStamp" value="444" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
