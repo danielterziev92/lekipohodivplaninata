@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import FileInput
 
-from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin
+from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin, HikeBaseFormMixin
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
 from lekipohodivplaninata.hike.validators import BeforeTodayValidator
 from lekipohodivplaninata.users_app.models import BaseProfile
@@ -19,7 +19,7 @@ class HikeLevelForm(forms.ModelForm):
         fields = '__all__'
 
 
-class HikeForm(PicturesMixin, forms.ModelForm):
+class HikeForm(HikeBaseFormMixin, PicturesMixin, forms.ModelForm):
     title = forms.CharField(
         max_length=Hike.TITLE_MAX_LENGTH,
         label='Заглавие',
@@ -72,6 +72,18 @@ class HikeForm(PicturesMixin, forms.ModelForm):
         label='Цена на човек',
         decimal_places=2,
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        self.check_is_slug_exist(cleaned_data)
+
+        return cleaned_data
+
+    def check_is_slug_exist(self, cleaned_data):
+        slug = self.generate_slug_field(cleaned_data.get('title'), cleaned_data.get('event_date'))
+        if Hike.objects.filter(slug=slug):
+            self.add_error('title', 'Съществува поход с това име и тази дата!')
 
 
 class HikeCreateForm(HikeCreateFormMixin, HikeForm):

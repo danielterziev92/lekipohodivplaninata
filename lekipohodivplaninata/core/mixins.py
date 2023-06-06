@@ -119,6 +119,10 @@ class PicturesMixin:
         return f'{data["public_id"]}.{data["format"]}'
 
     @staticmethod
+    def destroy_picture_by_url(public_id):
+        cloudinary_uploader.destroy(public_id=public_id)
+
+    @staticmethod
     def delete_pictures(files: list):
         cloudinary_api.delete_resources(files)
 
@@ -193,14 +197,13 @@ class HikeCreateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
 
                 if commit:
                     obj.save()
-        except IntegrityError as ex:
-            file, *folder = obj.main_picture.split('/')[::-1]
-            public_id, _ = file.split('.')
-            folder = folder[::-1]
-            self.delete_pictures([public_id])
-            self.delete_folder('/'.join(folder))
-            # self.delete_folder(self.get_picture_folder(obj.slug))
+        except IntegrityError:
+            public_id, _ = obj.main_picture.split('.')
+            folder = '/'.join(public_id.split('/')[:2])
+            self.destroy_picture_by_url(public_id)
+            self.delete_folder(folder)
             transaction.rollback()
+            return
 
         self.add_information_to_field(obj)
 
