@@ -3,7 +3,7 @@ from django.forms import FileInput
 
 from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin, HikeBaseFormMixin
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
-from lekipohodivplaninata.hike.validators import BeforeTodayValidator
+from lekipohodivplaninata.hike.validators import before_today_validator
 from lekipohodivplaninata.users_app.models import BaseProfile
 
 
@@ -60,7 +60,7 @@ class HikeForm(HikeBaseFormMixin, PicturesMixin, forms.ModelForm):
                 'type': 'date',
             }
         ),
-        validators=(BeforeTodayValidator,)
+        validators=(before_today_validator,)
     )
 
     duration = forms.CharField(

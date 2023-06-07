@@ -104,7 +104,7 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         cleaned_data['hike_id'] = Hike.objects.get(pk=cleaned_data.get('choose_hike'))
         cleaned_data['user_type'] = ContentType.objects.get_for_model(profile)
         cleaned_data['user_id'] = profile.pk
-        cleaned_data['travel_with'] = TravelWith.objects.get(pk=cleaned_data.get('choose_transport'))
+        cleaned_data['travel_with'] = self.cleaned_data.get('choose_transport')
 
         for key in keys_to_delete: del cleaned_data[key]
 

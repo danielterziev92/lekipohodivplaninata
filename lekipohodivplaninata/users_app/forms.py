@@ -139,7 +139,7 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
     )
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
+        email = self.cleaned_data.get('email').lower()
         if UserApp.objects.filter(email=email):
             self.add_error('email', 'Потребител с този имейл вече съществува')
 
@@ -152,6 +152,11 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
             self.add_error('password2', 'Паролите се различават')
 
         return password2
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        return cleaned_data
 
     def save(self, commit=True):
         try:
