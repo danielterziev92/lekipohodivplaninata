@@ -5,15 +5,14 @@ from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import IntegrityError, transaction
 from django.utils.text import slugify
 
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
 from lekipohodivplaninata.hike.models import Hike, HikeAdditionalInfo
-from lekipohodivplaninata.users_app.forms import GuideProfileForm
+from lekipohodivplaninata.users_app.forms import GuideProfileFormUser, BaseUserModelForm
 from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile, UserApp
 
 HikeModel = Hike
@@ -86,9 +85,9 @@ class UserFormMixin(UserDataMixin, object):
 
     def get_form_clas_form(self):
         if self.request.user.is_staff:
-            return GuideProfileForm
+            return GuideProfileFormUser
 
-        return None
+        return BaseUserModelForm
 
     def get_fields_form(self, *args):
         fields = None

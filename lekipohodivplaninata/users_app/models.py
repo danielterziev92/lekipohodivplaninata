@@ -113,7 +113,7 @@ class BaseProfile(BaseDataInfo, AdditionalDataInfo):
         verbose_name_plural = 'Профили'
 
 
-class GuideProfile(BaseDataInfo):
+class GuideProfile(models.Model):
     AVATAR_DIRECTORY = 'images/guides/avatars/'
     CERTIFICATE_DIRECTORY = 'images/guides/certificates/'
 

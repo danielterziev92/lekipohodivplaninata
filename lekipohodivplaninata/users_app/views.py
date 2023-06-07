@@ -2,7 +2,8 @@ from django.contrib.auth import views as auth_view, login, get_user_model, mixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as views
-from lekipohodivplaninata.users_app.forms import SignInForm, SignUpForm, UserResetPasswordForm, UserSetPasswordForm
+from lekipohodivplaninata.users_app.forms import SignInForm, SignUpFormUser, UserResetPasswordForm, UserSetPasswordForm, \
+    GuideProfileFormUser, BaseUserUpdateForm
 from lekipohodivplaninata.core.mixins import UserFormMixin
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -18,7 +19,7 @@ class SignInView(auth_view.LoginView):
 
 class SignUpView(views.CreateView):
     template_name = 'users/sign-up.html'
-    form_class = SignUpForm
+    form_class = SignUpFormUser
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
@@ -49,6 +50,12 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
             'pk': self.request.user.pk,
         })
 
+    def get_form_class(self):
+        if self.request.user.is_staff:
+            return GuideProfileFormUser
+
+        return BaseUserUpdateForm
+
     @property
     def model(self):
         return self.get_model()
@@ -56,10 +63,6 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
     @property
     def fields(self):
         return self.get_fields_form('first_name', 'last_name')
-
-    @property
-    def form_class(self):
-        return self.get_form_clas_form()
 
 
 class UserDeleteView(UserFormMixin, mixins.LoginRequiredMixin, views.DeleteView):

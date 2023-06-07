@@ -42,7 +42,13 @@
                             <input type="text" id="id_last_name" name="email" value="{{ object.profile_id.last_name }}"
                                    disabled>
                         </label>
-
+                        <label for="id_phone_number">
+                            <i class="{% form_icons 'id_phone_number' %}"></i>
+                            <span>Телефон</span>
+                            <input type="tel" id="phone_number" name="phone_number"
+                                   value="{{ object.profile_id.phone_number }}"
+                                   disabled>
+                        </label>
                         <label for="id_date_of_birth">
                             <i class="{% form_icons 'id_date_of_birth' %}"></i>
                             <span>Дата на раждане</span>
@@ -72,6 +78,13 @@
                             <i class="{% form_icons 'id_last_name' %}"></i>
                             <span>Имейл</span>
                             <input type="text" id="id_last_name" name="email" value="{{ object.last_name }}" disabled>
+                        </label>
+                        <label for="id_phone_number">
+                            <i class="{% form_icons 'id_phone_number' %}"></i>
+                            <span>Телефон</span>
+                            <input type="tel" id="phone_number" name="phone_number"
+                                   value="{{ object.phone_number }}"
+                                   disabled>
                         </label>
                     {% endif %}
                     <div class="buttons">

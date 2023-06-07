@@ -687,23 +687,29 @@
 .form-container .fields-form small {
     width: 0;
     padding: 0.313rem;
-    background-color: #f8d7da;
-    border: 0.063rem solid #f1aeb5;
     border-radius: 0.625rem;
     display: none;
     justify-content: center;
     align-content: center;
     margin-bottom: 0.625rem;
     overflow: hidden;
+    border-width: 0.063rem;
+    border-style: solid;
 }
 
 .form-container .fields-form small.alert {
     width: 100%;
     display: flex;
-    -webkit-transition: width 1s ease-in-out;
-    -moz-transition: width 1s ease-in-out;
-    -o-transition: width 1s ease-in-out;
-    transition: width 1s ease-in-out;
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+}
+
+.form-container .fields-form small.success {
+    width: 100%;
+    display: flex;
+    background-color: #d1e7dd;
+    color: #0a3622;
+    border-color: #a3cfbb;
 }
 
 .form-container .fields-form .errorlist {

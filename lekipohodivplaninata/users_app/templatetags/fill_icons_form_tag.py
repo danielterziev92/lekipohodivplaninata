@@ -16,6 +16,7 @@ def get_icon_for_form(label_id):
         'id_certificate': 'fa-solid fa-link',
         'id_date_of_birth': 'fa-regular fa-calendar-days',
         'id_description': 'fa-solid fa-text-height',
+        'id_phone_number': 'fa-solid fa-phone',
     }
 
     return icons_class.get(label_id, 'fa-solid fa-question')
