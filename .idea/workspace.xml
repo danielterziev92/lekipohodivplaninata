@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/js/passwordValidators.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/js/passwordValidators.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/js/uniformityOfPasswords.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/js/uniformityOfPasswords.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/email-templates/password_reset_subject.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/users/email-templates/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/email-templates/reset-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/email-templates/user-sign-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/email-templates/user-sign-up.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,24 +355,19 @@
           <option name="timeStamp" value="385" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="428" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py</url>
           <line>49</line>
           <option name="timeStamp" value="442" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py</url>
-          <line>214</line>
-          <option name="timeStamp" value="443" />
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="460" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py</url>
-          <line>100</line>
-          <option name="timeStamp" value="459" />
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py</url>
+          <line>248</line>
+          <option name="timeStamp" value="461" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

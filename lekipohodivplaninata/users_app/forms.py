@@ -1,10 +1,9 @@
-import datetime
-
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
+from django.core.cache import cache
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
 
@@ -246,6 +245,9 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
         email = self.cleaned_data.get('email')
         if not UserModel.objects.filter(email=email):
             self.add_error('email', 'Потребител с този имейл не съществува')
+
+        if cache.get(email):
+            self.add_error('email', 'Вече има изпратена завка за смяна на паролата')
 
         return email
 
