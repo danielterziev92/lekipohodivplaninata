@@ -142,7 +142,7 @@ EMAIL_HOST_USER = 'support@lekipohodivplaninata.bg'
 EMAIL_HOST_PASSWORD = '?agCbk6dEsM+'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'support@lekipohodivplaninata.bg'
+DEFAULT_FROM_EMAIL = f'Леки походи в планината <{EMAIL_HOST_USER}>'
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'

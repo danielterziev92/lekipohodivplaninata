@@ -1,3 +1,5 @@
+import datetime
+
 from celery import shared_task
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -61,6 +63,36 @@ def send_successful_email_signed_for_hike(hike_id, user_id):
 
     send_mail(
         subject='Успешно записване за поход',
+        message='',
+        from_email=SENDER,
+        recipient_list=recipient_list,
+        html_message=message,
+    )
+
+
+@shared_task
+def send_reset_password_user_email(user_id, *args, **kwargs):
+    user = BaseProfile.objects.get(pk=user_id)
+
+    context = {
+        'domain': DOMAIN_NAME,
+        'ip_address': kwargs.get('ip_address'),
+        'user': user,
+        'uid': kwargs.get('uid'),
+        'token': kwargs.get('token'),
+        'protocol': kwargs.get('protocol'),
+        'time_remaining': (datetime.datetime.now() + datetime.timedelta(hours=3)).strftime('%m-%d-%Y %H:%M часа')
+    }
+
+    recipient_list = (user.get_email,)
+
+    message = render_to_string(
+        template_name='users/email-templates/reset-password.html',
+        context=context
+    )
+
+    send_mail(
+        subject='Забравена парола',
         message='',
         from_email=SENDER,
         recipient_list=recipient_list,

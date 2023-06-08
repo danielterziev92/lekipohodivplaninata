@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import FileInput
 
 from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin, HikeBaseFormMixin
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
@@ -89,7 +88,7 @@ class HikeForm(HikeBaseFormMixin, PicturesMixin, forms.ModelForm):
 class HikeCreateForm(HikeCreateFormMixin, HikeForm):
     main_picture = forms.ImageField(
         label='Освновна снимка',
-        widget=FileInput,
+        widget=forms.FileInput,
     )
 
     event_venue = forms.CharField(
@@ -123,7 +122,7 @@ class HikeCreateForm(HikeCreateFormMixin, HikeForm):
 class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
     new_main_picture = forms.ImageField(
         label='Освновна снимка',
-        widget=FileInput,
+        widget=forms.FileInput,
         required=False,
     )
 
@@ -168,7 +167,7 @@ class HikeMorePictureUploadForm(forms.ModelForm):
 
     picture = forms.ImageField(
         label='Снимка',
-        widget=FileInput,
+        widget=forms.FileInput,
         required=False,
     )
 

@@ -3,12 +3,9 @@ from django.core.cache import cache
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from lekipohodivplaninata import settings
 from lekipohodivplaninata.core.tasks import send_successful_registration_user_profile
 from lekipohodivplaninata.users_app.models import BaseProfile
 
-DOMAIN_NAME = 'lekipohodivplanina.bg'
-SENDER = settings.DEFAULT_FROM_EMAIL
 UserModel = get_user_model()
 
 

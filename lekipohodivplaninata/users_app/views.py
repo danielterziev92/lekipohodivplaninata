@@ -1,9 +1,17 @@
 from django.contrib.auth import views as auth_view, login, get_user_model, mixins
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.utils.translation import gettext_lazy as _
 from django.views import generic as views
-from lekipohodivplaninata.users_app.forms import SignInForm, SignUpFormUser, UserResetPasswordForm, UserSetPasswordForm, \
-    GuideProfileFormUser, BaseUserUpdateForm
+
+from lekipohodivplaninata import settings
+from lekipohodivplaninata.core.tasks import send_reset_password_user_email
+from lekipohodivplaninata.users_app.forms import SignInForm, SignUpFormUser, UserResetPasswordForm, \
+    UserSetPasswordForm, GuideProfileFormUser, BaseUserUpdateForm
 from lekipohodivplaninata.core.mixins import UserFormMixin
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -87,15 +95,22 @@ class UserDeleteView(UserFormMixin, mixins.LoginRequiredMixin, views.DeleteView)
 class UserPasswordResetView(auth_view.PasswordResetView):
     template_name = 'users/reset-password.html'
     form_class = UserResetPasswordForm
-    from_email = 'Леки походи в планината <support@lekipohodivplaninata.bg>'
-    email_template_name = 'users/email-templates/reset-password.html'
-    subject_template_name = 'users/email-templates/password_reset_subject.txt'
     success_url = reverse_lazy('reset password done')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        self.title = 'Забравена парола'
-        return context
+    def form_valid(self, form):
+        email = form.cleaned_data.get('email')
+        associated_user = UserModel.objects.get(email=email)
+
+        if associated_user:
+            send_reset_password_user_email.delay(
+                associated_user.pk,
+                uid=urlsafe_base64_encode(force_bytes(associated_user.pk)),
+                token=PasswordResetTokenGenerator().make_token(associated_user),
+                ip_address=self.request.environ['REMOTE_ADDR'],
+                protocol='https' if self.request.is_secure() else 'http',
+            )
+
+            return HttpResponseRedirect(self.get_success_url())
 
 
 class UserPasswordResetDoneView(auth_view.PasswordResetDoneView):

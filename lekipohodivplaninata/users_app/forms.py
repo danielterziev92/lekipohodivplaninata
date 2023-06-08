@@ -1,6 +1,5 @@
 import datetime
 
-from cloudinary import forms as cloudinary_form
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
@@ -153,11 +152,6 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
 
         return password2
 
-    def clean(self):
-        cleaned_data = super().clean()
-
-        return cleaned_data
-
     def save(self, commit=True):
         try:
             with transaction.atomic():
@@ -190,11 +184,9 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
 
 
 class GuideProfileFormUser(BaseUserModelForm, forms.ModelForm):
-    avatar = cloudinary_form.CloudinaryFileField(
+    avatar = forms.ImageField(
         label='Профилана снимка',
-        options={
-            'folder': 'guides/avatars/'
-        },
+        widget=forms.FileInput,
         required=False,
     )
 
@@ -212,11 +204,9 @@ class GuideProfileFormUser(BaseUserModelForm, forms.ModelForm):
         widget=forms.Textarea()
     )
 
-    certificate = cloudinary_form.CloudinaryFileField(
+    certificate = forms.ImageField(
         label='Сертификат',
-        options={
-            'folder': 'guides/certificates/'
-        },
+        widget=forms.FileInput,
         required=False,
     )
 
@@ -224,10 +214,11 @@ class GuideProfileFormUser(BaseUserModelForm, forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['value'] = kwargs.get('instance').profile_id.first_name
         self.fields['last_name'].widget.attrs['value'] = kwargs.get('instance').profile_id.last_name
+        self.fields['phone_number'].widget.attrs['value'] = kwargs.get('instance').profile_id.phone_number
 
     class Meta:
         model = GuideProfile
-        fields = ('first_name', 'last_name', 'avatar', 'date_of_birth', 'description', 'certificate')
+        fields = ('first_name', 'last_name', 'avatar', 'date_of_birth', 'description', 'certificate', 'phone_number')
 
     def save(self, commit=True):
         guide_profile = super().save(commit=commit)
@@ -236,6 +227,7 @@ class GuideProfileFormUser(BaseUserModelForm, forms.ModelForm):
             user_id=self.instance.user_id,
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
+            phone_number=self.cleaned_data['phone_number'],
         )
 
         if commit:
@@ -245,42 +237,17 @@ class GuideProfileFormUser(BaseUserModelForm, forms.ModelForm):
 
 
 class UserResetPasswordForm(auth_form.PasswordResetForm):
-    domain = 'lekipohodivplaninata.bg'
-    site_name = 'ЛекиПоходиВпланината.BG'
-
     email = forms.EmailField(
-        label='Имейл'
+        label='Имейл',
+        widget=forms.EmailInput(),
     )
 
-    def send_mail(self, subject_template_name,
-                  email_template_name,
-                  context,
-                  from_email,
-                  to_email,
-                  html_email_template_name=None,
-                  ):
-        context['domain'] = self.domain
-        context['site_name'] = self.site_name
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not UserModel.objects.filter(email=email):
+            self.add_error('email', 'Потребител с този имейл не съществува')
 
-        return super().send_mail(
-            subject_template_name, email_template_name,
-            context, from_email, to_email, html_email_template_name,
-        )
-
-    def save(self, **kwargs):
-        kwargs['extra_email_context'] = {
-            'ip_address': self.get_ip_address(kwargs['request']),
-            'time_remaining': self.get_time_remaining
-        }
-        super().save(**kwargs)
-
-    @staticmethod
-    def get_ip_address(request):
-        return request.META['REMOTE_ADDR']
-
-    @property
-    def get_time_remaining(self):
-        return (datetime.datetime.now() + datetime.timedelta(hours=3)).strftime('%m-%d-%Y %H:%M:%S')
+        return email
 
 
 class UserSetPasswordForm(auth_form.SetPasswordForm):
@@ -304,6 +271,12 @@ class UserSetPasswordForm(auth_form.SetPasswordForm):
                 'id': 'password_2'
             }),
     )
+
+    def clean_new_password2(self):
+        password1 = self.cleaned_data.get('password_1')
+        password2 = self.cleaned_data.get('password_2')
+        if password1 != password2:
+            self.add_error('new_password2', 'Паролите не съвпадат')
 
     class Meta:
         error_messages = {

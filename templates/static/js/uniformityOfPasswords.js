@@ -1,4 +1,5 @@
 const buttonElement = document.querySelector('.fields-form button');
+buttonElement.disabled = true;
 const secondPasswordLabelElement = document.querySelector('label[for=password_2]');
 const errorElement = showErrorMessageBox();
 
@@ -28,8 +29,8 @@ function createEyeIcon() {
 function checkSamenessOfPasswords(e) {
     const first_password = document.getElementById('password_1').value;
     const second_password = e.currentTarget.value;
-
     if (first_password !== second_password) {
+
         secondPasswordLabelElement.after(errorElement);
         if (errorElement.classList.contains('success')) {
             errorElement.classList.remove('success');

@@ -26,7 +26,6 @@ function passwordValidations(e) {
         passwordIsValid() {
             this.changeColor(this.successfulIconColor);
             this.changeIcon(this.unsuccessfulClassName, this.successfulClassName);
-            buttonElement.disabled = false;
         }
 
         changeColor(color) {
