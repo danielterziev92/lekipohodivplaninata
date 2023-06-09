@@ -13,10 +13,10 @@
     position: absolute;
     bottom: 25px;
     left: 0;
-    width: 205px;
+    width: 200px;
     height: 55px;
-    /*border: 10px solid #ffffff;*/
-    border-radius: 0 20px 0 0;
+    margin-left: 5px;
+    border-radius: 10px 20px;
 }
 
 .home-slider .card::before {
@@ -31,22 +31,12 @@
     border-top-right-radius: 23px;
 }
 
-.home-slider .card-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.home-slider .image-content {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    z-index: 2;
 }
 
-.home-slider .card-content:before {
+.home-slider .image-content:before {
     content: '';
     position: absolute;
     left: 210px;
@@ -54,32 +44,55 @@
     width: 10px;
     height: 10px;
     border-bottom-left-radius: 10px;
-    background-color: red;
+    background-color: transparent;
+    box-shadow: -2px 2px 0 2px #ffffff;
 }
 
-.home-slider .card-content::before::before {
+.home-slider .image-content:after {
     content: '';
     position: absolute;
-    left: 210px;
-    bottom: 25px;
+    left: 0;
+    bottom: 85px;
     width: 10px;
     height: 10px;
-    background-color: yellow;
-}
-
-.home-slider .card-content h2 {
-    font-family: 'Marck Script', cursive;
-    color: #cf5533;
-}
-
-.home-slider .card-content p {
-    color: #ffffff;
+    border-bottom-left-radius: 10px;
+    background-color: transparent;
+    box-shadow: -2px 2px 0 2px #ffffff;
 }
 
 .home-slider .image-content img {
     width: 100%;
     height: calc(100vw / 1.78);
     object-fit: cover;
+}
+
+.home-slider .card-content {
+    position: absolute;
+    width: 190px;
+    height: 50px;
+    bottom: 28px;
+    left: 10px;
+    z-index: 2;
+    text-overflow: ellipsis;
+    overflow: clip;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-slider .card-content h2 {
+    font-family: 'Marck Script', cursive;
+    width: 100%;
+    color: #ffffff;
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 1.4rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.home-slider .card-content p {
+    color: #ffffff;
 }
 
 .swiper-button-next, .swiper-button-prev {
