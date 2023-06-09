@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/email_mixins.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/static/css/slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/slider.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,32 +61,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowRun.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Документи/GitHub/lekipohodivplaninata/venv/Scripts",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "debugger.dataViews.python.type.renderers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Документи/GitHub/lekipohodivplaninata/venv/Scripts&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;debugger.dataViews.python.type.renderers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike\templates" />
@@ -195,7 +191,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="" />
+      <option name="host" value="0.0.0.0" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
@@ -208,15 +204,9 @@
       <item itemvalue="Compound.Django + Celery" />
       <item itemvalue="Django Server.lekipohodivplaninata" />
       <item itemvalue="Python.Celery" />
-      <item itemvalue="Python.validators" />
       <item itemvalue="Python.models" />
+      <item itemvalue="Python.validators" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.validators" />
-        <item itemvalue="Python.models" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -344,38 +334,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/venv/Lib/site-packages/django/template/loader.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="121" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/admin.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/signals.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="385" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/users_app/forms.py</url>
-          <line>248</line>
-          <option name="timeStamp" value="461" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py</url>
-          <line>192</line>
-          <option name="timeStamp" value="463" />
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/hike/validators.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="474" />
         </line-breakpoint>
       </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -393,7 +356,7 @@
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$models.coverage" NAME="models Coverage Results" MODIFIED="1684933474106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1685385621604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1686301499829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$fill_icons_form_tag.coverage" NAME="fill_icons_form_tag Coverage Results" MODIFIED="1682839381990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags" />
   </component>

@@ -9,12 +9,26 @@
 
 .home-slider .card::after {
     content: '';
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: #cf5533;
     position: absolute;
-    top: 0;
+    bottom: 25px;
     left: 0;
-    width: 100%;
-    height: calc(100vw / 1.78);
+    width: 205px;
+    height: 55px;
+    /*border: 10px solid #ffffff;*/
+    border-radius: 0 20px 0 0;
+}
+
+.home-slider .card::before {
+    content: '';
+    background-color: #ffffff;
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 200px;
+    height: 50px;
+    border: 5px solid #ffffff;
+    border-top-right-radius: 23px;
 }
 
 .home-slider .card-content {
@@ -30,6 +44,27 @@
     align-items: center;
     align-content: center;
     z-index: 2;
+}
+
+.home-slider .card-content:before {
+    content: '';
+    position: absolute;
+    left: 210px;
+    bottom: 25px;
+    width: 10px;
+    height: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: red;
+}
+
+.home-slider .card-content::before::before {
+    content: '';
+    position: absolute;
+    left: 210px;
+    bottom: 25px;
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
 }
 
 .home-slider .card-content h2 {

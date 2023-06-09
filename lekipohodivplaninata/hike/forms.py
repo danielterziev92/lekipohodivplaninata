@@ -73,6 +73,9 @@ class HikeForm(HikeBaseFormMixin, PicturesMixin, forms.ModelForm):
     )
 
     def clean(self):
+        if self.errors:
+            return super().clean()
+
         cleaned_data = super().clean()
 
         self.check_is_slug_exist(cleaned_data)
