@@ -697,6 +697,26 @@
     border-style: solid;
 }
 
+.form-container .fields-form ul.messages {
+    margin-top: 0.625rem;
+    padding: 0.625rem;
+    padding-bottom: 0;
+    border-radius: 0.625rem;
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+}
+
+.form-container .fields-form ul.messages li {
+    text-indent: 1rem;
+    list-style: none;
+    margin-bottom: 0.625rem;
+}
+
+.form-container .fields-form ul.messages li:not(:first-child) {
+    padding-top: 0.625rem;
+    border-top: 0.0625rem solid rgb(0, 0, 0, 0.6);
+}
+
 .form-container .fields-form small.alert {
     width: 100%;
     display: flex;

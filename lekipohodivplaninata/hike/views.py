@@ -1,4 +1,8 @@
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import RestrictedError
+from django.http import HttpResponseRedirect
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
@@ -32,6 +36,17 @@ class HikeTypeDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionR
     model = HikeType
     permission_required = 'is_staff'
     success_url = reverse_lazy('hike type list')
+    extra_context = {
+        'cancel_url_button': _('hike type list')
+    }
+
+    def form_valid(self, form):
+        try:
+            return super().form_valid(form=form)
+        except RestrictedError:
+            message = 'За да изтриете този тип, трябва да изтриете всички походи които го сържат!'
+            messages.add_message(self.request, messages.ERROR, message)
+            return HttpResponseRedirect(reverse_lazy('hike type delete', kwargs={'pk': self.kwargs.get('pk')}))
 
 
 class HikeTypeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
@@ -39,7 +54,7 @@ class HikeTypeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionReq
     permission_required = 'is_staff'
 
     def get_queryset(self):
-        return HikeType.objects.all()
+        return HikeType.objects.all().order_by('event_date')
 
 
 class HikeLevelCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
@@ -62,6 +77,17 @@ class HikeLevelDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.Permission
     permission_required = 'is_staff'
     model = HikeLevel
     success_url = reverse_lazy('hike level list')
+    extra_context = {
+        'cancel_url_button': _('hike level list')
+    }
+
+    def form_valid(self, form):
+        try:
+            return super().form_valid(form=form)
+        except RestrictedError:
+            message = 'За да изтриете това ниво, трябва да изтриете всички походи които го сържат!'
+            messages.add_message(self.request, messages.ERROR, message)
+            return HttpResponseRedirect(reverse_lazy('hike level delete', kwargs={'pk': self.kwargs.get('pk')}))
 
 
 class HikeLevelListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
@@ -136,7 +162,7 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
 
 
 class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.FormView):
+                            views.FormView):
     template_name = 'hike/more-pictures-hike.html'
     permission_required = 'is_staff'
     form_class = HikeMorePictureUploadForm
@@ -168,7 +194,7 @@ class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_
 
 
 class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.DeleteView):
+                     views.DeleteView):
     template_name = 'hike/delete-hike.html'
     success_url = reverse_lazy('hike list')
     permission_required = 'is_staff'

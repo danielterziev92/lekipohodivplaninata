@@ -6,6 +6,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views import generic as views
 
+from lekipohodivplaninata import settings
 from lekipohodivplaninata.core.tasks import send_reset_password_user_email
 from lekipohodivplaninata.users_app.forms import SignInForm, SignUpFormUser, UserResetPasswordForm, \
     UserSetPasswordForm, GuideProfileFormUser, BaseUserUpdateForm
@@ -98,18 +99,17 @@ class UserPasswordResetView(auth_view.PasswordResetView):
         email = form.cleaned_data.get('email')
         associated_user = UserModel.objects.get(email=email)
 
-        if associated_user:
-            send_reset_password_user_email.delay(
-                associated_user.pk,
-                uid=urlsafe_base64_encode(force_bytes(associated_user.pk)),
-                token=tokens.PasswordResetTokenGenerator().make_token(associated_user),
-                ip_address=self.request.environ['REMOTE_ADDR'],
-                protocol='https' if self.request.is_secure() else 'http',
-            )
+        send_reset_password_user_email.delay(
+            associated_user.pk,
+            uid=urlsafe_base64_encode(force_bytes(associated_user.pk)),
+            token=tokens.PasswordResetTokenGenerator().make_token(associated_user),
+            ip_address=self.request.environ['REMOTE_ADDR'],
+            protocol='https' if self.request.is_secure() else 'http',
+        )
 
-            cache.set(email, True, timeout=3 * 60 * 60)
+        cache.set(email, True, timeout=settings.PASSWORD_RESET_TIMEOUT)
 
-            return HttpResponseRedirect(self.get_success_url())
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class UserPasswordResetDoneView(auth_view.PasswordResetDoneView):

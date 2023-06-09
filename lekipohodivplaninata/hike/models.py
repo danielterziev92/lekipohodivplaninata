@@ -97,6 +97,8 @@ class Hike(AuditInfoMixin, models.Model):
         on_delete=models.RESTRICT,
         null=False,
         blank=False,
+        verbose_name='Тип на похода',
+        help_text='Моля изберете тип за похода',
     )
 
     description = models.TextField(

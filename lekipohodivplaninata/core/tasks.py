@@ -81,7 +81,9 @@ def send_reset_password_user_email(user_id, *args, **kwargs):
         'uid': kwargs.get('uid'),
         'token': kwargs.get('token'),
         'protocol': kwargs.get('protocol'),
-        'time_remaining': (datetime.datetime.now() + datetime.timedelta(hours=3)).strftime('%m-%d-%Y %H:%M часа')
+        'time_remaining': (
+                datetime.datetime.now() + datetime.timedelta(hours=settings.PASSWORD_RESET_TIMEOUT))
+        .strftime('%d-%m-%Y %H:%M часа')
     }
 
     recipient_list = (user.get_email,)
