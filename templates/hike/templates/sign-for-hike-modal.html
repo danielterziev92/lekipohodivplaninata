@@ -10,11 +10,23 @@
             <input type="text" id="last-name" value="{{ user.get_last_name }}" name="last_name" required/>
             <label for="last-name">Фамилия:</label>
         </div>
+        <div class="form-floating">
+            <input type="tel" id="phone_number" value="{{ user.phone_number }}" name="phone_number" required/>
+            <label for="phone_number">Телефон:</label>
+        </div>
         <div class="form-floating numbers">
-            <label for="users-count">Брой участници:</label>
+            <label for="adults-count">Брой възрастни:</label>
             <div class="numeric">
                 <span class="plus">+</span>
-                <input type="number" id="users-count" value="0" inputmode="numeric" name="participants_number"/>
+                <input type="number" id="adults-count" value="0" inputmode="numeric" name="adult_number"/>
+                <span class="minus">-</span>
+            </div>
+        </div>
+        <div class="form-floating numbers">
+            <label for="children-count">Брой деца под 16 години:</label>
+            <div class="numeric">
+                <span class="plus">+</span>
+                <input type="number" id="children-count" value="0" inputmode="numeric" name="children_number"/>
                 <span class="minus">-</span>
             </div>
         </div>
@@ -46,11 +58,9 @@
                 <input type="checkbox" id="sing-me-up"/>
                 <label for="sing-me-up">Регистрирай ме</label>
             </div>
-            <div id="user-info">
-                <div class="form-floating">
-                    <input type="email" id="email" name="email"/>
-                    <label for="email">Имейл:</label>
-                </div>
+            <div class="form-floating" id="user-info">
+                <input type="email" id="email" name="email"/>
+                <label for="email">Имейл:</label>
             </div>
         {% endif %}
         {% csrf_token %}

@@ -1,6 +1,5 @@
 const modalFormElement = document.getElementById('sign-for-hike-form');
 const modalElement = document.getElementById('hike-modal');
-const userInfoElement = document.getElementById('user-info');
 
 document.getElementById('hide-sign-hike-form').addEventListener('click', hideModal);
 
@@ -24,14 +23,12 @@ function showModal(e) {
 
     modalFormElement.action = `${pk}/${slug}/sign-up/`
     modalElement.style.top = `${window.scrollY.toFixed(0)}px`;
-    document.body.style.overflow = 'hidden';
-    document.body.style.height = '100%';
-    modalFormElement.parentNode.style.display = 'flex';
+    document.body.classList.add('body-freeze')
+    modalFormElement.parentNode.classList.add('active');
 }
 
 function hideModal() {
-    modalFormElement.parentNode.style.display = 'none';
-    document.body.style.overflow = 'unset';
-    document.body.style.height = 'auto';
+    modalFormElement.parentNode.classList.remove('active')
+    document.body.classList.remove('body-freeze')
 }
 

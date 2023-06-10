@@ -1,4 +1,5 @@
 .home-slider {
+    margin: 10px;
     height: calc((100vw / 1.78) + 25px);
 }
 
@@ -32,8 +33,9 @@
 }
 
 .home-slider .image-content {
-    width: 100%;
-    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    height: calc((100vw / 1.78));
 }
 
 .home-slider .image-content:before {
@@ -82,13 +84,14 @@
 
 .home-slider .card-content h2 {
     font-family: 'Marck Script', cursive;
-    width: 100%;
     color: #ffffff;
     font-size: 1.3rem;
     text-align: center;
     line-height: 1.4rem;
     -webkit-line-clamp: 2;
+    display: -webkit-box;
     line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .home-slider .card-content p {

@@ -179,6 +179,13 @@
     z-index: -1;
 }
 
+#hike-modal.active {
+    height: 100%;
+    display: flex;
+    overflow: scroll;
+    padding-top: 100px;
+}
+
 #hike-modal {
     background-color: rgb(0, 0, 0, 0.3);
     position: absolute;
@@ -272,17 +279,20 @@
     border-bottom-width: 0.063rem;
 }
 
-.sign-up-for-hike .form-floating input:focus ~ label, .sign-up-for-hike .form-floating input:valid ~ label {
+/*.sign-up-for-hike .form-floating input:valid ~ label,*/
+.sign-up-for-hike .form-floating input:focus ~ label {
     color: rgb(0, 0, 0, 0.7);
     transform: scale(.85) translateY(-.5rem) translateX(.15rem);
 }
 
 .sign-up-for-hike .form-floating.numbers {
     display: flex;
+    justify-content: space-between;
 }
 
 .sign-up-for-hike .form-floating.numbers label {
     position: relative;
+    max-width: 150px;
 }
 
 .sign-up-for-hike .form-floating.numbers .numeric {
@@ -380,10 +390,9 @@
     display: none;
 }
 
-.sign-up-for-hike > #user-info {
+.sign-up-for-hike .form-floating#user-info {
     display: none;
 }
-
 
 .sign-up-for-hike .form-floating.registration > input[type=checkbox] + label:before {
     content: '\f057';
@@ -392,7 +401,6 @@
     margin-right: 0.625rem;
     font-size: 1.5rem;
     position: relative;
-    top: 0.25rem;
 }
 
 .sign-up-for-hike .form-floating.registration > input[type=checkbox]:checked + label:before {
@@ -400,8 +408,6 @@
 }
 
 .sign-up-for-hike #user-info .form-floating {
-    /*border: none;*/
-    /*border: 0.063rem solid rgba(0, 0, 0, 0.2);*/
     margin-bottom: 0.625rem;
 }
 

@@ -1,0 +1,15 @@
+<div class="buttons">
+    <button>
+        <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">Виж повече</a>
+    </button>
+    {% if sign_me_hike_button %}
+        <button type="button">
+            <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">
+                Запиши ме запохода</a>
+        </button>
+    {% elif edit_hike_button %}
+        <button type="button">
+            <a href="{% url 'hike update' pk=hike.pk slug=hike.slug %}">Редактирай</a>
+        </button>
+    {% endif %}
+</div>

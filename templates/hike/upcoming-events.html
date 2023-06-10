@@ -24,4 +24,7 @@
     <script src="{% static 'js/sign-up-form.js' %}"></script>
     <script src="{% static 'js/hike-modal.js' %}"></script>
     <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
+    {% if request.user.is_anonymous %}
+        <script src="{% static 'js/hike-modal-sign-up.js' %}"></script>
+    {% endif %}
 {% endblock %}

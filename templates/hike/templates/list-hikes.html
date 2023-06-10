@@ -1,4 +1,4 @@
-{% load sign-me-for-hike-button %}
+{% load list-hike-buttons %}
 
 <article class="hikes-list">
     {% for hike in object_list %}
@@ -50,23 +50,9 @@
                 </div>
             {% endif %}
             <p class="description">{{ hike.description }}</p>
-            <div class="buttons">
-                <button>
-                    <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">Виж повече</a>
-                </button>
-                {% sign_me_hike_button hike.event_date as sign_me_hike_button %}
-                {% if sign_me_hike_button %}
-                    <button>
-                        <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">
-                            Запиши ме запохода</a>
-                    </button>
-                {% endif %}
-
-            </div>
+            {% list_hike_buttons request.user hike %}
         </div>
     {% endfor %}
-
-
     <div class="pagination">
         {% if page_obj.has_previous %}
             <a href="?page={{ page_obj.previous_page_number }}">Предишна</a>

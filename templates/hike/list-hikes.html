@@ -18,7 +18,11 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
+    <script src="{% static 'js/hike-modal.js' %}"></script>
+    {% if request.user.is_anonymous %}
+        <script src="{% static 'js/hike-modal-sign-up.js' %}"></script>
+    {% endif %}
 {% endblock %}
 

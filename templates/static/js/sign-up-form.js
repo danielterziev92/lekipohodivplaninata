@@ -1,19 +1,29 @@
-const userCountElement = document.getElementById('users-count');
-userCountElement.addEventListener('change', (e) => {
-    if (Number.isNaN(Number(e.currentTarget.value)) || Number(e.currentTarget.value) < 0) {
-        e.currentTarget.value = 0;
+Array.from(document.querySelectorAll('div.numbers input[type=number]')).map(el => participantsCounts(el));
+
+function participantsCounts(el) {
+    el.addEventListener('change', onlyNumberAllowed);
+    el.previousElementSibling.addEventListener('click', increaseCountNumber);
+    el.nextElementSibling.addEventListener('click', decreaseCountNumber);
+
+    function onlyNumberAllowed(e) {
+        if (!isNumeric(e.currentTarget.value) || Number(e.currentTarget.value) < 0) {
+            e.currentTarget.value = 0;
+        }
     }
-});
-document.querySelector('.sign-up-for-hike .numeric .plus').addEventListener('click', (e) => {
-    const currentValue = userCountElement.value;
-    userCountElement.value = Number(currentValue) + 1;
-});
-document.querySelector('.sign-up-for-hike .numeric .minus').addEventListener('click', (e) => {
-    const currentValue = userCountElement.value;
-    if (currentValue > 0) {
-        userCountElement.value = Number(currentValue) - 1;
+
+    function isNumeric(value) {
+        return /^-?\d+$/.test(value);
     }
-});
+
+    function increaseCountNumber() {
+        el.value = Number(el.value) + 1;
+    }
+
+    function decreaseCountNumber() {
+        el.value = Number(el.value) - 1;
+    }
+}
+
 
 document.getElementById('option-1').addEventListener('click', (e) => {
     document.getElementById('organized-transport').checked = true;

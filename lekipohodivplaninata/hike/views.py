@@ -226,4 +226,4 @@ class HikeListView(UserDataMixin, views.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return HikeModel.objects.all().order_by('event_date')
+        return HikeModel.objects.all().order_by('-event_date')
