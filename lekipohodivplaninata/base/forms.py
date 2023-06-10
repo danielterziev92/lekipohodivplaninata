@@ -11,6 +11,8 @@ UserModel = get_user_model()
 
 
 class SignUpHikeForm(UserDataMixin, forms.ModelForm):
+    PHONE_NUMBER_MAX_LENGTH = 14
+    PHONE_NUMBER_MIN_LENGTH = 10
     hikes = tuple(Hike.objects.all().values_list('id', 'title'))
     travel_with = tuple(SignUpForHike.TRAVEL_CHOICES.get_all_choices())
 
@@ -33,8 +35,27 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         )
     )
 
-    participants_number = forms.IntegerField(
-        label='Брой участници',
+    phone_number = forms.CharField(
+        max_length=PHONE_NUMBER_MAX_LENGTH,
+        label='Телефон',
+        widget=forms.TextInput(
+            attrs={
+                'type': 'tel',
+                'pattern': '[+]?[0-9]{10,13}',
+                'minlength': PHONE_NUMBER_MIN_LENGTH,
+            }),
+    )
+
+    adults_numbers = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'value': 0,
+                'inputmode': 'numeric'
+            }
+        )
+    )
+
+    children_numbers = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={
                 'value': 0,
@@ -64,23 +85,38 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         )
     )
 
-    class Meta:
-        model = SignUpForHike
-        fields = (
-            'first_name',
-            'last_name',
-            'participants_number',
-            'choose_hike',
-            'choose_transport',
-            'email',
-        )
-
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.request = request
 
+    def clean_choose_hike(self):
+        chosen_hike = self.cleaned_data.get('choose_hike')
+
+        if chosen_hike not in self.request.path.split('/'):
+            self.add_error('choose_hike', 'Моля опитайте отново')
+
+        return chosen_hike
+
+    def clean_choose_transport(self):
+        chosen_transport = self.cleaned_data.get('choose_transport')
+
+        if not self.check_is_digit(chosen_transport) \
+                and not 0 < int(chosen_transport) < len(SignUpForHike.TRAVEL_CHOICES.get_all_choices()):
+            self.add_error('choose_transport', 'Мол опитайте отново')
+
+        return chosen_transport
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        if email:
+            if UserModel.objects.filter(email=email):
+                self.add_error('email', 'Потребител с този имейл съшествува')
+
+        return email
+
     def clean(self):
-        keys_to_delete = ['choose_transport', 'first_name', 'last_name', 'choose_hike']
+        keys_to_delete = ['choose_transport', 'first_name', 'last_name', 'phone_number', 'choose_hike']
         cleaned_data = super().clean()
 
         if isinstance(self.request.user, UserModel):
@@ -88,17 +124,19 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         else:
             if cleaned_data['email']:
                 profile = self.register_profile_with_random_password(
-                    last_name=cleaned_data['last_name'],
-                    email=cleaned_data['email'],
-                    first_name=cleaned_data['first_name'],
+                    email=cleaned_data.get('email'),
+                    last_name=cleaned_data.get('last_name'),
+                    first_name=cleaned_data.get('first_name'),
+                    phone_number=cleaned_data.get('phone_number')
                 )
                 user_app = UserModel.objects.get(pk=profile.user_id.pk)
                 login(self.request, user=user_app)
                 keys_to_delete.append('email')
             else:
                 profile = AnonymousAppUser.objects.create(
-                    first_name=cleaned_data['first_name'],
-                    last_name=cleaned_data['last_name']
+                    last_name=cleaned_data.get('last_name'),
+                    first_name=cleaned_data.get('first_name'),
+                    phone_number=cleaned_data.get('phone_number')
                 )
 
         cleaned_data['hike_id'] = Hike.objects.get(pk=cleaned_data.get('choose_hike'))
@@ -120,12 +158,34 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
 
         return obj
 
+    @staticmethod
+    def check_is_digit(value):
+        return int(value) if value.isdecimal() else None
+
+    class Meta:
+        model = SignUpForHike
+        fields = (
+            'first_name',
+            'last_name',
+            'phone_number',
+            'adults_numbers',
+            'children_numbers',
+            'choose_hike',
+            'choose_transport',
+            'email',
+        )
+
 
 class SiteEvaluationForm(forms.ModelForm):
     assessment = forms.ChoiceField(
         label='Оценка',
         widget=forms.RadioSelect,
         choices=[(x, x) for x in range(1, 11)]
+    )
+
+    comment = forms.ChoiceField(
+        label='Коментар',
+        widget=forms.Textarea(),
     )
 
     class Meta:

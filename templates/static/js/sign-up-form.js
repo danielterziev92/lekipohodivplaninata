@@ -20,6 +20,10 @@ function participantsCounts(el) {
     }
 
     function decreaseCountNumber() {
+        if (Number(el.value) < 1) {
+            return
+        }
+
         el.value = Number(el.value) - 1;
     }
 }

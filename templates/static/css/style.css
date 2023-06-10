@@ -8,9 +8,22 @@
     user-select: none;
 }
 
+html {
+    height: -webkit-fill-available;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: -webkit-fill-available;
+}
+
 .body-freeze {
     overflow: hidden;
-    height: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
+    box-sizing: border-box;
 }
 
 .main-header {
@@ -180,7 +193,7 @@
 }
 
 #hike-modal.active {
-    height: 100%;
+    height: 100vh;
     display: flex;
     overflow: scroll;
     padding-top: 100px;
@@ -197,6 +210,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 9999;
+    pointer-events: visible;
 }
 
 .sign-up-for-hike {
@@ -279,7 +293,7 @@
     border-bottom-width: 0.063rem;
 }
 
-/*.sign-up-for-hike .form-floating input:valid ~ label,*/
+.sign-up-for-hike .form-floating input:valid ~ label,
 .sign-up-for-hike .form-floating input:focus ~ label {
     color: rgb(0, 0, 0, 0.7);
     transform: scale(.85) translateY(-.5rem) translateX(.15rem);
@@ -334,7 +348,8 @@
     -moz-appearance: textfield;
 }
 
-.sign-up-for-hike .form-floating.numbers .numeric input, .sign-up-for-hike .form-floating.numbers .numeric input:focus {
+.sign-up-for-hike .form-floating.numbers .numeric input,
+.sign-up-for-hike .form-floating.numbers .numeric input:focus {
     text-align: center;
     width: 60%;
     padding: 0;
@@ -1270,14 +1285,29 @@
     color: #cf5533;
     font-size: 1.5rem;
     text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .site-evaluation > form > label {
-    display: none;
+    color: #cf5533;
+    font-size: 1.3rem;
+    margin: 10px 0;
 }
 
-.site-evaluation h1 {
-    width: 100%;
+.site-evaluation > form > textarea {
+    border: 1px solid #cf5533;
+    outline: none;
+}
+
+.site-evaluation > form > textarea:focus-visible {
+    color: #1b1b1b;
+    box-shadow: 0 0 0 0.125rem rgba(255, 103, 0, 0.5);
+    border-radius: 0.313rem;
+}
+
+.site-evaluation button {
+    margin-top: 20px;
 }
 
 .site-evaluation #id_assessment {
@@ -1285,7 +1315,7 @@
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(5, 1fr);
-    margin: 1rem 0;
+    margin: 10px 0;
 }
 
 .site-evaluation #id_assessment div {

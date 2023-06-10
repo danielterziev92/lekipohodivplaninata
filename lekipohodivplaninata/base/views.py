@@ -59,12 +59,12 @@ class SiteEvaluationView(views.CreateView):
     template_name = 'site-evaluation.html'
     form_class = SiteEvaluationForm
 
-    def get(self, request, *args, **kwargs):
-        if cache.get('is_signed'):
-            cache.delete('is_signed')
-            return super().get(request, *args, **kwargs)
-
-        return redirect('index')
+    # def get(self, request, *args, **kwargs):
+    #     if cache.get('is_signed'):
+    #         cache.delete('is_signed')
+    #         return super().get(request, *args, **kwargs)
+    #
+    #     return redirect('index')
 
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)

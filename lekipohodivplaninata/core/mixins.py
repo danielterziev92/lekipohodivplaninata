@@ -39,19 +39,30 @@ class UserDataMixin(object):
         return user
 
     @staticmethod
-    def register_base_user(user, first_name, last_name):
+    def register_base_user(user, first_name, last_name, phone_number):
         return BaseProfile.objects.create(
             user_id=user,
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            phone_number=phone_number,
         )
 
     def register_profile_with_random_password(self, **kwargs):
         raw_password = self.generate_random_password(8)
         cache.set('raw_password', raw_password, timeout=60)
         password = make_password(raw_password)
-        user_app = self.register_app_user(email=kwargs['email'], password=password)
-        profile = self.register_base_user(user=user_app, first_name=kwargs['first_name'], last_name=kwargs['last_name'])
+        try:
+            with transaction.atomic():
+                user_app = self.register_app_user(email=kwargs['email'], password=password)
+                profile = self.register_base_user(
+                    user=user_app,
+                    first_name=kwargs['first_name'],
+                    last_name=kwargs['last_name'],
+                    phone_number=kwargs['phone_number']
+                )
+        except Exception:
+            raise ValidationError('Моля опитайте отново, нещо се обърка')
+
         return profile
 
     def create_guide_profile(self, *args, **kwargs):

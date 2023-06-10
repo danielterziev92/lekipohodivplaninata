@@ -1,6 +1,5 @@
 from django.urls import path, include
 
-from lekipohodivplaninata.base.views import SignedForHikeListView
 from lekipohodivplaninata.hike.views import HikeCreateView, HikeDetailView, HikeListView, HikeUpdateView, \
     HikeDeleteView, HikeMorePictureUpload, HikeTypeCreateView, HikeTypeUpdateView, HikeTypeListView, \
     HikeTypeDeleteView, HikeLevelCreateView, HikeLevelUpdateView, HikeLevelDeleteView, HikeLevelListView
@@ -29,6 +28,5 @@ urlpatterns = (
         path('update/', HikeUpdateView.as_view(), name='hike update'),
         path('delete/', HikeDeleteView.as_view(), name='hike delete'),
         path('more-pictures/', HikeMorePictureUpload.as_view(), name='hike more pictures'),
-        path('all-recorded/', SignedForHikeListView.as_view(), name='all signed for hike')
     ])),
 )
