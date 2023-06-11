@@ -42,7 +42,7 @@ def send_successful_registration_user_profile(user_pk, raw_password):
 
 
 @shared_task
-def send_successful_email_signed_for_hike(hike_id, user_id):
+def send_successful_email_signed_for_hike_with_organize_transport(hike_id, user_id):
     hike = Hike.objects.get(pk=hike_id)
     hike_additional_info = HikeAdditionalInfo.objects.get(hike_id_id=hike_id)
     user = BaseProfile.objects.get(pk=user_id)
@@ -51,6 +51,39 @@ def send_successful_email_signed_for_hike(hike_id, user_id):
         'domain': DOMAIN_NAME,
         'hike': hike,
         'additional_info': hike_additional_info,
+        'user': user
+    }
+
+    recipient_list = (user.get_email,)
+
+    message = render_to_string(
+        template_name='hike/email-templates/sign-up-for-hike.html',
+        context=context
+    )
+
+    send_mail(
+        subject='Успешно записване за поход',
+        message='',
+        from_email=SENDER,
+        recipient_list=recipient_list,
+        html_message=message,
+    )
+
+
+@shared_task
+def send_successful_email_signed_for_hike_with_own_transport(hike_id, user_id):
+    hike = Hike.objects.get(pk=hike_id)
+    hike_additional_info = HikeAdditionalInfo.objects.get(hike_id_id=hike_id)
+    user = BaseProfile.objects.get(pk=user_id)
+
+    context = {
+        'domain': DOMAIN_NAME,
+        'hike': hike,
+        'additional_info': {
+            'event_venue': 'гр. Бургас',
+            'departure_place': 'на Лидл зад автогава Запад',
+            'departure_time': hike_additional_info.departure_time,
+        },
         'user': user
     }
 

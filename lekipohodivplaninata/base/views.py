@@ -66,9 +66,9 @@ class SiteEvaluationView(views.CreateView):
     form_class = SiteEvaluationForm
     success_url = reverse_lazy('index')
 
-    def get(self, request, *args, **kwargs):
-        if cache.get('is_signed'):
-            cache.delete('is_signed')
-            return super().get(request, *args, **kwargs)
-
-        return redirect('index')
+    # def get(self, request, *args, **kwargs):
+    #     if cache.get('is_signed'):
+    #         cache.delete('is_signed')
+    #         return super().get(request, *args, **kwargs)
+    #
+    #     return redirect('index')

@@ -194,3 +194,36 @@ class SiteEvaluationForm(forms.ModelForm):
     class Meta:
         model = SiteEvaluation
         fields = '__all__'
+
+
+# class BaseProfileForm(forms.ModelForm):
+#     username = forms.CharField(
+#         label='YOUR TEXT',
+#         max_length=Profile.USERNAME_MAX_LENGTH,
+#         widget=forms.TextInput()
+#     )
+#
+#     email = forms.CharField(
+#         label='YOUR TEXT',
+#         widget=forms.EmailInput()
+#     )
+#
+#     age = forms.IntegerField(
+#         label='YOUR TEXT',
+#         widget=forms.NumberInput(),
+#         validators=('TUKS SLOVI VALIDATOR, AKKO NE ZNAESH KAK SE PRAWI PISHI MI',)
+#     )
+#
+#     password = forms.CharField(
+#         label='YOUR TEXT',
+#         widget=forms.PasswordInput()
+#     )
+#
+#     class Meta:
+#         model = Profile
+#         fields = ('username', 'email', 'age', 'password')  # тук можеш да ги подреждаш както си поискаш
+#
+# class EditProfileForm(BaseProfileForm):
+#     class Meta:
+#         model = Profile
+#         fields = '__all__' # Или можеш да ги изредиш отново всичките.

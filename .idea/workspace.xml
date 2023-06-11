@@ -7,16 +7,10 @@
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/validators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/templatetags/dispatcher_for_level_and_type_of_hike.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/templatetags/dispatcher_for_level_and_type_of_hike.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/validators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/list-hike-buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/list-hike-buttons.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/sign-for-hike-modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/sign-for-hike-modal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/site-evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/site-evaluation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,34 +63,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Документи/GitHub/lekipohodivplaninata/venv/Scripts&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Документи/GitHub/lekipohodivplaninata/templates/hike/email-templates",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike\email-templates" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike\templates" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\static\js" />
@@ -280,7 +275,7 @@
       <workItem from="1686120272025" duration="15440000" />
       <workItem from="1686379249450" duration="10443000" />
       <workItem from="1686399235197" duration="22352000" />
-      <workItem from="1686481157261" duration="16312000" />
+      <workItem from="1686481157261" duration="24919000" />
     </task>
     <servers />
   </component>
@@ -359,7 +354,19 @@
           <line>7</line>
           <option name="timeStamp" value="496" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/signals.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="505" />
+        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
