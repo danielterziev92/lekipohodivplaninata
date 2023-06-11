@@ -9,7 +9,7 @@
         </button>
     {% elif edit_hike_button %}
         <button type="button">
-            <a href="{% url 'hike update' pk=hike.pk slug=hike.slug %}">Редактирай</a>
+            <a href="{% url 'all signed for hike' pk=hike.pk slug=hike.slug %}">Всички записани</a>
         </button>
     {% endif %}
 </div>

@@ -12,28 +12,43 @@
 
 {% block page_content %}
     <main>
-        <table class="signed-for-hike">
-            <thead>
-            <tr>
-                <td>Име и фамилия</td>
-                <td>Брой участници</td>
-                <td>Ще патуват с</td>
-            </tr>
-            </thead>
-            <tbody>
-            {% for obj in object_list %}
+        <section class="signed-for-hike">
+            <h1>{{ title_of_hike }}</h1>
+            <table>
+                <thead>
                 <tr>
-                    <td>{{ obj.user_object }}</td>
-                    <td>{{ obj.travel_with.name }}</td>
-                    <td>{{ obj.participants_number }}</td>
+                    <td>№</td>
+                    <td>Име и фамилия</td>
+                    <td>Телефон</td>
+                    <td>Брой възрастни</td>
+                    <td>Брой деца</td>
+                    <td>Ще патуват с</td>
+                    <td>Действие</td>
                 </tr>
-            {% empty %}
-                <tr>
-                    <td>Няма участници записани за похода</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for obj in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ obj.user_object.get_full_name }}</td>
+                        <td>
+                            <a href="tel:{{ obj.user_object.phone_number }}">
+                                {{ obj.user_object.phone_number }}
+                            </a>
+                        </td>
+                        <td>{{ obj.adults_numbers }}</td>
+                        <td>{{ obj.children_numbers }}</td>
+                        <td>{{ obj.get_travel_with_display }}</td>
+                        <td><a href="" class="unsuccessful"></a></td>
+                    </tr>
+                {% empty %}
+                    <tr class="empty">
+                        <td colspan="7">Няма участници записани за похода</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
     </main>
 {% endblock %}
 

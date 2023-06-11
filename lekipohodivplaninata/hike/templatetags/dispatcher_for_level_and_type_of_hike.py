@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 register = template.Library()
 
-from lekipohodivplaninata.hike.models import HikeLevel, HikeType
+from lekipohodivplaninata.hike.models import HikeLevel
 
 
 @register.inclusion_tag('hike/templates/list-type-or-level.html', name='dispatcher-hike-or-level', takes_context=True)

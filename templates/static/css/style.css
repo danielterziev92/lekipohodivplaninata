@@ -1215,43 +1215,107 @@ body {
 }
 
 .signed-for-hike {
-    margin: 0.065rem;
-    border: 0.065rem solid rgb(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 1.2rem;
+}
+.signed-for-hike h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signed-for-hike table {
+    border: 0.065rem solid rgb(0, 0, 0, 0.5);
     border-radius: 0.65rem;
     border-collapse: separate;
     border-spacing: 0;
 }
 
-.signed-for-hike thead {
+.signed-for-hike table thead tr,
+.signed-for-hike table tbody tr {
+    display: grid;
+    grid-template-columns: 30px repeat(3, minmax(50px, 1fr)) 70px;
+}
+
+.signed-for-hike table thead tr td,
+.signed-for-hike table tbody tr td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.signed-for-hike table thead tr td:nth-child(4),
+.signed-for-hike table thead tr td:nth-child(5),
+.signed-for-hike table tbody tr td:nth-child(4),
+.signed-for-hike table tbody tr td:nth-child(5) {
+    display: none;
+}
+
+.signed-for-hike table thead {
     background-color: #BBBBBB2B;
 }
 
-.signed-for-hike thead td {
-    border-bottom: 0.065rem solid rgb(0, 0, 0, 0.2);
+.signed-for-hike table thead td {
+    border-bottom: 0.065rem solid rgb(0, 0, 0, 0.5);
     padding: 0.2rem;
 }
 
-.signed-for-hike thead td:not(:first-child) {
-    border-left: 0.065rem solid rgb(0, 0, 0, 0.2);
-    /*padding: 0;*/
-    /*margin: 0;*/
+.signed-for-hike table thead td:not(:first-child) {
+    border-left: 0.065rem solid rgb(0, 0, 0, 0.5);
 }
 
-.signed-for-hike tbody tr:nth-child(even) {
+.signed-for-hike table tbody tr:nth-child(even) {
     background-color: #BBBBBB2B;
 }
 
-.signed-for-hike tbody tr td {
+
+.signed-for-hike table tbody tr td {
     text-align: center;
     padding: 0.2rem;
 }
 
-.signed-for-hike tbody tr:not(:last-child) td {
+.signed-for-hike table tbody tr:not(:last-child) td {
     border-bottom: 0.065rem solid rgb(0, 0, 0, 0.5);
 }
 
-.signed-for-hike tbody tr td:not(:first-child) {
+.signed-for-hike table tbody tr td:not(:first-child) {
     border-left: 0.065rem solid rgb(0, 0, 0, 0.5);
+}
+
+.signed-for-hike table tbody tr td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.signed-for-hike table tbody tr td a[href^=tel] {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1rem;
+}
+
+.signed-for-hike table tbody tr td a {
+    text-decoration: none;
+    font-size: 1.6rem;
+}
+
+
+.signed-for-hike table tbody tr td a.successful:before {
+    content: '\f058';
+    font-family: "Font Awesome 6 Free", serif;
+    color: #1fae51;
+    font-size: inherit;
+}
+
+.signed-for-hike table tbody tr td a.unsuccessful:before {
+    content: '\f057';
+    font-family: "Font Awesome 6 Free", serif;
+    color: #d72503;
+    font-size: inherit;
+}
+
+.signed-for-hike table tbody tr.empty {
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .m0 {
@@ -1270,7 +1334,6 @@ body {
 .site-evaluation {
     margin: 0.65rem;
     padding: 0.65rem;
-    /*border: 0.063rem solid rgb(0, 0, 0, 0.2);*/
     border-radius: 0.65rem;
 }
 
@@ -1293,6 +1356,8 @@ body {
     color: #cf5533;
     font-size: 1.3rem;
     margin: 10px 0;
+    width: 100%;
+    text-align: center;
 }
 
 .site-evaluation > form > textarea {
@@ -1306,8 +1371,33 @@ body {
     border-radius: 0.313rem;
 }
 
+.site-evaluation > form > .errorlist {
+    padding: 10px;
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+    border-radius: 10px;
+}
+
+.site-evaluation .errorlist li {
+    list-style: none;
+    text-indent: 30px;
+}
+
+.site-evaluation .errorlist li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
 .site-evaluation button {
     margin-top: 20px;
+}
+
+.site-evaluation button:nth-child(even) {
+    margin-left: 20px;
+}
+
+.site-evaluation button a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .site-evaluation #id_assessment {
@@ -1349,6 +1439,20 @@ body {
 }
 
 
+@media only screen and (width > 480px ) {
+
+    .signed-for-hike table thead tr,
+    .signed-for-hike table tbody tr {
+        grid-template-columns: 30px repeat(6, 1fr);
+    }
+
+    .signed-for-hike table thead tr td:nth-child(4),
+    .signed-for-hike table thead tr td:nth-child(5),
+    .signed-for-hike table tbody tr td:nth-child(4),
+    .signed-for-hike table tbody tr td:nth-child(5) {
+        display: flex;
+    }
+}
 
 
 

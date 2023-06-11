@@ -9,7 +9,7 @@ class ValueInRangeValidator:
         self.max_value = max_value
 
     def __call__(self, value):
-        if value < self.min_value or self.max_value < value:
+        if int(value) < self.min_value or self.max_value < int(value):
             raise ValidationError(f'Стойността трябва да бъде между {self.min_value} и {self.max_value}')
 
     def __eq__(self, other):

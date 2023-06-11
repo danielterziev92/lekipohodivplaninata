@@ -4,10 +4,15 @@ from django.contrib.contenttypes.models import ContentType
 
 from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation
 from lekipohodivplaninata.core.mixins import UserDataMixin
+from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import AnonymousAppUser
 
 UserModel = get_user_model()
+
+
+def check_is_digit(value):
+    return int(value) if value.isdecimal() else None
 
 
 class SignUpHikeForm(UserDataMixin, forms.ModelForm):
@@ -82,7 +87,8 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
             attrs={
                 'required': False
             }
-        )
+        ),
+        required=False
     )
 
     def __init__(self, request, *args, **kwargs):
@@ -100,9 +106,9 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
     def clean_choose_transport(self):
         chosen_transport = self.cleaned_data.get('choose_transport')
 
-        if not self.check_is_digit(chosen_transport) \
-                and not 0 < int(chosen_transport) < len(SignUpForHike.TRAVEL_CHOICES.get_all_choices()):
-            self.add_error('choose_transport', 'Мол опитайте отново')
+        if not check_is_digit(chosen_transport) \
+                and not -1 < int(chosen_transport) < len(SignUpForHike.TRAVEL_CHOICES.get_all_choices()):
+            self.add_error('choose_transport', 'Моля опитайте отново')
 
         return chosen_transport
 
@@ -116,13 +122,13 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         return email
 
     def clean(self):
-        keys_to_delete = ['choose_transport', 'first_name', 'last_name', 'phone_number', 'choose_hike']
+        keys_to_delete = ['choose_transport', 'first_name', 'last_name', 'phone_number', 'choose_hike', 'email']
         cleaned_data = super().clean()
 
         if isinstance(self.request.user, UserModel):
             profile = self.get_user_profile(self.request.user.pk)
         else:
-            if cleaned_data['email']:
+            if 'email' in cleaned_data and cleaned_data['email']:
                 profile = self.register_profile_with_random_password(
                     email=cleaned_data.get('email'),
                     last_name=cleaned_data.get('last_name'),
@@ -131,7 +137,6 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
                 )
                 user_app = UserModel.objects.get(pk=profile.user_id.pk)
                 login(self.request, user=user_app)
-                keys_to_delete.append('email')
             else:
                 profile = AnonymousAppUser.objects.create(
                     last_name=cleaned_data.get('last_name'),
@@ -158,10 +163,6 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
 
         return obj
 
-    @staticmethod
-    def check_is_digit(value):
-        return int(value) if value.isdecimal() else None
-
     class Meta:
         model = SignUpForHike
         fields = (
@@ -179,13 +180,15 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
 class SiteEvaluationForm(forms.ModelForm):
     assessment = forms.ChoiceField(
         label='Оценка',
-        widget=forms.RadioSelect,
+        widget=forms.RadioSelect(),
+        validators=(ValueInRangeValidator(1, 11),),
         choices=[(x, x) for x in range(1, 11)]
     )
 
-    comment = forms.ChoiceField(
-        label='Коментар',
+    comment = forms.CharField(
+        label='Описание',
         widget=forms.Textarea(),
+        required=False,
     )
 
     class Meta:

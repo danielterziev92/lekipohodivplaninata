@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -52,19 +53,22 @@ class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.Permissi
     permission_required = 'is_staff'
 
     def get_queryset(self):
-        return SignUpForHike.objects.filter(hike_id=self.kwargs['pk'])
+        return SignUpForHike.objects.filter(hike_id=self.kwargs['pk']).order_by('travel_with')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['title_of_hike'] = get_object_or_404(Hike, pk=self.kwargs.get('pk'), slug=self.kwargs.get('slug'))
+        return context
 
 
 class SiteEvaluationView(views.CreateView):
     template_name = 'site-evaluation.html'
     form_class = SiteEvaluationForm
+    success_url = reverse_lazy('index')
 
-    # def get(self, request, *args, **kwargs):
-    #     if cache.get('is_signed'):
-    #         cache.delete('is_signed')
-    #         return super().get(request, *args, **kwargs)
-    #
-    #     return redirect('index')
+    def get(self, request, *args, **kwargs):
+        if cache.get('is_signed'):
+            cache.delete('is_signed')
+            return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
+        return redirect('index')

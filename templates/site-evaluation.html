@@ -14,11 +14,19 @@
                 <form action="{% url 'site evaluation' %}" method="post">
                     <h1>Моля да оцените сайта ни:</h1>
                     {% for field in form %}
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                         {{ field }}
+                        {% if field.errors %}
+                            <ul class="errorlist">
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     {% endfor %}
                     {% csrf_token %}
                     <button>Изпрати</button>
+                    <button type="button"><a href="{% url 'index' %}">Отказ</a></button>
                 </form>
             </article>
         </section>

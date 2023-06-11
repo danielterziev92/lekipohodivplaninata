@@ -183,3 +183,7 @@ class GuideProfile(models.Model):
 
 class AnonymousAppUser(BaseDataInfo, AdditionalDataInfo):
     pass
+
+    @property
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
