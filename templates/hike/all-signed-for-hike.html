@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load fill_icons_form_tag %}
 {% load change_error_message %}
+{% load all-recorded-tags %}
 {% load static %}
 
 {% block page_styles %}
@@ -23,7 +24,7 @@
                     <td>Брой възрастни</td>
                     <td>Брой деца</td>
                     <td>Ще патуват с</td>
-                    <td>Действие</td>
+                    <td><i class="fa-solid fa-rectangle-list"></i></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,7 +40,15 @@
                         <td>{{ obj.adults_numbers }}</td>
                         <td>{{ obj.children_numbers }}</td>
                         <td>{{ obj.get_travel_with_display }}</td>
-                        <td><a href="" class="unsuccessful"></a></td>
+                        <td>
+                            <ul id="signed-for-hike-actions">
+                                <i class="fa-solid fa-list-ul"></i>
+                                <ul>
+                                    {% all-recorded-actions %}
+                                </ul>
+                            </ul>
+                        </td>
+                        {#                        <td><a href="" class="unsuccessful"></a></td>#}
                     </tr>
                 {% empty %}
                     <tr class="empty">
@@ -56,5 +65,6 @@
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/signed-for-hike-actions.js' %}"></script>
 {% endblock %}
 

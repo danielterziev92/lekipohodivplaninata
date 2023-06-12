@@ -1,0 +1,23 @@
+{% if event_impend %}
+    <li class="edit">
+        <a href="" id="edit-info">Редактирай информация</a>
+        <i class="fa-solid fa-square-pen"></i>
+    </li>
+    <li class="successful">
+        <a href="">Потвърди участие</a>
+        <i class="fa-solid fa-person-circle-check"></i>
+    </li>
+    <li class="unsuccessful">
+        <a href="">Откажи участие</a>
+        <i class="fa-solid fa-person-circle-xmark"></i>
+    </li>
+{% else %}
+    <li class="successful">
+        <a href="">Потвърди присъствие</a>
+        <i class="fa-solid fa-square-check"></i>
+    </li>
+    <li class="unsuccessful">
+        <a href="">Откажи присъствие</a>
+        <i class="fa-solid fa-square-xmark"></i>
+    </li>
+{% endif %}
