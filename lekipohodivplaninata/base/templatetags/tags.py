@@ -4,10 +4,19 @@ from django import template
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
+from lekipohodivplaninata.base.models import SignUpForHike
 from lekipohodivplaninata.hike.models import Hike
 
 register = template.Library()
 DOMAIN_NAME = 'lekipohodivplanina.bg'
+
+
+def get_total_count(persons):
+    result = 0
+    for person in persons:
+        result += person.adults_numbers + person.children_numbers
+
+    return result
 
 
 @register.inclusion_tag('hike/templates/all-recorded-action-buttons.html', name='all-recorded-actions', )
@@ -16,6 +25,8 @@ def get_all_recorded_action_buttons(obj):
         'event_impend': True,
         'hike': Hike.objects.get(pk=obj.hike_id_id),
         'pk': obj.pk,
+        'is_confirmed': True if obj.is_confirmed is None else False,
+        'is_recommend': True if obj.is_recommend is None else False,
     }
 
     hike_event_date = context['hike'].event_date
@@ -24,3 +35,32 @@ def get_all_recorded_action_buttons(obj):
         context['event_impend'] = False
 
     return context
+
+
+@register.simple_tag(name='total-travel-with-organized-transport')
+def get_all_travel_with_organized_transport(hike_pk):
+    persons = SignUpForHike.objects.all().filter(hike_id=hike_pk).filter(travel_with=0)
+    return get_total_count(persons)
+
+
+@register.simple_tag(name='total-adults-with-organized-transport')
+def get_all_travel_with_organized_transport(hike_pk):
+    return SignUpForHike.objects.all().filter(hike_id=hike_pk) \
+        .filter(adults_numbers__gt=0).count()
+
+
+@register.simple_tag(name='total-children-with-organized-transport')
+def get_all_travel_with_organized_transport(hike_pk):
+    return SignUpForHike.objects.all().filter(hike_id=hike_pk) \
+        .filter(children_numbers__gt=0).count()
+
+
+@register.simple_tag(name='total-travel-with-own-transport')
+def get_all_travel_with_organized_transport(hike_pk):
+    persons = SignUpForHike.objects.all().filter(hike_id=hike_pk).filter(travel_with=1)
+    return get_total_count(persons)
+
+
+@register.simple_tag(name='total-count-for-hike')
+def get_all_travel_with_organized_transport(a, b):
+    return a + b

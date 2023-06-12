@@ -14,7 +14,7 @@
 {% block page_content %}
     <main>
         <section class="signed-for-hike">
-            <h1>{{ title_of_hike }}</h1>
+            <h1>{{ hike.title }}</h1>
             <table>
                 <thead>
                 <tr>
@@ -56,6 +56,30 @@
                 {% endfor %}
                 </tbody>
             </table>
+        </section>
+        <section class="all-recorded-result">
+            {% total-travel-with-organized-transport hike.pk as total_organized_travel %}
+            {% total-travel-with-own-transport hike.pk as total_own_travel %}
+            <ul>
+                <li>
+                    <span>
+                        <i class="fa-solid fa-bus"></i>
+                        Общ брой участници с организиран транспорт: {{ total_organized_travel }}
+                    </span>
+                    <ul>
+                        <li>Общ брой възрастни: {% total-adults-with-organized-transport hike.pk %}</li>
+                        <li>Общ брой деца ( под 16 години ): {% total-adults-with-organized-transport hike.pk %}</li>
+                    </ul>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car"></i>
+                    Общ брой участници със собствен транспорт: {{ total_own_travel }}
+                </li>
+                <li>
+                    <i class="fa-solid fa-person-hiking"></i>
+                    Общ брой на всички участници: {% total-count-for-hike total_own_travel total_organized_travel %}
+                </li>
+            </ul>
         </section>
     </main>
 {% endblock %}

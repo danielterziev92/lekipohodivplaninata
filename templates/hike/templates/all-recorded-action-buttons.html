@@ -3,21 +3,25 @@
         <a href="{% url 'signed for hike update' pk %}" id="edit-info">Редактирай информация</a>
         <i class="fa-solid fa-square-pen"></i>
     </li>
-    <li class="successful">
-        <a href="">Потвърди участие</a>
-        <i class="fa-solid fa-person-circle-check"></i>
-    </li>
-    <li class="unsuccessful">
-        <a href="">Откажи участие</a>
-        <i class="fa-solid fa-person-circle-xmark"></i>
-    </li>
+    {% if is_confirmed %}
+        <li class="successful">
+            <a href="{% url 'signed for hike confirm' pk 'True' %}">Потвърди участие</a>
+            <i class="fa-solid fa-person-circle-check"></i>
+        </li>
+        <li class="unsuccessful">
+            <a href="{% url 'signed for hike confirm' pk 'False' %}">Откажи участие</a>
+            <i class="fa-solid fa-person-circle-xmark"></i>
+        </li>
+    {% endif %}
 {% else %}
-    <li class="successful">
-        <a href="">Потвърди присъствие</a>
-        <i class="fa-solid fa-square-check"></i>
-    </li>
-    <li class="unsuccessful">
-        <a href="">Откажи присъствие</a>
-        <i class="fa-solid fa-square-xmark"></i>
-    </li>
+    {% if is_recommend %}
+        <li class="successful">
+            <a href="">Потвърди присъствие</a>
+            <i class="fa-solid fa-square-check"></i>
+        </li>
+        <li class="unsuccessful">
+            <a href="">Откажи присъствие</a>
+            <i class="fa-solid fa-square-xmark"></i>
+        </li>
+    {% endif %}
 {% endif %}

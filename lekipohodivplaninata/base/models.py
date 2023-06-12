@@ -53,6 +53,16 @@ class SignUpForHike(models.Model):
         blank=False,
     )
 
+    is_confirmed = models.BooleanField(
+        null=True,
+        blank=True,
+    )
+
+    is_recommend = models.BooleanField(
+        null=True,
+        blank=True,
+    )
+
     signed_on = models.DateTimeField(
         auto_now_add=True,
     )

@@ -1,13 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
-from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
-from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm
-from lekipohodivplaninata.base.forms import SignedForHikeUpdateForm
+from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm
 from lekipohodivplaninata.base.models import SignUpForHike
 from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
@@ -71,16 +69,44 @@ class SignedForHikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.Permis
         return context
 
 
+def confirm_user_for_hike(request, pk, text):
+    bool_values = {
+        'True': True,
+        'False': False,
+    }
+
+    if request.method.lower() == 'post':
+        return redirect('index')
+
+    obj = get_object_or_404(SignUpForHike, pk=pk)
+    obj.is_confirmed = bool_values[text]
+    obj.save()
+
+    return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
+
+
+def cancel_user_for_hike(request, pk):
+    if request.method.lower() == 'post':
+        return redirect('index')
+
+    obj = get_object_or_404(SignUpForHike, pk=pk)
+    obj.is_confirmed = False
+    obj.save()
+
+    return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
+
+
 class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
     template_name = 'hike/all-signed-for-hike.html'
     permission_required = 'is_staff'
 
     def get_queryset(self):
-        return SignUpForHike.objects.filter(hike_id=self.kwargs['pk']).order_by('travel_with')
+        return SignUpForHike.objects.filter(hike_id=self.kwargs['pk']) \
+            .order_by('is_confirmed').order_by('is_recommend').order_by('travel_with')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
-        context['title_of_hike'] = get_object_or_404(Hike, pk=self.kwargs.get('pk'), slug=self.kwargs.get('slug'))
+        context['hike'] = get_object_or_404(Hike, pk=self.kwargs.get('pk'), slug=self.kwargs.get('slug'))
         return context
 
 

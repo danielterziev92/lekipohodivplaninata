@@ -1362,6 +1362,38 @@ body {
     grid-template-columns: 1fr;
 }
 
+.all-recorded-result {
+    display: flex;
+    justify-content: center;
+}
+
+.all-recorded-result ul li {
+    list-style: none;
+    font-size: 1.4rem;
+    padding: 10px;
+}
+
+.all-recorded-result ul > li:not(:last-child) {
+    border-bottom: 1px solid rgb(0, 0, 0, 1);
+
+}
+
+.all-recorded-result ul li i {
+    color: #cf5533;
+}
+
+.all-recorded-result ul li > ul li:not(:last-child),
+.all-recorded-result ul li > ul li {
+    text-indent: 80px;
+    padding: 5px;
+    border-bottom: none;
+}
+
+.all-recorded-result ul li > ul li:before {
+    font-family: "Font Awesome 6 Free", serif;
+}
+
+
 .m0 {
     margin: 0;
 }
