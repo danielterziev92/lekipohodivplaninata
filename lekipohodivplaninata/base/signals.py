@@ -15,14 +15,15 @@ UserModel = get_user_model()
 
 @receiver(signal=post_save, sender=SignUpForHike)
 def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs):
+    if not created:
+        return
+
     instance_choices = {
         '0': send_successful_email_signed_for_hike_with_own_transport,
         '1': send_successful_email_signed_for_hike_with_organize_transport,
     }
 
-    if created:
-        if isinstance(instance.user_object, AnonymousAppUser):
-            return
+    if isinstance(instance.user_object, AnonymousAppUser):
+        return
 
-        # if instance.
-        return instance_choices[instance.travel_with].delay(instance.hike_id.pk, instance.user_id)
+    return instance_choices[instance.travel_with].delay(instance.hike_id.pk, instance.user_id)

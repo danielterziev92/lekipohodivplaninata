@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load tags %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/scrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section class="signed-for-hike">
+            <article class="form-container">
+                <form action="{% url 'signed for hike update' object.pk %}" method="post"
+                      class="fields-form">
+                    {% for field in form %}
+                        <label for="{{ field.id_for_label }}">
+                            <span>{{ field.label }}</span>
+                            {{ field }}
+                        </label>
+                    {% endfor %}
+                    {% csrf_token %}
+                    <button>Запазване</button>
+                </form>
+            </article>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+{% endblock %}

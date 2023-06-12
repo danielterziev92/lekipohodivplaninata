@@ -1324,10 +1324,9 @@ body {
 
 .signed-for-hike table tbody tr td ul.show > ul li {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     width: 300px;
     text-align: left;
-    padding: 10px 5px;
 }
 
 .signed-for-hike table tbody tr td ul.show > ul li:not(:last-child) {
@@ -1337,10 +1336,13 @@ body {
 .signed-for-hike table tbody tr td ul.show > ul li a {
     text-decoration: none;
     color: #000000;
+    width: 100%;
+    padding: 10px 5px;
 }
 
 .signed-for-hike table tbody tr td ul.show > ul li i {
     font-size: 1.3rem;
+    margin-right: 5px;
 }
 
 .signed-for-hike table tbody tr td ul.show ul li.edit i {

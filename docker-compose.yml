@@ -15,5 +15,6 @@ services:
       - ./postgresql:/var/lib/postgresql/data
   cache:
     image: redis
+    restart: always
     ports:
       - '6379:6379'

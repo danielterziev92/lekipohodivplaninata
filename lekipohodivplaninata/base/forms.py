@@ -7,6 +7,7 @@ from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import AnonymousAppUser
+from lekipohodivplaninata.users_app.models import BaseProfile
 
 UserModel = get_user_model()
 
@@ -177,6 +178,62 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         )
 
 
+class SignedForHikeUpdateForm(forms.ModelForm):
+    first_name = forms.CharField(
+        max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
+        label='Име',
+        widget=forms.TextInput(attrs={
+            'value': '',
+        })
+    )
+
+    last_name = forms.CharField(
+        max_length=BaseProfile.LAST_NAME_MAX_LENGTH,
+        label='Фамилия',
+        widget=forms.TextInput(attrs={
+            'value': '',
+        })
+    )
+
+    phone_number = forms.CharField(
+        max_length=BaseProfile.PHONE_NUMBER_MAX_LENGTH,
+        label='Телефон',
+        widget=forms.TextInput(attrs={
+            'value': '',
+        })
+    )
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        user = obj.user_object.__class__._default_manager.get(pk=obj.user_id)
+
+        if self.cleaned_data['first_name'] and self.cleaned_data['first_name'] != obj.user_object.first_name:
+            user.first_name = self.cleaned_data['first_name']
+
+        if self.cleaned_data['last_name'] and self.cleaned_data['last_name'] != obj.user_object.last_name:
+            user.last_name = self.cleaned_data['last_name']
+
+        if self.cleaned_data['phone_number'] and self.cleaned_data['phone_number'] != obj.user_object.phone_number:
+            user.phone_number = self.cleaned_data['phone_number']
+
+        user.save()
+
+        if commit:
+            obj.save()
+
+        return obj
+
+    class Meta:
+        model = SignUpForHike
+        fields = (
+            'hike_id', 'first_name', 'last_name', 'phone_number', 'travel_with', 'adults_numbers', 'children_numbers')
+        labels = {
+            'hike_id': 'Походи',
+            'adults_numbers': 'Брой възрастни',
+            'children_numbers': 'Брой деца',
+        }
+
+
 class SiteEvaluationForm(forms.ModelForm):
     assessment = forms.ChoiceField(
         label='Оценка',
@@ -194,36 +251,3 @@ class SiteEvaluationForm(forms.ModelForm):
     class Meta:
         model = SiteEvaluation
         fields = '__all__'
-
-
-# class BaseProfileForm(forms.ModelForm):
-#     username = forms.CharField(
-#         label='YOUR TEXT',
-#         max_length=Profile.USERNAME_MAX_LENGTH,
-#         widget=forms.TextInput()
-#     )
-#
-#     email = forms.CharField(
-#         label='YOUR TEXT',
-#         widget=forms.EmailInput()
-#     )
-#
-#     age = forms.IntegerField(
-#         label='YOUR TEXT',
-#         widget=forms.NumberInput(),
-#         validators=('TUKS SLOVI VALIDATOR, AKKO NE ZNAESH KAK SE PRAWI PISHI MI',)
-#     )
-#
-#     password = forms.CharField(
-#         label='YOUR TEXT',
-#         widget=forms.PasswordInput()
-#     )
-#
-#     class Meta:
-#         model = Profile
-#         fields = ('username', 'email', 'age', 'password')  # тук можеш да ги подреждаш както си поискаш
-#
-# class EditProfileForm(BaseProfileForm):
-#     class Meta:
-#         model = Profile
-#         fields = '__all__' # Или можеш да ги изредиш отново всичките.

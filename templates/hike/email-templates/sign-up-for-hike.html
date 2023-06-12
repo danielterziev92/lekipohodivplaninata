@@ -18,12 +18,12 @@
              alt="Image Picture" width="200">
     </figure>
     <p style="color: #1b1b1b;">
-        Вие успешно се записахте за <a href="https://{{ domain }}/{{ hike.slug }}"><strong>{{ hike.title }}</strong></a>.
+        Благодарим ви, че се записахте за
+        <a href="https://{{ domain }}/{{ hike.pk }}/{{ hike.slug }}" style="text-decoration: none;color: #000000l">
+            <strong>{{ hike.title }}</strong>
+        </a>.
     </p>
     <p style="color: #1b1b1b;">Който ще се проведе на <strong>{{ hike.event_date }}</strong></p>
-    {#    <p style="color: #1b1b1b;">Всички ще се събират в {{ additional_info.event_venue }}#}
-    {#        на {{ additional_info.departure_place }} от {{ additional_info.departure_time }} часа</p>#}
-    <br/>
     <br/>
     <p style="color: #1b1b1b;">
         Моля очаквайте наш служител да се обади за потвърждаване на записването.

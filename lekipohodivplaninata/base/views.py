@@ -7,9 +7,11 @@ from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins
 
 from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm
+from lekipohodivplaninata.base.forms import SignedForHikeUpdateForm
 from lekipohodivplaninata.base.models import SignUpForHike
 from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
+from lekipohodivplaninata.users_app.models import BaseProfile
 
 HikeModel = Hike
 UserModel = get_user_model()
@@ -48,6 +50,27 @@ class SignUpHike(views.UpdateView):
         return kwargs
 
 
+class SignedForHikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
+    template_name = 'hike/signed-for-hike.html'
+    permission_required = 'is_staff'
+    form_class = SignedForHikeUpdateForm
+    model = SignUpForHike
+
+    def get_success_url(self):
+        obj = SignUpForHike.objects.get(pk=self.kwargs.get('pk'))
+        return reverse_lazy('all signed for hike', kwargs={
+            'pk': obj.hike_id.pk, 'slug': obj.hike_id.slug,
+        })
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_info = BaseProfile.objects.get(pk=context['object'].user_id)
+        context['form'].fields['first_name'].widget.attrs['value'] = user_info.get_first_name
+        context['form'].fields['last_name'].widget.attrs['value'] = user_info.get_last_name
+        context['form'].fields['phone_number'].widget.attrs['value'] = user_info.phone_number
+        return context
+
+
 class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
     template_name = 'hike/all-signed-for-hike.html'
     permission_required = 'is_staff'
@@ -66,9 +89,9 @@ class SiteEvaluationView(views.CreateView):
     form_class = SiteEvaluationForm
     success_url = reverse_lazy('index')
 
-    # def get(self, request, *args, **kwargs):
-    #     if cache.get('is_signed'):
-    #         cache.delete('is_signed')
-    #         return super().get(request, *args, **kwargs)
-    #
-    #     return redirect('index')
+    def get(self, request, *args, **kwargs):
+        if cache.get('is_signed'):
+            cache.delete('is_signed')
+            return super().get(request, *args, **kwargs)
+
+        return redirect('index')

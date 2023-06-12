@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load fill_icons_form_tag %}
 {% load change_error_message %}
-{% load all-recorded-tags %}
+{% load tags %}
 {% load static %}
 
 {% block page_styles %}
@@ -44,11 +44,10 @@
                             <ul id="signed-for-hike-actions">
                                 <i class="fa-solid fa-list-ul"></i>
                                 <ul>
-                                    {% all-recorded-actions %}
+                                    {% all-recorded-actions obj %}
                                 </ul>
                             </ul>
                         </td>
-                        {#                        <td><a href="" class="unsuccessful"></a></td>#}
                     </tr>
                 {% empty %}
                     <tr class="empty">
@@ -62,8 +61,6 @@
 {% endblock %}
 
 {% block page_scripts %}
-    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
     <script src="{% static 'js/signed-for-hike-actions.js' %}"></script>
 {% endblock %}
