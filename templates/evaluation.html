@@ -11,8 +11,8 @@
     <main>
         <section>
             <article class="site-evaluation">
-                <form action="{% url 'site evaluation' %}" method="post">
-                    <h1>Моля да оцените сайта ни:</h1>
+                <form action="{% url action_url %}" method="post">
+                    <h1>{{ title }}</h1>
                     {% for field in form %}
                         <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                         {{ field }}

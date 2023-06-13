@@ -68,7 +68,7 @@ class SignUpForHike(models.Model):
     )
 
 
-class SiteEvaluation(models.Model):
+class Evaluation(models.Model):
     assessment = models.PositiveSmallIntegerField(
         null=False,
         blank=False,
@@ -80,6 +80,11 @@ class SiteEvaluation(models.Model):
         blank=True,
     )
 
+    class Meta:
+        abstract = True
+
+
+class SiteEvaluation(Evaluation):
     rated_in = models.DateTimeField(
         auto_now_add=True,
         null=False,
@@ -87,28 +92,29 @@ class SiteEvaluation(models.Model):
     )
 
 
-class HikeEvaluation(models.Model):
-    assessment = models.PositiveSmallIntegerField(
-        null=False,
-        blank=False,
-        validators=(ValueInRangeValidator(1, 10),)
-    )
-
-    comment = models.TextField(
-        null=True,
-        blank=True,
-    )
-
+class HikeEvaluationMoreInfo(models.Model):
     user_id = models.ForeignKey(
         BaseProfile,
-        on_delete=models.RESTRICT,
-        null=False,
+        on_delete=models.SET_NULL,
+        null=True,
         blank=False,
     )
 
     hike_id = models.ForeignKey(
         Hike,
-        on_delete=models.RESTRICT,
-        null=False,
+        on_delete=models.SET_NULL,
+        null=True,
         blank=False,
+    )
+
+
+class HikeEvaluation(Evaluation):
+    slug = models.SlugField(
+        unique=True,
+        null=False,
+        blank=True,
+    )
+
+    more_info = models.ManyToManyField(
+        to=HikeEvaluationMoreInfo,
     )

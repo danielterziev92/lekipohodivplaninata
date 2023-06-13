@@ -14,6 +14,46 @@ SENDER = settings.DEFAULT_FROM_EMAIL
 UserModel = get_user_model()
 
 
+def get_hike(hike_id):
+    return Hike.objects.get(pk=hike_id)
+
+
+def get_hike_additional_info(hike_id):
+    return HikeAdditionalInfo.objects.get(hike_id_id=hike_id)
+
+
+def get_user_profile(user_id):
+    return BaseProfile.objects.get(pk=user_id)
+
+
+def get_signed_for_hike_base_context(hike_id, user_id):
+    hike = get_hike(hike_id)
+    hike_additional_info = get_hike_additional_info(hike_id)
+    user = get_user_profile(user_id)
+    return {
+        'domain': DOMAIN_NAME,
+        'hike': hike,
+        'additional_info': hike_additional_info,
+        'user': user
+    }
+
+
+def get_signed_for_hike_organized_transport_context(hike_id, user_id):
+    hike = get_hike(hike_id)
+    hike_additional_info = {
+        'event_venue': 'гр. Бургас',
+        'departure_place': 'Лидл зад автогара Запад',
+        'departure_time': '8:00',
+    }
+    user = get_user_profile(user_id)
+    return {
+        'domain': DOMAIN_NAME,
+        'hike': hike,
+        'additional_info': hike_additional_info,
+        'user': user
+    }
+
+
 @shared_task
 def send_successful_registration_user_profile(user_pk, raw_password):
     user = BaseProfile.objects.get(pk=user_pk)
@@ -43,21 +83,12 @@ def send_successful_registration_user_profile(user_pk, raw_password):
 
 @shared_task
 def send_successful_email_signed_for_hike(hike_id, user_id):
-    hike = Hike.objects.get(pk=hike_id)
-    hike_additional_info = HikeAdditionalInfo.objects.get(hike_id_id=hike_id)
-    user = BaseProfile.objects.get(pk=user_id)
+    context = get_signed_for_hike_base_context(hike_id=hike_id, user_id=user_id)
 
-    context = {
-        'domain': DOMAIN_NAME,
-        'hike': hike,
-        'additional_info': hike_additional_info,
-        'user': user
-    }
-
-    recipient_list = (user.get_email,)
+    recipient_list = (context['user'].get_email,)
 
     message = render_to_string(
-        template_name='hike/email-templates/sign-up-for-hike.html',
+        template_name='hike/email-templates/sign-up-for-hike-general.html',
         context=context
     )
 
@@ -71,60 +102,21 @@ def send_successful_email_signed_for_hike(hike_id, user_id):
 
 
 @shared_task
-def send_successful_email_signed_for_hike_with_organize_transport(hike_id, user_id):
-    # hike = Hike.objects.get(pk=hike_id)
-    # hike_additional_info = HikeAdditionalInfo.objects.get(hike_id_id=hike_id)
-    user = BaseProfile.objects.get(pk=user_id)
-    #
-    context = {
-    #     'domain': DOMAIN_NAME,
-    #     'hike': hike,
-    #     'additional_info': hike_additional_info,
-    #     'user': user
-    }
-    #
-    recipient_list = (user.get_email,)
+def send_successful_email_signed_for_hike_confirm(hike_id, user_id, travel_with):
+    if travel_with == 1:
+        context = get_signed_for_hike_base_context(hike_id=hike_id, user_id=user_id)
+    else:
+        context = get_signed_for_hike_organized_transport_context(hike_id=hike_id, user_id=user_id)
+
+    recipient_list = (context['user'].get_email,)
 
     message = render_to_string(
-        template_name='hike/email-templates/sign-up-for-hike.html',
+        template_name='hike/email-templates/sign-up-for-hike-successful-signed.html',
         context=context
     )
 
     send_mail(
-        subject='Успешно записване за поход',
-        message='',
-        from_email=SENDER,
-        recipient_list=recipient_list,
-        html_message=message,
-    )
-
-
-@shared_task
-def send_successful_email_signed_for_hike_with_own_transport(hike_id, user_id):
-    # hike = Hike.objects.get(pk=hike_id)
-    # hike_additional_info = HikeAdditionalInfo.objects.get(hike_id_id=hike_id)
-    user = BaseProfile.objects.get(pk=user_id)
-
-    context = {
-        # 'domain': DOMAIN_NAME,
-        # 'hike': hike,
-        # 'additional_info': {
-        #     'event_venue': 'гр. Бургас',
-        #     'departure_place': 'на Лидл зад автогава Запад',
-        #     'departure_time': hike_additional_info.departure_time,
-        # },
-        # 'user': user
-    }
-
-    recipient_list = (user.get_email,)
-
-    message = render_to_string(
-        template_name='hike/email-templates/sign-up-for-hike.html',
-        context=context
-    )
-
-    send_mail(
-        subject='Успешно записване за поход',
+        subject='Потвърждаване на записване за поход',
         message='',
         from_email=SENDER,
         recipient_list=recipient_list,
@@ -162,3 +154,5 @@ def send_reset_password_user_email(user_id, *args, **kwargs):
         recipient_list=recipient_list,
         html_message=message,
     )
+
+

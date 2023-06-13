@@ -1,9 +1,9 @@
-from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
-from django.contrib.auth import mixins as auth_mixins
+from django.contrib.auth import mixins as auth_mixins, get_user_model
+from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm
 from lekipohodivplaninata.base.models import SignUpForHike
@@ -79,8 +79,11 @@ def confirm_user_for_hike(request, pk, text):
         return redirect('index')
 
     obj = get_object_or_404(SignUpForHike, pk=pk)
-    obj.is_confirmed = bool_values[text]
-    obj.save()
+    if bool_values[text]:
+        obj.is_confirmed = True
+        obj.save()
+    else:
+        obj.delete()
 
     return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
 
@@ -111,9 +114,13 @@ class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.Permissi
 
 
 class SiteEvaluationView(views.CreateView):
-    template_name = 'site-evaluation.html'
+    template_name = 'evaluation.html'
     form_class = SiteEvaluationForm
     success_url = reverse_lazy('index')
+    extra_context = {
+        'title': 'Моля да оцените сайта ни:',
+        'action_url': _('site evaluation')
+    }
 
     def get(self, request, *args, **kwargs):
         if cache.get('is_signed'):

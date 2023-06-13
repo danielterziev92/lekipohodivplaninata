@@ -19,12 +19,14 @@ HikeModel = Hike
 UserModel = get_user_model()
 
 
-class UserDataMixin(object):
+class CommonMixin(object):
     @staticmethod
-    def generate_random_password(length):
+    def generate_random_string(length):
         symbols = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-='
         return ''.join(symbols[random.randint(0, len(symbols) - 1)] for _ in range(length))
 
+
+class UserDataMixin(CommonMixin):
     @staticmethod
     def get_user_profile(pk):
         return BaseProfile.objects.get(pk=pk)
@@ -48,7 +50,7 @@ class UserDataMixin(object):
         )
 
     def register_profile_with_random_password(self, **kwargs):
-        raw_password = self.generate_random_password(8)
+        raw_password = self.generate_random_string(8)
         cache.set('raw_password', raw_password, timeout=60)
         password = make_password(raw_password)
         try:

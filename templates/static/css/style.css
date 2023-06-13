@@ -1373,6 +1373,14 @@ body {
     padding: 10px;
 }
 
+.all-recorded-result ul li span {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
 .all-recorded-result ul > li:not(:last-child) {
     border-bottom: 1px solid rgb(0, 0, 0, 1);
 
@@ -1384,13 +1392,9 @@ body {
 
 .all-recorded-result ul li > ul li:not(:last-child),
 .all-recorded-result ul li > ul li {
-    text-indent: 80px;
+    text-indent: 30px;
     padding: 5px;
     border-bottom: none;
-}
-
-.all-recorded-result ul li > ul li:before {
-    font-family: "Font Awesome 6 Free", serif;
 }
 
 

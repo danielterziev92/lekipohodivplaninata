@@ -234,7 +234,7 @@ class SignedForHikeUpdateForm(forms.ModelForm):
         }
 
 
-class SiteEvaluationForm(forms.ModelForm):
+class EvaluationBaseForm(forms.Form):
     assessment = forms.ChoiceField(
         label='Оценка',
         widget=forms.RadioSelect(),
@@ -248,6 +248,14 @@ class SiteEvaluationForm(forms.ModelForm):
         required=False,
     )
 
+
+class SiteEvaluationForm(EvaluationBaseForm, forms.ModelForm):
     class Meta:
         model = SiteEvaluation
         fields = '__all__'
+
+
+# class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
+#     class Meta:
+#         model = HikeEvaluation
+#         fields = '__all__'

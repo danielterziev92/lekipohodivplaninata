@@ -150,8 +150,6 @@ class Hike(AuditInfoMixin, models.Model):
 
     more_pictures = models.ManyToManyField(
         HikeMorePicture,
-        null=True,
-        blank=True,
         verbose_name='Допълнителни снимки',
         help_text='Тук можете да добавите допълнителни снимки за похода',
     )

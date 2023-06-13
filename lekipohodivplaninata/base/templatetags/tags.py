@@ -11,10 +11,10 @@ register = template.Library()
 DOMAIN_NAME = 'lekipohodivplanina.bg'
 
 
-def get_total_count(persons):
+def get_total_count(objects):
     result = 0
-    for person in persons:
-        result += person.adults_numbers + person.children_numbers
+    for obj in objects:
+        result += obj.adults_numbers + obj.children_numbers
 
     return result
 
@@ -45,14 +45,16 @@ def get_all_travel_with_organized_transport(hike_pk):
 
 @register.simple_tag(name='total-adults-with-organized-transport')
 def get_all_travel_with_organized_transport(hike_pk):
-    return SignUpForHike.objects.all().filter(hike_id=hike_pk) \
-        .filter(adults_numbers__gt=0).count()
+    objects = SignUpForHike.objects.all().filter(hike_id=hike_pk).filter(travel_with=0) \
+        .filter(adults_numbers__gt=0)
+    return sum(obj.adults_numbers for obj in objects)
 
 
 @register.simple_tag(name='total-children-with-organized-transport')
 def get_all_travel_with_organized_transport(hike_pk):
-    return SignUpForHike.objects.all().filter(hike_id=hike_pk) \
-        .filter(children_numbers__gt=0).count()
+    objects = SignUpForHike.objects.all().filter(hike_id=hike_pk).filter(travel_with=0) \
+        .filter(children_numbers__gt=0)
+    return sum(obj.children_numbers for obj in objects)
 
 
 @register.simple_tag(name='total-travel-with-own-transport')
