@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model, login
 from django.contrib.contenttypes.models import ContentType
 
-from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation
+from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation
 from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
@@ -255,7 +255,7 @@ class SiteEvaluationForm(EvaluationBaseForm, forms.ModelForm):
         fields = '__all__'
 
 
-# class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
-#     class Meta:
-#         model = HikeEvaluation
-#         fields = '__all__'
+class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
+    class Meta:
+        model = HikeEvaluation
+        fields = '__all__'

@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike-successful-signed.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0004_create_hike_evaluation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0005_signupforhike_is_confirmed_and_more.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/templatetags/tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/templatetags/tags.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/mixins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/email-templates/sign-up-for-hike-general.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/site-evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evaluation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

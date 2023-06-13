@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>1912</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1924</IntrospectionStateNumber>
       <ServerVersion>15.2</ServerVersion>
       <StartupTime>1686548009</StartupTime>
       <TimeZones>true ACDT
@@ -1395,7 +1395,7 @@ true posixrules
 13186||10|C|G
 13186||-9223372036854775808|U|G
 13186||10|U|G</Grants>
-      <IntrospectionStateNumber>1912</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1924</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -5933,7 +5933,7 @@ true posixrules
     <schema id="262" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>1912</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1924</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -5965,7 +5965,7 @@ true posixrules
     <sequence id="266" parent="262" name="base_hikeevaluation_id_seq">
       <DasType>bigint|0s</DasType>
       <ObjectId>18495</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1(2)</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1905</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -5989,7 +5989,7 @@ true posixrules
     <sequence id="269" parent="262" name="base_signupforhike_id_seq">
       <DasType>bigint|0s</DasType>
       <ObjectId>18445</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1(5)</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1894</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -6021,7 +6021,7 @@ true posixrules
     <sequence id="273" parent="262" name="django_migrations_id_seq">
       <DasType>bigint|0s</DasType>
       <ObjectId>18090</ObjectId>
-      <SequenceIdentity>1(48)</SequenceIdentity>
+      <SequenceIdentity>1(49)</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1591</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -6077,7 +6077,7 @@ true posixrules
     <sequence id="280" parent="262" name="users_app_anonymousappuser_id_seq">
       <DasType>bigint|0s</DasType>
       <ObjectId>18230</ObjectId>
-      <SequenceIdentity>1(4)</SequenceIdentity>
+      <SequenceIdentity>1(7)</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1614</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -6499,9 +6499,8 @@ default</CollationNames>
     </column>
     <column id="338" parent="287" name="assessment">
       <DasType>smallint|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>1905</StateNumber>
+      <StateNumber>1923</StateNumber>
       <TypeId>21</TypeId>
     </column>
     <column id="339" parent="287" name="comment">

@@ -109,6 +109,13 @@ class HikeEvaluationMoreInfo(models.Model):
 
 
 class HikeEvaluation(Evaluation):
+    SLUG_LENGTH = 20
+    assessment = models.PositiveSmallIntegerField(
+        null=True,
+        blank=False,
+        validators=(ValueInRangeValidator(1, 10),)
+    )
+
     slug = models.SlugField(
         unique=True,
         null=False,

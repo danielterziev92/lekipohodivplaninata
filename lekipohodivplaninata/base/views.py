@@ -6,8 +6,8 @@ from django.contrib.auth import mixins as auth_mixins, get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm
-from lekipohodivplaninata.base.models import SignUpForHike
-from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
+from lekipohodivplaninata.base.models import SignUpForHike, HikeEvaluation
+from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin, CommonMixin
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -82,13 +82,16 @@ def confirm_user_for_hike(request, pk, text):
     if bool_values[text]:
         obj.is_confirmed = True
         obj.save()
+        slug = CommonMixin.generate_random_string(HikeEvaluation.SLUG_LENGTH)
+        HikeEvaluation.objects.create(slug=slug)
     else:
         obj.delete()
 
     return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
 
 
-def cancel_user_for_hike(request, pk):
+# TODO: Refactor this for recommend
+def recommend_user_for_hike(request, pk):
     if request.method.lower() == 'post':
         return redirect('index')
 
