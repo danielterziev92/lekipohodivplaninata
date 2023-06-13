@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -82,8 +83,6 @@ def confirm_user_for_hike(request, pk, text):
     if bool_values[text]:
         obj.is_confirmed = True
         obj.save()
-        slug = CommonMixin.generate_random_string(HikeEvaluation.SLUG_LENGTH)
-        HikeEvaluation.objects.create(slug=slug)
     else:
         obj.delete()
 

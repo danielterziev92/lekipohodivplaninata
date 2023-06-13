@@ -92,7 +92,7 @@ class SiteEvaluation(Evaluation):
     )
 
 
-class HikeEvaluationMoreInfo(models.Model):
+class HikeEvaluationUsers(models.Model):
     user_id = models.ForeignKey(
         BaseProfile,
         on_delete=models.SET_NULL,
@@ -100,16 +100,10 @@ class HikeEvaluationMoreInfo(models.Model):
         blank=False,
     )
 
-    hike_id = models.ForeignKey(
-        Hike,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=False,
-    )
-
 
 class HikeEvaluation(Evaluation):
-    SLUG_LENGTH = 20
+    SLUG_LENGTH = 40
+
     assessment = models.PositiveSmallIntegerField(
         null=True,
         blank=False,
@@ -122,6 +116,13 @@ class HikeEvaluation(Evaluation):
         blank=True,
     )
 
-    more_info = models.ManyToManyField(
-        to=HikeEvaluationMoreInfo,
+    hike_id = models.ForeignKey(
+        Hike,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=False,
+    )
+
+    users = models.ManyToManyField(
+        to=HikeEvaluationUsers,
     )

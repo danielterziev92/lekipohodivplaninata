@@ -1,5 +1,7 @@
 import datetime
 
+import celery
+from celery import Celery
 from celery import shared_task
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -12,6 +14,7 @@ from lekipohodivplaninata.users_app.models import BaseProfile
 DOMAIN_NAME = 'lekipohodivplaninata.bg'
 SENDER = settings.DEFAULT_FROM_EMAIL
 UserModel = get_user_model()
+app = Celery()
 
 
 def get_hike(hike_id):
@@ -156,3 +159,6 @@ def send_reset_password_user_email(user_id, *args, **kwargs):
     )
 
 
+@shared_task
+def send_email_for_hike_evaluation_with_slug_to_log_in():
+    print('asdasa')
