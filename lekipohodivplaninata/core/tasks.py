@@ -160,5 +160,26 @@ def send_reset_password_user_email(user_id, *args, **kwargs):
 
 
 @shared_task
-def send_email_for_hike_evaluation_with_slug_to_log_in():
-    print('asdasa')
+def send_email_for_hike_evaluation_with_slug_to_log_in(**kwargs):
+    user = BaseProfile.objects.get(pk=kwargs['user_id'])
+
+    context = {
+        'user': user,
+        'domain': DOMAIN_NAME,
+        'slug': kwargs['slug'],
+    }
+
+    recipient_list = (user.get_email,)
+
+    message = render_to_string(
+        template_name='hike/email-templates/hike-evaluation.html',
+        context=context
+    )
+
+    send_mail(
+        subject='Как ще оцените нашето обслужване?',
+        message='',
+        from_email=SENDER,
+        recipient_list=recipient_list,
+        html_message=message,
+    )
