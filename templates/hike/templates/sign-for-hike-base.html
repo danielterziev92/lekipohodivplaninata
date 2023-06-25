@@ -16,7 +16,7 @@
         <label for="first-name">Име:</label>
     </div>
     <div class="form-floating">
-        <input type="text" id="last-name" value="{{ first_name }}" name="last_name" required/>
+        <input type="text" id="last-name" value="{{ last_name }}" name="last_name" required/>
         <label for="last-name">Фамилия:</label>
     </div>
     <div class="form-floating">
@@ -69,7 +69,7 @@
             <input type="checkbox" id="sing-me-up"/>
             <label for="sing-me-up">Регистрирай ме</label>
         </div>
-        <div class="form-floating" {% if not register_user %} id="user-info" {% endif %}>
+        <div class="form-floating" datatype="email" {% if not register_user %} id="user-info" {% endif %}>
             <input type="email" id="email" name="email" value="{{ email }}"/>
             <label for="email">Имейл:</label>
         </div>

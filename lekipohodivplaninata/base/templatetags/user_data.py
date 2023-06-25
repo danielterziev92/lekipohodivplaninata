@@ -28,7 +28,7 @@ def get_user_first_name_sign_for_hike(context):
     for key in user_data.keys():
         context[key] = user_data[key]
 
-    if context.request.POST['email']:
+    if 'email' in context.request.POST and context.request.POST['email']:
         context['register_user'] = True
 
     return context

@@ -1568,7 +1568,124 @@ body {
         border-left: 0.065rem solid rgb(0, 0, 0, 0.5);
     }
 
+    .sign-up-for-hike {
+        margin-top: 140px;
+        grid-column-gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "header header"
+            "first-name last-name"
+            "phone-number choose-hike"
+            "adults-numbers children-numbers"
+            "travel-with registration"
+            "sing-me-up sing-me-up"
+            "button button";
+    }
+
+    .sign-up-for-hike h2 {
+        grid-area: header;
+    }
+
+    .sign-up-for-hike .form-floating input[name=first_name] {
+        grid-area: first-name;
+    }
+
+    .sign-up-for-hike .form-floating input[name=last_name] {
+        grid-area: last-name;
+    }
+
+    .sign-up-for-hike .form-floating input[name=phone_number] {
+        grid-area: phone-number;
+    }
+
+    .sign-up-for-hike .form-floating.chooses {
+        grid-area: choose-hike;
+    }
+
+    .sign-up-for-hike .form-floating.numbers:first-child {
+        grid-area: adults-numbers;
+    }
+
+    .sign-up-for-hike .form-floating.numbers:last-child {
+        grid-area: children-numbers;
+    }
+
+    .sign-up-for-hike .form-floating .wrapper {
+        grid-area: travel-with;
+    }
+
+    .sign-up-for-hike .form-floating.registration {
+        grid-area: registration;
+    }
+
+    .sign-up-for-hike .form-floating[datatype=email] {
+        grid-area: sing-me-up;
+    }
+
+    .sign-up-for-hike button {
+        grid-area: button;
+    }
+
+    .hike-types ul li {
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .hike-types ul li span {
+        margin-left: 20px;
+        text-align: start;
+    }
+
+    .hike-types ul li .buttons {
+        padding: 0 10px;
+    }
 }
 
+@media only screen and (width > 767px ) {
 
+    .sign-up-for-hike {
+        margin-top: 0;
+        grid-column-gap: unset;
+        grid-template-areas:
+            "header"
+           "first-name"
+            "last-name"
+           "phone-number"
+            "choose-hike"
+           "adults-numbers"
+            "children-numbers"
+           "travel-with"
+            "registration"
+           "sing-me-up"
+           "button";
+        grid-template-columns: 1fr;
+    }
 
+}
+
+@media only screen and (width > 1023px ) {
+
+    .hikes-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+    }
+
+    .signed-for-hike {
+        grid-column-gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "header header"
+            "first-name last-name"
+            "phone-number choose-hike"
+            "adults-numbers children-numbers"
+            "travel-with registration"
+            "sing-me-up sing-me-up"
+            "button button";
+    }
+
+}
+
+@media only screen and (width > 1200px ) {
+
+}
