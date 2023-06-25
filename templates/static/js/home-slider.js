@@ -2,10 +2,10 @@ new Swiper(".home-slider", {
     slidesPerView: 1,
     spaceBetween: 30,
     centeredSlides: true,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
+    // autoplay: {
+    //     delay: 5000,
+    //     disableOnInteraction: false,
+    // },
     loop: true,
     centerSlide: 'true',
     fade: 'true',

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load user_data %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section>
+            {% sign_for_hike %}
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/show-hike-upload-picture.js' %}"></script>
+    {% if user.is_anonymous %}
+        <script src="{% static 'js/hike-modal-sign-up.js' %}"></script>
+    {% endif %}
+{% endblock %}

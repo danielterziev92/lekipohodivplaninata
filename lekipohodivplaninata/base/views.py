@@ -32,16 +32,13 @@ class PassedEventListView(HikePassedEvents, views.ListView):
 
 
 class SignUpHike(views.UpdateView):
-    template_name = ''
+    template_name = 'hike/sign-for-hike.html'
+    model = Hike
     form_class = SignUpHikeForm
-    success_url = reverse_lazy('site evaluation')
 
     def get_success_url(self):
         cache.set('is_signed', True, timeout=60)
         return reverse_lazy('site evaluation')
-
-    def get_queryset(self):
-        return Hike.objects.all()
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

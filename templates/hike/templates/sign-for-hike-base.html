@@ -1,0 +1,79 @@
+{% load tags %}
+<form method="post" class="sign-up-for-hike"
+      action="{% url 'sign up for hike' object.pk object.slug %}"
+      id="sign-for-hike-form">
+    <h2>Запиши се за поход</h2>
+    {% if form.errors %}
+        {% show_error_message form.errors as errors %}
+        <ul class="errorlist">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="form-floating">
+        <input type="text" id="first-name" value="{{ first_name }}" name="first_name" required/>
+        <label for="first-name">Име:</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" id="last-name" value="{{ first_name }}" name="last_name" required/>
+        <label for="last-name">Фамилия:</label>
+    </div>
+    <div class="form-floating">
+        <input type="tel" id="phone_number" value="{{ phone_number }}" name="phone_number" required/>
+        <label for="phone_number">Телефон:</label>
+    </div>
+    <div class="form-floating numbers">
+        <label for="adults-count">Брой възрастни:</label>
+        <div class="numeric">
+            <span class="plus">+</span>
+            <input type="number" id="adults-count" value="{{ adults_numbers }}" inputmode="numeric"
+                   name="adults_numbers"/>
+            <span class="minus">-</span>
+        </div>
+    </div>
+    <div class="form-floating numbers">
+        <label for="children-count">Брой деца под 16 години:</label>
+        <div class="numeric">
+            <span class="plus">+</span>
+            <input type="number" id="children-count" value="{{ children_numbers }}" inputmode="numeric"
+                   name="children_numbers"/>
+            <span class="minus">-</span>
+        </div>
+    </div>
+    <div class="form-floating chooses">
+        <label for="choose-hike">Избери поход:</label>
+        <select name="choose_hike" id="choose-hike" required>
+            <option value="{{ object.pk }}">{{ object.title }}</option>
+        </select>
+    </div>
+    <div class="form-floating">
+        <p>Пътувам с:</p>
+        <div class="wrapper">
+            <input type="radio" name="choose_transport" id="organized-transport" value="0" required
+                    {% if choose_transport == '0' %} checked {% endif %}/>
+            <input type="radio" name="choose_transport" id="personal-transport" value="1" required
+                    {% if choose_transport == '1' %} checked {% endif %}/>
+            <label for="organized-transport" class="option option-1" id="option-1">
+                <div class="dot"></div>
+                <span>Организиран Транспорт</span>
+            </label>
+            <label for="personal-transport" class="option option-2">
+                <div class="dot"></div>
+                <span>Собствен Транспорт</span>
+            </label>
+        </div>
+    </div>
+    {% if user.is_anonymous %}
+        <div class="form-floating registration">
+            <input type="checkbox" id="sing-me-up"/>
+            <label for="sing-me-up">Регистрирай ме</label>
+        </div>
+        <div class="form-floating" {% if not register_user %} id="user-info" {% endif %}>
+            <input type="email" id="email" name="email" value="{{ email }}"/>
+            <label for="email">Имейл:</label>
+        </div>
+    {% endif %}
+    {% csrf_token %}
+    <button type="submit">Запиши се</button>
+</form>

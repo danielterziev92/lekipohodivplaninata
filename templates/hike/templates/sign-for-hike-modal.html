@@ -3,15 +3,17 @@
         <i class="fa-solid fa-circle-xmark" id="hide-sign-hike-form"></i>
         <h2>Запиши се за поход</h2>
         <div class="form-floating">
-            <input type="text" id="first-name" value="{{ user.get_first_name }}" name="first_name" required/>
+            <input type="text" id="first-name" value="{{ user.baseprofile.get_first_name }}" name="first_name"
+                   required/>
             <label for="first-name">Име:</label>
         </div>
         <div class="form-floating">
-            <input type="text" id="last-name" value="{{ user.get_last_name }}" name="last_name" required/>
+            <input type="text" id="last-name" value="{{ user.baseprofile.get_last_name }}" name="last_name" required/>
             <label for="last-name">Фамилия:</label>
         </div>
         <div class="form-floating">
-            <input type="tel" id="phone_number" value="{{ user.phone_number }}" name="phone_number" required/>
+            <input type="tel" id="phone_number" value="{{ user.baseprofile.phone_number }}" name="phone_number"
+                   required/>
             <label for="phone_number">Телефон:</label>
         </div>
         <div class="form-floating numbers">

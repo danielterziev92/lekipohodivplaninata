@@ -239,7 +239,7 @@ body {
 }
 
 .sign-up-for-hike .form-floating {
-    width: 75vw;
+    /*width: 75vw;*/
     background-color: #ffffff;
     position: relative;
     border: 0.063rem solid rgb(0, 0, 0, 0.2);
@@ -753,11 +753,13 @@ body {
     border-color: #a3cfbb;
 }
 
+.sign-up-for-hike ul.errorlist,
 .form-container .fields-form .errorlist {
     padding: 0 0.625rem;
     margin-bottom: 0.625rem;
 }
 
+.sign-up-for-hike ul.errorlist li,
 .form-container .fields-form .errorlist li {
     list-style: none;
     color: #cf5533;
@@ -1362,6 +1364,10 @@ body {
     grid-template-columns: 1fr;
 }
 
+.signed-for-hike table tbody tr.empty td:not(:first-child) {
+    border: none;
+}
+
 .all-recorded-result {
     display: flex;
     justify-content: center;
@@ -1520,6 +1526,15 @@ body {
 
 
 @media only screen and (width > 480px ) {
+
+    .hikes-list .hike .hike-body {
+        grid-template-areas:
+    "img price"
+    "img type"
+    "img level"
+    "img duration";
+    }
+
 
     .signed-for-hike table thead tr,
     .signed-for-hike table tbody tr {

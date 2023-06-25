@@ -109,3 +109,33 @@
 .swiper-pagination-bullet-active {
     background-color: #cf5533;
 }
+
+@media only screen and (width > 480px ) {
+    .home-slider {
+        margin: 10px;
+        height: calc((60vw / 1.78) + 25px);
+    }
+
+    .home-slider .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .home-slider .card .image-content {
+        width: 80%;
+        border-radius: 10px;
+        overflow: hidden;
+        height: calc(100% - 50px);
+    }
+
+    .home-slider .card .image-content img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .home-slider .image-content::after {
+        left: 10%;
+    }
+}

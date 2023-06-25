@@ -6,6 +6,7 @@ from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, Hike
 from lekipohodivplaninata.core.mixins import UserDataMixin
 from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
+from lekipohodivplaninata.users_app.forms import BaseUserModelForm
 from lekipohodivplaninata.users_app.models import AnonymousAppUser
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -27,7 +28,6 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'id': 'first-name',
-                'value': '',
             }
         )
     )

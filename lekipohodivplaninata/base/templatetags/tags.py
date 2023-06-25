@@ -4,8 +4,7 @@ from django import template
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.base.models import SignUpForHike
-from lekipohodivplaninata.hike.models import Hike
+from lekipohodivplaninata.base.models import SignUpForHike, Hike
 
 register = template.Library()
 DOMAIN_NAME = 'lekipohodivplanina.bg'
@@ -66,3 +65,17 @@ def get_all_travel_with_organized_transport(hike_pk):
 @register.simple_tag(name='total-count-for-hike')
 def get_all_travel_with_organized_transport(a, b):
     return a + b
+
+
+@register.simple_tag(name='show_error_message')
+def get_error_message_for_field(errors: dict):
+    result = []
+    for field, values in errors.items():
+        if field == '__all__':
+            continue
+
+        result.extend([value for value in values])
+    return result
+
+
+

@@ -18,11 +18,13 @@ UserModel = get_user_model()
 
 @receiver(signal=post_save, sender=SignUpForHike)
 def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs):
+    def days_to_seconds(obj):
+        return obj.days * 24 * 60 * 60
+
     def get_event_time_in_seconds():
         event_time = Hike.objects.get(pk=instance.hike_id.pk).event_date
-        today = datetime.datetime.today()
-        time_in_seconds = event_time - datetime.timedelta()
-        print(time_in_seconds)
+        diff = event_time - datetime.date.today()
+        return days_to_seconds(diff)
 
     if isinstance(instance.user_object, AnonymousAppUser):
         return
