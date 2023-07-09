@@ -38,7 +38,7 @@ body {
 
 .main-header.sticky {
     height: 3.125rem;
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -73,6 +73,10 @@ body {
 .main-header li.menu-btn-small i {
     font-size: 1.5rem;
     color: #cf5533;
+}
+
+.main-header nav .main-menu {
+    display: none;
 }
 
 
@@ -1687,5 +1691,91 @@ body {
 }
 
 @media only screen and (width > 1200px ) {
+    .main-header nav .menu-wrapper {
+        display: none;
+    }
 
+    .main-header nav .main-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-header nav .main-menu > li {
+        font-size: 1.2rem;
+        padding: 10px;
+        position: relative;
+    }
+
+    .main-header nav .main-menu > li a {
+        color: #1b1b1b;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .main-header nav .main-menu > li:hover {
+        height: 35px;
+        border-bottom: 1px solid #1b1b1b;
+    }
+
+    .main-header nav .main-menu li > ul {
+        display: none;
+    }
+
+    .main-header nav .main-menu > li:hover > ul {
+        display: grid;
+        background-color: #ffffff;
+        border: 1px solid #1b1b1b;
+        border-radius: 5px;
+        right: 0;
+        position: absolute;
+        top: 50px;
+        z-index: 2;
+    }
+
+    .main-header nav .main-menu > li:hover > ul a {
+        text-align: center;
+    }
+
+    .main-header nav .main-menu > li:hover > ul a:hover {
+        color: #cf5533;
+        border-bottom: 1px solid #cf5533;
+    }
+
+    .main-header nav .main-menu > li:hover > ul li {
+        height: auto;
+        padding: 10px 15px;
+        position: relative;
+        display: grid;
+    }
+
+    .main-header nav .main-menu > li > ul li:hover > ul {
+        display: grid;
+        margin: 10px;
+        position: absolute;
+        left: calc(100% - 10px);
+        top: 0;
+        background-color: #ffffff;
+        border: 1px solid #1b1b1b;
+        border-radius: 0 5px 5px 5px;
+    }
+
+    .form-container {
+        margin: auto;
+        max-width: 600px;
+    }
+
+    .hikes-list {
+        margin: auto;
+        max-width: 1200px;
+    }
+
+    .hike-types ul li .buttons {
+        width: auto;
+    }
+
+    .hike-types ul li .buttons a {
+        margin-right: 10px;
+    }
 }

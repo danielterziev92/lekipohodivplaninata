@@ -54,7 +54,7 @@ class HikeTypeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionReq
     permission_required = 'is_staff'
 
     def get_queryset(self):
-        return HikeType.objects.all().order_by('event_date')
+        return HikeType.objects.all()
 
 
 class HikeLevelCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
@@ -162,7 +162,7 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
 
 
 class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-                            views.FormView):
+    views.FormView):
     template_name = 'hike/more-pictures-hike.html'
     permission_required = 'is_staff'
     form_class = HikeMorePictureUploadForm
@@ -194,7 +194,7 @@ class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_
 
 
 class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-                     views.DeleteView):
+    views.DeleteView):
     template_name = 'hike/delete-hike.html'
     success_url = reverse_lazy('hike list')
     permission_required = 'is_staff'

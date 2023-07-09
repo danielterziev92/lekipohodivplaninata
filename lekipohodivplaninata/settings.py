@@ -9,9 +9,9 @@ import lekipohodivplaninata.users_app.validators
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-xi@15#i77*o9+_uds9024c^pir$si%=)d!19h=$m1h*n46b#02'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -67,12 +67,12 @@ WSGI_APPLICATION = 'lekipohodivplaninata.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lekipohodi',
-        'USER': 'postgres',
-        'PASSWORD': '1123QwER',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -119,9 +119,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 cloudinary.config(
-    cloud_name="doh9wk7mw",
-    api_key="761791742742474",
-    api_secret="WXv3oo74P6UCpyUBeCCNe275A8I"
+    cloud_name=os.environ.get('cloudinary_cloud_name'),
+    api_key=os.environ.get('cloudinary_api_key'),
+    api_secret=os.environ.get('cloudinary_api_secret'),
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -135,15 +135,15 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 PASSWORD_RESET_TIMEOUT = 3 * 60 * 60
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smart.superhosting.bg'
-EMAIL_HOST_USER = 'support@lekipohodivplaninata.bg'
-EMAIL_HOST_PASSWORD = '?agCbk6dEsM+'
-EMAIL_PORT = 25
-EMAIL_USE_TLS = False
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 DEFAULT_FROM_EMAIL = f'Леки походи в планината <{EMAIL_HOST_USER}>'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -152,7 +152,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://localhost:6379",
+        "LOCATION": os.environ.get('CELERY_BROKER_URL'),
     }
 }
 

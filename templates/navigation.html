@@ -10,5 +10,55 @@
         <ul class="menu-wrapper">
             <li class="menu-btn-small" id="menu-btn-small"><i class="fa-solid fa-bars"></i></li>
         </ul>
+        <ul class="main-menu">
+            <li><a href="{% url 'index' %}">Начало</a></li>
+            {% if request.user.is_staff %}
+                <li>
+                    <a href="javascript:void(0);">Администрация</a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);">Походи</a>
+                            <ul>
+                                <li><a href="{% url 'hike create' %}">Създаване на поход</a></li>
+                                <li><a href="{% url 'hike list' %}">Всички</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Типове на трудност</a>
+                            <ul>
+                                <li><a href="{% url 'hike type create' %}">Създаване</a></li>
+                                <li><a href="{% url 'hike type list' %}">Всички</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Ниво на поход</a>
+                            <ul>
+                                <li><a href="{% url 'hike level create' %}">Създаване</a></li>
+                                <li><a href="{% url 'hike level list' %}">Всички</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            <li>
+                <a href="javascript:void(0);">Походи</a>
+                <ul>
+                    <li><a href="{% url 'hikes upcoming' %}" class="upcoming">Предстоящи</a></li>
+                    <li><a href="{% url 'hikes passed' %}" class="passed">Изминали</a></li>
+                </ul>
+            </li>
+            {% if request.user.is_authenticated %}
+                <li>
+                    <a href="javascript:void(0);">Моят Профил</a>
+                    <ul>
+                        <li><a href="{% url 'user detail' pk=request.user.pk %}">Редакция на профила</a></li>
+                        <li><a href="{% url 'sign out user' %}">Изход</a></li>
+                    </ul>
+                </li>
+            {% else %}
+                <li><a href="{% url 'sign in user' %}">Вход</a></li>
+                <li><a href="{% url 'sign up user' %}">Регистрация</a></li>
+            {% endif %}
+        </ul>
     </nav>
 </header>
