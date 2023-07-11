@@ -30,5 +30,3 @@ urlpatterns = (
         path('more-pictures/', HikeMorePictureUpload.as_view(), name='hike more pictures'),
     ])),
 )
-
-from .signals import *

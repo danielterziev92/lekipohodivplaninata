@@ -18,4 +18,3 @@ urlpatterns = (
     path('site-evaluation/', SiteEvaluationView.as_view(), name='site evaluation')
 )
 
-from .signals import *

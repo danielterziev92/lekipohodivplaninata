@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users_app', '0003_create_base_profile'),
+        ('users_app', '0002_create_base_profile'),
     ]
 
     operations = [

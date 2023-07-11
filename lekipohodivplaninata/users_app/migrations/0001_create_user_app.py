@@ -5,9 +5,10 @@ import lekipohodivplaninata.users_app.manager
 
 
 class Migration(migrations.Migration):
+    initial = True
+
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
-        ('users_app', '0001_initial'),
     ]
 
     operations = [

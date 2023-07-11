@@ -1,4 +1,5 @@
 import os
+import environ
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 
@@ -26,8 +27,8 @@ DJANGO_APPS = (
 
 PROJECT_APPS = (
     'lekipohodivplaninata.users_app.apps.UsersAppConfig',
-    'lekipohodivplaninata.base.apps.BaseConfig',
     'lekipohodivplaninata.hike.apps.HikeConfig',
+    'lekipohodivplaninata.base.apps.BaseConfig',
 )
 
 THIRD_PARTY_APP = ()
@@ -65,14 +66,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lekipohodivplaninata.wsgi.application'
 
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 

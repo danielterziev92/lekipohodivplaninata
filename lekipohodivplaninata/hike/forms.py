@@ -1,4 +1,5 @@
 from django import forms
+from django.db import ProgrammingError
 
 from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin, HikeBaseFormMixin
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
@@ -185,6 +186,11 @@ class SignUpForHikeForm(forms.Form):
         ('personal-transport', 'Собствен Транспорт'),
     )
 
+    try:
+        HIKE_CHOICES = [(hike.pk, hike.title) for hike in Hike.objects.all()]
+    except ProgrammingError:
+        HIKE_CHOICES = []
+
     first_name = forms.CharField(
         max_length=BaseProfile.FIRST_NAME_MAX_LENGTH,
         label='Име',
@@ -203,9 +209,7 @@ class SignUpForHikeForm(forms.Form):
 
     hikes = forms.ChoiceField(
         label='Избери поход',
-        choices=(
-            [(hike.pk, hike.title) for hike in Hike.objects.all()]
-        )
+        choices=(HIKE_CHOICES,)
     )
 
     travel_with = forms.ChoiceField(

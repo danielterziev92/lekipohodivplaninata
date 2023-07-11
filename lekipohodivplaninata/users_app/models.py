@@ -84,7 +84,7 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
 class BaseProfile(BaseDataInfo, AdditionalDataInfo):
     user_id = models.OneToOneField(
-        UserApp,
+        'UserApp',
         on_delete=models.RESTRICT,
         primary_key=True,
         verbose_name='Потребител'
@@ -118,7 +118,7 @@ class GuideProfile(models.Model):
     CERTIFICATE_DIRECTORY = 'images/guides/certificates/'
 
     user_id = models.OneToOneField(
-        UserApp,
+        'UserApp',
         primary_key=True,
         on_delete=models.RESTRICT,
         null=False,

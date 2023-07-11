@@ -1,6 +1,5 @@
 import datetime
 
-import celery
 from celery import Celery
 from celery import shared_task
 from django.conf import settings

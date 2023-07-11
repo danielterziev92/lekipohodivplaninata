@@ -5,9 +5,9 @@ from django.urls import path, include
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', include('lekipohodivplaninata.base.urls')),
                   path('users/', include('lekipohodivplaninata.users_app.urls')),
                   path('hike/', include('lekipohodivplaninata.hike.urls')),
+                  path('', include('lekipohodivplaninata.base.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # SITE_NAME = "lekipohodivplaninata.BG"

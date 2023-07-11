@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('hike', '0010_alter_hike_more_pictures'),
-        ('users_app', '0006_remove_guideprofile_first_name_and_more'),
+        ('users_app', '0005_remove_guideprofile_first_name_and_more'),
         ('base', '0003_create_site_evaluation'),
     ]
 

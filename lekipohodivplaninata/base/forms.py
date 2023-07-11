@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model, login
 from django.contrib.contenttypes.models import ContentType
+from django.db import ProgrammingError
 
 from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation
 from lekipohodivplaninata.core.mixins import UserDataMixin
@@ -20,7 +21,11 @@ def check_is_digit(value):
 class SignUpHikeForm(UserDataMixin, forms.ModelForm):
     PHONE_NUMBER_MAX_LENGTH = 14
     PHONE_NUMBER_MIN_LENGTH = 10
-    hikes = tuple(Hike.objects.all().values_list('id', 'title'))
+    try:
+        hikes = tuple(Hike.objects.all().values_list('id', 'title'))
+    except ProgrammingError:
+        hikes = tuple()
+
     travel_with = tuple(SignUpForHike.TRAVEL_CHOICES.get_all_choices())
 
     first_name = forms.CharField(
