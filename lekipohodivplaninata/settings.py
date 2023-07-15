@@ -19,7 +19,6 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
-print(ALLOWED_HOSTS)
 
 DJANGO_APPS = (
     'django.contrib.admin',

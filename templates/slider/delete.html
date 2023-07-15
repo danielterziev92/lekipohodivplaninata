@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load fill_icons_form_tag %}
+{% load change_error_message %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section class="hike-detail">
+            <article class="form-container">
+                <form action="{% url 'slider delete'  pk=object.pk %}" method="post" class="fields-form">
+                    <h2>Желаете ли да изтриете този слайдър</h2>
+                    <h3>{{ object.hike_id.title }}</h3>
+                    {% csrf_token %}
+                    <div class="buttons">
+                        <button>Изтрий</button>
+                        <button onclick="history.back()">Отказ</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/show-hike-upload-picture.js' %}"></script>
+{% endblock %}

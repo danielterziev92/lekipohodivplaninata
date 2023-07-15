@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model, login
 from django.contrib.contenttypes.models import ContentType
 from django.db import ProgrammingError
+from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation, Slider
 from lekipohodivplaninata.core.mixins import UserDataMixin, PicturesMixin
@@ -264,12 +265,56 @@ class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
         fields = '__all__'
 
 
-class SliderForm(PicturesMixin, forms.ModelForm):
+class SliderCreateForm(PicturesMixin, forms.ModelForm):
     class Meta:
         model = Slider
         fields = '__all__'
+        error_messages = {
+            'hike_id': {
+                'unique': _('Слайдър за този поход вече съществува.')
+            },
+        }
 
     def save(self, commit=True):
         obj = super().save(commit=False)
-        folder = f'slider/'
+        folder = f'slider/{obj.hike_id.slug}'
+        obj.image = self.upload_picture(
+            file=self.cleaned_data['image'].file,
+            folder=folder
+        )
 
+        if commit:
+            obj.save()
+
+        return obj
+
+
+class SliderEditForm(PicturesMixin, forms.ModelForm):
+    image = forms.ImageField(
+        label='Снимка',
+        widget=forms.FileInput(),
+    )
+
+    class Meta:
+        model = Slider
+        fields = '__all__'
+        error_messages = {
+            'hike_id': {
+                'unique': _('Слайдър за този поход вече съществува.')
+            },
+        }
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        public_id = self.initial['image'].public_id
+        self.delete_pictures(public_id)
+        folder = '/'.join(public_id.split('/')[:2])
+        obj.image = self.upload_picture(
+            file=self.cleaned_data['image'].file,
+            folder=folder
+        )
+
+        if commit:
+            obj.save()
+
+        return obj

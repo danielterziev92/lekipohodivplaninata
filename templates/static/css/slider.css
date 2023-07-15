@@ -94,6 +94,11 @@
     -webkit-box-orient: vertical;
 }
 
+.home-slider .card-content h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .home-slider .card-content p {
     color: #ffffff;
 }

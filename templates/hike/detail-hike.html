@@ -15,7 +15,8 @@
         <section class="hike-detail">
             <article class="hike">
                 <h1>{{ hike.title }}</h1>
-                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2" id="main-pictuer">
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2"
+                     id="main-picture">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <img src="{{ hike.main_picture.url }}" alt="Picture missing"/>
@@ -24,8 +25,13 @@
                             <div class="swiper-slide">
                                 <img src="{{ picture.image.url }}" alt="Picture missing"/>
                             </div>
+
                         {% endfor %}
                     </div>
+                    {% if hike.more_pictures.all|length > 0 %}
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    {% endif %}
                 </div>
                 {% if hike.more_pictures.all|length > 0 %}
                     <div thumbsSlider="" class="swiper mySwiper" id="more-pictures">

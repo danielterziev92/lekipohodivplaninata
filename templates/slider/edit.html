@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section class="form-container">
+            <form action="{% url 'slider edit' pk=object.pk %}" method="post" class="fields-form"
+                  enctype="multipart/form-data">
+                <h2>Редактиране на слайдър</h2>
+                {% for field in form %}
+                    {% if field.label == "Снимка" %}
+                        <div class="field">
+                            <h1>{{ object.hike_id.title }}</h1>
+                            <figure><img src="{{ field.initial.url }}" alt="Picture missing"></figure>
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% else %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% endif %}
+                    {{ field.errors }}
+                {% endfor %}
+                {% csrf_token %}
+                <div class="buttons">
+                    <button>Редактирай</button>
+                    <button onclick="history.back()">Отказ</button>
+                </div>
+            </form>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/site-evaluation.js' %}"></script>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from lekipohodivplaninata.base.views import IndexListView, UpcomingEventListView, PassedEventListView, SignUpHike, \
     SiteEvaluationView, SignedForHikeListView, SignedForHikeUpdateView, confirm_user_for_hike, SliderCreateView, \
-    SliderListView
+    SliderListView, SliderEditView, SliderDeleteView
 
 urlpatterns = (
     path('', IndexListView.as_view(), name='index'),
@@ -20,7 +20,7 @@ urlpatterns = (
     path('slider/', include([
         path('', SliderListView.as_view(), name='slider list'),
         path('create/', SliderCreateView.as_view(), name='slider create'),
-        # path('edit/<int:pk>', None, name='slider edit'),
-        # path('delete/<int:pk>', None, name='slider delete'),
+        path('edit/<int:pk>', SliderEditView.as_view(), name='slider edit'),
+        path('delete/<int:pk>', SliderDeleteView.as_view(), name='slider delete'),
     ]))
 )

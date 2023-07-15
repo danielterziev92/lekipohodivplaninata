@@ -5,28 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/migrations/0010_slider.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/slider/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/slider/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/lekipohodivplaninata.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lekipohodivplaninata.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/users_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/hike/detail-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/detail-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home-page/slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home-page/slider.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/slider/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/static/css/slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/slider.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/sing-in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/sing-in.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/static/js/hike-more-picture-slider-detail-template.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/js/hike-more-picture-slider-detail-template.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -436,11 +429,6 @@
           <option name="timeStamp" value="496" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/hike/signals.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="535" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/templatetags/user_data.py</url>
           <line>30</line>
           <option name="timeStamp" value="543" />
@@ -472,18 +460,19 @@
         <watch expression="request" />
         <watch expression="self.base_fields['hike_id'].widget" />
         <watch expression="value.user" language="Python" />
+        <watch expression="self.response_class" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$validators.coverage" NAME="validators Coverage Results" MODIFIED="1686157295803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/hike" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$utils.coverage" NAME="utils Coverage Results" MODIFIED="1684439433193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/core" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1682840149193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$models.coverage" NAME="models Coverage Results" MODIFIED="1684933474106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1685385621604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$utils.coverage" NAME="utils Coverage Results" MODIFIED="1684439433193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/core" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$fill_icons_form_tag.coverage" NAME="fill_icons_form_tag Coverage Results" MODIFIED="1682839381990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1685385621604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1687615213000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$models.coverage" NAME="models Coverage Results" MODIFIED="1685806841540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
   </component>
 </project>

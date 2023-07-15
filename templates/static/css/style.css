@@ -1789,21 +1789,27 @@ body {
         "main-img duration"
         "main-img level"
         "main-img type"
-        "more-pictures more-pictures"
+        "main-img more-pictures"
         "description description";
-        /*grid-template-columns: 60% 40%;*/
+        grid-template-columns: 60% 40%;
     }
 
     .hike-detail .hike h1 {
         grid-area: title;
+        width: 100%;
     }
 
     .hike-detail .hike #main-picture {
         grid-area: main-img;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .hike-detail .hike #more-pictures {
         grid-area: more-pictures;
+        width: 100%;
     }
 
     .hike-detail .hike #date {
@@ -1830,4 +1836,56 @@ body {
     .hike-detail .hike #description {
         grid-area: description;
     }
+
+    .slider-list {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 400px);
+        grid-gap: 20px;
+    }
+
+    .slider-list div {
+        border: 1px solid rgb(0, 0, 0, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .slider-list div figure {
+        grid-area: img;
+    }
+
+    .slider-list div figure img {
+        max-width: 400px;
+    }
+
+    .slider-list div h1 {
+        grid-area: title;
+        background-color: #cf5533;
+        color: #ffffff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .slider-list div .buttons {
+        border: none;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        margin: 10px 0;
+    }
+
+    .slider-list div .buttons a {
+        padding: 10px;
+        background-color: #cf5533;
+        color: #ffffff;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+    .slider-list div .buttons a i {
+        font-size: 1.2rem;
+    }
+
+
 }

@@ -5,9 +5,11 @@ from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins, get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm, SliderForm
+from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm, \
+    SliderCreateForm, SliderEditForm
 from lekipohodivplaninata.base.models import SignUpForHike, Slider
 from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
+from lekipohodivplaninata.core.mixins import PicturesMixin
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -18,6 +20,12 @@ UserModel = get_user_model()
 class IndexListView(HikeUpcomingEvents, views.ListView):
     template_name = 'index.html'
     paginate_by = 10
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        context_data['sliders'] = Slider.objects.all()
+
+        return context_data
 
 
 class UpcomingEventListView(HikeUpcomingEvents, UserDataMixin, views.ListView):
@@ -131,7 +139,7 @@ class SiteEvaluationView(views.CreateView):
 class SliderCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
     permission_required = 'is_staff'
     template_name = 'slider/create.html'
-    form_class = SliderForm
+    form_class = SliderCreateForm
     success_url = reverse_lazy('slider list')
 
 
@@ -140,7 +148,30 @@ class SliderListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
     template_name = 'slider/list.html'
     model = Slider
 
+    def get_queryset(self):
+        return Slider.objects.all().order_by('hike_id__event_date')
 
-class SliderEditView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
+
+class SliderEditView \
+            (PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
     permission_required = 'is_staff'
+    template_name = 'slider/edit.html'
+    form_class = SliderEditForm
     model = Slider
+    success_url = reverse_lazy('slider list')
+
+
+class SliderDeleteView \
+            (PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
+    permission_required = 'is_staff'
+    template_name = 'slider/delete.html'
+    model = Slider
+    success_url = reverse_lazy('slider list')
+
+    def form_valid(self, form):
+        public_id = self.object.image.public_id
+        self.delete_pictures(public_id)
+        folder = self.get_picture_folder(public_id=public_id)
+        self.delete_folder(folder=folder)
+
+        return super().form_valid(form=form)

@@ -161,8 +161,8 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
         })
 
 
-class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.FormView):
+class HikeMorePictureUpload \
+            (PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.FormView):
     template_name = 'hike/more-pictures-hike.html'
     permission_required = 'is_staff'
     form_class = HikeMorePictureUploadForm
@@ -193,8 +193,8 @@ class HikeMorePictureUpload(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_
         return context
 
 
-class HikeDeleteView(PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin,
-    views.DeleteView):
+class HikeDeleteView \
+            (PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
     template_name = 'hike/delete-hike.html'
     success_url = reverse_lazy('hike list')
     permission_required = 'is_staff'

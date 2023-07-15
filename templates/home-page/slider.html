@@ -1,40 +1,20 @@
-{% load static %}
-
 <article id="slider">
     <div class="home-slider swiper">
         <div class="swiper-wrapper">
-            <div class="card swiper-slide">
-                <div class="image-content">
-                    <img src="{% static 'images/slider/slider-1.jpeg' %}" alt="">
+            {% for slider in sliders %}
+                <div class="card swiper-slide">
+                    <div class="image-content">
+                        <img src="{{ slider.image.url }}" alt="">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            <a href="{% url 'hike detail' pk=slider.hike_id.pk slug=slider.hike_id.slug %}">
+                                {{ slider.hike_id.title }}
+                            </a>
+                        </h2>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h2 class="card-title">Тук се слага име за поход и още нещо</h2>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="image-content">
-                    <img src="{% static 'images/slider/slider-2.jpeg' %}" alt="">
-                </div>
-                <div class="card-content">
-                    <h2 class="card-title">От тук до там 2</h2>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="image-content">
-                    <img src="{% static 'images/slider/slider-3.jpeg' %}" alt="">
-                </div>
-                <div class="card-content">
-                    <h2 class="card-title">От тук до там 3</h2>
-                </div>
-            </div>
-            <div class="card swiper-slide">
-                <div class="image-content">
-                    <img src="{% static 'images/slider/slider-4.jpeg' %}" alt="">
-                </div>
-                <div class="card-content">
-                    <h2 class="card-title">От тук до там 4</h2>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
