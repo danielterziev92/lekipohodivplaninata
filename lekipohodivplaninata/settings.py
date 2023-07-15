@@ -8,13 +8,18 @@ from django.urls import reverse_lazy
 
 import lekipohodivplaninata.users_app.validators
 
+env = environ.Env()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = bool(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
+print(ALLOWED_HOSTS)
 
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -65,9 +70,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'lekipohodivplaninata.wsgi.application'
-
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DATABASES = {
     'default': {
@@ -123,9 +125,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 cloudinary.config(
-    cloud_name=os.environ.get('cloudinary_cloud_name'),
-    api_key=os.environ.get('cloudinary_api_key'),
-    api_secret=os.environ.get('cloudinary_api_secret'),
+    cloud_name=env('CLOUDINARY_CLOUD_NAME'),
+    api_key=env('CLOUDINARY_API_KEY'),
+    api_secret=env('CLOUDINARY_API_SECRET'),
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -139,15 +141,15 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 PASSWORD_RESET_TIMEOUT = 3 * 60 * 60
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 DEFAULT_FROM_EMAIL = f'Леки походи в планината <{EMAIL_HOST_USER}>'
 
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -156,7 +158,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.environ.get('CELERY_BROKER_URL'),
+        "LOCATION": env('CELERY_BROKER_URL'),
     }
 }
 

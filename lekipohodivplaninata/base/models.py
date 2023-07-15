@@ -1,6 +1,7 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from cloudinary import models as cloudinary_models
 
 from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
@@ -125,4 +126,22 @@ class HikeEvaluation(Evaluation):
 
     users = models.ManyToManyField(
         to=HikeEvaluationUsers,
+    )
+
+
+class Slider(models.Model):
+    image = cloudinary_models.CloudinaryField(
+        null=False,
+        blank=False,
+        verbose_name='Снимка',
+        help_text='Тук трябва добавите основна снимка за похода',
+    )
+
+    hike_id = models.OneToOneField(
+        to=Hike,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
+        verbose_name='Изберете поход',
+        help_text='Моля изберете един от посочениет походи',
     )

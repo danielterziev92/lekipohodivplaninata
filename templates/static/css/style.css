@@ -1766,7 +1766,8 @@ body {
         max-width: 600px;
     }
 
-    .hikes-list {
+    .hikes-list,
+    .hike-detail {
         margin: auto;
         max-width: 1200px;
     }
@@ -1777,5 +1778,56 @@ body {
 
     .hike-types ul li .buttons a {
         margin-right: 10px;
+    }
+
+    .hike-detail .hike {
+        display: grid;
+        grid-template-areas:
+        "title title"
+        "main-img date"
+        "main-img price"
+        "main-img duration"
+        "main-img level"
+        "main-img type"
+        "more-pictures more-pictures"
+        "description description";
+        /*grid-template-columns: 60% 40%;*/
+    }
+
+    .hike-detail .hike h1 {
+        grid-area: title;
+    }
+
+    .hike-detail .hike #main-picture {
+        grid-area: main-img;
+    }
+
+    .hike-detail .hike #more-pictures {
+        grid-area: more-pictures;
+    }
+
+    .hike-detail .hike #date {
+        grid-area: date;
+    }
+
+    .hike-detail .hike #price {
+        grid-area: price;
+    }
+
+    .hike-detail .hike #duration {
+        grid-area: duration;
+    }
+
+    .hike-detail .hike #level {
+        grid-area: level;
+    }
+
+    .hike-detail .hike #type {
+        grid-area: type;
+    }
+
+    /*.hike-detail .hike #description {*/
+    .hike-detail .hike #description {
+        grid-area: description;
     }
 }

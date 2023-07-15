@@ -3,13 +3,11 @@ from django.contrib.auth import get_user_model, login
 from django.contrib.contenttypes.models import ContentType
 from django.db import ProgrammingError
 
-from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation
-from lekipohodivplaninata.core.mixins import UserDataMixin
+from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation, Slider
+from lekipohodivplaninata.core.mixins import UserDataMixin, PicturesMixin
 from lekipohodivplaninata.core.validators import ValueInRangeValidator
 from lekipohodivplaninata.hike.models import Hike
-from lekipohodivplaninata.users_app.forms import BaseUserModelForm
-from lekipohodivplaninata.users_app.models import AnonymousAppUser
-from lekipohodivplaninata.users_app.models import BaseProfile
+from lekipohodivplaninata.users_app.models import AnonymousAppUser, BaseProfile
 
 UserModel = get_user_model()
 
@@ -264,3 +262,14 @@ class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
     class Meta:
         model = HikeEvaluation
         fields = '__all__'
+
+
+class SliderForm(PicturesMixin, forms.ModelForm):
+    class Meta:
+        model = Slider
+        fields = '__all__'
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+        folder = f'slider/'
+

@@ -1,14 +1,13 @@
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins, get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm
-from lekipohodivplaninata.base.models import SignUpForHike, HikeEvaluation
-from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin, CommonMixin
+from lekipohodivplaninata.base.forms import SignUpHikeForm, SiteEvaluationForm, SignedForHikeUpdateForm, SliderForm
+from lekipohodivplaninata.base.models import SignUpForHike, Slider
+from lekipohodivplaninata.core.mixins import HikeUpcomingEvents, HikePassedEvents, UserDataMixin
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -127,3 +126,21 @@ class SiteEvaluationView(views.CreateView):
             return super().get(request, *args, **kwargs)
 
         return redirect('index')
+
+
+class SliderCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.CreateView):
+    permission_required = 'is_staff'
+    template_name = 'slider/create.html'
+    form_class = SliderForm
+    success_url = reverse_lazy('slider list')
+
+
+class SliderListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
+    permission_required = 'is_staff'
+    template_name = 'slider/list.html'
+    model = Slider
+
+
+class SliderEditView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
+    permission_required = 'is_staff'
+    model = Slider

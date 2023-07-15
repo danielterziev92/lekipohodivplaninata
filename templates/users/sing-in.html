@@ -33,6 +33,7 @@
                         <p>Нямате акаунт ? Направете си от <a href="{% url 'sign up user' %}">тук</a></p>
                         <p></p>
                     </div>
+                    <input type="hidden" value="{{ next }}" name="next">
                     {% csrf_token %}
                     <button>Вход</button>
                 </form>

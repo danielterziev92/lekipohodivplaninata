@@ -19,8 +19,6 @@ UserModel = get_user_model()
 class SignInView(auth_view.LoginView):
     authentication_form = SignInForm
     template_name = 'users/sing-in.html'
-    redirect_authenticated_user = True
-    next_page = reverse_lazy('index')
 
 
 class SignUpView(views.CreateView):
