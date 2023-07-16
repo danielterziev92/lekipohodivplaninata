@@ -93,13 +93,17 @@ def confirm_user_for_hike(request, pk, text):
     return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
 
 
-# TODO: Refactor this for recommend
-def recommend_user_for_hike(request, pk):
+def presence_user_for_hike(request, pk, text):
+    bool_values = {
+        'True': True,
+        'False': False,
+    }
     if request.method.lower() == 'post':
         return redirect('index')
 
     obj = get_object_or_404(SignUpForHike, pk=pk)
-    obj.is_confirmed = False
+    obj.is_presence = bool_values[text]
+
     obj.save()
 
     return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
@@ -111,7 +115,7 @@ class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.Permissi
 
     def get_queryset(self):
         return SignUpForHike.objects.filter(hike_id=self.kwargs['pk']) \
-            .order_by('is_confirmed').order_by('is_recommend').order_by('travel_with')
+            .order_by('is_confirmed').order_by('is_presence').order_by('travel_with')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)

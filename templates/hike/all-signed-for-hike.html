@@ -41,12 +41,19 @@
                         <td>{{ obj.children_numbers }}</td>
                         <td>{{ obj.get_travel_with_display }}</td>
                         <td>
-                            <ul id="signed-for-hike-actions">
-                                <i class="fa-solid fa-list-ul"></i>
-                                <ul>
-                                    {% all-recorded-actions obj %}
+
+                            {% if obj.is_presence %}
+                                <i style="color: green;" class="fa-solid fa-circle-check"></i>
+                            {% elif obj.is_presence == False %}
+                                <i style="color: red;" class="fa-solid fa-circle-xmark"></i>
+                            {% else %}
+                                <ul id="signed-for-hike-actions">
+                                    <i class="fa-solid fa-list-ul"></i>
+                                    <ul>
+                                        {% all-recorded-actions obj %}
+                                    </ul>
                                 </ul>
-                            </ul>
+                            {% endif %}
                         </td>
                     </tr>
                 {% empty %}

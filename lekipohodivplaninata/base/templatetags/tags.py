@@ -25,7 +25,7 @@ def get_all_recorded_action_buttons(obj):
         'hike': Hike.objects.get(pk=obj.hike_id_id),
         'pk': obj.pk,
         'is_confirmed': True if obj.is_confirmed is None else False,
-        'is_recommend': True if obj.is_recommend is None else False,
+        'is_presence': True if obj.is_presence is None else False,
     }
 
     hike_event_date = context['hike'].event_date
@@ -76,6 +76,3 @@ def get_error_message_for_field(errors: dict):
 
         result.extend([value for value in values])
     return result
-
-
-

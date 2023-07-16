@@ -59,7 +59,7 @@ class SignUpForHike(models.Model):
         blank=True,
     )
 
-    is_recommend = models.BooleanField(
+    is_presence = models.BooleanField(
         null=True,
         blank=True,
     )

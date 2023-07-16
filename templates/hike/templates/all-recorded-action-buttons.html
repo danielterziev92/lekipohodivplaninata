@@ -5,22 +5,22 @@
     </li>
     {% if is_confirmed %}
         <li class="successful">
-            <a href="{% url 'signed for hike confirm' pk 'True' %}">Потвърди участие</a>
+            <a href="{% url 'signed for hike confirming' pk 'True' %}">Потвърди участие</a>
             <i class="fa-solid fa-person-circle-check"></i>
         </li>
         <li class="unsuccessful">
-            <a href="{% url 'signed for hike confirm' pk 'False' %}">Откажи участие</a>
+            <a href="{% url 'signed for hike confirming' pk 'False' %}">Откажи участие</a>
             <i class="fa-solid fa-person-circle-xmark"></i>
         </li>
     {% endif %}
 {% else %}
-    {% if is_recommend %}
+    {% if is_presence %}
         <li class="successful">
-            <a href="">Потвърди присъствие</a>
+            <a href="{% url 'signed for hike presence' pk 'True' %}">Потвърди присъствие</a>
             <i class="fa-solid fa-square-check"></i>
         </li>
         <li class="unsuccessful">
-            <a href="">Откажи присъствие</a>
+            <a href="{% url 'signed for hike presence' pk 'False' %}">Откажи присъствие</a>
             <i class="fa-solid fa-square-xmark"></i>
         </li>
     {% endif %}

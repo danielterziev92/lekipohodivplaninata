@@ -1608,6 +1608,10 @@ body {
     color: #1b1b1b;
 }
 
+.site-evaluation textarea {
+    width: 100%;
+}
+
 .site-evaluation button {
     background-color: #cf5533;
     color: #ffffff;
@@ -1742,6 +1746,11 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
+
+    .site-evaluation {
+        max-width: 600px;
+        margin: auto;
+    }
 }
 
 @media only screen and (width > 767px ) {
@@ -1795,6 +1804,11 @@ body {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
+    }
+
+    .signed-for-hike {
+        max-width: 1000px;
+        margin:auto;
     }
 
 }
