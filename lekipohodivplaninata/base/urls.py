@@ -1,8 +1,10 @@
 from django.urls import path, include
 
-from lekipohodivplaninata.base.views import IndexListView, UpcomingEventListView, PassedEventListView, SignUpHike, \
-    SiteEvaluationView, SignedForHikeListView, SignedForHikeUpdateView, confirm_user_for_hike, presence_user_for_hike, \
-    SliderCreateView, SliderListView, SliderEditView, SliderDeleteView
+from lekipohodivplaninata.base.views.evaluations import SiteEvaluationView
+from lekipohodivplaninata.base.views.generic import IndexListView, UpcomingEventListView, PassedEventListView
+from lekipohodivplaninata.base.views.sign_up_for_hike import SignedForHikeUpdateView, confirm_user_for_hike, \
+    presence_user_for_hike, SignUpHike, SignedForHikeListView
+from lekipohodivplaninata.base.views.slider import SliderCreateView, SliderEditView, SliderDeleteView, SliderListView
 
 urlpatterns = (
     path('', IndexListView.as_view(), name='index'),
