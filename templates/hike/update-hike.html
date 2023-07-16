@@ -40,7 +40,7 @@
                             <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
                         </button>
                         <button type="button">
-                            <a href="{% url 'hike more pictures add' %}">Добавяне на
+                            <a href="{% url 'hike more pictures add' slug=object.slug %}">Добавяне на
                                 снимки</a>
                         </button>
                         <button type="button">

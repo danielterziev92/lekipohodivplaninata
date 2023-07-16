@@ -17,15 +17,14 @@ class HikeMorePictureCreate \
     model = HikeMorePicture
 
     def get_success_url(self):
-        return reverse_lazy('hike detail', kwargs={
-            'pk': self.kwargs['pk'],
+        return reverse_lazy('hike more pictures list', kwargs={
             'slug': self.kwargs['slug'],
         })
 
     def form_valid(self, form):
         images = form.files.getlist('picture')
         if images:
-            hike = Hike.objects.get(pk=self.kwargs['pk'])
+            hike = Hike.objects.filter(slug=self.kwargs['slug']).first()
             public_id = hike.main_picture.public_id
             folder = self.get_picture_folder(public_id)
             for image in images:
@@ -37,7 +36,7 @@ class HikeMorePictureCreate \
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object'] = HikeModel.objects.get(pk=self.kwargs['pk'])
+        context['object'] = HikeModel.objects.filter(slug=self.kwargs['slug']).first()
         return context
 
 

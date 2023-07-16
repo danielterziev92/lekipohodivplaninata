@@ -1426,6 +1426,90 @@ body {
     border-bottom: 0.063rem solid rgb(0, 0, 0, 0.2);
 }
 
+.slider-list {
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-list > h1 {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+    background-color: #cf5533;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 20px 20px 5px 5px;
+}
+
+.slider-list .objects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.slider-list .objects div {
+    width: 100%;
+    border: 1px solid rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.slider-list .objects div figure {
+    --width: 385px;
+    grid-area: img;
+    max-width: var(--width);
+    height: calc((9 / 16) * var(--width));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-list .objects div figure img {
+    height: 100%;
+
+}
+
+.slider-list .objects div h1 {
+    background-color: #cf5533;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+.slider-list .objects div .buttons {
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin: 10px 0;
+}
+
+.slider-list button a,
+.slider-list .objects div .buttons a {
+    padding: 10px;
+    background-color: #cf5533;
+    color: #ffffff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.slider-list .objects div .buttons a i {
+    font-size: 1.2rem;
+}
+
+.slider-list button {
+    margin-top: 20px;
+    border: none;
+}
+
 .site-evaluation {
     margin: 0.65rem;
     padding: 0.65rem;
@@ -1652,6 +1736,12 @@ body {
     .form-container .fields-form .buttons {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .slider-list .objects {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 }
 
 @media only screen and (width > 767px ) {
@@ -1699,6 +1789,12 @@ body {
             "travel-with registration"
             "sing-me-up sing-me-up"
             "button button";
+    }
+
+    .slider-list .objects {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
     }
 
 }
@@ -1873,70 +1969,10 @@ body {
         margin: auto;
     }
 
-    .slider-list h1 {
-        width: 100%;
-        text-align: center;
-        margin: 20px 0;
-        background-color: #cf5533;
-        color: #ffffff;
-        padding: 10px;
-        border-radius: 20px 20px 5px 5px;
-    }
-
     .slider-list .objects {
         display: grid;
-        grid-template-columns: repeat(3, 387px);
+        grid-template-columns: repeat(3, 1fr);
         grid-gap: 20px;
-    }
-
-    .slider-list .objects div {
-        border: 1px solid rgb(0, 0, 0, 0.3);
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .slider-list .objects div figure {
-        --width: 385px;
-        grid-area: img;
-        max-width: var(--width);
-        height: calc((9 / 16) * var(--width));
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .slider-list .objects div figure img {
-        width: 100%;
-
-    }
-
-    .slider-list .objects div h1 {
-        background-color: #cf5533;
-        color: #ffffff;
-        padding: 10px;
-        text-align: center;
-    }
-
-    .slider-list .objects div .buttons {
-        border: none;
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-evenly;
-        margin: 10px 0;
-    }
-
-    .slider-list .objects div .buttons a {
-        padding: 10px;
-        background-color: #cf5533;
-        color: #ffffff;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 1rem;
-    }
-
-    .slider-list .objects div .buttons a i {
-        font-size: 1.2rem;
     }
 
     .form-container .fields-form .buttons {

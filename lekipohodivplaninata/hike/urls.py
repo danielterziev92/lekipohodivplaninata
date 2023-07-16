@@ -33,9 +33,9 @@ urlpatterns = (
         path('update/', HikeUpdateView.as_view(), name='hike update'),
         path('delete/', HikeDeleteView.as_view(), name='hike delete'),
     ])),
-    path('more-pictures/', include([
+    path('more-pictures/<slug:slug>/', include([
         path('add/', HikeMorePictureCreate.as_view(), name='hike more pictures add'),
-        path('delete/<slug:slug>/<int:pk>', HikeMorePictureDeleteView.as_view(), name='hike more pictures delete'),
-        path('list/<slug:slug>', HikeMorePictureListView.as_view(), name='hike more pictures list'),
+        path('delete/<int:pk>', HikeMorePictureDeleteView.as_view(), name='hike more pictures delete'),
+        path('list/', HikeMorePictureListView.as_view(), name='hike more pictures list'),
     ])),
 )
