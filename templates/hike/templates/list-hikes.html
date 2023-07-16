@@ -38,7 +38,7 @@
                 </p>
             </div>
             {% if hike.more_pictures.all|length > 0 %}
-                <div class="swiper more-pictures">
+                <div class="swiper more-pictures" id="more-pictures">
                     <div class="swiper-wrapper">
                         {% for picture in hike.more_pictures.all %}
                             <div class="swiper-slide">

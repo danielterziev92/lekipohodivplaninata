@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section class="slider-list">
+            <h1>{{ hike_object.title }}</h1>
+            <div class="objects">
+                {% for obj in object_list %}
+                    <div>
+                        <figure>
+                            <img src="{{ obj.image.url }}" alt=""/>
+                        </figure>
+                        <div class="buttons">
+                            <a href="{% url 'hike more pictures delete' slug=hike_object.slug pk=obj.pk %}">
+                                <i class="fa-solid fa-trash-can"></i>
+                                Изтрий
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/site-evaluation.js' %}"></script>
+{% endblock %}

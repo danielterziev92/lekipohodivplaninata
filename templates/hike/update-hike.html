@@ -34,16 +34,20 @@
                         {% endif %}
                     {% endfor %}
                     {% csrf_token %}
-
-                    <button>Запазване</button>
-                    <button type="button">
-                        <a href="{% url 'hike more pictures' pk=object.pk slug=object.slug %}">Добавяне на
-                            снимки</a>
-                    </button>
-                    <button type="button">
-                        <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
-                    </button>
-
+                    <div class="buttons">
+                        <button>Запазване</button>
+                        <button type="button">
+                            <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
+                        </button>
+                        <button type="button">
+                            <a href="{% url 'hike more pictures add' %}">Добавяне на
+                                снимки</a>
+                        </button>
+                        <button type="button">
+                            <a href="{% url 'hike more pictures list' slug=object.slug %}">Допълнитени
+                                снимки</a>
+                        </button>
+                    </div>
                 </form>
             </article>
         </section>

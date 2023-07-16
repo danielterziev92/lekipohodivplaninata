@@ -1,8 +1,13 @@
 from django.urls import path, include
 
-from lekipohodivplaninata.hike.views import HikeCreateView, HikeDetailView, HikeListView, HikeUpdateView, \
-    HikeDeleteView, HikeMorePictureUpload, HikeTypeCreateView, HikeTypeUpdateView, HikeTypeListView, \
-    HikeTypeDeleteView, HikeLevelCreateView, HikeLevelUpdateView, HikeLevelDeleteView, HikeLevelListView
+from lekipohodivplaninata.hike.views.hike import HikeCreateView, HikeDetailView, HikeUpdateView, HikeDeleteView, \
+    HikeListView
+from lekipohodivplaninata.hike.views.hike_level import HikeLevelCreateView, HikeLevelUpdateView, HikeLevelListView, \
+    HikeLevelDeleteView
+from lekipohodivplaninata.hike.views.hike_more_picture import HikeMorePictureCreate, HikeMorePictureDeleteView, \
+    HikeMorePictureListView
+from lekipohodivplaninata.hike.views.hike_types import HikeTypeCreateView, HikeTypeUpdateView, HikeTypeListView, \
+    HikeTypeDeleteView
 
 urlpatterns = (
     path('create/', include([
@@ -27,6 +32,10 @@ urlpatterns = (
         path('', HikeDetailView.as_view(), name='hike detail'),
         path('update/', HikeUpdateView.as_view(), name='hike update'),
         path('delete/', HikeDeleteView.as_view(), name='hike delete'),
-        path('more-pictures/', HikeMorePictureUpload.as_view(), name='hike more pictures'),
+    ])),
+    path('more-pictures/', include([
+        path('add/', HikeMorePictureCreate.as_view(), name='hike more pictures add'),
+        path('delete/<slug:slug>/<int:pk>', HikeMorePictureDeleteView.as_view(), name='hike more pictures delete'),
+        path('list/<slug:slug>', HikeMorePictureListView.as_view(), name='hike more pictures list'),
     ])),
 )

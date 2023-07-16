@@ -669,8 +669,13 @@ body {
     color: #1b1b1b;
 }
 
-.form-container .fields-form button {
-    margin: 0.625rem 0.25rem;
+.form-container .fields-form .buttons {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.form-container .fields-form .buttons button {
+    margin: 0.625rem auto;
     width: 8.125rem;
     height: 2.5rem;
     background-color: #cf5533;
@@ -680,7 +685,7 @@ body {
     font-size: 1rem;
 }
 
-.form-container .fields-form button a {
+.form-container .fields-form .buttons button a {
     text-decoration: none;
     color: inherit;
 }
@@ -1643,6 +1648,10 @@ body {
     .hike-types ul li .buttons {
         padding: 0 10px;
     }
+
+    .form-container .fields-form .buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media only screen and (width > 767px ) {
@@ -1663,6 +1672,10 @@ body {
            "sing-me-up"
            "button";
         grid-template-columns: 1fr;
+    }
+
+    .form-container .fields-form .buttons {
+        grid-template-columns: repeat(4, 1fr);
     }
 
 }
@@ -1772,6 +1785,25 @@ body {
         max-width: 1200px;
     }
 
+    .hikes-list .hike .hike-body {
+        grid-template-areas:
+        "img price"
+        "img type"
+        "img level"
+        "img duration"
+        "img more-picture";
+    }
+
+    .hikes-list .hike .more-pictures {
+        grid-area: more-picture;
+        width: 100%;
+    }
+
+    .hikes-list .hike .more-pictures .swiper-wrapper .swiper-slide img {
+        max-height: 50px;
+        width: auto;
+    }
+
     .hike-types ul li .buttons {
         width: auto;
     }
@@ -1832,7 +1864,6 @@ body {
         grid-area: type;
     }
 
-    /*.hike-detail .hike #description {*/
     .hike-detail .hike #description {
         grid-area: description;
     }
@@ -1840,34 +1871,54 @@ body {
     .slider-list {
         max-width: 1200px;
         margin: auto;
+    }
+
+    .slider-list h1 {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+        background-color: #cf5533;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 20px 20px 5px 5px;
+    }
+
+    .slider-list .objects {
         display: grid;
-        grid-template-columns: repeat(3, 400px);
+        grid-template-columns: repeat(3, 387px);
         grid-gap: 20px;
     }
 
-    .slider-list div {
+    .slider-list .objects div {
         border: 1px solid rgb(0, 0, 0, 0.3);
         border-radius: 10px;
         overflow: hidden;
     }
 
-    .slider-list div figure {
+    .slider-list .objects div figure {
+        --width: 385px;
         grid-area: img;
+        max-width: var(--width);
+        height: calc((9 / 16) * var(--width));
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .slider-list div figure img {
-        max-width: 400px;
+    .slider-list .objects div figure img {
+        width: 100%;
+
     }
 
-    .slider-list div h1 {
-        grid-area: title;
+    .slider-list .objects div h1 {
         background-color: #cf5533;
         color: #ffffff;
         padding: 10px;
         text-align: center;
     }
 
-    .slider-list div .buttons {
+    .slider-list .objects div .buttons {
         border: none;
         display: flex;
         flex-wrap: nowrap;
@@ -1875,7 +1926,7 @@ body {
         margin: 10px 0;
     }
 
-    .slider-list div .buttons a {
+    .slider-list .objects div .buttons a {
         padding: 10px;
         background-color: #cf5533;
         color: #ffffff;
@@ -1883,8 +1934,13 @@ body {
         text-decoration: none;
         font-size: 1rem;
     }
-    .slider-list div .buttons a i {
+
+    .slider-list .objects div .buttons a i {
         font-size: 1.2rem;
+    }
+
+    .form-container .fields-form .buttons {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 

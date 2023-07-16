@@ -2,10 +2,10 @@ new Swiper(".home-slider", {
     slidesPerView: 1,
     spaceBetween: 30,
     centeredSlides: true,
-    // autoplay: {
-    //     delay: 5000,
-    //     disableOnInteraction: false,
-    // },
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
     loop: true,
     centerSlide: 'true',
     fade: 'true',
@@ -13,7 +13,7 @@ new Swiper(".home-slider", {
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
-        // dynamicBullets: true,
+        dynamicBullets: true,
     },
     navigation: {
         nextEl: ".swiper-button-next",
