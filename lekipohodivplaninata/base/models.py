@@ -145,3 +145,68 @@ class Slider(models.Model):
         verbose_name='Изберете поход',
         help_text='Моля изберете един от посочениет походи',
     )
+
+
+class SocialMedia(models.Model):
+    NAME_MAX_LENGTH = 20
+    FONTAWESOME_MAX_LENGTH = 50
+    ICON_COLOR_MAX_LENGTH = 6
+
+    name = models.CharField(
+        max_length=NAME_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    url = models.URLField(
+        null=False,
+        blank=False,
+    )
+
+    fontawesome_icon = models.CharField(
+        max_length=FONTAWESOME_MAX_LENGTH,
+        null=True,
+        blank=True,
+    )
+
+    icon_color = models.CharField(
+        max_length=ICON_COLOR_MAX_LENGTH,
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Социална медия'
+        verbose_name_plural = 'Социални медии'
+
+
+class Settings(models.Model):
+    PHONE_NUMBER_MAX_LENGTH = 13
+
+    phone_number = models.CharField(
+        max_length=PHONE_NUMBER_MAX_LENGTH,
+        null=False,
+        blank=False,
+        verbose_name='Телефон за контакт',
+        help_text='Моля въведете телефон за контакт с вас'
+    )
+
+    email_for_contact = models.EmailField(
+        null=False,
+        blank=False,
+        verbose_name='Емейл за контакт',
+        help_text='Моля въведете емайла с когото ще могат да се свързват с вас'
+    )
+
+    social_media = models.ManyToManyField(
+        to=SocialMedia,
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = 'Настройка'
+        verbose_name_plural = 'Настройки'
