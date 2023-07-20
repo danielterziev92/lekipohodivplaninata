@@ -1,6 +1,6 @@
 <div class="buttons">
     <button>
-        <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">Виж повече</a>
+        <a href="{% url 'hike-detail' pk=hike.pk slug=hike.slug %}">Виж повече</a>
     </button>
     {% if sign_me_hike_button %}
         <button type="button">
@@ -9,7 +9,7 @@
         </button>
     {% elif edit_hike_button %}
         <button type="button">
-            <a href="{% url 'all signed for hike' pk=hike.pk slug=hike.slug %}">Всички записани</a>
+            <a href="{% url 'all-signed-for-hike' pk=hike.pk slug=hike.slug %}">Всички записани</a>
         </button>
     {% endif %}
 </div>

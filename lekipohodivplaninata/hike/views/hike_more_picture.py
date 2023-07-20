@@ -17,7 +17,7 @@ class HikeMorePictureCreate \
     model = HikeMorePicture
 
     def get_success_url(self):
-        return reverse_lazy('hike more pictures list', kwargs={
+        return reverse_lazy('hike-more-pictures-list', kwargs={
             'slug': self.kwargs['slug'],
         })
 
@@ -67,7 +67,7 @@ class HikeMorePictureDeleteView \
     model = HikeMorePicture
 
     def get_success_url(self):
-        return reverse_lazy('hike more pictures list', kwargs={
+        return reverse_lazy('hike-more-pictures-list', kwargs={
             'slug': self.kwargs['slug']
         })
 

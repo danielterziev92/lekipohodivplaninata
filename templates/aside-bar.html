@@ -8,22 +8,22 @@
                     <li>
                         <a href="javascript:void(0);">Походи</a>
                         <ul>
-                            <li><a href="{% url 'hike create' %}">Създаване на поход</a></li>
-                            <li><a href="{% url 'hike list' %}">Всички</a></li>
+                            <li><a href="{% url 'hike-create' %}">Създаване на поход</a></li>
+                            <li><a href="{% url 'hike-list' %}">Всички</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);">Типове на трудност</a>
                         <ul>
-                            <li><a href="{% url 'hike type create' %}">Създаване</a></li>
-                            <li><a href="{% url 'hike type list' %}">Всички</a></li>
+                            <li><a href="{% url 'hike-type-create' %}">Създаване</a></li>
+                            <li><a href="{% url 'hike-type-list' %}">Всички</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);">Ниво на поход</a>
                         <ul>
-                            <li><a href="{% url 'hike level create' %}">Създаване</a></li>
-                            <li><a href="{% url 'hike level list' %}">Всички</a></li>
+                            <li><a href="{% url 'hike-level-create' %}">Създаване</a></li>
+                            <li><a href="{% url 'hike-level-list' %}">Всички</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -32,8 +32,8 @@
         <li>
             <a href="javascript:void(0);">Походи</a>
             <ul>
-                <li><a href="{% url 'hikes upcoming' %}" class="upcoming">Предстоящи</a></li>
-                <li><a href="{% url 'hikes passed' %}" class="passed">Изминали</a></li>
+                <li><a href="{% url 'hikes-upcoming' %}" class="upcoming">Предстоящи</a></li>
+                <li><a href="{% url 'hikes-passed' %}" class="passed">Изминали</a></li>
             </ul>
         </li>
         {% if request.user.is_authenticated %}

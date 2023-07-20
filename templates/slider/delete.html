@@ -12,7 +12,7 @@
     <main>
         <section class="hike-detail">
             <article class="form-container">
-                <form action="{% url 'slider delete'  pk=object.pk %}" method="post" class="fields-form">
+                <form action="{% url 'slider-delete'  pk=object.pk %}" method="post" class="fields-form">
                     <h2>Желаете ли да изтриете този слайдър</h2>
                     <h3>{{ object.hike_id.title }}</h3>
                     {% csrf_token %}

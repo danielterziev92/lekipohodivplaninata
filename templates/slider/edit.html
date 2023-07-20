@@ -10,7 +10,7 @@
 {% block page_content %}
     <main>
         <section class="form-container">
-            <form action="{% url 'slider edit' pk=object.pk %}" method="post" class="fields-form"
+            <form action="{% url 'slider-edit' pk=object.pk %}" method="post" class="fields-form"
                   enctype="multipart/form-data">
                 <h2>Редактиране на слайдър</h2>
                 {% for field in form %}

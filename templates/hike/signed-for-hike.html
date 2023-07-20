@@ -15,7 +15,7 @@
     <main>
         <section class="signed-for-hike">
             <article class="form-container">
-                <form action="{% url 'signed for hike update' object.pk %}" method="post"
+                <form action="{% url 'signed-for-hike-update' object.pk %}" method="post"
                       class="fields-form">
                     {% for field in form %}
                         <label for="{{ field.id_for_label }}">

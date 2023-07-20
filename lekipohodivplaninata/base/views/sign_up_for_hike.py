@@ -16,7 +16,7 @@ class SignUpHike(views.UpdateView):
 
     def get_success_url(self):
         cache.set('is_signed', True, timeout=60)
-        return reverse_lazy('site evaluation')
+        return reverse_lazy('site-evaluation')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -32,7 +32,7 @@ class SignedForHikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.Permis
 
     def get_success_url(self):
         obj = SignUpForHike.objects.get(pk=self.kwargs.get('pk'))
-        return reverse_lazy('all signed for hike', kwargs={
+        return reverse_lazy('all-signed-for-hike', kwargs={
             'pk': obj.hike_id.pk, 'slug': obj.hike_id.slug,
         })
 
@@ -61,7 +61,7 @@ def confirm_user_for_hike(request, pk, text):
     else:
         obj.delete()
 
-    return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
+    return redirect('all-signed-for-hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
 
 
 def presence_user_for_hike(request, pk, text):
@@ -77,7 +77,7 @@ def presence_user_for_hike(request, pk, text):
 
     obj.save()
 
-    return redirect('all signed for hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
+    return redirect('all-signed-for-hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
 
 
 class SignedForHikeListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):

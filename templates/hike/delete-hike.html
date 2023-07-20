@@ -12,7 +12,7 @@
     <main>
         <section class="hike-detail">
             <article class="form-container">
-                <form action="{% url 'hike delete'  pk=object.pk slug=object.slug %}" method="post" class="fields-form">
+                <form action="{% url 'hike-delete'  pk=object.pk slug=object.slug %}" method="post" class="fields-form">
                     <h2>Желаете ли да изтриете този поход</h2>
                     <h3>{{ object.title }}</h3>
                     {% csrf_token %}

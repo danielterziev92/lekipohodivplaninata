@@ -5,7 +5,7 @@
         <div class="hike">
             <div class="hike-header">
                 <h1>
-                    <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">
+                    <a href="{% url 'hike-detail' pk=hike.pk slug=hike.slug %}">
                         {{ hike.title }}
                     </a>
                 </h1>
@@ -16,7 +16,7 @@
             </div>
             <div class="hike-body">
                 <figure>
-                    <a href="{% url 'hike detail' pk=hike.pk slug=hike.slug %}">
+                    <a href="{% url 'hike-detail' pk=hike.pk slug=hike.slug %}">
                         <img src="{{ hike.main_picture.url }}" alt=""/>
                     </a>
                 </figure>

@@ -12,7 +12,7 @@
     <main>
         <section class="hike-detail">
             <article class="form-container">
-                <form action="{% url 'hike more pictures delete' slug=hike_object.slug pk=object.pk %}"
+                <form action="{% url 'hike-more-pictures-delete' slug=hike_object.slug pk=object.pk %}"
                       method="post" class="fields-form">
                     <h2>Желаете ли да изтриете тази снимка</h2>
                     <img style="width: 100%;" src="{{ object }}" alt="">

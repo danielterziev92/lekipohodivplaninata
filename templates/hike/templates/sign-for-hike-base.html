@@ -1,6 +1,6 @@
 {% load tags %}
 <form method="post" class="sign-up-for-hike"
-      action="{% url 'sign up for hike' object.pk object.slug %}"
+      action="{% url 'sign-up-for-hike' object.pk object.slug %}"
       id="sign-for-hike-form">
     <h2>Запиши се за поход</h2>
     {% if form.errors %}

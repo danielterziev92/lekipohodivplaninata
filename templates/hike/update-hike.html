@@ -15,7 +15,7 @@
                 <figure>
                     <img src="{{ object.main_picture.url }}" alt="">
                 </figure>
-                <form action="{% url 'hike update'  pk=object.pk slug=object.slug %}" method="post" class="fields-form"
+                <form action="{% url 'hike-update'  pk=object.pk slug=object.slug %}" method="post" class="fields-form"
                       enctype="multipart/form-data">
                     {% for field in form %}
                         {% if field.id_for_label == 'id_new_main_picture' %}
@@ -37,14 +37,14 @@
                     <div class="buttons">
                         <button>Запазване</button>
                         <button type="button">
-                            <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
+                            <a href="{% url 'hike-delete' pk=object.pk slug=object.slug %}">Изтриване</a>
                         </button>
                         <button type="button">
-                            <a href="{% url 'hike more pictures add' slug=object.slug %}">Добавяне на
+                            <a href="{% url 'hike-more-pictures-add' slug=object.slug %}">Добавяне на
                                 снимки</a>
                         </button>
                         <button type="button">
-                            <a href="{% url 'hike more pictures list' slug=object.slug %}">Допълнитени
+                            <a href="{% url 'hike-more-pictures-list' slug=object.slug %}">Допълнитени
                                 снимки</a>
                         </button>
                     </div>

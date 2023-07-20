@@ -57,8 +57,8 @@
 
             {% if request.user.is_staff %}
                 <div class="actions">
-                    <a href="{% url 'hike update' pk=object.pk slug=object.slug %}">Редакция</a>
-                    <a href="{% url 'hike delete' pk=object.pk slug=object.slug %}">Изтриване</a>
+                    <a href="{% url 'hike-update' pk=object.pk slug=object.slug %}">Редакция</a>
+                    <a href="{% url 'hike-delete' pk=object.pk slug=object.slug %}">Изтриване</a>
                 </div>
             {% else %}
                 <div class="actions">

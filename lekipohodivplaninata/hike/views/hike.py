@@ -17,7 +17,7 @@ class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
     form_class = HikeCreateForm
 
     def get_success_url(self):
-        return reverse_lazy('hike detail', kwargs={
+        return reverse_lazy('hike-detail', kwargs={
             'pk': self.object.pk,
             'slug': self.object.slug,
         })
@@ -68,7 +68,7 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
         return super().get(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse_lazy('hike detail', kwargs={
+        return reverse_lazy('hike-detail', kwargs={
             'pk': self.object.pk,
             'slug': self.object.slug,
         })
@@ -77,7 +77,7 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
 class HikeDeleteView \
             (PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
     template_name = 'hike/delete-hike.html'
-    success_url = reverse_lazy('hike list')
+    success_url = reverse_lazy('hike-list')
     permission_required = 'is_staff'
     model = HikeModel
 

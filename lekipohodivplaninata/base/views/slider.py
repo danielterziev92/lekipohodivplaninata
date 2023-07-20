@@ -11,7 +11,7 @@ class SliderCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionReq
     permission_required = 'is_staff'
     template_name = 'slider/create.html'
     form_class = SliderCreateForm
-    success_url = reverse_lazy('slider list')
+    success_url = reverse_lazy('slider-list')
 
 
 class SliderListView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.ListView):
@@ -29,7 +29,7 @@ class SliderEditView \
     template_name = 'slider/edit.html'
     form_class = SliderEditForm
     model = Slider
-    success_url = reverse_lazy('slider list')
+    success_url = reverse_lazy('slider-list')
 
 
 class SliderDeleteView \
@@ -37,7 +37,7 @@ class SliderDeleteView \
     permission_required = 'is_staff'
     template_name = 'slider/delete.html'
     model = Slider
-    success_url = reverse_lazy('slider list')
+    success_url = reverse_lazy('slider-list')
 
     def form_valid(self, form):
         public_id = self.object.image.public_id
