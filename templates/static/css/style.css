@@ -678,6 +678,7 @@ main {
     grid-template-columns: repeat(1, 1fr);
 }
 
+.form-container .fields-form button,
 .form-container .fields-form .buttons button {
     margin: 0.625rem auto;
     width: 8.125rem;
@@ -1630,7 +1631,7 @@ footer {
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    position: absolute;
+    position: sticky;
     bottom: 0;
     z-index: 10;
 }
