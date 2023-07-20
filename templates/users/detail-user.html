@@ -88,8 +88,8 @@
                         </label>
                     {% endif %}
                     <div class="buttons">
-                        <button type="button"><a href="{% url 'user edit' pk=object.user_id.id %}">Редакция</a></button>
-                        <button type="button"><a href="{% url 'user delete' pk=object.user_id.id %}">Изтрий</a></button>
+                        <button type="button"><a href="{% url 'user-edit' pk=object.user_id.id %}">Редакция</a></button>
+                        <button type="button"><a href="{% url 'user-delete' pk=object.user_id.id %}">Изтрий</a></button>
                     </div>
                     {% csrf_token %}
                 </div>

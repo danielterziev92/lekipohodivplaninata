@@ -12,7 +12,7 @@
     <main>
         <section>
             <article class="form-container">
-                <form method='post' action="{% url 'sign in user' %}" class="fields-form">
+                <form method='post' action="{% url 'sign-in-user' %}" class="fields-form">
                     <h2>Вход</h2>
                     {% for field in form %}
                         <label for="{{ field.id_for_label }}">
@@ -29,8 +29,8 @@
                         {% endif %}
                     {% endfor %}
                     <div>
-                        <p><a href="{% url 'reset password' %}">Забравена парола</a></p>
-                        <p>Нямате акаунт ? Направете си от <a href="{% url 'sign up user' %}">тук</a></p>
+                        <p><a href="{% url 'reset-password' %}">Забравена парола</a></p>
+                        <p>Нямате акаунт ? Направете си от <a href="{% url 'sign-up-user' %}">тук</a></p>
                         <p></p>
                     </div>
                     <input type="hidden" value="{{ next }}" name="next">

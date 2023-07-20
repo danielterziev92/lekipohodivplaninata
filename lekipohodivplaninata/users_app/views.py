@@ -40,7 +40,7 @@ class SignOutView(auth_view.LogoutView):
 
 class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView):
     template_name = 'users/detail-user.html'
-    success_url = reverse_lazy('user detail')
+    success_url = reverse_lazy('user-detail')
 
     @property
     def model(self):
@@ -51,7 +51,7 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
     template_name = 'users/edit-user.html'
 
     def get_success_url(self):
-        return reverse_lazy('user detail', kwargs={
+        return reverse_lazy('user-detail', kwargs={
             'pk': self.request.user.pk,
         })
 
@@ -92,7 +92,7 @@ class UserDeleteView(UserFormMixin, mixins.LoginRequiredMixin, views.DeleteView)
 class UserPasswordResetView(auth_view.PasswordResetView):
     template_name = 'users/reset-password.html'
     form_class = UserResetPasswordForm
-    success_url = reverse_lazy('reset password done')
+    success_url = reverse_lazy('reset-password-done')
 
     def form_valid(self, form):
         email = form.cleaned_data.get('email')

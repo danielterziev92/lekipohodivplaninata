@@ -40,13 +40,13 @@
             <li>
                 <a href="javascript:void(0);">Моят Профил</a>
                 <ul>
-                    <li><a href="{% url 'user detail' pk=request.user.pk %}">Редакция на профила</a></li>
-                    <li><a href="{% url 'sign out user' %}">Изход</a></li>
+                    <li><a href="{% url 'user-detail' pk=request.user.pk %}">Редакция на профила</a></li>
+                    <li><a href="{% url 'sign-out-user' %}">Изход</a></li>
                 </ul>
             </li>
         {% else %}
-            <li><a href="{% url 'sign in user' %}">Вход</a></li>
-            <li><a href="{% url 'sign up user' %}">Регистрация</a></li>
+            <li><a href="{% url 'sign-in-user' %}">Вход</a></li>
+            <li><a href="{% url 'sign-up-user' %}">Регистрация</a></li>
         {% endif %}
     </ul>
     <div class="background"></div>
