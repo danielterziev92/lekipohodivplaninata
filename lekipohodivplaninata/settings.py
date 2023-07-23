@@ -1,6 +1,5 @@
 import datetime
 import os
-import requests
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 
