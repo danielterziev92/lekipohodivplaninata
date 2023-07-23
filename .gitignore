@@ -88,6 +88,6 @@ local_settings.py
 
 .env
 db.sqlite3
-
+.idea
 
 #celery -A lekipohodivplaninata worker -l info -P gevent
