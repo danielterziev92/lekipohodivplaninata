@@ -1243,6 +1243,7 @@ body {
     border-radius: 0.65rem;
     border-collapse: separate;
     border-spacing: 0;
+    margin: 0 auto;
 }
 
 .signed-for-hike table thead tr,
@@ -1811,7 +1812,8 @@ footer ul li a {
            "button";
         grid-template-columns: 1fr;
     }
-    .sign-up-for-hike .form-floating.numbers .numeric{
+
+    .sign-up-for-hike .form-floating.numbers .numeric {
         width: auto;
     }
 

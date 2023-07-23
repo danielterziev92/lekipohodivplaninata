@@ -9,8 +9,3 @@ urlpatterns = [
                   path('hike/', include('lekipohodivplaninata.hike.urls')),
                   path('', include('lekipohodivplaninata.base.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# SITE_NAME = "lekipohodivplaninata.BG"
-# admin.site.site_header = f"{SITE_NAME} Админ Панел"
-# admin.site.site_title = f"{SITE_NAME} Admin Portal"
-# admin.site.index_title = f"Welcome to {SITE_NAME} Admin Portal"

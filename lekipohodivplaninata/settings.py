@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users_app.UserApp'
 
 LOGIN_URL = reverse_lazy('sign-in-user')
-
+LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 PASSWORD_RESET_TIMEOUT = 3 * 60 * 60
@@ -181,8 +181,9 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format': '{asctime} -> [{levelname}]: {message}',
+            'format': '{asctime} -> [{levelname}] ({name}.{module}.{funcName}): {message}',
             'style': '{',
+            'datefmt': "%Y/%m/%d %H:%M:%S"
         },
         'simple': {
             'format': '[{levelname}]: {message}',
@@ -191,43 +192,57 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
-            'filters': [],
             'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
         },
-        'file_warning': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
+        'file_warning_handler': {
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': FILES_LOGGING_PATH / f'warning-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'level': 'WARNING',
+            'mode': 'a',
             'formatter': 'verbose',
+            'encoding': 'utf-8',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MiB
         },
-        'file_info': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
+        'file_info_handler': {
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': FILES_LOGGING_PATH / f'info-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'level': 'INFO',
+            'mode': 'a',
             'formatter': 'verbose',
+            'encoding': 'utf-8',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MiB
         },
         'mail_admin': {
-            'level': 'WARNING',
             'class': 'django.utils.log.AdminEmailHandler',
+            'level': 'WARNING',
             'include_html': True,
             'filters': ['require_debug_false'],
         }
     },
     'loggers': {
-        'django.db.backends': {
-            'level': 'INFO' if DEBUG else 'WARNING',
-            'handlers': ['console'],
+        'django': {
+            'handlers': ['file_info_handler', 'console' if DEBUG else ''],
+            'level': 'INFO',
         },
         'django.request': {
-            'handlers': ['mail_admin', 'file_warning', 'console'],
-            'level': 'WARNING',
-            'formatter': 'verbose',
-        },
-        'lekipohodivplaninata': {
-            'handlers': ['file_info', 'console'],
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console' if DEBUG else ''],
             'level': 'INFO',
-            'formatter': 'verbose',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console' if DEBUG else ''],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'INFO' if DEBUG else 'WARNING',
+        },
+        'django.server': {
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler'],
+            'level': 'INFO',
+            'propagate': True,
         }
     }
 }
