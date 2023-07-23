@@ -15,12 +15,10 @@ html {
 body {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    position: relative;
     height: 100vh;
     height: -webkit-fill-available;
-}
-
-main {
-    height: 100vh;
 }
 
 .body-freeze {
@@ -1631,9 +1629,7 @@ footer {
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
+    z-index: 2;
 }
 
 footer .logo {
@@ -1706,7 +1702,6 @@ footer ul li a {
     }
 
     .sign-up-for-hike {
-        margin-top: 140px;
         grid-column-gap: 10px;
         grid-template-columns: repeat(2, 1fr);
         grid-template-areas:
@@ -1749,6 +1744,8 @@ footer ul li a {
 
     .sign-up-for-hike .form-floating .wrapper {
         grid-area: travel-with;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .sign-up-for-hike .form-floating.registration {
@@ -1797,7 +1794,8 @@ footer ul li a {
 @media only screen and (width > 767px ) {
 
     .sign-up-for-hike {
-        margin-top: 0;
+        margin: 0 auto;
+        max-width: 800px;
         grid-column-gap: unset;
         grid-template-areas:
             "header"
@@ -1812,6 +1810,9 @@ footer ul li a {
            "sing-me-up"
            "button";
         grid-template-columns: 1fr;
+    }
+    .sign-up-for-hike .form-floating.numbers .numeric{
+        width: auto;
     }
 
     .form-container .fields-form .buttons {

@@ -1,5 +1,6 @@
+import datetime
 import os
-import environ
+import requests
 from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 
@@ -8,17 +9,13 @@ from django.urls import reverse_lazy
 
 import lekipohodivplaninata.users_app.validators
 
-env = environ.Env()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = bool(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -73,12 +70,12 @@ WSGI_APPLICATION = 'lekipohodivplaninata.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -127,9 +124,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 cloudinary.config(
-    cloud_name=env('CLOUDINARY_CLOUD_NAME'),
-    api_key=env('CLOUDINARY_API_KEY'),
-    api_secret=env('CLOUDINARY_API_SECRET'),
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -143,15 +140,16 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 PASSWORD_RESET_TIMEOUT = 3 * 60 * 60
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = env('EMAIL_PORT')
-EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+SERVER_EMAIL = os.environ.get('SERVER_EMAIL')
 DEFAULT_FROM_EMAIL = f'Леки походи в планината <{EMAIL_HOST_USER}>'
 
-CELERY_BROKER_URL = env('CELERY_BROKER_URL')
-CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -160,23 +158,76 @@ CELERY_RESULT_SERIALIZER = 'json'
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": env('CELERY_BROKER_URL'),
+        "LOCATION": os.environ.get('CELERY_BROKER_URL'),
     }
 }
 
-# LOGGING = {
-#     'version': 1,
-#     'handlers': {
-#         'console': {
-#             'level': 'DEBUG',
-#             'filters': [],
-#             'class': 'logging.StreamHandler',
-#         }
-#     },
-#     'loggers': {
-#         'django.db.backends': {
-#             'level': 'DEBUG',
-#             'handlers': ['console'],
-#         }
-#     }
-# }
+ADMINS = []
+for admin in os.environ.get('ADMINS').split(' | '):
+    ADMINS.append(tuple(admin.split(',')))
+
+if not os.path.exists('Logs'):
+    os.mkdir('Logs')
+
+FILES_LOGGING_PATH = BASE_DIR / 'Logs'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} -> [{levelname}]: {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '[{levelname}]: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': [],
+            'class': 'logging.StreamHandler',
+        },
+        'file_warning': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': FILES_LOGGING_PATH / f'warning-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'formatter': 'verbose',
+        },
+        'file_info': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': FILES_LOGGING_PATH / f'info-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'formatter': 'verbose',
+        },
+        'mail_admin': {
+            'level': 'WARNING',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+            'filters': ['require_debug_false'],
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'INFO' if DEBUG else 'WARNING',
+            'handlers': ['console'],
+        },
+        'django.request': {
+            'handlers': ['mail_admin', 'file_warning', 'console'],
+            'level': 'WARNING',
+            'formatter': 'verbose',
+        },
+        'lekipohodivplaninata': {
+            'handlers': ['file_info', 'console'],
+            'level': 'INFO',
+            'formatter': 'verbose',
+        }
+    }
+}

@@ -1,12 +1,9 @@
 const asideMenuStyle = document.querySelector('.side-menu-mobile');
 const headerElement = document.getElementById('main-header');
-const sideMenuElement = document.getElementById('side-menu-mobile');
-
 
 window.addEventListener('scroll', () => {
     headerElement.classList.toggle('sticky', window.scrollY > 0);
 });
-
 
 document.getElementById('menu-btn-small').addEventListener('click', showHideAsideBarMenu)
 

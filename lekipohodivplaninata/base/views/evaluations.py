@@ -13,7 +13,7 @@ class SiteEvaluationView(views.CreateView):
     success_url = reverse_lazy('index')
     extra_context = {
         'title': 'Моля да оцените сайта ни:',
-        'action_url': _('site evaluation')
+        'action_url': _('site-evaluation')
     }
 
     def get(self, request, *args, **kwargs):

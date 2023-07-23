@@ -120,9 +120,8 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        if email:
-            if UserModel.objects.filter(email=email):
-                self.add_error('email', 'Потребител с този имейл съшествува')
+        if email and UserModel.objects.filter(email=email):
+            self.add_error('email', 'Потребител с този имейл съшествува')
 
         return email
 
@@ -235,6 +234,7 @@ class SignedForHikeUpdateForm(forms.ModelForm):
             'hike_id': 'Походи',
             'adults_numbers': 'Брой възрастни',
             'children_numbers': 'Брой деца',
+            'travel_with': 'Пъвува с'
         }
 
 

@@ -62,7 +62,9 @@
                 </div>
             {% else %}
                 <div class="actions">
-                    <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">
+                    {#                    <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">#}
+                    {#                        Запиши ме запохода</a>#}
+                    <a href="{% url 'sign-up-for-hike' pk=object.pk slug=object.slug %}" id="sign-for-hike">
                         Запиши ме запохода</a>
                 </div>
             {% endif %}

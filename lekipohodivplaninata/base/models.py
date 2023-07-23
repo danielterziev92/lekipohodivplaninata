@@ -203,7 +203,6 @@ class Settings(models.Model):
 
     social_media = models.ManyToManyField(
         to=SocialMedia,
-        null=True,
         blank=True,
     )
 

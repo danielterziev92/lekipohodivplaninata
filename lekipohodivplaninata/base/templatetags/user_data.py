@@ -12,21 +12,24 @@ def get_user_first_name_sign_for_hike(context):
         'first_name': '',
         'last_name': '',
         'phone_number': '',
-        'adults_numbers': '',
-        'children_numbers': '',
+        'adults_numbers': '0',
+        'children_numbers': '0',
         'choose_transport': '',
         'email': '',
         'register_user': False,
     }
 
     if isinstance(context.request.user, UserModel):
-        user_data = context.request.user.baseprofile
+        data = context.request.user.baseprofile
+        data_to_collect = ['first_name', 'last_name', 'phone_number', 'get_email']
+        for key in data_to_collect:
+            user_data[key] = data.__getattribute__(key)
 
     if isinstance(context.request.user, AnonymousUser) and context.request.POST:
         user_data = context.request.POST
 
     for key in user_data.keys():
-        context[key] = user_data[key]
+        context[key] = user_data.get(key, '')
 
     if 'email' in context.request.POST and context.request.POST['email']:
         context['register_user'] = True
