@@ -5,14 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/lekipohodivplaninata.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lekipohodivplaninata.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_05_23____8_08____Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_05_23_г_,_8_08_ч__[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_05_23_г_,_8_08_ч__[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/templatetags/dispatcher_for_level_and_type_of_hike.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/templatetags/dispatcher_for_level_and_type_of_hike.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/error_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/context_processors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/errors/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evaluation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/create-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/create-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/delete-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/delete-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/detail-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/detail-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/list-hikes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/list-hikes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/passed-events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/passed-events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/sign-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/sign-for-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/signed-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/signed-for-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/templates/create-or-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/create-or-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/templates/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/upcoming-events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/upcoming-events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/hike/update-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/update-hike.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/slider/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/slider/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/slider/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/slider/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/delete-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/delete-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/detail-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/detail-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/edit-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/edit-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password-confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-done.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password-done.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/sign-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/sign-up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/users/sing-in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/sing-in.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +89,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/templates/404.html" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/password_validation.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/views.py" root0="SKIP_INSPECTION" />
   </component>
@@ -59,6 +100,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2OhrEcTNS2qNcTtSbvGjAPbRXQh" />
   <component name="ProjectViewState">
@@ -80,7 +124,7 @@
     "WebServerToolWindowPanel.toolwindow.show.size": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Документи/GitHub/Blogzine",
+    "last_opened_file_path": "D:/Документи/GitHub/lekipohodivplaninata/manage.py",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -88,7 +132,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -106,105 +150,17 @@
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\static\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike\more-pucture" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\lekipohodivplaninata\core" />
       <recent name="$PROJECT_DIR$/templates/hike/templates" />
       <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike\templates" />
-      <recent name="D:\Документи\GitHub\lekipohodivplaninata\templates\hike" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.lekipohodivplaninata">
     <configuration name="Django + Celery" type="CompoundRunConfigurationType">
       <toRun name="lekipohodivplaninata" type="Python.DjangoServer" />
       <toRun name="Celery" type="PythonConfigurationType" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Celery" type="PythonConfigurationType" factoryName="Python">
-      <module name="lekipohodivplaninata" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="D:\Документи\GitHub\lekipohodivplaninata\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/celery.exe" />
-      <option name="PARAMETERS" value="-A lekipohodivplaninata worker -l info" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="forms" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lekipohodivplaninata" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lekipohodivplaninata/base" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lekipohodivplaninata/base/forms.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="models" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lekipohodivplaninata" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lekipohodivplaninata/base" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="validators" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="lekipohodivplaninata" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lekipohodivplaninata/hike" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lekipohodivplaninata/hike/validators.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="lekipohodivplaninata" type="Python.DjangoServer" factoryName="Django server">
@@ -248,9 +204,10 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="envFilePath" value="" />
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -260,15 +217,10 @@
       <item itemvalue="Compound.Django + Celery" />
       <item itemvalue="Django Server.lekipohodivplaninata" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Python.Celery" />
-      <item itemvalue="Python.forms" />
-      <item itemvalue="Python.models" />
-      <item itemvalue="Python.validators" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Python.forms" />
       </list>
     </recent_temporary>
   </component>
@@ -354,8 +306,25 @@
       <workItem from="1689107033862" duration="1013000" />
       <workItem from="1689173676903" duration="502000" />
       <workItem from="1689424915860" duration="10139000" />
-      <workItem from="1689497255213" duration="23487000" />
-      <workItem from="1689933781823" duration="1434000" />
+      <workItem from="1689497255213" duration="31822000" />
+      <workItem from="1689612729543" duration="2554000" />
+      <workItem from="1689698361165" duration="5334000" />
+      <workItem from="1689796534414" duration="3516000" />
+      <workItem from="1689865659658" duration="2701000" />
+      <workItem from="1689882647128" duration="2997000" />
+      <workItem from="1690037835470" duration="7821000" />
+      <workItem from="1690058755894" duration="1109000" />
+      <workItem from="1690107380288" duration="19758000" />
+      <workItem from="1690135571599" duration="831000" />
+      <workItem from="1690136427125" duration="471000" />
+      <workItem from="1690136913701" duration="1432000" />
+      <workItem from="1690138387690" duration="6000" />
+      <workItem from="1690138401782" duration="262000" />
+      <workItem from="1690138676944" duration="428000" />
+      <workItem from="1690139106921" duration="71000" />
+      <workItem from="1690139189367" duration="441000" />
+      <workItem from="1690139645109" duration="171000" />
+      <workItem from="1690147541363" duration="2566000" />
     </task>
     <servers />
   </component>
@@ -363,6 +332,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,11 +400,6 @@
           <option name="timeStamp" value="496" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/templatetags/user_data.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="543" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lekipohodivplaninata/hike/migrations/0006_add_and_remove_slug_field_for_hike.py</url>
           <line>22</line>
           <option name="timeStamp" value="553" />
@@ -445,9 +410,9 @@
           <option name="timeStamp" value="564" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/views.py</url>
-          <line>96</line>
-          <option name="timeStamp" value="594" />
+          <url>file://$PROJECT_DIR$/lekipohodivplaninata/base/templatetags/user_data.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="573" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -460,6 +425,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
+        <watch expression="context.request.POST" language="Python" />
         <watch expression="context.request.path.split('/')" language="Python" />
         <watch expression="self.login_url" />
         <watch expression="request" />
@@ -472,13 +438,13 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$validators.coverage" NAME="validators Coverage Results" MODIFIED="1686157295803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/hike" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$utils.coverage" NAME="utils Coverage Results" MODIFIED="1684439433193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/core" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1682840149193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$models.coverage" NAME="models Coverage Results" MODIFIED="1684933474106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
-    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1686301499829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$urls.coverage" NAME="urls Coverage Results" MODIFIED="1682089713945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$utils.coverage" NAME="utils Coverage Results" MODIFIED="1684439433193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/core" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms__1_.coverage" NAME="forms (1) Coverage Results" MODIFIED="1684992438425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
     <SUITE FILE_PATH="coverage/lekipohodivplaninata$fill_icons_form_tag.coverage" NAME="fill_icons_form_tag Coverage Results" MODIFIED="1682839381990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/users_app/templatetags" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$Celery.coverage" NAME="Celery Coverage Results" MODIFIED="1685385621604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$settings.coverage" NAME="settings Coverage Results" MODIFIED="1682406560668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$forms.coverage" NAME="forms Coverage Results" MODIFIED="1687615213000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
+    <SUITE FILE_PATH="coverage/lekipohodivplaninata$models.coverage" NAME="models Coverage Results" MODIFIED="1685806841540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lekipohodivplaninata/base" />
   </component>
 </project>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
+{% block page_title %}Изтриване{% endblock %}
+
 {% block page_content %}
     <main>
         <section class="hike-detail">
@@ -25,7 +27,7 @@
                     {% csrf_token %}
                     <div class="buttons">
                         <button>Изтрий</button>
-                        <button type="button"><a href="{% url cancel_url_button %}">Отказ</a></button>
+                        <button onclick="history.back()">Отказ</button>
                     </div>
                 </form>
             </article>

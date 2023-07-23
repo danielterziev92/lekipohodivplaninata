@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = bool(os.environ.get('DEBUG'))
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
@@ -221,16 +221,16 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file_info_handler', 'console' if DEBUG else ''],
+            'handlers': ['file_info_handler', 'console'],
             'level': 'INFO',
         },
         'django.request': {
-            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console' if DEBUG else ''],
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console'],
             'level': 'INFO',
             'propagate': True,
         },
         'django.template': {
-            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console' if DEBUG else ''],
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console'],
             'level': 'INFO',
             'propagate': True,
         },

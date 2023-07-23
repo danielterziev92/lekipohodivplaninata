@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
+{% block page_title %}
+    {% type_or_level_form_title form_title %}
+{% endblock %}
+
+
 {% block page_content %}
     <main>
         <section>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_title %}404{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section class="error">
+            <h1>Страницата не е намерена</h1>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+{% endblock %}
