@@ -2,6 +2,7 @@ from django import forms
 from django.db import ProgrammingError
 
 from lekipohodivplaninata.core.mixins import HikeCreateFormMixin, HikeUpdateFormMixin, PicturesMixin, HikeBaseFormMixin
+from lekipohodivplaninata.core.validators import FileSizeValidator
 from lekipohodivplaninata.hike.models import Hike, HikeLevel, HikeMorePicture, HikeAdditionalInfo, HikeType
 from lekipohodivplaninata.hike.validators import before_today_validator
 from lekipohodivplaninata.users_app.models import BaseProfile
@@ -93,6 +94,7 @@ class HikeCreateForm(HikeCreateFormMixin, HikeForm):
     main_picture = forms.ImageField(
         label='Освновна снимка',
         widget=forms.FileInput,
+        validators=(FileSizeValidator(10),)
     )
 
     event_venue = forms.CharField(
@@ -128,6 +130,7 @@ class HikeUpdateForm(HikeUpdateFormMixin, HikeForm):
         label='Освновна снимка',
         widget=forms.FileInput,
         required=False,
+        validators=(FileSizeValidator(10),)
     )
 
     event_venue = forms.CharField(
@@ -173,6 +176,7 @@ class HikeMorePictureUploadForm(forms.ModelForm):
         label='Снимка',
         widget=forms.FileInput,
         required=False,
+        validators=(FileSizeValidator(10),)
     )
 
     class Meta:

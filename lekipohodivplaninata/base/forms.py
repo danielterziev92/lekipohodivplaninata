@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation, Slider
 from lekipohodivplaninata.core.mixins import UserDataMixin, PicturesMixin
-from lekipohodivplaninata.core.validators import ValueInRangeValidator
+from lekipohodivplaninata.core.validators import ValueInRangeValidator, FileSizeValidator
 from lekipohodivplaninata.hike.models import Hike
 from lekipohodivplaninata.users_app.models import AnonymousAppUser, BaseProfile
 
@@ -266,6 +266,12 @@ class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
 
 
 class SliderCreateForm(PicturesMixin, forms.ModelForm):
+    image = forms.ImageField(
+        label='Освновна снимка',
+        widget=forms.FileInput,
+        validators=(FileSizeValidator(10),)
+    )
+
     class Meta:
         model = Slider
         fields = '__all__'
@@ -293,6 +299,7 @@ class SliderEditForm(PicturesMixin, forms.ModelForm):
     image = forms.ImageField(
         label='Снимка',
         widget=forms.FileInput(),
+        validators=(FileSizeValidator(10),)
     )
 
     class Meta:

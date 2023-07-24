@@ -5,54 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c46a06a-843c-4102-be2a-44c1c38ee41f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b/storage_v2/_src_/database/lekipohodi.on3zcA/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lekipohodivplaninata.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lekipohodivplaninata.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_05_23____8_08____Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_05_23_г_,_8_08_ч__[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_05_23_г_,_8_08_ч__[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b1c9bf6d-63ad-43c6-9cfe-bf2dec84532b.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/error_views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/context_processors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/errors/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evaluation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/all-signed-for-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/create-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/create-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/delete-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/delete-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/detail-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/detail-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/list-hikes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/list-hikes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/base/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/core/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/core/validators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/lekipohodivplaninata/hike/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/more-picture/more-pictures-hike-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/passed-events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/passed-events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/sign-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/sign-for-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/signed-for-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/signed-for-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/create-or-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/create-or-update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/templates/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/templates/delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/hike/upcoming-events.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/upcoming-events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/hike/update-hike.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/hike/update-hike.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/slider/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/slider/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/slider/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/slider/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/slider/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/delete-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/delete-user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/detail-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/detail-user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/edit-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/edit-user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password-confirm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/reset-password-done.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password-done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/reset-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/sign-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/sign-up.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/sing-in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/sing-in.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,38 +68,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindowRun.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
-    "WebServerToolWindowPanel.toolwindow.show.date": "false",
-    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
-    "WebServerToolWindowPanel.toolwindow.show.size": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Документи/GitHub/lekipohodivplaninata/manage.py",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.completion",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Документи/GitHub/lekipohodivplaninata/manage.py&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/hike/email-templates" />
@@ -324,7 +283,8 @@
       <workItem from="1690139106921" duration="71000" />
       <workItem from="1690139189367" duration="441000" />
       <workItem from="1690139645109" duration="171000" />
-      <workItem from="1690147541363" duration="2566000" />
+      <workItem from="1690147541363" duration="3089000" />
+      <workItem from="1690210151741" duration="3461000" />
     </task>
     <servers />
   </component>

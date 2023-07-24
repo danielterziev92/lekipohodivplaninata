@@ -156,23 +156,29 @@ class SocialMedia(models.Model):
         max_length=NAME_MAX_LENGTH,
         null=False,
         blank=False,
+        help_text='Това е името което ще се показва в долната част на сайта.'
     )
 
     url = models.URLField(
         null=False,
         blank=False,
+        help_text='Поставяте линка на социалната медия'
     )
 
     fontawesome_icon = models.CharField(
         max_length=FONTAWESOME_MAX_LENGTH,
         null=True,
         blank=True,
+        help_text='Влизате в https://fontawesome.com/search и избирате иконата която желате, след което селектирате '
+                  'името на класа и го поставяте тук. Например: ＜i class="fa-brands fa-facebook"＞ се поставя само '
+                  'fa-brands fa-facebook'
     )
 
     icon_color = models.CharField(
         max_length=ICON_COLOR_MAX_LENGTH,
         null=True,
         blank=True,
+        help_text='Поставяте само 6 цифрения код. Например HEX кода е #3b5998, вие поставяте само 3b5998'
     )
 
     def __str__(self):

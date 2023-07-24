@@ -28,6 +28,7 @@
                                 <img src="" id="new-picture" alt=""/>
                             </div>
                         </div>
+                        {{ field.errors }}
                     {% endfor %}
                     {% csrf_token %}
                     <input type="hidden" name="pk" value="{{ object.pk }}"/>
