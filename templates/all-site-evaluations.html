@@ -28,15 +28,15 @@
                     {% if page_obj.has_previous %}
                         <a href="?page={{ page_obj.previous_page_number }}">Предишна</a>
                     {% else %}
-                        <span style="background='transpenrant';"></span>
+                        <span style="background-color: transparent;"></span>
                     {% endif %}
-{#                    {% if page_obj > 1 %}#}
+                    {% if page_obj.paginator.num_pages > 1 %}
                         <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
-{#                    {% endif %}#}
+                    {% endif %}
                     {% if page_obj.has_next %}
                         <a href="?page={{ page_obj.next_page_number }}">Следваща</a>
                     {% else %}
-                        <a href="a"></a>
+                        <span style="background-color: transparent;"></span>
                     {% endif %}
                 </div>
                 <p class="average-grade">Средна оценка: {% average_site_evaluation %}</p>

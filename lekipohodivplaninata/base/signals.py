@@ -35,6 +35,7 @@ def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs
     hike_eval = HikeEvaluation.objects.get(hike_id=instance.hike_id)
     hike_eval.users.create(user_id=instance.user_object)
     countdown_delay = get_event_time_in_seconds()
+    print(countdown_delay)
     send_email_for_hike_evaluation_with_slug_to_log_in.apply_async(
         kwargs={
             # 'hike_id': instance.hike_id,
