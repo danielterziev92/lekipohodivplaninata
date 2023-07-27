@@ -1135,6 +1135,7 @@ body {
 }
 
 
+.site-evaluation .pagination,
 .hikes-list .pagination {
     display: grid;
     justify-content: center;
@@ -1143,6 +1144,8 @@ body {
     align-items: center;
 }
 
+.site-evaluation .pagination a,
+.site-evaluation .pagination span,
 .hikes-list .pagination a,
 .hike-detail .actions a {
     padding: 0.4rem 0.6rem;
@@ -1153,11 +1156,14 @@ body {
     margin: 0 1rem;
 }
 
+.site-evaluation .pagination a,
+.site-evaluation .pagination span,
 .hikes-list .pagination a,
 .hikes-list .pagination span {
     font-size: 1.2rem;
 }
 
+.site-evaluation .pagination button,
 .hikes-list .pagination button {
     border: none;
 }
@@ -1571,14 +1577,14 @@ body {
 }
 
 .site-evaluation ul {
+    margin-bottom: 10px;
 }
 
 .site-evaluation ul li {
     list-style: none;
     display: grid;
-    /*flex-wrap: nowrap;*/
-    padding: 10px;
     border: 1px solid rgb(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .site-evaluation ul li:first-child {
@@ -1596,9 +1602,15 @@ body {
 }
 
 .site-evaluation ul li span:first-child {
-    color: #cf5533;
+    background-color: #cf5533;
+    color: #ffffff;
+    text-align: center;
     font-size: 1.2rem;
     font-weight: bolder;
+}
+
+.site-evaluation ul li span {
+    padding: 10px;
 }
 
 .site-evaluation .average-grade {

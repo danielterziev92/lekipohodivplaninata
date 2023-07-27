@@ -17,14 +17,29 @@
                 <ul>
                     {% for evaluation in object_list %}
                         <li>
-                            <span>{{ evaluation.assessment }}</span>
+                            <span>Оценка: {{ evaluation.assessment }}</span>
                             {% if evaluation.comment %}
-                                <span>{{ evaluation.comment }}</span>
+                                <span>Коментар: {{ evaluation.comment }}</span>
                             {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
-                <p class="average-grade">Обща оценка: {% average_site_evaluation %}</p>
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">Предишна</a>
+                    {% else %}
+                        <span style="background='transpenrant';"></span>
+                    {% endif %}
+{#                    {% if page_obj > 1 %}#}
+                        <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+{#                    {% endif %}#}
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Следваща</a>
+                    {% else %}
+                        <a href="a"></a>
+                    {% endif %}
+                </div>
+                <p class="average-grade">Средна оценка: {% average_site_evaluation %}</p>
             </article>
         </section>
     </main>

@@ -28,3 +28,4 @@ class SiteEvaluationCreateView(views.CreateView):
 class SiteEvaluationListView(views.ListView):
     template_name = 'all-site-evaluations.html'
     model = SiteEvaluation
+    paginate_by = 1
