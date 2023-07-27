@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load tags %}
 
 
 {% block page_styles %}
@@ -17,10 +18,13 @@
                     {% for evaluation in object_list %}
                         <li>
                             <span>{{ evaluation.assessment }}</span>
-                            <span>{{ evaluation.comment }}</span>
+                            {% if evaluation.comment %}
+                                <span>{{ evaluation.comment }}</span>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
+                <p class="average-grade">Обща оценка: {% average_site_evaluation %}</p>
             </article>
         </section>
     </main>

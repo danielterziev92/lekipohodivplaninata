@@ -8,7 +8,7 @@ from lekipohodivplaninata.base.forms import SiteEvaluationForm
 from lekipohodivplaninata.base.models import SiteEvaluation
 
 
-class SiteEvaluationView(views.CreateView):
+class SiteEvaluationCreateView(views.CreateView):
     template_name = 'evaluation.html'
     form_class = SiteEvaluationForm
     success_url = reverse_lazy('index')

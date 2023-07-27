@@ -4,7 +4,7 @@ from django import template
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
-from lekipohodivplaninata.base.models import SignUpForHike, Hike
+from lekipohodivplaninata.base.models import SignUpForHike, Hike, SiteEvaluation
 
 register = template.Library()
 DOMAIN_NAME = 'lekipohodivplanina.bg'
@@ -76,3 +76,13 @@ def get_error_message_for_field(errors: dict):
 
         result.extend([value for value in values])
     return result
+
+
+@register.simple_tag(name='average_site_evaluation')
+def get_average_site_evaluation():
+    site_evaluations = SiteEvaluation.objects.all()
+    site_evaluations_grades = sum([evaluation.assessment for evaluation in site_evaluations])
+    site_evaluations_count = site_evaluations.count()
+    result = site_evaluations_grades / site_evaluations_count
+
+    return f'{result:.2f}'
