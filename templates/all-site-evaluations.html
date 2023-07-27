@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block page_title %}Оценяване на сайта{% endblock %}
+
+{% block page_content %}
+    <main>
+        <section>
+            <article class="site-evaluation">
+                <ul>
+                    {% for evaluation in object_list %}
+                        <li>
+                            <span>{{ evaluation.assessment }}</span>
+                            <span>{{ evaluation.comment }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </article>
+        </section>
+    </main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/site-evaluation.js' %}"></script>
+{% endblock %}

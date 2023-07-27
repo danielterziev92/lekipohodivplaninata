@@ -5,6 +5,7 @@ from django.views import generic as views
 from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.forms import SiteEvaluationForm
+from lekipohodivplaninata.base.models import SiteEvaluation
 
 
 class SiteEvaluationView(views.CreateView):
@@ -22,3 +23,8 @@ class SiteEvaluationView(views.CreateView):
             return super().get(request, *args, **kwargs)
 
         return redirect('index')
+
+
+class SiteEvaluationListView(views.ListView):
+    template_name = 'all-site-evaluations.html'
+    model = SiteEvaluation
