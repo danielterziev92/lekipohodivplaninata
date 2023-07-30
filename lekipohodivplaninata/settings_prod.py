@@ -6,7 +6,6 @@ from pathlib import Path
 import cloudinary
 from django.urls import reverse_lazy
 
-import lekipohodivplaninata.users_app.validators
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
