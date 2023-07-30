@@ -239,30 +239,48 @@ class SignedForHikeUpdateForm(forms.ModelForm):
 
 
 class EvaluationBaseForm(forms.Form):
-    assessment = forms.ChoiceField(
-        label='Оценка',
-        widget=forms.RadioSelect(),
-        validators=(ValueInRangeValidator(1, 11),),
-        choices=[(x, x) for x in range(1, 11)]
-    )
-
     comment = forms.CharField(
         label='Описание',
         widget=forms.Textarea(),
         required=False,
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if hasattr(self, 'assessment_range'):
+            assessment_range = getattr(self, 'assessment_range')
+            self.fields['assessment'] = forms.ChoiceField(
+                label='Оценка',
+                widget=forms.RadioSelect(),
+                validators=(
+                    ValueInRangeValidator(1, assessment_range + 1),
+                ),
+                choices=[(x, x) for x in range(1, assessment_range + 1)],
+                initial=0,
+            )
+
 
 class SiteEvaluationForm(EvaluationBaseForm, forms.ModelForm):
+    assessment_range = 10
+    field_order = ['assessment', 'comment']
+
     class Meta:
         model = SiteEvaluation
         fields = '__all__'
 
 
 class HikeEvaluationForm(EvaluationBaseForm, forms.ModelForm):
+    assessment_range = 5
+    field_order = ['assessment', 'comment']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields = {field_name: self.fields[field_name] for field_name in self.field_order}
+
     class Meta:
         model = HikeEvaluation
-        fields = '__all__'
+        fields = ('comment',)
 
 
 class SliderCreateForm(PicturesMixin, forms.ModelForm):

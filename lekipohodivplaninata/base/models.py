@@ -71,7 +71,7 @@ class SignUpForHike(models.Model):
 
 class Evaluation(models.Model):
     assessment = models.PositiveSmallIntegerField(
-        null=False,
+        null=True,
         blank=False,
         validators=(ValueInRangeValidator(1, 10),)
     )
@@ -93,7 +93,7 @@ class SiteEvaluation(Evaluation):
     )
 
 
-class HikeEvaluationUsers(models.Model):
+class HikeEvaluationUsers(Evaluation):
     user_id = models.ForeignKey(
         BaseProfile,
         on_delete=models.SET_NULL,
@@ -102,14 +102,8 @@ class HikeEvaluationUsers(models.Model):
     )
 
 
-class HikeEvaluation(Evaluation):
+class HikeEvaluation(models.Model):
     SLUG_LENGTH = 40
-
-    assessment = models.PositiveSmallIntegerField(
-        null=True,
-        blank=False,
-        validators=(ValueInRangeValidator(1, 10),)
-    )
 
     slug = models.SlugField(
         unique=True,

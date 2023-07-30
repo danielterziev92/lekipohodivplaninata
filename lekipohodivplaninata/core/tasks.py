@@ -10,7 +10,8 @@ from django.template.loader import render_to_string
 from lekipohodivplaninata.hike.models import Hike, HikeAdditionalInfo
 from lekipohodivplaninata.users_app.models import BaseProfile
 
-DOMAIN_NAME = 'lekipohodivplaninata.bg'
+PROTOCOL = settings.DEFAULT_PROTOCOL
+DOMAIN_NAME = '127.0.0.1:8000'
 SENDER = settings.DEFAULT_FROM_EMAIL
 UserModel = get_user_model()
 app = Celery()
@@ -164,6 +165,7 @@ def send_email_for_hike_evaluation_with_slug_to_log_in(**kwargs):
 
     context = {
         'user': user,
+        'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
         'slug': kwargs['slug'],
     }

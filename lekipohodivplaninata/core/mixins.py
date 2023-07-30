@@ -22,11 +22,49 @@ UserModel = get_user_model()
 class CommonMixin(object):
     @staticmethod
     def generate_random_string(length):
-        symbols = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-='
+        symbols = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         return ''.join(symbols[random.randint(0, len(symbols) - 1)] for _ in range(length))
 
 
-class UserDataMixin(CommonMixin):
+class PicturesMixin:
+    @staticmethod
+    def upload_picture(file, folder):
+        data = cloudinary_uploader.upload(file=file, folder=folder)
+        return f'{data["public_id"]}.{data["format"]}'
+
+    @staticmethod
+    def destroy_picture_by_url(public_id):
+        cloudinary_uploader.destroy(public_id=public_id)
+
+    @staticmethod
+    def delete_pictures(files: list):
+        cloudinary_api.delete_resources(files)
+
+    @staticmethod
+    def delete_folder(folder: str):
+        cloudinary_api.delete_folder(folder)
+
+    @staticmethod
+    def get_picture_folder(public_id: str):
+        return '/'.join(public_id.split('/')[:2])
+
+    @staticmethod
+    def create_folder(folder_name):
+        return cloudinary_api.create_folder(folder_name)
+
+    @staticmethod
+    def move_picture_to_new_folder(old_public_id, new_public_id):
+        return cloudinary_uploader.rename(old_public_id, new_public_id)
+
+    @staticmethod
+    def get_public_id_from_cloudinary_url(url):
+        url_parts = url.split('/')
+        upload_index = url_parts.index('upload')
+        public_id = url_parts[upload_index + 1]
+        return public_id
+
+
+class UserDataMixin(PicturesMixin, CommonMixin):
     @staticmethod
     def get_user_profile(pk):
         return BaseProfile.objects.get(pk=pk)
@@ -68,13 +106,17 @@ class UserDataMixin(CommonMixin):
         return profile
 
     def create_guide_profile(self, *args, **kwargs):
+        url = 'https://res.cloudinary.com/dujto2hys/image/upload/v1690628424/user-avatar_cyynjj_yiyyye.png'
+        public_id = self.get_public_id_from_cloudinary_url(url)
+        asset_details = cloudinary_api.resource(public_id)
+        cloudinary_version = asset_details.get('version')
         return GuideProfile.objects.create(
             user_id_id=self.request.user.pk,
             profile_id_id=self.request.user.pk,
             date_of_birth=datetime.datetime.today(),
             description='Тук трябва да въведете описание.',
-            certificate='image/upload/v1683563916/user-avatar_cyynjj.png',
-            avatar='image/upload/v1683563916/user-avatar_cyynjj.png',
+            certificate=f'image/upload/{cloudinary_version}/user-avatar_default.png',
+            avatar=f'image/upload/{cloudinary_version}/user-avatar_default.png',
         )
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -122,37 +164,6 @@ class UserFormMixin(UserDataMixin, object):
             obj = model.objects.get(pk=self.request.user.pk)
 
         return obj
-
-
-class PicturesMixin:
-    @staticmethod
-    def upload_picture(file, folder):
-        data = cloudinary_uploader.upload(file=file, folder=folder)
-        return f'{data["public_id"]}.{data["format"]}'
-
-    @staticmethod
-    def destroy_picture_by_url(public_id):
-        cloudinary_uploader.destroy(public_id=public_id)
-
-    @staticmethod
-    def delete_pictures(files: list):
-        cloudinary_api.delete_resources(files)
-
-    @staticmethod
-    def delete_folder(folder: str):
-        cloudinary_api.delete_folder(folder)
-
-    @staticmethod
-    def get_picture_folder(public_id: str):
-        return '/'.join(public_id.split('/')[:2])
-
-    @staticmethod
-    def create_folder(folder_name):
-        return cloudinary_api.create_folder(folder_name)
-
-    @staticmethod
-    def move_picture_to_new_folder(old_public_id, new_public_id):
-        return cloudinary_uploader.rename(old_public_id, new_public_id)
 
 
 class HikeAdditionalInfoMixin(object):

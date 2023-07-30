@@ -13,8 +13,8 @@
     <main>
         <section>
             <article class="site-evaluation">
-                <form action="{% url 'site-evaluation' %}" method="post">
-                    <h1>Моля да оцените сайта ни:</h1>
+                <form action="{% url 'hike-evaluation' slug=object.slug %}" method="post">
+                    <h1>Моля да оцените похода:</h1>
                     {% for field in form %}
                         <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                         {{ field }}
@@ -38,4 +38,5 @@
 {% block page_scripts %}
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
     <script src="{% static 'js/evaluation-buttons.js' %}"></script>
+    <script src="{% static 'js/hike-evaluation-url.js' %}"></script>
 {% endblock %}
