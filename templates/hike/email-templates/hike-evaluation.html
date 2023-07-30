@@ -5,7 +5,7 @@
     <tbody>
     <tr>
         <td width="100%" align="center" valign="top">
-            <img src="https://res.cloudinary.com/doh9wk7mw/image/upload/v1685648111/Logo_bfqo11.png" alt="Logo"
+            <img src="{{ logo }}" alt="Logo"
                  title="Logo" width="400" height="70" align="center" style="margin-top: 30px;">
         </td>
     </tr>
@@ -53,7 +53,7 @@
             </td>
             <td style="padding:0;margin:0;list-style:none;width:20px;height:32px">
                 <a style="font-size:12px;line-height:14px;color:#999999;text-decoration:none"
-                   href="https://{{ domain }}/{{ slug }}?selected_eval=2"
+                   href="{{ protocol }}://{{ domain }}/{{ slug }}?selected_eval=2"
                    title="Лошо" target="_blank">
                     <span style="display:block;width:16px;height:16px;border:2px solid gray;background-color:white;border-radius:50%"></span>
                 </a>
@@ -63,7 +63,7 @@
             </td>
             <td style="padding:0;margin:0;list-style:none;width:20px;height:32px">
                 <a style="font-size:12px;line-height:14px;color:#999999;text-decoration:none"
-                   href="https://{{ domain }}/{{ slug }}?selected_eval=3"
+                   href="{{ protocol }}://{{ domain }}/{{ slug }}?selected_eval=3"
                    title="Средно" target="_blank">
                     <span style="display:block;width:16px;height:16px;border:2px solid gray;background-color:white;border-radius:50%"></span>
                 </a>
@@ -73,7 +73,7 @@
             </td>
             <td style="padding:0;margin:0;list-style:none;width:20px;height:32px">
                 <a style="font-size:12px;line-height:14px;color:#999999;text-decoration:none"
-                   href="https://{{ domain }}/{{ slug }}?selected_eval=4"
+                   href="{{ protocol }}://{{ domain }}/{{ slug }}?selected_eval=4"
                    title="Много добро" target="_blank">
                     <span style="display:block;width:16px;height:16px;border:2px solid gray;background-color:white;border-radius:50%"></span>
                 </a>
@@ -83,7 +83,7 @@
             </td>
             <td style="padding:0;margin:0;list-style:none;width:20px;height:32px">
                 <a style="font-size:12px;line-height:14px;color:#999999;text-decoration:none"
-                   href="https://{{ domain }}/{{ slug }}?selected_eval=5"
+                   href="{{ protocol }}://{{ domain }}/{{ slug }}?selected_eval=5"
                    title="Отлично" target="_blank">
                     <span style="display:block;width:16px;height:16px;border:2px solid gray;background-color:white;border-radius:50%"></span>
                 </a>
@@ -103,7 +103,7 @@
 </div>
 <hr style="border-width: 1px;">
 <div style="padding: 20px; color: #1b1b1b;">
-    За да влезете в профила си, цъкнете <a href="http://lekipohodivplaninata.bg" style="color: #cf5533">тук</a> и
+    За да влезете в профила си, цъкнете <a href="{{ protocol }}://{{ domain }}" style="color: #cf5533">тук</a> и
     въведете e-mail адреса и
     парола си. За да смените паролата си или други лични данни, посетете секцията Моят Профил. В случай, че забравите
     своята парола, използвайте линка „Забравена парола”, за да генерирате нова.

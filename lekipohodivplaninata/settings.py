@@ -252,3 +252,7 @@ LOGGING = {
         }
     }
 }
+
+DEFAULT_PROTOCOL = 'http'
+
+LOGO = 'https://res.cloudinary.com/doh9wk7mw/image/upload/v1685648111/Logo_bfqo11.png'

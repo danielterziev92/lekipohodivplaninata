@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from lekipohodivplaninata.hike.models import Hike, HikeAdditionalInfo
 from lekipohodivplaninata.users_app.models import BaseProfile
 
+LOGO = settings.LOGO
 PROTOCOL = settings.DEFAULT_PROTOCOL
 DOMAIN_NAME = '127.0.0.1:8000'
 SENDER = settings.DEFAULT_FROM_EMAIL
@@ -34,6 +35,8 @@ def get_signed_for_hike_base_context(hike_id, user_id):
     hike_additional_info = get_hike_additional_info(hike_id)
     user = get_user_profile(user_id)
     return {
+        'logo': LOGO,
+        'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
         'hike': hike,
         'additional_info': hike_additional_info,
@@ -50,6 +53,8 @@ def get_signed_for_hike_organized_transport_context(hike_id, user_id):
     }
     user = get_user_profile(user_id)
     return {
+        'logo': LOGO,
+        'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
         'hike': hike,
         'additional_info': hike_additional_info,
@@ -62,6 +67,8 @@ def send_successful_registration_user_profile(user_pk, raw_password):
     user = BaseProfile.objects.get(pk=user_pk)
 
     context = {
+        'logo': LOGO,
+        'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
         'user': user,
     }
@@ -132,12 +139,13 @@ def send_reset_password_user_email(user_id, *args, **kwargs):
     user = BaseProfile.objects.get(pk=user_id)
 
     context = {
+        'logo': LOGO,
+        'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
         'ip_address': kwargs.get('ip_address'),
         'user': user,
         'uid': kwargs.get('uid'),
         'token': kwargs.get('token'),
-        'protocol': kwargs.get('protocol'),
         'time_remaining': (
                 datetime.datetime.now() + datetime.timedelta(hours=settings.PASSWORD_RESET_TIMEOUT))
         .strftime('%d-%m-%Y %H:%M часа')
@@ -164,9 +172,10 @@ def send_email_for_hike_evaluation_with_slug_to_log_in(**kwargs):
     user = BaseProfile.objects.get(pk=kwargs['user_id'])
 
     context = {
-        'user': user,
+        'logo': LOGO,
         'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
+        'user': user,
         'slug': kwargs['slug'],
     }
 

@@ -5,7 +5,7 @@
     <tbody>
     <tr>
         <td width="100%" align="center" valign="top">
-            <img src="https://res.cloudinary.com/doh9wk7mw/image/upload/v1685648111/Logo_bfqo11.png" alt="Logo"
+            <img src="{{ logo }}" alt="Logo"
                  title="Logo" width="400" height="70" align="center" style="margin-top: 30px;">
         </td>
     </tr>
@@ -19,7 +19,8 @@
     </figure>
     <p style="color: #1b1b1b;">
         Благодарим ви, че се записахте за
-        <a href="https://{{ domain }}/{{ hike.pk }}/{{ hike.slug }}" style="text-decoration: none;color: #000000">
+        <a href="{{ protocol }}://{{ domain }}/{{ hike.pk }}/{{ hike.slug }}"
+           style="text-decoration: none;color: #000000">
             <strong>{{ hike.title }}</strong>
         </a>.
     </p>
@@ -40,7 +41,7 @@
 <hr style="border-width: 1px;">
 
 <div style="padding: 20px; color: #1b1b1b;">
-    За да влезете в профила си, цъкнете <a href="http://lekipohodivplaninata.bg" style="color: #cf5533">тук</a> и
+    За да влезете в профила си, цъкнете <a href="{{ protocol }}://{{ domain }}" style="color: #cf5533">тук</a> и
     въведете e-mail адреса и
     парола си. За да смените паролата си или други лични данни, посетете секцията Моят Профил. В случай, че забравите
     своята парола, използвайте линка „Забравена парола”, за да генерирате нова.
