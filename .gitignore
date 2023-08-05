@@ -90,5 +90,6 @@ local_settings.py
 db.sqlite3
 .idea
 staticfiles
+lekipohodivplaninata-aws.pem
 
 #celery -A lekipohodivplaninata worker -l info -P gevent

@@ -57,6 +57,15 @@ LOGGING = {
             'encoding': 'utf-8',
             'maxBytes': 1024 * 1024 * 5,  # 5 MiB
         },
+        'celery_handler': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': FILES_LOGGING_PATH / f'celery-info-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'level': 'INFO',
+            'mode': 'a',
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MiB
+        },
         'mail_admin': {
             'class': 'django.utils.log.AdminEmailHandler',
             'level': 'WARNING',
@@ -85,6 +94,15 @@ LOGGING = {
         },
         'django.server': {
             'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'celery': {
+            'handlers': ['celery_handler'],
+            'level': 'INFO'
+        },
+        'celery.task': {
+            'handlers': ['celery_handler'],
             'level': 'INFO',
             'propagate': True,
         }

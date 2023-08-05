@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   web:
+    image: danielterziev92/lekipohodivplaninata-full
     build: ./
     command: gunicorn lekipohodivplaninata.wsgi:application --bind 0.0.0.0:8000
     volumes:
