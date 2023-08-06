@@ -12,7 +12,7 @@ from lekipohodivplaninata.users_app.models import BaseProfile
 
 LOGO = settings.LOGO
 PROTOCOL = settings.DEFAULT_PROTOCOL
-DOMAIN_NAME = '127.0.0.1:8000'
+DOMAIN_NAME = settings.SITE_DOMAIN
 SENDER = settings.DEFAULT_FROM_EMAIL
 UserModel = get_user_model()
 app = Celery()

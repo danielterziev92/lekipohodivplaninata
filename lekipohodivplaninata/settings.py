@@ -10,8 +10,8 @@ import lekipohodivplaninata.users_app.validators
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEFAULT_PROTOCOL = 'http'
-
+DEFAULT_PROTOCOL = 'https'
+SITE_DOMAIN = 'booklove.bg'
 LOGO = 'https://res.cloudinary.com/doh9wk7mw/image/upload/v1685648111/Logo_bfqo11.png'
 
 SECRET_KEY = os.environ.get('SECRET_KEY')

@@ -24,8 +24,7 @@ def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs
     def get_event_time_in_seconds():
         event_time = Hike.objects.get(pk=instance.hike_id.pk).event_date
         diff = event_time - datetime.date.today()
-        # return days_to_seconds(diff + datetime.timedelta(hours=20))
-        return 60
+        return days_to_seconds(diff + datetime.timedelta(hours=20))
 
     if isinstance(instance.user_object, AnonymousAppUser):
         return
