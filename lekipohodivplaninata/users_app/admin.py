@@ -67,7 +67,6 @@ class UserProfileAdmin(admin.ModelAdmin):
         }),
         (_('Снимки'), {
             'fields': ('avatar', 'certificate',),
-            'classes': ('collapse',),
         }),
     )
 
