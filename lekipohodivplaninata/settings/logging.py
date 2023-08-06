@@ -7,7 +7,7 @@ from lekipohodivplaninata.settings import DEBUG
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 ADMINS = []
-for admin in os.environ.get('ADMINS').split(' | '):
+for admin in os.environ.get('ADMINS', 'Admin,admin@admin.bg').split(' | '):
     ADMINS.append(tuple(admin.split(',')))
 
 if not os.path.exists('Logs'):

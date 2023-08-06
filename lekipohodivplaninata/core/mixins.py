@@ -1,6 +1,7 @@
 import datetime
 import random
 
+import cloudinary
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
@@ -106,13 +107,20 @@ class UserDataMixin(PicturesMixin, CommonMixin):
         return profile
 
     def create_guide_profile(self, *args, **kwargs):
-        url = 'https://res.cloudinary.com/dujto2hys/image/upload/v1690628424/user-avatar_cyynjj_yiyyye.png'
-        public_id = self.get_public_id_from_cloudinary_url(url)
-        asset_details = cloudinary_api.resource(public_id)
-        cloudinary_version = asset_details.get('version')
+        asset_details = cloudinary.Search().expression('user-avatar_cyynjj_geydrt').sort_by('public_id').execute()
+        cloudinary_version = asset_details['resources'].pop().get('version')
+        profile = BaseProfile.objects.filter(pk=self.request.user.pk).first()
+        if not profile:
+            profile = self.register_base_user(
+                user=self.request.user,
+                first_name='First Name',
+                last_name='Last Name',
+                phone_number='1234567890',
+            )
+
         return GuideProfile.objects.create(
             user_id_id=self.request.user.pk,
-            profile_id_id=self.request.user.pk,
+            profile_id_id=profile.pk,
             date_of_birth=datetime.datetime.today(),
             description='Тук трябва да въведете описание.',
             certificate=f'image/upload/{cloudinary_version}/user-avatar_default.png',
