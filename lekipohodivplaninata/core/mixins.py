@@ -1,4 +1,5 @@
 import datetime
+import os
 import random
 
 import cloudinary
@@ -106,8 +107,8 @@ class UserDataMixin(PicturesMixin, CommonMixin):
 
         return profile
 
-    def create_guide_profile(self, *args, **kwargs):
-        asset_details = cloudinary.Search().expression('user-avatar_cyynjj_geydrt').sort_by('public_id').execute()
+    def create_guide_profile(self):
+        asset_details = cloudinary.Search().expression(os.environ.get('CLOUDINARY_USER_AVATAR_DEFAULT')).execute()
         cloudinary_version = asset_details['resources'].pop().get('version')
         profile = BaseProfile.objects.filter(pk=self.request.user.pk).first()
         if not profile:
@@ -126,14 +127,6 @@ class UserDataMixin(PicturesMixin, CommonMixin):
             certificate=f'image/upload/{cloudinary_version}/user-avatar_default.png',
             avatar=f'image/upload/{cloudinary_version}/user-avatar_default.png',
         )
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context_data = super().get_context_data(object_list=object_list, **kwargs)
-
-        if isinstance(self.request.user, UserModel):
-            context_data['user'] = self.get_user_profile(self.request.user.pk)
-
-        return context_data
 
 
 class UserFormMixin(UserDataMixin, object):

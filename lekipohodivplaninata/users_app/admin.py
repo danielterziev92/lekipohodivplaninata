@@ -44,8 +44,6 @@ class UserAppAdmin(auth_admin.UserAdmin):
 
 @admin.register(BaseProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    readonly_fields = ('user_id',)
-
     fieldsets = (
         (None, {'fields': ('user_id',)}),
         (_('Лични данни'), {
@@ -56,7 +54,6 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(GuideProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    readonly_fields = ('user_id', 'profile_id')
     list_display = ('avatar_picture', 'user_id', 'full_name', 'date_of_birth',)
     list_display_links = ('user_id',)
 
