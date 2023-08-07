@@ -18,13 +18,17 @@ UserModel = get_user_model()
 
 @receiver(signal=post_save, sender=SignUpForHike)
 def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs):
-    def days_to_seconds(obj):
-        return obj.days * 24 * 60 * 60
-
+    # def days_to_seconds(obj):
+    #     return obj.days * 24 * 60 * 60
+    #
     def get_event_time_in_seconds():
         event_time = Hike.objects.get(pk=instance.hike_id.pk).event_date
-        diff = event_time - datetime.date.today()
-        return days_to_seconds(diff + datetime.timedelta(hours=20))
+        future_time = event_time + datetime.timedelta(hours=20)
+        print(future_time)
+        return future_time
+
+    #     diff = event_time - datetime.date.today()
+    #     return days_to_seconds(diff + datetime.timedelta(hours=20))
 
     if isinstance(instance.user_object, AnonymousAppUser):
         return
@@ -34,14 +38,14 @@ def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs
 
     hike_eval = HikeEvaluation.objects.get(hike_id=instance.hike_id)
     hike_eval.users.create(user_id=instance.user_object)
-    countdown_delay = get_event_time_in_seconds()
+    send_mail_datetime = get_event_time_in_seconds()
     send_email_for_hike_evaluation_with_slug_to_log_in.apply_async(
         kwargs={
             # 'hike_id': instance.hike_id,
             'user_id': instance.user_id,
             'slug': hike_eval.slug,
         },
-        countdown=countdown_delay
+        eta=send_mail_datetime
     )
 
     return send_successful_email_signed_for_hike_confirm.delay(

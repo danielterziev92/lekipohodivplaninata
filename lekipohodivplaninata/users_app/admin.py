@@ -10,7 +10,6 @@ UserModel = get_user_model()
 @admin.register(UserModel)
 class UserAppAdmin(auth_admin.UserAdmin):
     change_user_password_template = None
-    readonly_fields = ('email',)
     fieldsets = (
         (None, {"fields": ("email",)}),
         (
