@@ -1,7 +1,11 @@
 import datetime
+import os
 
+import cloudinary
+import cloudinary.api
 from celery import Celery
 from celery import shared_task
+from cloudinary.exceptions import Error
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail

@@ -36,6 +36,10 @@ class SignedForHikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.Permis
             'pk': obj.hike_id.pk, 'slug': obj.hike_id.slug,
         })
 
+    def form_valid(self, form):
+        cache.set('signed_for_hike_edit_info', True)
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_info = BaseProfile.objects.get(pk=context['object'].user_id)

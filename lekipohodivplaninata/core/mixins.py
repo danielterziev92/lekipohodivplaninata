@@ -92,10 +92,9 @@ class UserDataMixin(PicturesMixin, CommonMixin):
     def register_profile_with_random_password(self, **kwargs):
         raw_password = self.generate_random_string(8)
         cache.set('raw_password', raw_password, timeout=60)
-        password = make_password(raw_password)
         try:
             with transaction.atomic():
-                user_app = self.register_app_user(email=kwargs['email'], password=password)
+                user_app = self.register_app_user(email=kwargs['email'], password=raw_password)
                 profile = self.register_base_user(
                     user=user_app,
                     first_name=kwargs['first_name'],
