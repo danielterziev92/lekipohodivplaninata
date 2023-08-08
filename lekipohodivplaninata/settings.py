@@ -8,17 +8,19 @@ from django.urls import reverse_lazy
 
 import lekipohodivplaninata.users_app.validators
 
+from decouple import config
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEFAULT_PROTOCOL = 'https'
-SITE_DOMAIN = 'booklove.bg'
-LOGO = 'https://res.cloudinary.com/dujto2hys/image/upload/v1691440464/Logo_bfqo11_jtprzq.png'
+DEFAULT_PROTOCOL = config('SITE_PROTOCOL')
+SITE_DOMAIN = config('SITE_DOMAIN')
+LOGO = config('SITE_LOGO')
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = os.environ.get('DEBUG')
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1').split(' ')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(' ')
 
 CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
 
@@ -75,12 +77,12 @@ WSGI_APPLICATION = 'lekipohodivplaninata.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.environ.get('DB_NAME', 'lekipohodi'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', '1123QwER'),
-        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
@@ -144,9 +146,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dujto2hys',
-    'API_KEY': '674719851427264',
-    'API_SECRET': 'txFb60BLxbRtx8smggE3PYLJQhY',
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
 
 cloudinary.config(
@@ -155,17 +157,17 @@ cloudinary.config(
     api_secret=CLOUDINARY_STORAGE.get('API_SECRET'),
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smart.superhosting.bg')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'support@lekipohodivplaninata.bg')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '?agCbk6dEsM+')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-SERVER_EMAIL = os.environ.get('SERVER_EMAIL')
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+# SERVER_EMAIL = config('SERVER_EMAIL')
 DEFAULT_FROM_EMAIL = f'Леки походи в планината <{EMAIL_HOST_USER}>'
 
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379')
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://localhost:6379')
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', 'redis://localhost:6379')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -176,109 +178,109 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379'),
+        "LOCATION": config('CELERY_BROKER_URL', 'redis://localhost:6379'),
     }
 }
 
-# ADMINS = []
-# for admin in os.environ.get('ADMINS', 'Admin,admin@admin.bg').split(' | '):
-#     ADMINS.append(tuple(admin.split(',')))
-#
-# if not os.path.exists('Logs'):
-#     os.mkdir('Logs')
-#
-# FILES_LOGGING_PATH = BASE_DIR / 'Logs'
-#
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         }
-#     },
-#     'formatters': {
-#         'verbose': {
-#             'format': '{asctime} -> [{levelname}] ({name}.{module}.{funcName}): {message}',
-#             'style': '{',
-#             'datefmt': "%Y/%m/%d %H:%M:%S"
-#         },
-#         'simple': {
-#             'format': '[{levelname}]: {message}',
-#             'style': '{',
-#         },
-#     },
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#             'level': 'DEBUG',
-#         },
-#         'file_warning_handler': {
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': FILES_LOGGING_PATH / f'warning-{datetime.date.today().strftime("%m-%d-%Y")}.log',
-#             'level': 'WARNING',
-#             'mode': 'a',
-#             'formatter': 'verbose',
-#             'encoding': 'utf-8',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MiB
-#         },
-#         'file_info_handler': {
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': FILES_LOGGING_PATH / f'info-{datetime.date.today().strftime("%m-%d-%Y")}.log',
-#             'level': 'INFO',
-#             'mode': 'a',
-#             'formatter': 'verbose',
-#             'encoding': 'utf-8',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MiB
-#         },
-#         'celery_handler': {
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': FILES_LOGGING_PATH / f'celery-{datetime.date.today().strftime("%m-%d-%Y")}.log',
-#             'level': 'INFO',
-#             'mode': 'a',
-#             'formatter': 'verbose',
-#             'encoding': 'utf-8',
-#             'maxBytes': 1024 * 1024 * 5,  # 5 MiB
-#         },
-#         'mail_admin': {
-#             'class': 'django.utils.log.AdminEmailHandler',
-#             'level': 'ERROR',
-#             'include_html': True,
-#             'filters': ['require_debug_false'],
-#         }
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file_info_handler', 'console'],
-#             'level': 'INFO',
-#         },
-#         'django.request': {
-#             'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console'],
-#             'level': 'INFO',
-#             'propagate': True,
-#         },
-#         'django.template': {
-#             'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console'],
-#             'level': 'INFO',
-#             'propagate': True,
-#         },
-#         'django.db.backends': {
-#             'handlers': ['console'],
-#             'level': 'INFO' if DEBUG else 'WARNING',
-#         },
-#         'django.server': {
-#             'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler'],
-#             'level': 'INFO',
-#             'propagate': True,
-#         },
-#         'celery': {
-#             'handlers': ['celery_handler', ],
-#             'level': 'INFO'
-#         },
-#         'celery.task': {
-#             'handlers': ['celery_handler', ],
-#             'level': 'INFO',
-#             'propagate': True,
-#         }
-#     }
-# }
+ADMINS = []
+for admin in config('ADMINS', 'Admin,admin@admin.bg').split(' | '):
+    ADMINS.append(tuple(admin.split(',')))
+
+if not os.path.exists('Logs'):
+    os.mkdir('Logs')
+
+FILES_LOGGING_PATH = BASE_DIR / 'Logs'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} -> [{levelname}] ({name}.{module}.{funcName}): {message}',
+            'style': '{',
+            'datefmt': "%Y/%m/%d %H:%M:%S"
+        },
+        'simple': {
+            'format': '[{levelname}]: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+        },
+        'file_warning_handler': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': FILES_LOGGING_PATH / f'warning-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'level': 'WARNING',
+            'mode': 'a',
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MiB
+        },
+        'file_info_handler': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': FILES_LOGGING_PATH / f'info-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'level': 'INFO',
+            'mode': 'a',
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MiB
+        },
+        'celery_handler': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': FILES_LOGGING_PATH / f'celery-{datetime.date.today().strftime("%m-%d-%Y")}.log',
+            'level': 'INFO',
+            'mode': 'a',
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MiB
+        },
+        'mail_admin': {
+            'class': 'django.utils.log.AdminEmailHandler',
+            'level': 'ERROR',
+            'include_html': True,
+            'filters': ['require_debug_false'],
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file_info_handler', 'console'],
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'INFO' if DEBUG else 'WARNING',
+        },
+        'django.server': {
+            'handlers': ['mail_admin', 'file_info_handler', 'file_warning_handler'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'celery': {
+            'handlers': ['celery_handler', ],
+            'level': 'INFO'
+        },
+        'celery.task': {
+            'handlers': ['celery_handler', ],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    }
+}

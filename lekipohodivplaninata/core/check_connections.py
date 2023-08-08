@@ -1,9 +1,12 @@
 import os
+import pathlib
 import smtplib
 
 import cloudinary.api
 import django
+import redis
 from cloudinary.exceptions import Error
+from decouple import config
 from django.core.management.base import BaseCommand
 
 
@@ -11,7 +14,6 @@ class CheckConnectionsCommand(BaseCommand):
     help = 'Checks connections'
 
     def handle(self, *args, **options):
-        # Get all methods in the class
         methods = [getattr(self, method) for method in dir(self) if
                    callable(getattr(self, method)) and method.startswith("check_")]
 
@@ -22,6 +24,24 @@ class CheckConnectionsCommand(BaseCommand):
             self.stdout.write(self.style.ERROR(f"Connections check failed: {e}"))
             raise SystemExit(1)
 
+    @staticmethod
+    def _load_env_variables():
+        env_folder_path = pathlib.Path(__file__).resolve().parent.parent.parent
+        dot_env_path = env_folder_path / '.env'
+
+        if not dot_env_path.exists():
+            raise Exception('The path does not exist')
+
+        return config('SITE_DOMAIN') is not None
+
+    def check_env_variables(self):
+        env_loaded = self._load_env_variables()
+
+        if env_loaded:
+            self.stdout.write(self.style.SUCCESS("Environment variables loaded successfully."))
+        else:
+            self.stdout.write(self.style.ERROR("Environment variables not loaded."))
+
     def check_database_connection(self):
         from django.db import connection
 
@@ -31,6 +51,16 @@ class CheckConnectionsCommand(BaseCommand):
             self.stdout.write(self.style.SUCCESS('Database connection is successful.'))
         except Exception as e:
             self.stdout.write(self.style.ERROR(f'Database connection failed: {e}'))
+            raise
+
+    def check_redis_connection(self):
+        try:
+            redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+            redis_client = redis.from_url(redis_url)
+            redis_client.ping()
+            self.stdout.write(self.style.SUCCESS('Redis connection is successful.'))
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'Redis connection failed: {e}'))
             raise
 
     def check_cloudinary_connection(self):
