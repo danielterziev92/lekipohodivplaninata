@@ -8,19 +8,19 @@ from django.urls import reverse_lazy
 
 import lekipohodivplaninata.users_app.validators
 
-from decouple import config
+from decouple import config as de_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEFAULT_PROTOCOL = config('SITE_PROTOCOL')
-SITE_DOMAIN = config('SITE_DOMAIN')
-LOGO = config('SITE_LOGO')
+DEFAULT_PROTOCOL = de_config('SITE_PROTOCOL')
+SITE_DOMAIN = de_config('SITE_DOMAIN')
+LOGO = de_config('SITE_LOGO')
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = de_config('SECRET_KEY')
 
-DEBUG = config('DEBUG')
+DEBUG = de_config('DEBUG')
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = de_config('ALLOWED_HOSTS').split(' ')
 
 CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
 
@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'lekipohodivplaninata.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'ENGINE': de_config('DB_ENGINE'),
+        'NAME': de_config('DB_NAME'),
+        'USER': de_config('DB_USER'),
+        'PASSWORD': de_config('DB_PASSWORD'),
+        'HOST': de_config('DB_HOST'),
+        'PORT': de_config('DB_PORT'),
     }
 }
 
@@ -146,9 +146,9 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': config('CLOUDINARY_API_KEY'),
-    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': de_config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': de_config('CLOUDINARY_API_KEY'),
+    'API_SECRET': de_config('CLOUDINARY_API_SECRET'),
 }
 
 cloudinary.config(
@@ -157,17 +157,17 @@ cloudinary.config(
     api_secret=CLOUDINARY_STORAGE.get('API_SECRET'),
 )
 
-EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-# SERVER_EMAIL = config('SERVER_EMAIL')
+EMAIL_BACKEND = de_config('EMAIL_BACKEND')
+EMAIL_HOST = de_config('EMAIL_HOST')
+EMAIL_HOST_USER = de_config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = de_config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = de_config('EMAIL_PORT')
+EMAIL_USE_TLS = de_config('EMAIL_USE_TLS')
+# SERVER_EMAIL = de_config('SERVER_EMAIL')
 DEFAULT_FROM_EMAIL = f'Леки походи в планината <{EMAIL_HOST_USER}>'
 
-CELERY_BROKER_URL = config('CELERY_BROKER_URL', 'redis://localhost:6379')
-CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', 'redis://localhost:6379')
+CELERY_BROKER_URL = de_config('CELERY_BROKER_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = de_config('CELERY_RESULT_BACKEND', 'redis://localhost:6379')
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -178,12 +178,12 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": config('CELERY_BROKER_URL', 'redis://localhost:6379'),
+        "LOCATION": de_config('CELERY_BROKER_URL', 'redis://localhost:6379'),
     }
 }
 
 ADMINS = []
-for admin in config('ADMINS', 'Admin,admin@admin.bg').split(' | '):
+for admin in de_config('ADMINS', 'Admin,admin@admin.bg').split(' | '):
     ADMINS.append(tuple(admin.split(',')))
 
 if not os.path.exists('Logs'):
