@@ -1,14 +1,13 @@
-import datetime
 import os
-from django.utils.translation import gettext_lazy as _
-from pathlib import Path
-
+import datetime
 import cloudinary
+
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
+from pathlib import Path
+from decouple import config as de_config
 
 import lekipohodivplaninata.users_app.validators
-
-from decouple import config as de_config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

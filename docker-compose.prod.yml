@@ -2,7 +2,6 @@ version: '3.4'
 
 services:
   web:
-    image: danielterziev92/lekipohodivplaninata-full
     build: ./
     command: gunicorn lekipohodivplaninata.wsgi:application --bind 0.0.0.0:8000
     volumes:
@@ -14,6 +13,7 @@ services:
     depends_on:
       - postgres
       - cache
+      - celery
 
   postgres:
     image: postgres
@@ -37,13 +37,24 @@ services:
   nginx:
     image: nginx
     ports:
-      - 81:80
+      - 80:80
       - 443:443
     volumes:
-      - ./staticfiles:/home/app/web/staticfiles
+      - ./staticfiles:/tmp/lekipohodivplaninata/staticfiles/
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/logs:/var/log/nginx
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
     depends_on:
       - web
+
+  celery:
+    build: ./
+    command: celery -A lekipohodivplaninata worker -l info
+    volumes:
+      - ./staticfiles:/tmp/lekipohodivplaninata/staticfiles
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - cache

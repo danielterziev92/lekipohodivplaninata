@@ -1,8 +1,7 @@
-import os
 import pathlib
 import smtplib
 
-import cloudinary.api
+import cloudinary
 import django
 import redis
 from cloudinary.exceptions import Error
