@@ -6,7 +6,7 @@ import cloudinary.api
 import django
 import redis
 from cloudinary.exceptions import Error
-from decouple import config
+from decouple import config as de_config
 from django.core.management.base import BaseCommand
 
 
@@ -32,7 +32,7 @@ class CheckConnectionsCommand(BaseCommand):
         if not dot_env_path.exists():
             raise Exception('The path does not exist')
 
-        return config('SITE_DOMAIN') is not None
+        return de_config('SITE_DOMAIN') is not None
 
     def check_env_variables(self):
         env_loaded = self._load_env_variables()
@@ -55,7 +55,7 @@ class CheckConnectionsCommand(BaseCommand):
 
     def check_redis_connection(self):
         try:
-            redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+            redis_url = de_config('REDIS_URL', 'redis://localhost:6379/0')
             redis_client = redis.from_url(redis_url)
             redis_client.ping()
             self.stdout.write(self.style.SUCCESS('Redis connection is successful.'))
@@ -66,9 +66,9 @@ class CheckConnectionsCommand(BaseCommand):
     def check_cloudinary_connection(self):
         try:
             cloudinary.config(
-                cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
-                api_key=os.environ.get('CLOUDINARY_API_KEY'),
-                api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+                cloud_name=de_config('CLOUDINARY_CLOUD_NAME'),
+                api_key=de_config('CLOUDINARY_API_KEY'),
+                api_secret=de_config('CLOUDINARY_API_SECRET'),
             )
             cloudinary.api.ping()
             self.stdout.write(self.style.SUCCESS('Cloudinary connection is successful.'))
@@ -78,9 +78,9 @@ class CheckConnectionsCommand(BaseCommand):
 
     def check_test_smtp_connection(self):
         try:
-            server = smtplib.SMTP(os.environ.get('EMAIL_HOST'), int(os.environ.get('EMAIL_PORT')))
+            server = smtplib.SMTP(de_config('EMAIL_HOST'), int(de_config('EMAIL_PORT')))
             server.starttls()
-            server.login(os.environ.get('EMAIL_HOST_USER'), os.environ.get('EMAIL_HOST_PASSWORD'))
+            server.login(de_config('EMAIL_HOST_USER'), de_config('EMAIL_HOST_PASSWORD'))
             server.quit()
             self.stdout.write(self.style.SUCCESS("SMTP server connection successful."))
         except smtplib.SMTPServerDisconnected:
