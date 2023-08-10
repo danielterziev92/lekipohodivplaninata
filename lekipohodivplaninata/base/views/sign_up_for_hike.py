@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -7,6 +8,8 @@ from django.contrib.auth import mixins as auth_mixins
 from lekipohodivplaninata.base.forms import SignUpHikeForm, SignedForHikeUpdateForm
 from lekipohodivplaninata.base.models import SignUpForHike, Hike
 from lekipohodivplaninata.users_app.models import BaseProfile
+
+from lekipohodivplaninata.core.mixins import UserDataMixin
 
 
 class SignUpHike(views.UpdateView):
@@ -22,6 +25,10 @@ class SignUpHike(views.UpdateView):
         kwargs = super().get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Вие успешно се записахте за похода.')
+        return super().form_valid(form)
 
 
 class SignedForHikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
@@ -59,10 +66,16 @@ def confirm_user_for_hike(request, pk, text):
         return redirect('index')
 
     obj = get_object_or_404(SignUpForHike, pk=pk)
+
+    Model = UserDataMixin.get_current_user_model(obj.user_type)
+    user = Model.objects.filter(pk=obj.user_id).get()
+
     if bool_values[text]:
         obj.is_confirmed = True
+        messages.success(request, f'Успешно потвърдихте {user.get_full_name} за поход {obj.hike_id.title}.')
         obj.save()
     else:
+        messages.success(request, f'Успешно премахнахте {user.get_full_name} за поход {obj.hike_id.title}.')
         obj.delete()
 
     return redirect('all-signed-for-hike', pk=obj.hike_id.pk, slug=obj.hike_id.slug)
@@ -78,6 +91,11 @@ def presence_user_for_hike(request, pk, text):
 
     obj = get_object_or_404(SignUpForHike, pk=pk)
     obj.is_presence = bool_values[text]
+
+    Model = UserDataMixin.get_current_user_model(obj.user_type)
+    user = Model.objects.filter(pk=obj.user_id).get()
+
+    messages.success(request, f'Успешно отбелязохте {user.get_full_name}!')
 
     obj.save()
 

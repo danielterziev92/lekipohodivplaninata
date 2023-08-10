@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.cache import cache
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -20,6 +21,10 @@ class SiteEvaluationCreateView(views.CreateView):
 
         return redirect('index')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Благодарим Ви, че оценихте нашия сайт!')
+        return super().form_valid(form)
+
 
 class SiteEvaluationListView(views.ListView):
     template_name = 'all-site-evaluations.html'
@@ -37,3 +42,7 @@ class HikeEvaluationDetailView(views.CreateView):
         context = super().get_context_data(**kwargs)
         context['object'] = get_object_or_404(HikeEvaluation, slug=self.kwargs['slug'])
         return context
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Благодарим Ви, за оценката на похода!')
+        return super().form_valid(form)

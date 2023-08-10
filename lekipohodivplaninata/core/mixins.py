@@ -16,7 +16,7 @@ from django.utils.text import slugify
 from lekipohodivplaninata.core.utils import from_cyrillic_to_latin, from_str_to_date
 from lekipohodivplaninata.hike.models import Hike, HikeAdditionalInfo
 from lekipohodivplaninata.users_app.forms import GuideProfileFormUser, BaseUserModelForm
-from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile, UserApp
+from lekipohodivplaninata.users_app.models import BaseProfile, GuideProfile, UserApp, AnonymousAppUser
 
 HikeModel = Hike
 UserModel = get_user_model()
@@ -89,6 +89,10 @@ class UserDataMixin(PicturesMixin, CommonMixin):
             last_name=last_name,
             phone_number=phone_number,
         )
+
+    @staticmethod
+    def get_current_user_model(user_type):
+        return AnonymousAppUser if user_type.model == 'anonymousappuser' else BaseProfile
 
     def register_profile_with_random_password(self, **kwargs):
         raw_password = self.generate_random_string(8)
