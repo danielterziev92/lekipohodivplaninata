@@ -1,9 +1,10 @@
 from django.urls import include
 from django.urls import path
 
-from lekipohodivplaninata.users_app.views import SignInView, SignUpView, SignOutView, \
-    UserPasswordResetView, UserPasswordResetDoneView, UserPasswordResetConfirmView, \
-    UserDetailView, UserUpdateInformation, UserDeleteView
+from lekipohodivplaninata.users_app.views.authentication import SignInView, SignUpView, SignOutView
+from lekipohodivplaninata.users_app.views.information import UserDetailView, UserUpdateInformation, UserDeleteView
+from lekipohodivplaninata.users_app.views.password import UserPasswordResetView, UserPasswordResetDoneView, \
+    UserPasswordResetConfirmView
 
 urlpatterns = (
     path('sign-in/', SignInView.as_view(), name='sign-in-user'),

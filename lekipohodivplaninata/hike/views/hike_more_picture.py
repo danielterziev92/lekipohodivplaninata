@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.views import generic as views
 from django.urls import reverse_lazy
 from django.contrib.auth import mixins as auth_mixins
@@ -31,7 +32,7 @@ class HikeMorePictureCreate \
                 url = self.upload_picture(image.file, folder)
                 img_id = HikeMorePicture.objects.create(image=url)
                 hike.more_pictures.add(img_id)
-
+        messages.success(self.request, f'Успешно добавихте снимките към {hike.title}')
         return super().form_valid(form=form)
 
     def get_context_data(self, **kwargs):
@@ -79,4 +80,5 @@ class HikeMorePictureDeleteView \
 
     def form_valid(self, form):
         self.delete_pictures(self.object.image.public_id)
+        messages.success(self.request, f'Успешно премахнахте всички снимки')
         return super().form_valid(form=form)

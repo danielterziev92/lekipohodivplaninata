@@ -42,6 +42,11 @@ THIRD_PARTY_APP = ()
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APP
 
+# SOCIAL_AUTH_FACEBOOK_KEY = de_config('FACEBOOK_APP_ID')
+# SOCIAL_AUTH_FACEBOOK_SECRET = de_config('FACEBOOK_APP_SECRET')
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = de_config('GOOGLE_CLIENT_ID')
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = de_config('GOOGLE_CLIENT_SECRET')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

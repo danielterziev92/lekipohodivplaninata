@@ -13,6 +13,13 @@
 {% block page_title %}Детайли на поход{% endblock %}
 
 {% block page_content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <main>
         <section class="hike-detail">
             <article class="hike">
@@ -64,8 +71,6 @@
                 </div>
             {% else %}
                 <div class="actions">
-                    {#                    <a datatype="{{ hike.pk }}/{{ hike.slug }}" id="sign-for-hike">#}
-                    {#                        Запиши ме запохода</a>#}
                     <a href="{% url 'sign-up-for-hike' pk=object.pk slug=object.slug %}" id="sign-for-hike">
                         Запиши ме запохода</a>
                 </div>
@@ -78,6 +83,7 @@
 {% block page_scripts %}
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
     <script src="{% static 'js/hike-modal.js' %}"></script>
+    <script src="{% static 'js/requests-messages.js' %}"></script>
     {% if user.is_anonymous %}
         <script src="{% static 'js/hike-modal-sign-up.js' %}"></script>
     {% endif %}

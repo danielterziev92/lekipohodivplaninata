@@ -13,6 +13,13 @@
 {% block page_title %}Начална страница{% endblock %}
 
 {% block page_content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <main>
         <section id="slider">
             {% include 'home-page/slider.html' %}
@@ -26,6 +33,7 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/requests-messages.js' %}"></script>
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
     <script src="{% static 'js/sign-up-form.js' %}"></script>
     <script src="{% static 'js/hike-modal.js' %}"></script>

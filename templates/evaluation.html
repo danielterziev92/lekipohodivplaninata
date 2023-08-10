@@ -10,6 +10,13 @@
 {% block page_title %}Оценяване на сайта{% endblock %}
 
 {% block page_content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <main>
         <section>
             <article class="site-evaluation">
@@ -37,5 +44,6 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
+    <script src="{% static 'js/requests-messages.js' %}"></script>
     <script src="{% static 'js/evaluation-buttons.js' %}"></script>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as auth_form, get_user_model
 from django.contrib.auth import password_validation
@@ -165,8 +166,11 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
 
                 if commit:
                     profile.save()
+
+                messages.success(self._request, 'Регистрацията мина успешно!')
         except Exception:
-            raise ValidationError('Нещо се обърка')
+            messages.error(self._request, 'Нещо се обърка, моля опитайте отново.')
+            return
 
         return user
 

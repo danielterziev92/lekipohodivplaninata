@@ -12,6 +12,13 @@
 {% endblock %}
 
 {% block page_content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <main>
         <article class="hike-types">
             {% dispatcher-hike-or-level %}
@@ -21,6 +28,7 @@
 
 {% block page_scripts %}
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/requests-messages.js' %}"></script>
     <script src="{% static 'js/hike-more-pictures-slider.js' %}"></script>
     <script src="{% static 'js/aside-bar-menu.js' %}"></script>
 {% endblock %}

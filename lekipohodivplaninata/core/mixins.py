@@ -4,6 +4,7 @@ import random
 
 import cloudinary
 from cloudinary import api as cloudinary_api, uploader as cloudinary_uploader
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.cache import cache
@@ -220,6 +221,8 @@ class HikeCreateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
 
                 if commit:
                     obj.save()
+
+                messages.success(self._request, 'Успешно добавихте поход')
         except IntegrityError:
             public_id, _ = obj.main_picture.split('.')
             folder = '/'.join(public_id.split('/')[:2])
@@ -280,6 +283,7 @@ class HikeUpdateFormMixin(HikeBaseFormMixin, HikeAdditionalInfoMixin):
         if db_add_info.departure_place != self.cleaned_data['departure_place']:
             self.update_information_to_field(db_add_info.departure_place_value, self.cleaned_data['departure_place'])
 
+        messages.success(self._request, f'Упешно редактирахте {self.cleaned_data["title"]}')
         return obj
 
 

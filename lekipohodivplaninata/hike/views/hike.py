@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.views import generic as views
 from django.urls import reverse_lazy
@@ -21,6 +22,10 @@ class HikeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
             'pk': self.object.pk,
             'slug': self.object.slug,
         })
+
+    def form_valid(self, form):
+        form._request = self.request
+        return super().form_valid(form)
 
 
 class HikeDetailView(UserDataMixin, views.DetailView):
@@ -73,6 +78,10 @@ class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequi
             'slug': self.object.slug,
         })
 
+    def form_valid(self, form):
+        form._request = self.request
+        return super().form_valid(form)
+
 
 class HikeDeleteView \
             (PicturesMixin, auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
@@ -96,6 +105,8 @@ class HikeDeleteView \
 
         main_picture_folder = self.get_picture_folder(main_picture_public_id)
         self.delete_folder(main_picture_folder)
+
+        messages.success(self.request, f'Успешно изтрихте {self.object.title}')
 
         HikeAdditionalInfo.objects.get(hike_id=self.object).delete()
 

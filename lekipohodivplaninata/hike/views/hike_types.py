@@ -16,6 +16,10 @@ class HikeTypeCreateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionR
     form_class = HikeTypeForm
     success_url = reverse_lazy('hike-type-list')
 
+    def form_valid(self, form):
+        messages.success(self.request, f'Успешно създадохте тип за поход.')
+        return super().form_valid(form)
+
 
 class HikeTypeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):
     template_name = 'hike/templates/create-or-update.html'
@@ -23,6 +27,11 @@ class HikeTypeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionR
     form_class = HikeTypeForm
     model = HikeType
     success_url = reverse_lazy('hike-type-list')
+
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        messages.success(self.request, f'Успешно редактирахте {self.object.title}.')
+        return result
 
 
 class HikeTypeDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.DeleteView):
@@ -36,10 +45,10 @@ class HikeTypeDeleteView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionR
 
     def form_valid(self, form):
         try:
+            messages.success(self.request, f'Успешно изтрихте {self.object.title}.')
             return super().form_valid(form=form)
         except RestrictedError:
-            message = 'За да изтриете този тип, трябва да изтриете всички походи които го сържат!'
-            messages.add_message(self.request, messages.ERROR, message)
+            messages.error(self.request, 'За да изтриете този тип, трябва да изтриете всички походи които го сържат!')
             return HttpResponseRedirect(reverse_lazy('hike-type-delete', kwargs={'pk': self.kwargs.get('pk')}))
 
 
