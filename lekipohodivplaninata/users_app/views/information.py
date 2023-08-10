@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth import mixins
 from django.http import HttpResponseRedirect
@@ -34,6 +35,10 @@ class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.Upda
 
         return BaseUserUpdateForm
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Успешно редактирахте профила си.')
+        return super().form_valid(form)
+
     @property
     def model(self):
         return self.get_model()
@@ -55,6 +60,8 @@ class UserDeleteView(UserFormMixin, mixins.LoginRequiredMixin, views.DeleteView)
             BaseProfile.objects.get(pk=pk).delete()
 
         UserModel.objects.get(pk=pk).delete()
+
+        messages.success(self.request, 'Успешно изтрихте профила си.')
         return HttpResponseRedirect(self.success_url)
 
     @property
