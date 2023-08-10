@@ -38,9 +38,17 @@ PROJECT_APPS = (
     'lekipohodivplaninata.base.apps.BaseConfig',
 )
 
-THIRD_PARTY_APP = ()
+THIRD_PARTY_APP = (
+    'rest_framework',
+)
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APP
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+}
 
 # SOCIAL_AUTH_FACEBOOK_KEY = de_config('FACEBOOK_APP_ID')
 # SOCIAL_AUTH_FACEBOOK_SECRET = de_config('FACEBOOK_APP_SECRET')
