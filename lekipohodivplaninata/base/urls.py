@@ -2,7 +2,8 @@ from django.urls import path, include
 
 from lekipohodivplaninata.base.views.evaluations import SiteEvaluationCreateView, SiteEvaluationListView, \
     HikeEvaluationDetailView
-from lekipohodivplaninata.base.views.generic import IndexListView, UpcomingEventListView, PassedEventListView
+from lekipohodivplaninata.base.views.generic import IndexListView, UpcomingEventListView, PassedEventListView, \
+    UnsubscribeView
 from lekipohodivplaninata.base.views.sign_up_for_hike import SignedForHikeUpdateView, confirm_user_for_hike, \
     presence_user_for_hike, SignUpHike, SignedForHikeListView
 from lekipohodivplaninata.base.views.slider import SliderCreateView, SliderEditView, SliderDeleteView, SliderListView
@@ -29,4 +30,5 @@ urlpatterns = (
         path('delete/<int:pk>', SliderDeleteView.as_view(), name='slider-delete'),
     ])),
     path('<path:slug>/', HikeEvaluationDetailView.as_view(), name='hike-evaluation'),
+    path('unsubscribe/<slug:slug>/', UnsubscribeView.as_view(), name='unsubscribe'),
 )

@@ -880,7 +880,6 @@ body {
     font-size: 1rem;
 }
 
-
 .reset-password {
     padding: 0 3rem;
     display: flex;
@@ -1682,6 +1681,8 @@ body {
 }
 
 footer {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
     background-color: #cf5533;
     padding: 10px;
     z-index: 2;
@@ -1975,9 +1976,8 @@ footer .subscribers .subscribe button {
         margin: auto;
     }
 
-    footer div {
+    footer > div {
         position: sticky;
-        bottom: 0;
         width: 100%;
     }
 

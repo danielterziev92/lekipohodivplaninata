@@ -20,7 +20,6 @@ async function subscribeMe(e) {
         }),
     })
 
-    console.log(response);
     if (response.status === 201) {
         const offset = 70;
 

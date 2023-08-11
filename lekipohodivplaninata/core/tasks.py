@@ -1,16 +1,13 @@
 import datetime
-import os
 
-import cloudinary
-import cloudinary.api
 from celery import Celery
 from celery import shared_task
-from cloudinary.exceptions import Error
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+from lekipohodivplaninata.api_app.models import Subscribe
 from lekipohodivplaninata.hike.models import Hike, HikeAdditionalInfo
 from lekipohodivplaninata.users_app.models import BaseProfile
 
@@ -20,6 +17,14 @@ DOMAIN_NAME = settings.SITE_DOMAIN
 SENDER = settings.DEFAULT_FROM_EMAIL
 UserModel = get_user_model()
 app = Celery()
+
+
+def get_unsubscribe_slug(email):
+    try:
+        result = Subscribe.objects.filter(email=email).first()
+        return result.slug_to_unsubscribe
+    except Exception:
+        return False
 
 
 def get_hike(hike_id):
@@ -42,6 +47,7 @@ def get_signed_for_hike_base_context(hike_id, user_id):
         'logo': LOGO,
         'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
+        'unsubscribe_slug': get_unsubscribe_slug(user.get_email),
         'hike': hike,
         'additional_info': hike_additional_info,
         'user': user
@@ -60,6 +66,7 @@ def get_signed_for_hike_organized_transport_context(hike_id, user_id):
         'logo': LOGO,
         'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
+        'unsubscribe_slug': get_unsubscribe_slug(user.get_email),
         'hike': hike,
         'additional_info': hike_additional_info,
         'user': user
@@ -75,6 +82,7 @@ def send_successful_registration_user_profile(user_pk, raw_password):
         'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
         'user': user,
+        'unsubscribe_slug': get_unsubscribe_slug(user.get_email),
     }
 
     if raw_password:
@@ -146,6 +154,7 @@ def send_reset_password_user_email(user_id, *args, **kwargs):
         'logo': LOGO,
         'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
+        'unsubscribe_slug': get_unsubscribe_slug(user.get_email),
         'ip_address': kwargs.get('ip_address'),
         'user': user,
         'uid': kwargs.get('uid'),
@@ -179,6 +188,7 @@ def send_email_for_hike_evaluation_with_slug_to_log_in(**kwargs):
         'logo': LOGO,
         'protocol': PROTOCOL,
         'domain': DOMAIN_NAME,
+        'unsubscribe_slug': get_unsubscribe_slug(user.get_email),
         'user': user,
         'slug': kwargs['slug'],
     }

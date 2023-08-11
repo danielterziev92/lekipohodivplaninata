@@ -5,5 +5,5 @@ from lekipohodivplaninata.api_app.serializers import SubscribeSerializer
 
 
 class SubscribeListAndCreateAPIView(rest_views.ListCreateAPIView):
-    queryset = Subscribe.objects.all()
+    queryset = Subscribe.objects.all().order_by('-subscribed_at')
     serializer_class = SubscribeSerializer

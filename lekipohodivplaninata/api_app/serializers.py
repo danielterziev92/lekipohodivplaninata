@@ -7,7 +7,7 @@ from lekipohodivplaninata.core.mixins import CommonMixin
 class SubscribeSerializer(CommonMixin, serializers.ModelSerializer):
     class Meta:
         model = Subscribe
-        fields = ('email',)
+        fields = ('email', 'slug_to_unsubscribe')
 
     def create(self, validated_data):
         slug = self.generate_random_string(16)
