@@ -21,7 +21,7 @@ UserModel = get_user_model()
 def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs):
     def get_event_datetime():
         event_time = Hike.objects.get(pk=instance.hike_id.pk).event_date
-        future_time = datetime.datetime.combine(event_time, datetime.time(20, 0, 0))
+        future_time = datetime.datetime.combine(event_time, datetime.time(17, 0, 0))
         return future_time
 
     if isinstance(instance.user_object, AnonymousAppUser):

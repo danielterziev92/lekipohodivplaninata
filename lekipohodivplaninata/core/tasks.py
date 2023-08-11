@@ -207,3 +207,8 @@ def send_email_for_hike_evaluation_with_slug_to_log_in(**kwargs):
         recipient_list=recipient_list,
         html_message=message,
     )
+
+
+@shared_task
+def send_email_to_subscriber(**kwargs):
+    pass

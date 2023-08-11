@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<body style="background-color: #f6f6f6 !important; border: 0; width: 100%; padding: 0; margin: 0; border-radius: 10px !important;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; padding:0; margin:0;">
+    <tbody>
+    <tr>
+        <td width="100%" align="center" valign="top">
+            <img src="{{ logo }}" alt="Logo"
+                 title="Logo" width="400" height="70" align="center" style="margin-top: 30px;">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="padding: 20px;">
+    <h3 style="color: #1b1b1b;">Здравейте,</h3>
+
+    <p style="color: #1b1b1b;">
+        Вие успешно се записахте за нашия бюлетин
+    </p>
+
+    {% include 'users/email-templates/regards.html' %}
+</div>
+
+<hr style="border-width: 1px;">
+
+<div style="padding: 20px; color: #1b1b1b;">
+    За да влезете в профила си, цъкнете <a href="{{ protocol }}://{{ domain }}" style="color: #cf5533">тук</a> и
+    въведете e-mail адреса и
+    парола си. За да смените паролата си или други лични данни, посетете секцията Моят Профил. В случай, че забравите
+    своята парола, използвайте линка „Забравена парола”, за да генерирате нова.Съобщението се изпраща автоматично. Моля,
+    не отговаряйте.
+</div>
+{% if unsubscribe_slug %}
+    <div style="padding: 20px; color: #1b1b1b;">
+        Ако не искате да се абонирани към бюлетина ни, моля натиснете
+        <a style="color: #cf5533;" href="{{ protocol }}://{{ domain }}/unsubscribe/{{ unsubscribe_slug }}">тук</a>
+    </div>
+{% endif %}
+</body>
+</html>
