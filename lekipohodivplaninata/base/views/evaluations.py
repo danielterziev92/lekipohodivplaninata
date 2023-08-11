@@ -3,7 +3,6 @@ from django.core.cache import cache
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic as views
-from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.forms import SiteEvaluationForm, HikeEvaluationForm
 from lekipohodivplaninata.base.models import SiteEvaluation, HikeEvaluation

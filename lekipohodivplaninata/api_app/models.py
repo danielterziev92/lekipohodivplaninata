@@ -1,5 +1,4 @@
-from django.db import modelsrouter = DefaultRouter()
-router.register(r'subscribe', )
+from django.db import models
 
 
 class Subscribe(models.Model):

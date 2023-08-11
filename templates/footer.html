@@ -1,28 +1,41 @@
 {% load static %}
 <footer>
-    <div class="logo">
-        <a href="{% url 'index' %}">
-            <img src="{% static 'images/Logo.svg' %}" alt="">
-        </a>
-    </div>
-    <ul class="contacts">
-        <p>Контакти:</p>
-        <li>
-            <a href="mailto:{{ email }}">{{ email }}</a>
-        </li>
-        <li>
-            <a href="tel:{{ phone_number }}">{{ phone_number }}</a>
-        </li>
-    </ul>
-    <ul class="follow-us">
-        <p>Последвайте ни:</p>
-        {% for media in social_media.all %}
+    <div>
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/Logo.svg' %}" alt="">
+            </a>
+        </div>
+        <ul class="contacts">
+            <p>Контакти:</p>
             <li>
-                <i style="color:#{{ media.icon_color }};" class="{{ media.fontawesome_icon }}"></i>
-                <a  href="{{ media.url }}">
-                    {{ media.name }}
-                </a>
+                <a href="mailto:{{ email }}">{{ email }}</a>
             </li>
-        {% endfor %}
-    </ul>
+            <li>
+                <a href="tel:{{ phone_number }}">{{ phone_number }}</a>
+            </li>
+        </ul>
+        <ul class="follow-us">
+            <p>Последвайте ни:</p>
+            {% for media in social_media.all %}
+                <li>
+                    <i style="color:#{{ media.icon_color }};" class="{{ media.fontawesome_icon }}"></i>
+                    <a href="{{ media.url }}">
+                        {{ media.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="subscribers">
+        <h3>
+            Запишете се за нашия бюлетин
+            <i class="fa-regular fa-envelope"></i>
+        </h3>
+        <small>Ще получавате емайл при всеки нов поход, който създадем.</small>
+        <div class="subscribe">
+            <input type="email"/>
+            <button id="subscribe-me">Запиши ме</button>
+        </div>
+    </div>
 </footer>

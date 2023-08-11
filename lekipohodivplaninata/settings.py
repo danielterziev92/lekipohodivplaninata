@@ -36,13 +36,14 @@ PROJECT_APPS = (
     'lekipohodivplaninata.users_app.apps.UsersAppConfig',
     'lekipohodivplaninata.hike.apps.HikeConfig',
     'lekipohodivplaninata.base.apps.BaseConfig',
+    'lekipohodivplaninata.api_app.apps.ApiAppConfig',
 )
 
-THIRD_PARTY_APP = (
+THIRD_PARTY_APPS = (
     'rest_framework',
 )
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APP
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

@@ -4,6 +4,6 @@ from lekipohodivplaninata.api_app.models import Subscribe
 from lekipohodivplaninata.api_app.serializers import SubscribeSerializer
 
 
-class SubscribeAPIView(rest_views.ListCreateAPIView):
+class SubscribeListAndCreateAPIView(rest_views.ListCreateAPIView):
     queryset = Subscribe.objects.all()
     serializer_class = SubscribeSerializer

@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     height: -webkit-fill-available;
 }
 
@@ -1684,34 +1684,94 @@ body {
 footer {
     background-color: #cf5533;
     padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
     z-index: 2;
 }
 
-footer .logo {
+footer > div {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+footer div .logo {
     max-width: 300px;
     width: 70%;
     margin: auto;
 }
 
-footer ul {
+footer div .logo a,
+footer div .logo a img {
+    width: 100%;
+}
+
+footer div ul {
     margin: auto;
 }
 
-footer ul p {
+footer div ul p {
     font-size: 1.5rem;
     text-align: center;
 }
 
-footer ul li {
+footer div ul li {
     list-style: none;
     margin: 10px 0;
 }
 
-footer ul li a {
+footer div ul li a {
     color: #ffffff;
     text-decoration: none;
+}
+
+footer .subscribers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+footer .subscribers h3,
+footer .subscribers small {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+footer .subscribers small {
+    font-size: 1rem;
+}
+
+footer .subscribers .subscribe {
+    display: grid;
+    grid-template-columns: 60% 150px;
+    grid-gap: 10px;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+}
+
+footer .subscribers .subscribe input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0, 0.7);
+
+}
+
+footer .subscribers .subscribe input:focus {
+    border-color: #cf5533;
+    outline: none;
+}
+
+footer .subscribers .subscribe button {
+    background-color: #ffffff;
+    color: #cf5533;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    border: 1px solid rgb(0, 0, 0, 0.7);
+    cursor: pointer;
 }
 
 
@@ -1877,7 +1937,7 @@ footer ul li a {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    footer {
+    footer > div {
         grid-template-columns: repeat(3, 1fr);
     }
 
@@ -1915,10 +1975,7 @@ footer ul li a {
         margin: auto;
     }
 
-    footer {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-evenly;
+    footer div {
         position: sticky;
         bottom: 0;
         width: 100%;
