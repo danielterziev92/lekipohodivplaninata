@@ -2193,6 +2193,25 @@ footer .subscribers .subscribe button {
     }
 }
 
+@keyframes slideFromTop {
+    from {
+        top: -100px;
+    }
+    to {
+        top: 20px;
+    }
+}
+
+@keyframes hideFromTop {
+    from {
+        top: 20px;
+    }
+    to {
+        top: -100px;
+        opacity: 0;
+    }
+}
+
 
 .messages .success {
     background: #75d00f;
@@ -2216,4 +2235,21 @@ footer .subscribers .subscribe button {
     white-space: nowrap;
     font-weight: bolder;
     font-size: 1.2rem;
+}
+
+.message-box {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background: #75d00f;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    animation: slideFrom 0.5s ease-in-out forwards, hideFromTop 0.5s ease-in-out 2s forwards;
+    font-size: 2rem;
+    margin: auto;
+    border-radius: 10px;
+    z-index: 10;
 }
