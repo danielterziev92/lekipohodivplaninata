@@ -105,6 +105,11 @@
             </article>
         </section>
     </main>
+    {% if is_subscribed %}
+        <div class="unsubscribe">
+            <a href="{% url 'unsubscribe' unsubscribed_slug %}">Отпиши ме от бюлетина</a>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block page_scripts %}

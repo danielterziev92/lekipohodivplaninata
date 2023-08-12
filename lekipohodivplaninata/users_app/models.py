@@ -174,6 +174,10 @@ class GuideProfile(models.Model):
     def get_full_name(self):
         return self.profile_id.get_full_name
 
+    @property
+    def get_email(self):
+        return UserApp.objects.get(pk=self.user_id.pk).email
+
     def __str__(self):
         return self.profile_id.get_full_name
 

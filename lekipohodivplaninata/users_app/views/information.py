@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
+from lekipohodivplaninata.api_app.models import Subscribe
 from lekipohodivplaninata.core.mixins import UserFormMixin
 from lekipohodivplaninata.users_app.forms import GuideProfileFormUser, BaseUserUpdateForm
 from lekipohodivplaninata.users_app.models import BaseProfile
@@ -16,9 +17,29 @@ class UserDetailView(UserFormMixin, mixins.LoginRequiredMixin, views.DetailView)
     template_name = 'users/detail-user.html'
     success_url = reverse_lazy('user-detail')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_email = context.get('object').get_email
+        context['is_subscribed'] = self.is_user_subscribed(user_email)
+        if context['is_subscribed']:
+            context['unsubscribed_slug'] = self.get_unsubscribe_url(user_email)
+        return context
+
     @property
     def model(self):
         return self.get_model()
+
+    @staticmethod
+    def is_user_subscribed(email):
+        obj = Subscribe.objects.filter(email=email).first()
+        if obj:
+            return True if obj.is_active else False
+
+        return False
+
+    @staticmethod
+    def get_unsubscribe_url(email):
+        return Subscribe.objects.filter(email=email).get().slug_to_unsubscribe
 
 
 class UserUpdateInformation(UserFormMixin, mixins.LoginRequiredMixin, views.UpdateView):

@@ -2253,3 +2253,21 @@ footer .subscribers .subscribe button {
     border-radius: 10px;
     z-index: 10;
 }
+
+.unsubscribe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.unsubscribe a {
+    padding: 20px 30px;
+    background-color: #cf5533;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
