@@ -1,3 +1,4 @@
+import datetime
 from django.contrib import messages
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404, redirect
@@ -17,8 +18,15 @@ class SignUpHike(views.UpdateView):
     model = Hike
     form_class = SignUpHikeForm
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.is_hike_passed():
+            messages.error(self.request, 'Не можете да се запишите за този поход')
+            return redirect('index')
+        return super().get(request, *args, **kwargs)
+
     def get_success_url(self):
-        cache.set('is_signed', True, timeout=60)
+        cache.set('is_signed', True)
         return reverse_lazy('site-evaluation')
 
     def get_form_kwargs(self):
@@ -29,6 +37,9 @@ class SignUpHike(views.UpdateView):
     def form_valid(self, form):
         messages.success(self.request, 'Вие успешно се записахте за похода.')
         return super().form_valid(form)
+
+    def is_hike_passed(self):
+        return datetime.date.today() > self.object.event_date
 
 
 class SignedForHikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):

@@ -46,7 +46,7 @@ class HikeSearchAPIView(rest_views.ListCreateAPIView):
             hikes = Hike.objects.filter(
                 models.Q(title__icontains=search_query) |
                 models.Q(description__icontains=search_query)
-            ).order_by('event_date')
+            ).order_by('-event_date')
         return hikes
 
     def list(self, request, *args, **kwargs):
