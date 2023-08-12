@@ -1,9 +1,16 @@
-from rest_framework import generics as rest_views, status
+import email
+import imaplib
+import smtplib
+from email.message import EmailMessage
+
+from rest_framework import generics as rest_views, status, views as api_views
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from django.db import models
 
-from lekipohodivplaninata.api_app.models import Subscribe
-from lekipohodivplaninata.api_app.serializers import SubscribeSerializer, HikeSerializer
+from lekipohodivplaninata.api_app.models import Subscribe, IMAPSettings
+from lekipohodivplaninata.api_app.serializers import SubscribeSerializer, HikeSerializer, IMAPSettingsSerializer
 from lekipohodivplaninata.hike.models import Hike
 
 
@@ -49,3 +56,100 @@ class HikeSearchAPIView(rest_views.ListCreateAPIView):
         return Response({
             'hike': serializer.data,
         }, status=status.HTTP_200_OK)
+
+
+@permission_classes([IsAdminUser, IsAuthenticated])
+class AdminEmailListAPIView(api_views.APIView):
+    def get(self, request, *args, **kwargs):
+        try:
+            imap_settings = IMAPSettings.objects.first()
+
+            if not imap_settings:
+                return Response({
+                    'error': 'Настройките за IMAP услугата не са конфигурирани'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            mailbox = imaplib.IMAP4_SSL(imap_settings.imap_server, imap_settings.imap_port)
+            mailbox.login(imap_settings.imap_username, imap_settings.imap_password)
+            mailbox.select('INBOX')
+
+            _, data = mailbox.search(None, 'ALL')
+            message_ids = data[0].split()
+
+            email_list = []
+
+            for message_id in message_ids:
+                _, msg_data = mailbox.fetch(message_id, '(RFC822)')
+                msg = email.message_from_bytes(msg_data[0][1])
+
+                subject = msg['subject']
+                sender = msg['from']
+
+                if msg.is_multipart():
+                    body = ''
+                    for part in msg.walk():
+                        if part.get_content_type() == 'text/plain':
+                            body = part.get_payload(decode=True).decode('utf-8')
+                            break
+                else:
+                    body = msg.get_payload(decode=True).decode('utf-8')
+
+                email_list.append({
+                    'subject': subject,
+                    'sender': sender,
+                    'body': body
+                })
+
+            mailbox.logout()
+            return Response(email_list, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({
+                'error': 'Грешка при получаването на имейли',
+                'exception': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            recipient = request.data.get('recipient')
+            subject = request.data.get('subject')
+            body = request.data.get('body')
+
+            imap_settings = IMAPSettings.objects.first()
+            if not imap_settings:
+                return Response({
+                    'error': 'Настройките за IMAP услугата не са конфигурирани'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            msg = EmailMessage()
+            msg.set_content("This is the email body.")
+            msg["Subject"] = subject
+            msg["From"] = recipient
+            msg["To"] = recipient
+
+            smtp_server = smtplib.SMTP(imap_settings.imap_server, imap_settings.imap_port)
+            smtp_server.starttls()
+            smtp_server.login(imap_settings.imap_username, imap_settings.imap_password)
+
+            smtp_server.send_message(msg)
+            smtp_server.quit()
+
+            return Response({'message': 'Email sent successfully'}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({
+                'error': 'Грешка при изпращането на имейл',
+                'exception': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class IMAPSettingsCreateAPIView(rest_views.CreateAPIView):
+    queryset = IMAPSettings.objects.all()
+    serializer_class = IMAPSettingsSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+
+class IMAPSettingsAPIView(rest_views.RetrieveUpdateDestroyAPIView):
+    queryset = IMAPSettings.objects.all()
+    serializer_class = IMAPSettingsSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]

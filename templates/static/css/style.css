@@ -2399,3 +2399,23 @@ footer .subscribers .subscribe button {
     font-size: 1.2rem;
     font-weight: bolder;
 }
+
+.email-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.email-item:hover {
+    background-color: #f0f0f0;
+}
+
+#email-details {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.email-body {
+    margin-top: 10px;
+}

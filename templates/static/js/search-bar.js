@@ -20,7 +20,6 @@ async function getHikesFromSearchQuery(e) {
 
     const data = await response.json();
 
-
     const dataElements = [];
 
     const isDataEmpty = data.hike.length === 0

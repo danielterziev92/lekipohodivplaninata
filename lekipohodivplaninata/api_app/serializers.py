@@ -1,7 +1,7 @@
 from rest_framework import serializers, status
 from rest_framework.response import Response
 
-from lekipohodivplaninata.api_app.models import Subscribe
+from lekipohodivplaninata.api_app.models import Subscribe, IMAPSettings
 from lekipohodivplaninata.core.mixins import CommonMixin
 from lekipohodivplaninata.hike.models import Hike
 
@@ -25,3 +25,9 @@ class HikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hike
         fields = ('title', 'slug', 'main_picture', 'duration', 'event_date', 'type', 'price', 'pk')
+
+
+class IMAPSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IMAPSettings
+        fields = '__all__'

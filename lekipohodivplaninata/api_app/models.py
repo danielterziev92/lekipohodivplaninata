@@ -21,3 +21,29 @@ class Subscribe(models.Model):
     subscribed_at = models.DateTimeField(
         auto_now_add=True,
     )
+
+
+class IMAPSettings(models.Model):
+    IMAP_SERVER_MAX_LENGTH = 100
+    IMAP_USERNAME_MAX_LENGTH = 100
+    IMAP_PASSWORD_MAX_LENGTH = 100
+
+    imap_server = models.CharField(
+        max_length=IMAP_SERVER_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    imap_port = models.PositiveSmallIntegerField()
+
+    imap_username = models.CharField(
+        max_length=IMAP_USERNAME_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )
+
+    imap_password = models.CharField(
+        max_length=IMAP_PASSWORD_MAX_LENGTH,
+        null=False,
+        blank=False,
+    )

@@ -49,3 +49,7 @@ class UnsubscribeView(views.UpdateView):
 
         messages.error(self.request, 'Не сте абонирани към нашия бюлетин!')
         return redirect(self.success_url)
+
+
+class MailboxTemplateView(views.TemplateView):
+    template_name = 'mailbox.html'
