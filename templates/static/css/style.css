@@ -2212,18 +2212,20 @@ footer .subscribers .subscribe button {
     }
 }
 
-
+.message-box.success,
 .messages .success {
     background: #75d00f;
     color: #ffffff;
 }
 
+.message-box.error,
 .messages .error {
     background: #f33950;
     color: #ffffff;
 }
 
-.messages .success.show-message {
+.messages .success.show-message,
+.messages .error.show-message {
     text-align: center;
     opacity: 1;
     overflow: hidden;
@@ -2243,11 +2245,9 @@ footer .subscribers .subscribe button {
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
-    background: #75d00f;
-    color: #ffffff;
     text-align: center;
     padding: 10px;
-    animation: slideFrom 0.5s ease-in-out forwards, hideFromTop 0.5s ease-in-out 2s forwards;
+    animation: slideFrom 0.5s ease-in-out forwards, hideFromTop 0.5s ease-in-out 4s forwards;
     font-size: 2rem;
     margin: auto;
     border-radius: 10px;

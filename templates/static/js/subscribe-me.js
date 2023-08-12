@@ -5,7 +5,7 @@ async function subscribeMe(e) {
     e.preventDefault();
 
     const emailInput = document.getElementById('subscribe-email');
-    const successMessageBox = successMessageBoxElement('Вие се абонирахте успешно!');
+    const offset = 70;
 
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
     const url = `${window.location.origin}/api/subscribers/`;
@@ -21,27 +21,39 @@ async function subscribeMe(e) {
     })
 
     if (response.status === 201) {
-        const offset = 70;
-
-        document.body.appendChild(successMessageBox);
-
-        successMessageBox.style.top = `${window.scrollY + offset}px`;
-        window.addEventListener('scroll', () => {
-            successMessageBox.style.top = `${window.scrollY + offset}px`;
-        });
+        showMessageBox('Вие се абонирахте успешно!', ['message-box', 'success']);
 
         emailInput.value = '';
+    }
+
+    if (response.status === 409) {
+        const responseData = await response.text();
+        const data = JSON.parse(responseData)
+
+        showMessageBox(data.message, ['message-box', 'error']);
+    }
+
+    function showMessageBox(message, classes) {
+        const boxWithMessage = messageBoxElement(message, classes);
+
+        document.body.appendChild(boxWithMessage);
+
+        boxWithMessage.style.top = `${window.scrollY + offset}px`;
+        window.addEventListener('scroll', () => {
+            boxWithMessage.style.top = `${window.scrollY + offset}px`;
+        });
 
         setTimeout(() => {
-            document.body.removeChild(successMessageBox);
+            document.body.removeChild(boxWithMessage);
         }, 5000);
     }
 }
 
-function successMessageBoxElement(text) {
+function messageBoxElement(text, classes) {
     const element = document.createElement('div');
     element.textContent = text;
-    element.classList.add('message-box');
+    element.classList.add(...classes);
 
     return element;
 }
+

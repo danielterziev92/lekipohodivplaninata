@@ -211,4 +211,26 @@ def send_email_for_hike_evaluation_with_slug_to_log_in(**kwargs):
 
 @shared_task
 def send_email_to_subscriber(**kwargs):
-    pass
+    email = kwargs.get('email')
+
+    context = {
+        'logo': LOGO,
+        'protocol': PROTOCOL,
+        'domain': DOMAIN_NAME,
+        'unsubscribe_slug': get_unsubscribe_slug(email),
+    }
+
+    recipient_list = (email,)
+
+    message = render_to_string(
+        template_name='users/email-templates/subscribe.html',
+        context=context
+    )
+
+    send_mail(
+        subject='Успешно записване за бюлетин',
+        message='',
+        from_email=SENDER,
+        recipient_list=recipient_list,
+        html_message=message,
+    )

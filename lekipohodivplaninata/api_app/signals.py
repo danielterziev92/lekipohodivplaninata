@@ -9,3 +9,4 @@ from lekipohodivplaninata.core.tasks import send_email_to_subscriber
 def send_email_when_user_subscribe(sender, instance, created, **kwargs):
     if created:
         send_email_to_subscriber.delay(email=instance.email)
+        return

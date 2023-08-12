@@ -29,6 +29,6 @@ urlpatterns = (
         path('edit/<int:pk>', SliderEditView.as_view(), name='slider-edit'),
         path('delete/<int:pk>', SliderDeleteView.as_view(), name='slider-delete'),
     ])),
-    path('<path:slug>/', HikeEvaluationDetailView.as_view(), name='hike-evaluation'),
     path('unsubscribe/<slug:slug>/', UnsubscribeView.as_view(), name='unsubscribe'),
+    path('<path:slug>/', HikeEvaluationDetailView.as_view(), name='hike-evaluation'),
 )

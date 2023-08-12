@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
@@ -34,14 +34,18 @@ class PassedEventListView(HikePassedEvents, views.ListView):
 
 class UnsubscribeView(views.UpdateView):
     model = Subscribe
-    fields = ('is_active',)
-    success_url = reverse_lazy('home')
+    fields = []
+    template_name = None
+    success_url = reverse_lazy('index')
 
-    def get_object(self, queryset=None):
+    def get(self, request, *args, **kwargs):
         slug = self.kwargs.get('slug')
-        return get_object_or_404(Subscribe, slug_to_unsubscribe=slug)
+        instance = get_object_or_404(Subscribe, slug_to_unsubscribe=slug)
+        if instance.is_active:
+            instance.is_active = False
+            instance.save()
+            messages.success(self.request, 'Успешно успяхте да премахнете абонамента си от системата.')
+            return redirect(self.success_url)
 
-    def form_valid(self, form):
-        form.instance.is_active = False
-        messages.success(self.request, 'Успешно успяхте да премахнете абонамента си от системата.')
-        return super().form_valid(form)
+        messages.error(self.request, 'Не сте абонирани към нашия бюлетин!')
+        return redirect(self.success_url)
