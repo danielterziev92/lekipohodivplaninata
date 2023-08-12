@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.views import generic as views
@@ -39,6 +41,7 @@ class HikeDetailView(UserDataMixin, views.DetailView):
         if not self.request.user.is_anonymous:
             context['user'] = self.get_user()
 
+        context['is_event_done'] = self.is_hike_passed()
         context['hikes'] = HikeModel.objects.all()
         return context
 
@@ -53,6 +56,9 @@ class HikeDetailView(UserDataMixin, views.DetailView):
             user = BaseProfile.objects.get(pk=pk)
 
         return user
+
+    def is_hike_passed(self):
+        return datetime.date.today() > self.object.event_date
 
 
 class HikeUpdateView(auth_mixins.LoginRequiredMixin, auth_mixins.PermissionRequiredMixin, views.UpdateView):

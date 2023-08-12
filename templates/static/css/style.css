@@ -70,48 +70,26 @@ body {
 }
 
 .main-header .search-form {
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 20px;
     position: relative;
-    width: 70%;
+    width: 45%;
     padding: 5px;
     border: 2px solid #cf5533;
     border-radius: 20px;
 }
 
 .main-header .search-form input {
-    width: 90%;
+    width: 100%;
     border: none;
-    padding: 10px;
+    padding: 10px 10px 10px 50px;
 }
 
 .main-header .search-form input:focus {
     border: none;
     outline: none;
 }
-
-/*@keyframes animate {*/
-/*    40%, 60% {*/
-/*        left: 100%;*/
-/*    }*/
-/*    100% {*/
-/*        left: 0%;*/
-/*    }*/
-/*}*/
-
-/*.main-header .search-form input:before {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*    background-color: red;*/
-/*    border-left: 2px solid #1b1b1b;*/
-/*    animation: animate 4s steps(12) infinite;*/
-/*}*/
-
 
 .main-header .search-form > i {
     position: absolute;
@@ -133,10 +111,9 @@ body {
     display: block;
     position: absolute;
     background-color: #ffffff;
+    min-width: 800px;
     width: 100%;
     top: 55px;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 2;
     border: 1px solid #1b1b1b;
     border-radius: 10px;
@@ -157,7 +134,14 @@ body {
 }
 
 .main-header nav .search-form .search-result ul li figure {
-    height: 100%;
+    --figure-height: 60px;
+
+    height: var(--figure-height);
+    width: calc(var(--figure-height) * (16 / 9));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-header nav .search-form .search-result ul li figure img {
@@ -173,6 +157,12 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.main-header nav .search-form .search-result ul li .info p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .main-header nav .search-form .search-result ul li .info button {
@@ -2109,6 +2099,14 @@ footer .subscribers .subscribe button {
         width: 100%;
     }
 
+    .main-header .search-form {
+        display: flex;
+    }
+
+    .main-header nav .search-form .search-result ul.show {
+        right: 0;
+    }
+
 }
 
 @media only screen and (width > 1200px ) {
@@ -2291,6 +2289,12 @@ footer .subscribers .subscribe button {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .main-header nav .search-form .search-result ul.show {
+        right: unset;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
 
 }
 
@@ -2398,24 +2402,4 @@ footer .subscribers .subscribe button {
     border-radius: 20px;
     font-size: 1.2rem;
     font-weight: bolder;
-}
-
-.email-item {
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-}
-
-.email-item:hover {
-    background-color: #f0f0f0;
-}
-
-#email-details {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-.email-body {
-    margin-top: 10px;
 }
