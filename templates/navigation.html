@@ -10,6 +10,68 @@
         <ul class="menu-wrapper">
             <li class="menu-btn-small" id="menu-btn-small"><i class="fa-solid fa-bars"></i></li>
         </ul>
+        <form class="search-form" id="search-form">
+            <input type="text" id="search-query" placeholder="Можете да търсите всички походи тук ..."
+                   autocomplete="off"/>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            {% csrf_token %}
+            <div class="search-result">
+                <ul id="search-result">
+                    {#                    <li>#}
+                    {#                        <figure>#}
+                    {#                            <img src="https://images.pexels.com/photos/17827651/pexels-photo-17827651/free-photo-of-mountain-landscape-and-a-hiker-walking-on-a-field.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"#}
+                    {#                                 alt="">#}
+                    {#                        </figure>#}
+                    {#                        <a href="#">От тук до там 2</a>#}
+                    {#                        <div class="info">#}
+                    {#                            <p class="event-date">#}
+                    {#                                <i class="fa-regular fa-calendar-days"></i>#}
+                    {#                                <span>21.05.2023</span>#}
+                    {#                            </p>#}
+                    {#                            <p class="type">#}
+                    {#                                <i class="fa-solid fa-mountain-sun"></i>#}
+                    {#                                <span>Трудно</span>#}
+                    {#                            </p>#}
+                    {#                            <p class="duration">#}
+                    {#                                <i class="fa-solid fa-clock"></i>#}
+                    {#                                <span>12 часа</span>#}
+                    {#                            </p>#}
+                    {#                            <p class="price">#}
+                    {#                                <i class="fa-regular fa-money-bill-1"></i>#}
+                    {#                                <span>20,00 лв.</span>#}
+                    {#                            </p>#}
+                    {#                            <button type="button">Запиши ме</button>#}
+                    {#                        </div>#}
+                    {#                    </li>#}
+                    {#                    <li>#}
+                    {#                        <figure>#}
+                    {#                            <img src="https://images.pexels.com/photos/17827651/pexels-photo-17827651/free-photo-of-mountain-landscape-and-a-hiker-walking-on-a-field.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"#}
+                    {#                                 alt="">#}
+                    {#                        </figure>#}
+                    {#                        <a href="#">От тук до там 2</a>#}
+                    {#                        <div class="info">#}
+                    {#                            <p class="event-date">#}
+                    {#                                <i class="fa-regular fa-calendar-days"></i>#}
+                    {#                                <span>21.05.2023</span>#}
+                    {#                            </p>#}
+                    {#                            <p class="type">#}
+                    {#                                <i class="fa-solid fa-mountain-sun"></i>#}
+                    {#                                <span>Трудно</span>#}
+                    {#                            </p>#}
+                    {#                            <p class="duration">#}
+                    {#                                <i class="fa-solid fa-clock"></i>#}
+                    {#                                <span>12 часа</span>#}
+                    {#                            </p>#}
+                    {#                            <p class="price">#}
+                    {#                                <i class="fa-regular fa-money-bill-1"></i>#}
+                    {#                                <span>20,00 лв.</span>#}
+                    {#                            </p>#}
+                    {#                            <button type="button">Запиши ме</button>#}
+                    {#                        </div>#}
+                    {#                    </li>#}
+                </ul>
+            </div>
+        </form>
         <ul class="main-menu">
             <li><a href="{% url 'index' %}">Начало</a></li>
             {% if request.user.is_staff %}
@@ -72,4 +134,5 @@
             {% endif %}
         </ul>
     </nav>
+
 </header>

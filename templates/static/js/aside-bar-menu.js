@@ -3,6 +3,15 @@ const headerElement = document.getElementById('main-header');
 
 window.addEventListener('scroll', () => {
     headerElement.classList.toggle('sticky', window.scrollY > 0);
+    const formSearchResultElement = searchResultElement.parentElement.parentElement;
+    const formSearchResultIElement = formSearchResultElement.querySelector('i');
+    if (window.scrollY > 0) {
+        formSearchResultElement.style.padding = '0';
+        formSearchResultIElement.style.padding = '10px';
+    } else {
+        formSearchResultElement.style.padding = '5px';
+        formSearchResultIElement.style.padding = '15px';
+    }
 });
 
 document.getElementById('menu-btn-small').addEventListener('click', showHideAsideBarMenu)

@@ -7,7 +7,7 @@ async function subscribeMe(e) {
     const emailInput = document.getElementById('subscribe-email');
     const offset = 70;
 
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const url = `${window.location.origin}/api/subscribers/`;
     const response = await fetch(url, {
         method: 'POST',
@@ -18,7 +18,7 @@ async function subscribeMe(e) {
         body: JSON.stringify({
             'email': emailInput.value
         }),
-    })
+    });
 
     if (response.status === 201) {
         showMessageBox('Вие се абонирахте успешно!', ['message-box', 'success']);
