@@ -19,10 +19,13 @@ UserModel = get_user_model()
 
 @receiver(signal=post_save, sender=SignUpForHike)
 def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs):
+    def time_to_seconds(event_date):
+        return (event_date - datetime.datetime.today()).total_seconds()
+
     def get_event_datetime():
         event_time = Hike.objects.get(pk=instance.hike_id.pk).event_date
-        future_time = datetime.datetime.combine(event_time, datetime.time(17, 0, 0))
-        return future_time
+        future_time = datetime.datetime.combine(event_time, datetime.time(20, 0, 0))
+        return time_to_seconds(future_time)
 
     if isinstance(instance.user_object, AnonymousAppUser):
         return
@@ -42,7 +45,7 @@ def send_email_for_successful_signed_for_hike(instance, created, *args, **kwargs
             'user_id': instance.user_id,
             'slug': hike_eval.slug,
         },
-        eta=send_mail_datetime
+        countdown=send_mail_datetime
     )
 
     return send_successful_email_signed_for_hike_confirm.delay(
