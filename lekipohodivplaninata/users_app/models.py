@@ -85,7 +85,7 @@ class UserApp(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 class BaseProfile(BaseDataInfo, AdditionalDataInfo):
     user_id = models.OneToOneField(
         'UserApp',
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         primary_key=True,
         verbose_name='Потребител'
     )
@@ -120,7 +120,7 @@ class GuideProfile(models.Model):
     user_id = models.OneToOneField(
         'UserApp',
         primary_key=True,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=False,
         blank=False,
         verbose_name='Потребител'
