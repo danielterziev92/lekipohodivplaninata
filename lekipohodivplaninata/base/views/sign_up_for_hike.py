@@ -34,10 +34,6 @@ class SignUpHike(views.UpdateView):
         kwargs['request'] = self.request
         return kwargs
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Вие успешно се записахте за похода.')
-        return super().form_valid(form)
-
     def is_hike_passed(self):
         return datetime.date.today() > self.object.event_date
 

@@ -1,7 +1,8 @@
 from django import forms
+from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.contenttypes.models import ContentType
-from django.db import ProgrammingError
+from django.db import ProgrammingError, transaction
 from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.models import SignUpForHike, SiteEvaluation, HikeEvaluation, Slider
@@ -128,34 +129,40 @@ class SignUpHikeForm(UserDataMixin, forms.ModelForm):
     def clean(self):
         keys_to_delete = ['choose_transport', 'first_name', 'last_name', 'phone_number', 'choose_hike', 'email']
         cleaned_data = super().clean()
+        try:
+            with transaction.atomic():
 
-        if isinstance(self.request.user, UserModel):
-            profile = self.get_user_profile(self.request.user.pk)
-        else:
-            if 'email' in cleaned_data and cleaned_data['email']:
-                profile = self.register_profile_with_random_password(
-                    email=cleaned_data.get('email'),
-                    last_name=cleaned_data.get('last_name'),
-                    first_name=cleaned_data.get('first_name'),
-                    phone_number=cleaned_data.get('phone_number')
-                )
-                user_app = UserModel.objects.get(pk=profile.user_id.pk)
-                login(self.request, user=user_app)
-            else:
-                profile = AnonymousAppUser.objects.create(
-                    last_name=cleaned_data.get('last_name'),
-                    first_name=cleaned_data.get('first_name'),
-                    phone_number=cleaned_data.get('phone_number')
-                )
+                if isinstance(self.request.user, UserModel):
+                    profile = self.get_user_profile(self.request.user.pk)
+                else:
+                    if 'email' in cleaned_data and cleaned_data['email']:
+                        profile = self.register_profile_with_random_password(
+                            email=cleaned_data.get('email'),
+                            last_name=cleaned_data.get('last_name'),
+                            first_name=cleaned_data.get('first_name'),
+                            phone_number=cleaned_data.get('phone_number')
+                        )
+                        user_app = UserModel.objects.get(pk=profile.user_id.pk)
+                        login(self.request, user=user_app)
+                    else:
+                        profile = AnonymousAppUser.objects.create(
+                            last_name=cleaned_data.get('last_name'),
+                            first_name=cleaned_data.get('first_name'),
+                            phone_number=cleaned_data.get('phone_number')
+                        )
 
-        cleaned_data['hike_id'] = Hike.objects.get(pk=cleaned_data.get('choose_hike'))
-        cleaned_data['user_type'] = ContentType.objects.get_for_model(profile)
-        cleaned_data['user_id'] = profile.pk
-        cleaned_data['travel_with'] = self.cleaned_data.get('choose_transport')
+                cleaned_data['hike_id'] = Hike.objects.filter(pk=cleaned_data.get('choose_hike')).first()
+                cleaned_data['user_type'] = ContentType.objects.get_for_model(profile)
+                cleaned_data['user_id'] = profile.pk
+                cleaned_data['travel_with'] = self.cleaned_data.get('choose_transport')
 
-        for key in keys_to_delete: del cleaned_data[key]
+                for key in keys_to_delete: del cleaned_data[key]
 
-        return cleaned_data
+                messages.success(self.request, 'Вие успешно се записахте за похода.')
+
+                return cleaned_data
+        except Exception as e:
+            messages.error(self.request, 'Съжаляваме, но нещо се обърка. Моля опитайте по-късно.')
 
     def save(self, commit=True):
         obj = super().save(commit=False)
