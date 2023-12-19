@@ -2,6 +2,8 @@
 
 Welcome to HikeHub, your go-to platform for discovering, organizing, and enjoying breathtaking hikes! HikeHub is a comprehensive web application that connects adventure seekers, guides, and administrators, offering a seamless experience for planning, participating in hikes, and managing user profiles.
 
+Live Demo: [Link]
+
 ## Key Features
 
 ### Hike Exploration
@@ -44,3 +46,5 @@ Welcome to HikeHub, your go-to platform for discovering, organizing, and enjoyin
   * Redis
   * Docker
   * Nginx
+
+[Link]: https://lekipohodivplaninata.danielterziev.eu/
