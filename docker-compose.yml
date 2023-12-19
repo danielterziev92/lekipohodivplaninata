@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 services:
   web:
@@ -15,7 +15,7 @@ services:
       - cache
 
   postgres:
-    image: postgres
+    image: postgres:16.1
     restart: always
     ports:
       - "5432:5432"
@@ -26,6 +26,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./postgresql:/var/lib/postgresql/data
+
 
   cache:
     image: redis

@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python
 
 RUN apt update -y \
     && apt upgrade -y
@@ -8,10 +8,6 @@ ENV PYTHONUNBUFFERED 1
 
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
-
-#ENV STATICFILES_HOME=/tmp/staticfiles
-
-#RUN mkdir -p $STATICFILES_HOME
 
 WORKDIR $APP_HOME
 

@@ -1,8 +1,8 @@
 amqp==5.1.1
 asgiref==3.7.2
 async-timeout==4.0.2
-billiard==4.1.0
-celery==5.3.1
+billiard==4.2.0
+celery==5.3.6
 certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==3.1.0
@@ -19,11 +19,11 @@ django-environ==0.10.0
 djangorestframework==3.14.0
 flower==2.0.0
 gevent==23.7.0
-greenlet==2.0.2
+greenlet==3.0.2
 gunicorn==21.2.0
 humanize==4.7.0
 idna==3.4
-kombu==5.3.1
+kombu==5.3.4
 oauthlib==3.2.2
 packaging==23.1
 Pillow==10.0.0
@@ -47,7 +47,7 @@ tornado==6.3.2
 typing_extensions==4.6.3
 tzdata==2023.3
 urllib3==1.26.15
-vine==5.0.0
+vine==5.1.0
 wcwidth==0.2.6
 zope.event==4.6
 zope.interface==6.0
