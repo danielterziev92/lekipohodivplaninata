@@ -39,15 +39,6 @@ Live Demo: [Link]
 
 ## System Requirements
 
-Tech Stack
-
-    Back-end: Django
-    Front-end: HTML, CSS
-    Database: PostgreSQL
-    Payment Processing: Stripe
-
-
-
 ### Technology Stack:
   * Django
   * PostgreSQL
