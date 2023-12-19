@@ -23,3 +23,24 @@ Welcome to HikeHub, your go-to platform for discovering, organizing, and enjoyin
   * Profile Management:
     * Users can edit their profiles, enhancing personalization and updating information as needed.
 
+### Guide Features
+
+  * Guide Accounts:
+    * Administrators can designate certain users as guide users.
+    * Guide users can add personal descriptions and upload certificates to showcase their expertise.
+   
+### Administration
+
+  * Administrative Privileges:
+    * Administrators have exclusive rights to create hikes, manage sliders, and access user ratings.
+    * Only administrators can approve users to become guide users.
+
+## System Requirements
+
+### Technology Stack:
+  * Django
+  * PostgreSQL
+  * Celery
+  * Redis
+  * Docker
+  * Nginx
