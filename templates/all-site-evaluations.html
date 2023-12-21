@@ -39,7 +39,11 @@
                         <span style="background-color: transparent;"></span>
                     {% endif %}
                 </div>
-                <p class="average-grade">Средна оценка: {% average_site_evaluation %}</p>
+                {% if not average_site_evaluation %}
+                    <p class="average-grade"> Все още няма оценки</p>
+                {% else %}
+                    <p class="average-grade">Средна оценка: {% average_site_evaluation %}</p>
+                {% endif %}
             </article>
         </section>
     </main>

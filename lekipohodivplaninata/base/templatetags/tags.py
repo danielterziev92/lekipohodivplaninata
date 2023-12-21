@@ -1,8 +1,6 @@
 import datetime
 
 from django import template
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
 
 from lekipohodivplaninata.base.models import SignUpForHike, Hike, SiteEvaluation
 
@@ -83,6 +81,9 @@ def get_average_site_evaluation():
     site_evaluations = SiteEvaluation.objects.all()
     site_evaluations_grades = sum([evaluation.assessment for evaluation in site_evaluations])
     site_evaluations_count = site_evaluations.count()
+    if site_evaluations_count == 0:
+        return False
+
     result = site_evaluations_grades / site_evaluations_count
 
     return f'{result:.2f}'
