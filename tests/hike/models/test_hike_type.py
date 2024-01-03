@@ -4,7 +4,7 @@ from django.test import TestCase
 from lekipohodivplaninata.hike.models import HikeType
 
 
-class TestBaseProfile(TestCase):
+class TestHikeType(TestCase):
     VALID_HIKE_TYPE_DATA = {
         'title': 'Test',
     }
