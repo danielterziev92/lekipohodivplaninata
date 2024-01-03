@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.db import IntegrityError, DataError
 from django.test import TestCase
 
 from lekipohodivplaninata.hike.models import HikeLevel, HikeType, Hike, HikeAdditionalInfo
@@ -35,7 +36,7 @@ class TestHikeAdditionalInfoModel(TestCase):
         hike_type = HikeType.objects.create(**self.VALID_HIKE_TYPE_DATA)
         hike = Hike.objects.create(**self.VALID_HIKE_DATA, level=hike_level, type=hike_type)
 
-        hike_additional_info = {**data, 'hike_id': hike}
+        hike_additional_info = {'hike_id': hike, **data}
 
         hike_additional_info = HikeAdditionalInfo.objects.create(**hike_additional_info)
         hike_additional_info.full_clean()
@@ -48,20 +49,31 @@ class TestHikeAdditionalInfoModel(TestCase):
         self.assertEqual(hike_additional_info.event_venue, self.VALID_HIKE_ADDITIONAL_INFO_DATA['event_venue'])
 
     def test_create_hike_additional_info__when_hike_id_is_null__expect_to_raise_exception(self):
-        pass
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_hike_additional_info({**self.VALID_HIKE_ADDITIONAL_INFO_DATA, 'hike_id': None})
 
     def test_create_hike_additional_info__when_event_venue_is_with_one_more_character__expect_to_raise_exception(self):
-        pass
+        event_venue = 't' * (HikeAdditionalInfo.EVENT_VENUE_MAX_LENGTH + 1)
+        with self.assertRaises(DataError):
+            hike_additional_info_data = {**self.VALID_HIKE_ADDITIONAL_INFO_DATA, 'event_venue': event_venue}
+            self._create_and_save_hike_additional_info(hike_additional_info_data)
 
     def test_create_hike_additional_info__when_event_venue_is_null__expect_to_raise_exception(self):
-        pass
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_hike_additional_info({**self.VALID_HIKE_ADDITIONAL_INFO_DATA, 'event_venue': None})
 
     def test_create_hike_additional_info__when_departure_time_is_null__expect_to_raise_exception(self):
-        pass
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_hike_additional_info({**self.VALID_HIKE_ADDITIONAL_INFO_DATA, 'departure_time': None})
 
     def test_create_hike_additional_info__when_departure_place_is_with_one_more_character__expect_to_raise_exception(
             self):
-        pass
+        departure_place = 't' * (HikeAdditionalInfo.DEPARTURE_PLACE_MAX_LENGTH + 1)
+        with self.assertRaises(DataError):
+            hike_additional_info_data = {**self.VALID_HIKE_ADDITIONAL_INFO_DATA, 'departure_place': departure_place}
+            self._create_and_save_hike_additional_info(hike_additional_info_data)
 
     def test_create_hike_additional_info__when_departure_place_is_null__expect_to_raise_exception(self):
-        pass
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_hike_additional_info(
+                {**self.VALID_HIKE_ADDITIONAL_INFO_DATA, 'departure_place': None})
