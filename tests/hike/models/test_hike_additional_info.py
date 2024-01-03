@@ -2,6 +2,8 @@ from datetime import datetime
 
 from django.test import TestCase
 
+from lekipohodivplaninata.hike.models import HikeLevel, HikeType, Hike, HikeAdditionalInfo
+
 
 class TestHikeAdditionalInfoModel(TestCase):
     VALID_HIKE_TYPE_DATA = {
@@ -29,10 +31,21 @@ class TestHikeAdditionalInfoModel(TestCase):
     }
 
     def _create_and_save_hike_additional_info(self, data):
-        pass
+        hike_level = HikeLevel.objects.create(**self.VALID_HIKE_LEVEL_DATA)
+        hike_type = HikeType.objects.create(**self.VALID_HIKE_TYPE_DATA)
+        hike = Hike.objects.create(**self.VALID_HIKE_DATA, level=hike_level, type=hike_type)
+
+        hike_additional_info = {**data, 'hike_id': hike}
+
+        hike_additional_info = HikeAdditionalInfo.objects.create(**hike_additional_info)
+        hike_additional_info.full_clean()
+        hike_additional_info.save()
+        return hike_additional_info
 
     def test_create_hike_additional_info__when_data_is_valid__expect_to_be_created(self):
-        pass
+        hike_additional_info = self._create_and_save_hike_additional_info(self.VALID_HIKE_ADDITIONAL_INFO_DATA)
+        self.assertEqual(HikeAdditionalInfo.objects.count(), 1)
+        self.assertEqual(hike_additional_info.event_venue, self.VALID_HIKE_ADDITIONAL_INFO_DATA['event_venue'])
 
     def test_create_hike_additional_info__when_hike_id_is_null__expect_to_raise_exception(self):
         pass
