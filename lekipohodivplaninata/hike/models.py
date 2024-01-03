@@ -77,6 +77,8 @@ class Hike(AuditInfoMixin, models.Model):
     DESCRIPTION_MAX_LENGTH = 30
     DURATION_MAX_LENGTH = 20
     PICTURE_DIRECTORY = 'treks-pictures'
+    PRICE_MAX_DIGITS = 8
+    PRICE_DECIMAL_PLACES = 2
 
     title = models.CharField(
         max_length=TITLE_MAX_LENGTH,
@@ -135,7 +137,7 @@ class Hike(AuditInfoMixin, models.Model):
 
     price = models.DecimalField(
         default=0.00,
-        max_digits=8,
+        max_digits=PRICE_MAX_DIGITS,
         decimal_places=2,
         verbose_name='Цена',
         help_text='Моля попълнете само цифрата на сумата за похода'
