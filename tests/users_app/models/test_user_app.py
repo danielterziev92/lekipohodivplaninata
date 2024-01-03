@@ -4,7 +4,7 @@ from django.test import TestCase
 from lekipohodivplaninata.users_app.models import UserApp
 
 
-class TestUserApp(TestCase):
+class TestUserAppModel(TestCase):
     VALID_USER_APP_DATA = {
         'email': 'test@example.com',
         'password': 'password',

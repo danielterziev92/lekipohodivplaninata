@@ -5,7 +5,7 @@ from django.db import IntegrityError
 from lekipohodivplaninata.users_app.models import UserApp, BaseProfile, GuideProfile
 
 
-class TestGuideProfile(TestCase):
+class TestGuideProfileModel(TestCase):
     VALID_USER_APP_DATA = {
         'email': 'test@example.com',
         'password': 'password',

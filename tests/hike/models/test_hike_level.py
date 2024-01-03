@@ -4,7 +4,7 @@ from django.test import TestCase
 from lekipohodivplaninata.hike.models import HikeLevel
 
 
-class TestHikeLevel(TestCase):
+class TestHikeLevelModel(TestCase):
     VALID_HIKE_LEVEL_DATA = {
         'title': 'Test Hike Level',
     }
