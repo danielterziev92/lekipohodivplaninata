@@ -70,10 +70,13 @@ class SignUpForHike(models.Model):
 
 
 class Evaluation(models.Model):
+    ASSESSMENT_MAX_VALUE = 10
+    ASSESSMENT_MIN_VALUE = 1
+
     assessment = models.PositiveSmallIntegerField(
         null=True,
         blank=False,
-        validators=(ValueInRangeValidator(1, 10),)
+        validators=(ValueInRangeValidator(ASSESSMENT_MIN_VALUE, ASSESSMENT_MAX_VALUE),)
     )
 
     comment = models.TextField(
