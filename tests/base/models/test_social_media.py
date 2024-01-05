@@ -1,5 +1,4 @@
-from django.core.exceptions import ValidationError
-from django.db import DataError
+from django.db import DataError, IntegrityError
 from django.test import TestCase
 
 from lekipohodivplaninata.base.models import SocialMedia
@@ -33,10 +32,18 @@ class TestSocialMediaModel(TestCase):
             self._create_and_save_social_media(social_media_data)
 
     def test_create_social_media__when_name_is_null__expect_to_raise_exception(self):
-        pass
+        name = None
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'name': name}
+
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_social_media(social_media_data)
 
     def test_create_social_media__when_url_is_empty__expect_to_raise_exception(self):
-        pass
+        url = None
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'url': url}
+
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_social_media(social_media_data)
 
     def test_create_social_media__when_fontawesome_icon_is_with_one_more_character_more__expect_to_raise_exception(
             self):
@@ -46,8 +53,14 @@ class TestSocialMediaModel(TestCase):
         with self.assertRaises(DataError):
             self._create_and_save_social_media(social_media_data)
 
-    def test_create_social_media__when_fontawesome_icon_is_null__expect_to_raise_exception(self):
-        pass
+    def test_create_social_media__when_fontawesome_icon_is_null__expect_to_be_created(self):
+        fontawesome_icon = None
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'fontawesome_icon': fontawesome_icon}
+
+        social_media = self._create_and_save_social_media(social_media_data)
+
+        self.assertEqual(SocialMedia.objects.count(), 1)
+        self.assertEqual(social_media.fontawesome_icon, None)
 
     def test_create_social_media__when_icon_color_is_with_one_more_character_more__expect_to_raise_exception(self):
         icon_color = 'f' * (SocialMedia.ICON_COLOR_MAX_LENGTH + 1)
@@ -56,5 +69,11 @@ class TestSocialMediaModel(TestCase):
         with self.assertRaises(DataError):
             self._create_and_save_social_media(social_media_data)
 
-    def test_create_social_media__when_icon_color_is_null__expect_to_raise_exception(self):
-        pass
+    def test_create_social_media__when_icon_color_is_null__expect_to_be_created(self):
+        icon_color = None
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'icon_color': icon_color}
+
+        social_media = self._create_and_save_social_media(social_media_data)
+
+        self.assertEqual(SocialMedia.objects.count(), 1)
+        self.assertEqual(social_media.icon_color, None)
