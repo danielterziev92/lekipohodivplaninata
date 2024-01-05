@@ -72,7 +72,11 @@ class TestSettingsModel(TestCase):
             self._create_and_save_settings(settings_data)
 
     def test_create__when_email_for_contact_is_not_email__expect_to_raise_exception(self):
-        pass
+        email_for_contact = 'test'
+        settings_data = {**self.VALID_SETTINGS_DATA, 'email_for_contact': email_for_contact}
+
+        with self.assertRaises(ValidationError):
+            self._create_and_save_settings(settings_data)
 
     def test_create__when_email_for_contact_is_null__expect_to_raise_exception(self):
         email_for_contact = None
@@ -90,7 +94,18 @@ class TestSettingsModel(TestCase):
         self.assertEqual(Settings.objects.count(), 1)
 
     def test_create__when_delete_social_media__expect_to_still_have_data(self):
-        pass
+        social_medias = [
+            {**self.VALID_SOCIAL_MEDIA_DATA, 'name': 'Test1'},
+            {**self.VALID_SOCIAL_MEDIA_DATA, 'name': 'Test2'},
+            {**self.VALID_SOCIAL_MEDIA_DATA, 'name': 'Test3'},
+        ]
 
-    def test_create__when_pass_different_object__expect_to_raise_exception(self):
-        pass
+        settings = self._create_and_save_settings({**self.VALID_SETTINGS_DATA, 'social_media': social_medias})
+
+        self.assertEqual(settings.social_media.count(), 3)
+
+        social_media = SocialMedia.objects.get(pk=2)
+        social_media.delete()
+
+        settings_social_medias_left = Settings.objects.filter(pk=settings.pk).get().social_media.count()
+        self.assertEqual(settings_social_medias_left, 2)
