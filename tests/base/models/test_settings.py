@@ -1,4 +1,7 @@
 from django.test import TestCase
+from django.db.models.fields.related_descriptors import ManyToManyDescriptor
+
+from lekipohodivplaninata.base.models import SocialMedia, Settings
 
 
 class TestSettingsModel(TestCase):
@@ -15,14 +18,39 @@ class TestSettingsModel(TestCase):
         'social_media': []
     }
 
-    def _create_and_save_social_media(self, data):
-        pass
+    @staticmethod
+    def __create_and_save_social_media(data):
+        social_media = SocialMedia.objects.create(**data)
+        social_media.full_clean()
+        social_media.save()
+        return social_media
 
     def _create_and_save_settings(self, data):
-        pass
+        social_medias = [(self.__create_and_save_social_media(cur_data)) for cur_data in data['social_media']]
+        del data['social_media']
+
+        settings = Settings.objects.create(**data)
+        settings.full_clean()
+        settings.save()
+
+        settings.social_media.set(social_medias)
+
+        return settings
 
     def test_create__when_valid_data__expect_to_be_created(self):
-        pass
+        social_medias = [
+            {**self.VALID_SOCIAL_MEDIA_DATA, 'name': 'Test1'},
+            {**self.VALID_SOCIAL_MEDIA_DATA, 'name': 'Test2'},
+            {**self.VALID_SOCIAL_MEDIA_DATA, 'name': 'Test3'},
+        ]
+
+        settings = self._create_and_save_settings({**self.VALID_SETTINGS_DATA, 'social_media': social_medias})
+
+        self.assertEqual(Settings.objects.count(), 1)
+
+        self.assertEqual(settings.phone_number, self.VALID_SETTINGS_DATA['phone_number'])
+
+        self.assertTrue(settings.social_media.all().exists())
 
     def test_create__when_phone_number_with_one_more_character__expect_to_raise_exception(self):
         pass
