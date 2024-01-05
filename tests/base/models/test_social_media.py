@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+from django.db import DataError
 from django.test import TestCase
 
 from lekipohodivplaninata.base.models import SocialMedia
@@ -24,7 +26,11 @@ class TestSocialMediaModel(TestCase):
         self.assertEqual(social_media.name, self.VALID_SOCIAL_MEDIA_DATA['name'])
 
     def test_create_social_media__when_name_is_with_one_more_character_more__expect_to_raise_exception(self):
-        pass
+        name = 'T' * (SocialMedia.NAME_MAX_LENGTH + 1)
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'name': name}
+
+        with self.assertRaises(DataError):
+            self._create_and_save_social_media(social_media_data)
 
     def test_create_social_media__when_name_is_null__expect_to_raise_exception(self):
         pass
@@ -34,13 +40,21 @@ class TestSocialMediaModel(TestCase):
 
     def test_create_social_media__when_fontawesome_icon_is_with_one_more_character_more__expect_to_raise_exception(
             self):
-        pass
+        fontawesome_icon = 'T' * (SocialMedia.FONTAWESOME_MAX_LENGTH + 1)
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'fontawesome_icon': fontawesome_icon}
+
+        with self.assertRaises(DataError):
+            self._create_and_save_social_media(social_media_data)
 
     def test_create_social_media__when_fontawesome_icon_is_null__expect_to_raise_exception(self):
         pass
 
     def test_create_social_media__when_icon_color_is_with_one_more_character_more__expect_to_raise_exception(self):
-        pass
+        icon_color = 'f' * (SocialMedia.ICON_COLOR_MAX_LENGTH + 1)
+        social_media_data = {**self.VALID_SOCIAL_MEDIA_DATA, 'icon_color': icon_color}
+
+        with self.assertRaises(DataError):
+            self._create_and_save_social_media(social_media_data)
 
     def test_create_social_media__when_icon_color_is_null__expect_to_raise_exception(self):
         pass
