@@ -1,4 +1,5 @@
-from django.db import DataError
+from django.core.exceptions import ValidationError
+from django.db import DataError, IntegrityError
 from django.test import TestCase
 from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 
@@ -27,14 +28,17 @@ class TestSettingsModel(TestCase):
         return social_media
 
     def _create_and_save_settings(self, data):
-        social_medias = [(self.__create_and_save_social_media(cur_data)) for cur_data in data['social_media']]
+        if data['social_media'] is not None:
+            social_medias = [(self.__create_and_save_social_media(cur_data)) for cur_data in data['social_media']]
+
         del data['social_media']
 
         settings = Settings.objects.create(**data)
         settings.full_clean()
         settings.save()
 
-        settings.social_media.set(social_medias)
+        if 'social_medias' in locals():
+            settings.social_media.set(social_medias)
 
         return settings
 
@@ -61,16 +65,29 @@ class TestSettingsModel(TestCase):
             self._create_and_save_settings(settings_data)
 
     def test_create__when_phone_number_is_null__expect_to_raise_exception(self):
-        pass
+        phone_number = None
+        settings_data = {**self.VALID_SETTINGS_DATA, 'phone_number': phone_number}
+
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_settings(settings_data)
 
     def test_create__when_email_for_contact_is_not_email__expect_to_raise_exception(self):
         pass
 
     def test_create__when_email_for_contact_is_null__expect_to_raise_exception(self):
-        pass
+        email_for_contact = None
+        settings_data = {**self.VALID_SETTINGS_DATA, 'email_for_contact': email_for_contact}
+
+        with self.assertRaises(IntegrityError):
+            self._create_and_save_settings(settings_data)
 
     def test_create__when_social_media_is_null__expect_to_be_created(self):
-        pass
+        social_medias = None
+        settings_data = {**self.VALID_SETTINGS_DATA, 'social_media': social_medias}
+
+        self._create_and_save_settings(settings_data)
+
+        self.assertEqual(Settings.objects.count(), 1)
 
     def test_create__when_delete_social_media__expect_to_still_have_data(self):
         pass
