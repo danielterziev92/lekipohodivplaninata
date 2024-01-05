@@ -1,3 +1,4 @@
+from django.db import DataError
 from django.test import TestCase
 from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 
@@ -53,7 +54,11 @@ class TestSettingsModel(TestCase):
         self.assertTrue(settings.social_media.all().exists())
 
     def test_create__when_phone_number_with_one_more_character__expect_to_raise_exception(self):
-        pass
+        phone_number = '1' * (Settings.PHONE_NUMBER_MAX_LENGTH + 1)
+        settings_data = {**self.VALID_SETTINGS_DATA, 'phone_number': phone_number}
+
+        with self.assertRaises(DataError):
+            self._create_and_save_settings(settings_data)
 
     def test_create__when_phone_number_is_null__expect_to_raise_exception(self):
         pass
