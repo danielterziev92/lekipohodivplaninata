@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from lekipohodivplaninata.users_app.models import UserApp, BaseProfile
+from lekipohodivplaninata.users_app.models import BaseProfile
+
+UserModel = get_user_model()
 
 
 class TestBaseProfileModel(TestCase):
@@ -17,7 +20,7 @@ class TestBaseProfileModel(TestCase):
     }
 
     def _create_and_save_base_profile(self, data):
-        user_id = UserApp.objects.create(**self.VALID_USER_APP_DATA)
+        user_id = UserModel.objects.create(**self.VALID_USER_APP_DATA)
         user = BaseProfile(**data, user_id=user_id)
         user.full_clean()
         user.save()
@@ -65,3 +68,15 @@ class TestBaseProfileModel(TestCase):
         user = self._create_and_save_base_profile(self.VALID_BASE_PROFILE_DATA)
 
         self.assertEqual(self.VALID_USER_APP_DATA['email'], user.get_email)
+
+    def test__when_create_base_profile_and_delete_user_id__expect_to_delete_both(self):
+        base_profile = self._create_and_save_base_profile(self.VALID_BASE_PROFILE_DATA)
+        user_app = base_profile.user_id
+
+        self.assertTrue(UserModel.objects.filter(pk=user_app.pk).exists())
+        self.assertTrue(BaseProfile.objects.filter(pk=base_profile.pk).exists())
+
+        user_app.delete()
+
+        self.assertFalse(UserModel.objects.filter(pk=user_app.pk).exists())
+        self.assertFalse(BaseProfile.objects.filter(pk=base_profile).exists())
