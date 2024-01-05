@@ -101,7 +101,7 @@ class HikeEvaluationUsers(Evaluation):
         BaseProfile,
         on_delete=models.SET_NULL,
         null=True,
-        blank=False,
+        blank=True,
     )
 
 
