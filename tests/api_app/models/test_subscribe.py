@@ -45,8 +45,15 @@ class TestSubscribeModel(TestCase):
     def test_create__when_email_is_null__expect_to_raise_exception(self):
         pass
 
-    def test_create__when_slug_is_not_unique__expect_to_raise_exception(self):
-        pass
+    @patch('lekipohodivplaninata.core.tasks.send_email_to_subscriber.delay')
+    def test_create__when_slug_is_not_unique__expect_to_raise_exception(self, mock_send_email):
+        subscribe = self._create_and_save_subscribe(self.VALID_SUBSCRIBE_DATA)
+
+        mock_send_email.assert_called_once_with(email=subscribe.email)
+
+        with self.assertRaises(IntegrityError):
+            subscribe_data = {**self.VALID_SUBSCRIBE_DATA, 'email': 'email2@example.com'}
+            self._create_and_save_subscribe(subscribe_data)
 
     def test_create__when_slug_is_null__expect_to_be_created(self):
         pass
