@@ -42,8 +42,13 @@ class TestSubscribeModel(TestCase):
             subscribe_data = {**self.VALID_SUBSCRIBE_DATA, 'slug_to_unsubscribe': 'test-slug-2'}
             self._create_and_save_subscribe(subscribe_data)
 
-    def test_create__when_email_is_null__expect_to_raise_exception(self):
-        pass
+    @patch('lekipohodivplaninata.core.tasks.send_email_to_subscriber.delay')
+    def test_create__when_email_is_null__expect_to_raise_exception(self, mock_send_email):
+        with self.assertRaises(IntegrityError):
+            subscribe_data = {**self.VALID_SUBSCRIBE_DATA, 'slug_to_unsubscribe': None}
+            self._create_and_save_subscribe(subscribe_data)
+
+            mock_send_email.assert_not_called()
 
     @patch('lekipohodivplaninata.core.tasks.send_email_to_subscriber.delay')
     def test_create__when_slug_is_not_unique__expect_to_raise_exception(self, mock_send_email):
