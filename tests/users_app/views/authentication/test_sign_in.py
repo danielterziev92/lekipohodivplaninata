@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 UserModel = get_user_model()
 
@@ -7,16 +8,19 @@ UserModel = get_user_model()
 class SingInViewTest(TestCase):
     VALID_USER_APP_DATA = {
         'email': 'test@example.com',
-        'password': 'password',
+        'password': 'Password123!.',
     }
 
-    def _create_user_app(self, data):
+    @staticmethod
+    def _create_user_app(data):
         user_app = UserModel.objects.create_user(**data)
-        user_app.save()
         return user_app
 
     def test_create_user_app__when_valid_data__expect_to_be_created(self):
-        pass
+        self._create_user_app(self.VALID_USER_APP_DATA)
+
+        login_success = self.client.login(**self.VALID_USER_APP_DATA)
+        self.assertTrue(login_success)
 
     def test_create_user_app__when_email_does_not_exist__expect_to_raise_exception(self):
         pass
