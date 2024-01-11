@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.test import TestCase
-from django.urls import reverse
 
 UserModel = get_user_model()
 
@@ -23,7 +23,10 @@ class SingInViewTest(TestCase):
         self.assertTrue(login_success)
 
     def test_create_user_app__when_email_does_not_exist__expect_to_raise_exception(self):
-        pass
+        self._create_user_app(self.VALID_USER_APP_DATA)
+
+        user_data = {**self.VALID_USER_APP_DATA, 'email': None}
+        self.assertFalse(self.client.login(**user_data))
 
     def test_create_user_app__when_email_is_wrong__expect_to_raise_exception(self):
         pass
