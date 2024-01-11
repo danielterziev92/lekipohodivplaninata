@@ -87,7 +87,14 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form_when_phone_number_is_none__expect_to_return_message(self):
-        pass
+        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'phone_number': None})
+        is_valid = form.is_valid()
+        message = form.errors['phone_number'][0]
+
+        expected_error_message = form.fields['phone_number'].error_messages['required']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_error_message, message)
 
     def test_form__when_phone_number_one_more_character_and_start_with_plus__expect_to_return_message(self):
         phone_number = '+' + '1' * BaseUserModelForm.PHONE_NUMBER_MAX_LENGTH
