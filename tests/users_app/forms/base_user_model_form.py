@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from lekipohodivplaninata.base.models import BaseUserModel
 from lekipohodivplaninata.users_app.forms import BaseUserModelForm, UserModelForm
 
 UserModel = get_user_model()
@@ -39,7 +40,7 @@ class BaseUserModelFormTest(TestCase):
         self.assertFalse(is_valid)
         self.assertEqual(expected_error_message, message)
 
-    def test_form__when_first_name_one_more_character__expect_to_return_message(self):
+    def test_form__when_first_name_is_none__expect_to_return_message(self):
         form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'first_name': None})
         is_valid = form.is_valid()
         message = form.errors['first_name'][0]
@@ -49,7 +50,18 @@ class BaseUserModelFormTest(TestCase):
         self.assertFalse(is_valid)
         self.assertEqual(expected_error_message, message)
 
-    def test_form_when_last_name_one_more_character__expect_to_return_message(self):
+    def test_form__when_first_name_one_more_character__expect_to_return_message(self):
+        first_name = 'T' * (BaseUserModel.LAST_NAME_MAX_LENGTH + 1)
+        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'first_name': first_name})
+        is_valid = form.is_valid()
+        message = form.errors['first_name'][0]
+
+        expected_error_message = f'Уверете се, че тази стойност има най-много {BaseUserModel.LAST_NAME_MAX_LENGTH} знака (тя има {BaseUserModel.LAST_NAME_MAX_LENGTH + 1}).'
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_error_message, message)
+
+    def test_form_when_last_name_is_none__expect_to_return_message(self):
         form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'last_name': None})
         is_valid = form.is_valid()
         message = form.errors['last_name'][0]
@@ -58,6 +70,12 @@ class BaseUserModelFormTest(TestCase):
 
         self.assertFalse(is_valid)
         self.assertEqual(expected_error_message, message)
+
+    def test_form_when_last_name_one_more_character__expect_to_return_message(self):
+        pass
+
+    def test_form_when_phone_number_is_none__expect_to_return_message(self):
+        pass
 
     def test_form__when_phone_number_one_more_character__expect_to_return_message(self):
         pass
