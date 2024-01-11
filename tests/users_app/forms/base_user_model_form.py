@@ -50,7 +50,14 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form_when_last_name_one_more_character__expect_to_return_message(self):
-        pass
+        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'last_name': None})
+        is_valid = form.is_valid()
+        message = form.errors['last_name'][0]
+
+        expected_error_message = form.fields['last_name'].error_messages['required']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_error_message, message)
 
     def test_form__when_phone_number_one_more_character__expect_to_return_message(self):
         pass
