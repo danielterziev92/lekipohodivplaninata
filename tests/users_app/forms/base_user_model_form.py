@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from lekipohodivplaninata.users_app.forms import BaseUserModelForm
+from lekipohodivplaninata.users_app.forms import BaseUserModelForm, UserModelForm
 
 UserModel = get_user_model()
 
@@ -28,6 +28,16 @@ class BaseUserModelFormTest(TestCase):
 
         self.assertTrue(is_valid)
         self.assertEqual(len(message), 0)
+
+    def test_form__when_user_id_is_none__expect_to_return_message(self):
+        form = BaseUserModelForm(data={**self.VALID_FORM_DATA})
+        is_valid = form.is_valid()
+        message = form.errors['user_id'][0]
+
+        expected_error_message = form.fields['user_id'].error_messages['required']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_error_message, message)
 
     def test_form__when_first_name_one_more_character__expect_to_return_message(self):
         pass
