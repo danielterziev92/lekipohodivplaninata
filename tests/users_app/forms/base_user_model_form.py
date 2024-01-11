@@ -51,12 +51,14 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form__when_first_name_one_more_character__expect_to_return_message(self):
-        first_name = 'T' * (BaseUserModel.LAST_NAME_MAX_LENGTH + 1)
+        first_name = 'T' * (BaseUserModel.FIRST_NAME_MAX_LENGTH + 1)
         form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'first_name': first_name})
         is_valid = form.is_valid()
         message = form.errors['first_name'][0]
 
-        expected_error_message = f'Уверете се, че тази стойност има най-много {BaseUserModel.LAST_NAME_MAX_LENGTH} знака (тя има {BaseUserModel.LAST_NAME_MAX_LENGTH + 1}).'
+        expected_error_message = \
+            (f'Уверете се, че тази стойност има най-много {BaseUserModel.FIRST_NAME_MAX_LENGTH} знака (тя има '
+             f'{BaseUserModel.FIRST_NAME_MAX_LENGTH + 1}).')
 
         self.assertFalse(is_valid)
         self.assertEqual(expected_error_message, message)
@@ -72,10 +74,30 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form_when_last_name_one_more_character__expect_to_return_message(self):
-        pass
+        last_name = 'T' * (BaseUserModel.LAST_NAME_MAX_LENGTH + 1)
+        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'last_name': last_name})
+        is_valid = form.is_valid()
+        message = form.errors['last_name'][0]
+
+        expected_error_message = \
+            (f'Уверете се, че тази стойност има най-много {BaseUserModel.LAST_NAME_MAX_LENGTH} знака (тя има '
+             f'{BaseUserModel.LAST_NAME_MAX_LENGTH + 1}).')
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_error_message, message)
 
     def test_form_when_phone_number_is_none__expect_to_return_message(self):
         pass
 
-    def test_form__when_phone_number_one_more_character__expect_to_return_message(self):
-        pass
+    def test_form__when_phone_number_one_more_character_and_start_with_plus__expect_to_return_message(self):
+        phone_number = '+' + '1' * BaseUserModelForm.PHONE_NUMBER_MAX_LENGTH
+        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'phone_number': phone_number})
+        is_valid = form.is_valid()
+        message = form.errors['phone_number'][0]
+
+        expected_error_message = \
+            (f'Уверете се, че тази стойност има най-много {BaseUserModelForm.PHONE_NUMBER_MAX_LENGTH} знака (тя има '
+             f'{BaseUserModelForm.PHONE_NUMBER_MAX_LENGTH + 1}).')
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_error_message, message)
