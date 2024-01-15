@@ -24,7 +24,13 @@ class SignInFormTest(TestCase):
         self.assertTrue(is_valid)
 
     def test_form__when_email_is_not_email__expect_to_return_message(self):
-        pass
+        form = SignInForm(data={**self.VALID_DATA, 'username': 'invalid_email'})
+        is_valid = form.is_valid()
+        message = form.errors['username'][0]
+        expected_message = form.fields['username'].validators[0].message
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
 
     def test_form__when_email_is_none__expect_to_return_message(self):
         pass
