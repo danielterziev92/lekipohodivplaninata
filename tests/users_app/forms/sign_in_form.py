@@ -42,7 +42,13 @@ class SignInFormTest(TestCase):
         self.assertEqual(expected_message, message)
 
     def test_form__when_password_is_not_correct__expect_to_return_message(self):
-        pass
+        form = SignInForm(data={**self.VALID_DATA, 'password': 'password'})
+        is_valid = form.is_valid()
+        message = form.errors['password'][0]
+        expected_message = 'Невалидена парола.'
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
 
     def test_form__when_password_is_none__expect_to_return_message(self):
         form = SignInForm(data={**self.VALID_DATA, 'password': None})
