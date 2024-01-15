@@ -45,4 +45,10 @@ class SignInFormTest(TestCase):
         pass
 
     def test_form__when_password_is_none__expect_to_return_message(self):
-        pass
+        form = SignInForm(data={**self.VALID_DATA, 'password': None})
+        is_valid = form.is_valid()
+        message = form.errors['password'][0]
+        expected_message = form.fields['password'].error_messages['required']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
