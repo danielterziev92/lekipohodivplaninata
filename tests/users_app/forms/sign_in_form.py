@@ -41,11 +41,20 @@ class SignInFormTest(TestCase):
         self.assertFalse(is_valid)
         self.assertEqual(expected_message, message)
 
+    def test_form__when_email_does_not_exist__expect_to_return_message(self):
+        form = SignInForm(data={'username': 'test2@example.com', 'password': 'Password1.'})
+        is_valid = form.is_valid()
+        message = form.errors['username'][0]
+        expected_message = SignInForm.MESSAGES['user_does_not_exist']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
+
     def test_form__when_password_is_not_correct__expect_to_return_message(self):
         form = SignInForm(data={**self.VALID_DATA, 'password': 'password'})
         is_valid = form.is_valid()
         message = form.errors['password'][0]
-        expected_message = 'Невалидена парола.'
+        expected_message = SignInForm.MESSAGES['invalid_password']
 
         self.assertFalse(is_valid)
         self.assertEqual(expected_message, message)

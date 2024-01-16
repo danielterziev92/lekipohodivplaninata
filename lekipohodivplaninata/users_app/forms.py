@@ -72,6 +72,11 @@ class BaseUserUpdateForm(BaseUserModelForm):
 
 
 class SignInForm(auth_form.AuthenticationForm):
+    MESSAGES = {
+        'user_does_not_exist': 'Потребител с този имейл не съществува.',
+        'invalid_password': 'Невалидена парола.',
+    }
+
     username = forms.EmailField(
         label='Имейл',
         widget=forms.EmailInput(
@@ -95,7 +100,7 @@ class SignInForm(auth_form.AuthenticationForm):
     def clean_username(self):
         email = self.cleaned_data.get('username').lower()
         if not UserApp.objects.filter(email=email):
-            raise ValidationError('Потребител с този имейл не съществува')
+            raise ValidationError(self.MESSAGES['user_does_not_exist'])
 
         return email
 
@@ -107,7 +112,7 @@ class SignInForm(auth_form.AuthenticationForm):
             user = authenticate(self.request, username=email, password=password)
 
             if user is None:
-                self.add_error('password', 'Невалидена парола.')
+                self.add_error('password', self.MESSAGES['invalid_password'])
                 raise self.get_invalid_login_error()
 
             super().clean()
