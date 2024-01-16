@@ -275,6 +275,10 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
 
 
 class UserSetPasswordForm(auth_form.SetPasswordForm):
+    MESSAGE = {
+        'password_mismatch': 'Паролите не съвпадат.',
+    }
+
     new_password1 = forms.CharField(
         label=_('Нова парола'),
         widget=forms.PasswordInput(
@@ -300,7 +304,7 @@ class UserSetPasswordForm(auth_form.SetPasswordForm):
         password1 = self.cleaned_data.get('password_1')
         password2 = self.cleaned_data.get('password_2')
         if password1 != password2:
-            self.add_error('new_password2', 'Паролите не съвпадат')
+            self.add_error('new_password2', self.MESSAGE['password_mismatch'])
 
     class Meta:
         error_messages = {
