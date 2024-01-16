@@ -2,13 +2,10 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from lekipohodivplaninata.hike.models import HikeType
+from tests.valid_data_for_test import ValidDataForTest
 
 
-class TestHikeTypeModel(TestCase):
-    VALID_HIKE_TYPE_DATA = {
-        'title': 'Test',
-    }
-
+class TestHikeTypeModel(TestCase, ValidDataForTest):
     INVALID_HIKE_TYPE_DATA = {
         'title': 't' * (HikeType.TITLE_MAX_LENGTH + 1)
     }
@@ -21,8 +18,8 @@ class TestHikeTypeModel(TestCase):
         return hike_type
 
     def test_create__when_valida_data__expect_to_be_created(self):
-        hike_type = self._create_and_save_hike_type(self.VALID_HIKE_TYPE_DATA)
-        self.assertEqual(self.VALID_HIKE_TYPE_DATA['title'], hike_type.title)
+        hike_type = self._create_and_save_hike_type(self.HIKE_TYPE_MODEL_DATA)
+        self.assertEqual(self.HIKE_TYPE_MODEL_DATA['title'], hike_type.title)
 
     def test_create__when_invalid_data__expect_to_raise_exception(self):
         with self.assertRaises(ValidationError):

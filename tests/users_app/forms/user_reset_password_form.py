@@ -3,26 +3,16 @@ from django.test import TestCase
 
 from lekipohodivplaninata.base.models import BaseUserModel
 from lekipohodivplaninata.users_app.forms import UserResetPasswordForm
+from tests.valid_data_for_test import ValidDataForTest
 
 UserModel = get_user_model()
 
 
-class UserResetPasswordFormTest(TestCase):
-    USED_MODEL_DATA = {
-        'email': 'test@example.com',
-        'password': 'Password123.'
-    }
-
-    BASE_MODEL_DATA = {
-        'first_name': 'Test',
-        'last_name': 'Tester',
-        'phone_number': '0123456789'
-    }
-
+class UserResetPasswordFormForTest(TestCase, ValidDataForTest):
     VALID_DATA = {'email': 'test@example.com'}
 
     def setUp(self):
-        user = UserModel.objects.create_user(**self.USED_MODEL_DATA)
+        user = UserModel.objects.create_user(**self.USER_MODEL_DATA)
         user.save()
 
         self.user = BaseUserModel(**self.BASE_MODEL_DATA, user_id=user)

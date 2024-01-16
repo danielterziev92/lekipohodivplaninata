@@ -3,19 +3,19 @@ from django.test import TestCase
 
 from lekipohodivplaninata.users_app.forms import UserSetPasswordForm
 from lekipohodivplaninata.users_app.models import BaseProfile
-from tests.test_valid_data import TestValidData
+from tests.valid_data_for_test import ValidDataForTest
 
 UserModel = get_user_model()
 
 
-class UserSetPasswordFormTest(TestCase, TestValidData):
+class UserSetPasswordFormForTest(TestCase, ValidDataForTest):
     VALID_DATA = {
         'new_password1': 'Password123.',
         'new_password2': 'Password123.',
     }
 
     def setUp(self):
-        user = UserModel.objects.create_user(**self.USED_MODEL_DATA)
+        user = UserModel.objects.create_user(**self.USER_MODEL_DATA)
         user.save()
 
         base_profile = BaseProfile.objects.create(**self.BASE_MODEL_DATA, user_id=user)

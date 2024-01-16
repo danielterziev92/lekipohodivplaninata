@@ -3,27 +3,17 @@ from django.test import TestCase
 
 from lekipohodivplaninata.base.models import BaseUserModel
 from lekipohodivplaninata.users_app.forms import BaseUserModelForm, UserModelForm
+from tests.valid_data_for_test import ValidDataForTest
 
 UserModel = get_user_model()
 
 
-class BaseUserModelFormTest(TestCase):
-    VALID_USER_DATA = {
-        'email': 'test@example.com',
-        'password': 'Password123.'
-    }
-
-    VALID_FORM_DATA = {
-        'first_name': 'Test',
-        'last_name': 'Tester',
-        'phone_number': '+123456789000',
-    }
-
+class BaseUserModelFormForTest(TestCase, ValidDataForTest):
     def setUp(self):
-        self.user = UserModel.objects.create_user(**self.VALID_USER_DATA)
+        self.user = UserModel.objects.create_user(**self.USER_MODEL_DATA)
 
     def test_form__when_valid_data__expect_to_submit(self):
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user})
         is_valid = form.is_valid()
         message = form.errors
 
@@ -31,7 +21,7 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(len(message), 0)
 
     def test_form__when_user_id_is_none__expect_to_return_message(self):
-        form = BaseUserModelForm(data=self.VALID_FORM_DATA)
+        form = BaseUserModelForm(data=self.BASE_MODEL_DATA)
         is_valid = form.is_valid()
         message = form.errors['user_id'][0]
 
@@ -41,7 +31,7 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form__when_first_name_is_none__expect_to_return_message(self):
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'first_name': None})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user, 'first_name': None})
         is_valid = form.is_valid()
         message = form.errors['first_name'][0]
 
@@ -52,7 +42,7 @@ class BaseUserModelFormTest(TestCase):
 
     def test_form__when_first_name_one_more_character__expect_to_return_message(self):
         first_name = 'T' * (BaseUserModel.FIRST_NAME_MAX_LENGTH + 1)
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'first_name': first_name})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user, 'first_name': first_name})
         is_valid = form.is_valid()
         message = form.errors['first_name'][0]
 
@@ -64,7 +54,7 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form_when_last_name_is_none__expect_to_return_message(self):
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'last_name': None})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user, 'last_name': None})
         is_valid = form.is_valid()
         message = form.errors['last_name'][0]
 
@@ -75,7 +65,7 @@ class BaseUserModelFormTest(TestCase):
 
     def test_form_when_last_name_one_more_character__expect_to_return_message(self):
         last_name = 'T' * (BaseUserModel.LAST_NAME_MAX_LENGTH + 1)
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'last_name': last_name})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user, 'last_name': last_name})
         is_valid = form.is_valid()
         message = form.errors['last_name'][0]
 
@@ -87,7 +77,7 @@ class BaseUserModelFormTest(TestCase):
         self.assertEqual(expected_error_message, message)
 
     def test_form_when_phone_number_is_none__expect_to_return_message(self):
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'phone_number': None})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user, 'phone_number': None})
         is_valid = form.is_valid()
         message = form.errors['phone_number'][0]
 
@@ -98,7 +88,7 @@ class BaseUserModelFormTest(TestCase):
 
     def test_form__when_phone_number_one_more_character_and_start_with_plus__expect_to_return_message(self):
         phone_number = '+' + '1' * BaseUserModelForm.PHONE_NUMBER_MAX_LENGTH
-        form = BaseUserModelForm(data={**self.VALID_FORM_DATA, 'user_id': self.user, 'phone_number': phone_number})
+        form = BaseUserModelForm(data={**self.BASE_MODEL_DATA, 'user_id': self.user, 'phone_number': phone_number})
         is_valid = form.is_valid()
         message = form.errors['phone_number'][0]
 

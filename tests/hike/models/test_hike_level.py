@@ -2,12 +2,10 @@ from django.db import DataError, IntegrityError
 from django.test import TestCase
 
 from lekipohodivplaninata.hike.models import HikeLevel
+from tests.valid_data_for_test import ValidDataForTest
 
 
-class TestHikeLevelModel(TestCase):
-    VALID_HIKE_LEVEL_DATA = {
-        'title': 'Test Hike Level',
-    }
+class TestHikeLevelModel(TestCase, ValidDataForTest):
 
     def _create_and_save_hike_level(self, data):
         hike_level = HikeLevel.objects.create(**data)
@@ -16,7 +14,7 @@ class TestHikeLevelModel(TestCase):
         return hike_level
 
     def test_create__when_valid_data__expect_to_be_created(self):
-        self._create_and_save_hike_level(self.VALID_HIKE_LEVEL_DATA)
+        self._create_and_save_hike_level(self.HIKE_LEVEL_MODEL_DATA)
         self.assertEqual(HikeLevel.objects.count(), 1)
 
     def test_create__when_length_is_greater_with_one__expect_to_raise_exception(self):

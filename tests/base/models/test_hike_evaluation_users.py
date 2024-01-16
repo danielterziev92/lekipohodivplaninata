@@ -3,11 +3,12 @@ from django.test import TestCase
 
 from lekipohodivplaninata.base.models import HikeEvaluationUsers
 from lekipohodivplaninata.users_app.models import BaseProfile
+from tests.valid_data_for_test import ValidDataForTest
 
 UserModel = get_user_model()
 
 
-class HikeEvaluationUsersModel(TestCase):
+class HikeEvaluationUsersModel(TestCase, ValidDataForTest):
     VALID_USER_DATA = {
         'email': 'test@test.com',
         'password': 'Test123@',
@@ -23,11 +24,8 @@ class HikeEvaluationUsersModel(TestCase):
     }
 
     def _create_and_save_base_profile(self):
-        email, password, *base_profile_data = self.VALID_USER_DATA.values()
-        base_profile_data = {key: value for key, value in self.VALID_USER_DATA.items() if value in base_profile_data}
-
-        user_app = UserModel.objects.create_user(email=email, password=password)
-        base_profile = BaseProfile(user_id=user_app, **base_profile_data)
+        user_app = UserModel.objects.create_user(**self.USER_MODEL_DATA)
+        base_profile = BaseProfile(user_id=user_app, **self.BASE_MODEL_DATA)
         base_profile.save()
         return base_profile
 
