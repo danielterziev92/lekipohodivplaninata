@@ -32,10 +32,19 @@ class SignUpFormTest(TestCase):
                                                  phone_number=self.VALIDA_DATA['phone_number'])
         base_user.save()
 
-        form2 = SignUpFormUser(data=self.VALIDA_DATA)
-        is_form2_valid = form2.is_valid()
+        form = SignUpFormUser(data=self.VALIDA_DATA)
+        is_valid = form.is_valid()
+        message = form.errors['email'][0]
+        expected_message = SignUpFormUser.MESSAGES['user_already_exists']
 
-        self.assertFalse(is_form2_valid)
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
 
     def test_sign_up__when_password_does_not_match__expect_to_return_message(self):
-        pass
+        form = SignUpFormUser(data={**self.VALIDA_DATA, 'password2': 'InvalidPassword'})
+        is_valid = form.is_valid()
+        message = form.errors['password2'][0]
+        expected_message = SignUpFormUser.MESSAGES['password_mismatch']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
