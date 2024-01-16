@@ -301,10 +301,11 @@ class UserSetPasswordForm(auth_form.SetPasswordForm):
     )
 
     def clean_new_password2(self):
-        password1 = self.cleaned_data.get('password_1')
-        password2 = self.cleaned_data.get('password_2')
+        password1 = self.cleaned_data.get('new_password1')
+        password2 = self.cleaned_data.get('new_password2')
         if password1 != password2:
             self.add_error('new_password2', self.MESSAGE['password_mismatch'])
+            raise ValidationError(self.MESSAGE['password_mismatch'])
 
     class Meta:
         error_messages = {

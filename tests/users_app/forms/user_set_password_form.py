@@ -30,4 +30,10 @@ class UserSetPasswordFormTest(TestCase, TestValidData):
         self.assertTrue(is_valid)
 
     def test_set_password__when_password_mismatch__expert_to_return_message(self):
-        pass
+        form = UserSetPasswordForm(data={**self.VALID_DATA, 'new_password2': 'InvalidPassword'}, user=self.user)
+        is_valid = form.is_valid()
+        message = form.errors['new_password2'][0]
+        expected_message = UserSetPasswordForm.MESSAGE['password_mismatch']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
