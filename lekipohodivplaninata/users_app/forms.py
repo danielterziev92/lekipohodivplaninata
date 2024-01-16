@@ -119,6 +119,14 @@ class SignInForm(auth_form.AuthenticationForm):
 
 
 class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationForm):
+    MESSAGES = {
+        'password_too_similar': 'Паролата ви е много близка с имейла.',
+        'password_mismatch': 'Паролите се различават.',
+        'user_already_exists': 'Потребител с този имейл вече съществува.',
+        'successful_registration': 'Регистрацията мина успешно!',
+        'something_went_wrong': 'Нещо се обърка, моля опитайте отново.',
+    }
+
     password1 = forms.CharField(
         label='Парола',
         strip=False,
@@ -128,7 +136,7 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
                 'id': 'password_1',
             }),
         error_messages={
-            'password_too_similar': 'Паролата ви е много близка с имейла.'
+            'password_too_similar': MESSAGES['password_too_similar']
         },
         help_text=password_validation.password_validators_help_text_html(),
     )
@@ -145,7 +153,7 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
     def clean_email(self):
         email = self.cleaned_data.get('email').lower()
         if UserApp.objects.filter(email=email):
-            self.add_error('email', 'Потребител с този имейл вече съществува')
+            self.add_error('email', self.MESSAGES['user_already_exists'])
 
         return email
 
@@ -153,7 +161,7 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         if password1 != password2:
-            self.add_error('password2', 'Паролите се различават')
+            self.add_error('password2', self.MESSAGES['password_mismatch'])
 
         return password2
 
@@ -172,9 +180,9 @@ class SignUpFormUser(UserModelForm, BaseUserModelForm, auth_form.UserCreationFor
                 if commit:
                     profile.save()
 
-                messages.success(self._request, 'Регистрацията мина успешно!')
+                messages.success(self._request, self.MESSAGES['successful_registration'])
         except Exception:
-            messages.error(self._request, 'Нещо се обърка, моля опитайте отново.')
+            messages.error(self._request, self.MESSAGES['something_went_wrong'])
             return
 
         return user
