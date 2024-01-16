@@ -35,4 +35,10 @@ class UserResetPasswordFormTest(TestCase):
         self.assertTrue(is_valid)
 
     def test_reset_password__when_email_does_not_exist(self):
-        pass
+        form = UserResetPasswordForm(data={'email': 'invalid_test@example.com'})
+        is_valid = form.is_valid()
+        message = form.errors['email'][0]
+        expected_message = UserResetPasswordForm.MESSAGE['email_does_not_exist']
+
+        self.assertFalse(is_valid)
+        self.assertEqual(expected_message, message)
