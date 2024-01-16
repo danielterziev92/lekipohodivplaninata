@@ -14,7 +14,10 @@ class SignUpFormTest(TestCase):
     }
 
     def test_sign_up__when_valid_data__expect_to_create_user(self):
-        pass
+        form = SignUpFormUser(data=self.VALIDA_DATA)
+        is_valid = form.is_valid()
+
+        self.assertTrue(is_valid)
 
     def test_sign_up__when_email_already_exist__expect_to_return_message(self):
         pass
