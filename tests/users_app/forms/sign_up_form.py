@@ -1,6 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from lekipohodivplaninata.base.models import BaseUserModel
 from lekipohodivplaninata.users_app.forms import SignUpFormUser
+
+UserModel = get_user_model()
 
 
 class SignUpFormTest(TestCase):
@@ -20,7 +24,18 @@ class SignUpFormTest(TestCase):
         self.assertTrue(is_valid)
 
     def test_sign_up__when_email_already_exist__expect_to_return_message(self):
-        pass
+        user = UserModel.objects.create_user(email=self.VALIDA_DATA['email'], password=self.VALIDA_DATA['password1'])
+        user.save()
+        base_user = BaseUserModel.objects.create(user_id=user,
+                                                 first_name=self.VALIDA_DATA['first_name'],
+                                                 last_name=self.VALIDA_DATA['last_name'],
+                                                 phone_number=self.VALIDA_DATA['phone_number'])
+        base_user.save()
+
+        form2 = SignUpFormUser(data=self.VALIDA_DATA)
+        is_form2_valid = form2.is_valid()
+
+        self.assertFalse(is_form2_valid)
 
     def test_sign_up__when_password_does_not_match__expect_to_return_message(self):
         pass
