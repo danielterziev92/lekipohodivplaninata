@@ -253,6 +253,11 @@ class GuideProfileFormUser(BaseUserModelForm, forms.ModelForm):
 
 
 class UserResetPasswordForm(auth_form.PasswordResetForm):
+    MESSAGE = {
+        'email_does_not_exist': 'Потребител с този имейл не съществува',
+        'successful_send_email': 'Вече има изпратена завка за смяна на паролата',
+    }
+
     email = forms.EmailField(
         label='Имейл',
         widget=forms.EmailInput(),
@@ -261,10 +266,10 @@ class UserResetPasswordForm(auth_form.PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if not UserModel.objects.filter(email=email):
-            self.add_error('email', 'Потребител с този имейл не съществува')
+            self.add_error('email', self.MESSAGE['email_does_not_exist'])
 
         if cache.get(email):
-            self.add_error('email', 'Вече има изпратена завка за смяна на паролата')
+            self.add_error('email', self.MESSAGE['successful_send_email'])
 
         return email
 
