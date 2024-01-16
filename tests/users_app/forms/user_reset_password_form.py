@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from lekipohodivplaninata.base.models import BaseUserModel
+from lekipohodivplaninata.users_app.forms import UserResetPasswordForm
 
 UserModel = get_user_model()
 
@@ -28,7 +29,10 @@ class UserResetPasswordFormTest(TestCase):
         self.user.save()
 
     def test_reset_password__when_valid_data__expert_to_be_submitted(self):
-        pass
+        form = UserResetPasswordForm(data=self.VALID_DATA)
+        is_valid = form.is_valid()
+
+        self.assertTrue(is_valid)
 
     def test_reset_password__when_email_does_not_exist(self):
         pass
